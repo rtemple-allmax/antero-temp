@@ -1,0 +1,19 @@
+.search-box-wrapper {
+  background-color: transparent;
+  border: var(--border);
+  & .search-box {
+    padding: 2px 0 1px;
+    width: 250px;
+    & input {
+      width: 100%;
+      background: transparent;
+      padding: var(--space-md);
+      outline: 0;
+      border: none;
+      color: var(--fg-color);
+      &::placeholder {
+        color: var(--fg-color);
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<amx-modal [heading]="'Add Supplier'" (closed)="closedHandler()">
+  <amx-searchable-dropdown
+    [label]="'Supplier'"
+    [items]="suppliers"
+    [(ngModel)]="supplierBinding.value"
+    (opened)="getSuppliers()">
+  </amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-text-box
+    [label]="'Item Number'"
+    [(ngModel)]="itemNumberBinding.value">
+  </amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-text-box
+    [label]="'Item Description'"
+    [(ngModel)]="itemDescriptionBinding.value">
+  </amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [label]="'Save'" [icon]="icons.saveIcon"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

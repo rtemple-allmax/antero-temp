@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Data-bound_Report" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="32" height="32" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
+<style type="text/css">
+	.Black{fill:#727272;}
+	.White{fill:#FFFFFF;}
+	.Blue{fill:#1177D7;}
+	.st0{opacity:1;}
+	.st1{opacity:1;}
+	.st2{opacity:1;}
+</style>
+<g class="st0">
+	<path class="Black" d="M30,26c-12.7,0-23-2.7-23-6v43c0,3.3,10.3,6,23,6s23-2.7,23-6V20C53,23.3,42.7,26,30,26z"/>
+</g>
+<g class="st1">
+	<ellipse class="Black" cx="30" cy="18" rx="23" ry="6"/>
+</g>
+<g class="st2">
+	<path class="Black" d="M120,46H87L72,61L57,46H24c-0.5,0-1,0.5-1,1v68c0,0.5,0.5,1,1,1h96c0.5,0,1-0.5,1-1V47
+		C121,46.5,120.5,46,120,46z"/>
+</g>
+<rect x="38" y="33" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 153 9)" class="White" width="68" height="96"/>
+<g class="st1">
+	<path class="Black" d="M47,77h11v8H47V77z M47,75h11v-8H47V75z M60,105h11v-8H60V105z M47,65h11v-8H47V65z M60,75h11v-8H60V75z
+		 M60,85h11v-8H60V85z M60,95h11v-8H60V95z M34,95h11v-8H34V95z M68,57h-8v8h11v-5L68,57z M34,105h11v-8H34V105z M47,105h11v-8H47
+		V105z M34,85h11v-8H34V85z M34,65h11v-8H34V65z M34,75h11v-8H34V75z M47,95h11v-8H47V95z M86,75h11v-8H86V75z M73,105h11v-8H73V105
+		z M86,65h11v-8H86V65z M99,95h11v-8H99V95z M99,85h11v-8H99V85z M99,57v8h11v-8H99z M99,75h11v-8H99V75z M99,105h11v-8H99V105z
+		 M73,75h11v-8H73V75z M73,85h11v-8H73V85z M73,95h11v-8H73V95z M86,85h11v-8H86V85z M73,60v5h11v-8h-8L73,60z M86,95h11v-8H86V95z
+		 M86,105h11v-8H86V105z"/>
+</g>
+<g id="Redo_1_">
+	<path class="White" d="M77,46h8L72,59L59,46h8c0-12-5-19-12-19C67,27,77,34,77,46z"/>
+	<g class="st2">
+		<path class="Blue" d="M77,46h8L72,59L59,46h8c0-12-5-19-12-19C67,27,77,34,77,46z"/>
+	</g>
+</g>
+</svg>

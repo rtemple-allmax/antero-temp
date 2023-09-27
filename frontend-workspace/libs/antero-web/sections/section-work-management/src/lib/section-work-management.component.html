@@ -1,0 +1,264 @@
+<ant-app-frame [sectionName]="'Current Work'" [deviceType]="deviceType">
+  <amx-view-switch frameControls (viewToggled)="toggleView($event)"></amx-view-switch>
+  <amx-master-detail
+    frameContent
+    [data]="data?.data"
+    [masterWidth]="deviceType === deviceTypes.MOBILE ? '100%' : '50ch'"
+    [deviceType]="deviceType"
+    [allowMultiSelect]="true"
+    [selectionMode]="'multiple'"
+    [viewType]="viewType"
+    [cellTemplate]="woCard"
+    [columns]="data?.colDef?.columns || []"
+    (selectionChanged)="selectionHandler($event)">
+    <ng-container controls *ngTemplateOutlet="toolbar"></ng-container>
+    <div class="details" details>
+      <amx-flex [align]="'center'" [justify]="'space-between'">
+        <amx-flex [align]="'center'" [gap]="'var(--space-xl)'" [height]="'40px'">
+          <div>
+            <h2>WO# {{ workOrderData?.wo?.workOrderNumber }}</h2>
+          </div>
+          <amx-flex [align]="'center'" [gap]="'var(--space-lg)'">
+            <amx-icon *ngIf="workOrderData?.wo?.isDue" [icon]="icons.delinquentIcon" [color]="'var(--msg-danger)'" [height]="'30px'"></amx-icon>
+            <amx-icon *ngIf="workOrderData?.wo?.needsAttention" [icon]="icons.needsAttentionIcon" [color]="'var(--msg-warning)'" [height]="'30px'"></amx-icon>
+          </amx-flex>
+        </amx-flex>
+        <!-- <ng-container *ngIf="selectedWOIDs.length < 2 else multiWoSelectedTemplate">
+          <amx-flex [align]="'center'" [gap]="'var(--space-xl)'" [height]="'40px'">
+            <div>
+              <h2>WO# {{ workOrderData?.wo?.workOrderNumber }}</h2>
+            </div>
+            <amx-flex [align]="'center'" [gap]="'var(--space-lg)'">
+              <amx-icon *ngIf="workOrderData?.wo?.isDue" [icon]="icons.delinquentIcon" [color]="'var(--msg-danger)'" [height]="'30px'"></amx-icon>
+              <amx-icon *ngIf="workOrderData?.wo?.needsAttention" [icon]="icons.needsAttentionIcon" [color]="'var(--msg-warning)'" [height]="'30px'"></amx-icon>
+            </amx-flex>
+          </amx-flex>
+        </ng-container> -->
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <ng-container details [ngSwitch]="deviceType">
+        <ng-container *ngSwitchCase="deviceTypes.DESKTOP">
+          <ng-container *ngTemplateOutlet="desktop"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="deviceTypes.TABLET">
+          <ng-container *ngTemplateOutlet="tablet"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+          <ng-container *ngTemplateOutlet="mobile"></ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </amx-master-detail>
+</ant-app-frame>
+
+<ng-template #desktop>
+  <ng-container *ngIf="selectedSwitchValue === switchValues.WORK_ORDERS">
+    <amx-tabs [disabled]="selectedWOIDs.length > 1">
+      <ng-container tabsContent>
+        <amx-tab [label]="'Details'" [icon]="icons.detailsIcon">
+          <ant-work-order-tab-details></ant-work-order-tab-details>
+          <!-- <ant-work-order-details-panel *ngIf="selectedTabIndex === 0" [height]="tabHeight"></ant-work-order-details-panel> -->
+        </amx-tab>
+        <amx-tab [label]="'Completion'" [icon]="icons.detailsIcon">
+          <!-- <ant-work-order-completion-panel *ngIf="selectedTabIndex === 1" [height]="tabHeight"></ant-work-order-completion-panel> -->
+        </amx-tab>
+        <amx-tab [label]="'Activity'" [icon]="icons.detailsIcon">
+          <!-- <ant-work-order-misc-panel *ngIf="selectedTabIndex === 9" [height]="tabHeight"></ant-work-order-misc-panel> -->
+        </amx-tab>
+      </ng-container>
+    </amx-tabs>
+  </ng-container>
+</ng-template>
+
+<ng-template #tablet>
+  tablet
+</ng-template><nav></nav>
+
+<ng-template #mobile>
+  mobile
+</ng-template>
+
+<ng-template #toolbar>
+  <amx-flex controls [justify]="'space-between'" [padding]="'var(--space-md) var(--space-xl) var(--space-md) var(--space-md)'" [gap]="'var(--space-md)'" [align]="'center'">
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+      <amx-combo-button [label]="'Add Work Order'" [invert]="true" [icon]="icons.addIcon"></amx-combo-button>
+      <amx-search-box #searchBox (searchTermChanged)="searchHandler($event)" (downArrowClicked)="searchDownArrowHandler()"></amx-search-box>
+      <amx-dropdown-button
+        [icon]="icons.moreIcon"
+        [fgColor]="'var(--icon-color)'"
+        [height]="'20px'">
+        <amx-flex [flow]="'column nowrap'">
+          <amx-dropdown-item-button
+            [label]="'Work Lists'"
+            [icon]="icons.subListIcon"
+            (clicked)="openWorkLists()">
+          </amx-dropdown-item-button>
+        </amx-flex>
+      </amx-dropdown-button>
+      
+    </amx-flex>
+    <!-- <div>
+      <ng-container *ngTemplateOutlet="cardViewFilters"></ng-container>
+    </div> -->
+    <amx-icon-button
+      *ngIf="viewType === viewTypes.TABLE"
+      [height]="'24px'"
+      [icon]="'iconBack'"
+      [rotation]="detailButtonRotation"
+      (clicked)="toggleDetail()">
+    </amx-icon-button>
+  </amx-flex>
+</ng-template>
+
+<!-- <ng-template #cardViewFilters>
+  <amx-flex [gap]="'var(--space-md)'">
+    <amx-filter-button
+      [label]="'Assigned To'"
+      [icon]="icons.filterIcon"
+      [selection]="filteredUsers"
+      [displayExpr]="'name'"
+      [origin]="'right'"
+      (opened)="populateUserFilter()">
+      <div [ngStyle]="{ 'background': 'white', border: 'var(--border)' }">
+        <p [ngStyle]="{ 'padding': 'var(--space-lg)' }"><b>Maintenance Groups</b></p>
+        <amx-data-table
+          [height]="'300px'"
+          [columns]="[{ dataField: 'name' }]"
+          [data]="maintenanceGroupFilterDataSource"
+          [selectionMode]="'multiple'"
+          [showColumnHeaders]="false">
+        </amx-data-table>
+        <p [ngStyle]="{ 'padding': 'var(--space-lg)' }"><b>Users</b></p>
+        <amx-data-table
+          [height]="'300px'"
+          [columns]="[{ dataField: 'displayName' }]"
+          [data]="userFilterDataSource"
+          [selectionMode]="'multiple'"
+          [showColumnHeaders]="false"
+          (selectionChanged)="userFilterSelectionChanged($event)">
+        </amx-data-table>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+        <amx-flex [justify]="'center'">
+          <amx-link-button [label]="'Clear This Filter'" (clicked)="clearFilterByName(filters.ASSIGNED_TO)"></amx-link-button>
+        </amx-flex>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      </div>
+    </amx-filter-button>
+    <amx-filter-button
+      [label]="'Due Date'"
+      [icon]="filteredDueDates.length > 0 ? icons.filterIcon : icons.filterIcon"
+      [selection]="filteredDueDates"
+      [data]="dueDateFilterDataSource"
+      [displayExpr]="'name'"
+      [selectionMode]="'single'"
+      [origin]="'right'"
+      (opened)="populateDueDateFilter()"
+      (selectionChanged)="dueDateSelectionChanged($event)"
+      (cleared)="clearFilterByName(filters.DUE_DATE)">
+    </amx-filter-button>
+    <amx-filter-button
+      [label]="'Priority'"
+      [icon]="icons.filterIcon"
+      [selection]="filteredPriorities"
+      [data]="priorityFilterDataSource"
+      [displayExpr]="'name'"
+      [origin]="'right'"
+      (opened)="populatePriorityFilter()"
+      (selectionChanged)="priorityFilterSelectionChanged($event)"
+      (clicked)="clearFilterByName(filters.PRIORITY)">
+    </amx-filter-button>
+    <amx-filter-button
+      [label]="'Status'"
+      [icon]="icons.filterIcon"
+      [activeIconColor]="filteredStatuses.length === 1 ? getStatusColor(filteredStatuses[0].predefinedColor) : 'white'"
+      [selection]="filteredStatuses"
+      [data]="statusFilterDataSource"
+      [cellTemplate]="statusTemplate"
+      [displayExpr]="'name'"
+      [origin]="'right'"
+      (opened)="populateStatusFilter()"
+      (selectionChanged)="statusFilterSelectionChanged($event)"
+      (clicked)="clearFilterByName(filters.STATUS)">
+    </amx-filter-button>
+  </amx-flex>
+</ng-template> -->
+
+<ng-template #woCard let-template="template">
+  <div
+    (mouseenter)="mouseenterHandler(template?.data?.id)"
+    (mouseleave)="mouseleaveHandler(template?.data?.id)">
+    <amx-flex [justify]="'space-between'" [align]="'center'">
+      <div>
+        <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+          <p><b>WO# {{ template?.data?.workOrderNumber }}</b></p>
+          <div class="statusIcon" [ngStyle]="{ background: getWorkStatusBGColor(template?.data?.workStatus?.predefinedColor) }"></div>
+          <amx-popover-button
+            [template]="completionTemplate"
+            [icon]="icons.confirmIcon"
+            [height]="'14px'"
+            [padding]="'0'"
+            [fgColor]="template?.data?.isComplete ? 'var(--msg-success)' : 'var(--fg-color)'"
+            (clicked)="openCompleteForm()">
+          </amx-popover-button>
+        </amx-flex>
+        <p [title]="'Equipment Name'">{{ template?.data?.equipment?.name }}</p>
+        <p [title]="'Task Name'">{{ template?.data?.task?.name }}</p>
+        <p [title]="'Date Scheduled'">{{ getDateString(template?.data?.dateScheduled) }}</p>
+      </div>
+      <!-- <amx-dropdown-button class="cell-more" [ngClass]="{ hovered: hoveredID === template?.data?.id}"
+        [icon]="icons.moreIcon"
+        [fgColor]="'var(--app-color-3)'"
+        [height]="'20px'">
+        <amx-dropdown-item-button
+          [icon]="icons.fileIcon"
+          [label]="'Work Lists'"
+          (clicked)="openWorkLists()">
+        </amx-dropdown-item-button>
+      </amx-dropdown-button> -->
+    </amx-flex>
+  </div>
+  <ng-template #completionTemplate>
+    <div [ngStyle]="{ padding: 'var(--space-md)' }">
+      <p><b>Due Date:</b> {{ getDateString(template?.data?.dueDate) || 'No Date Set' }}</p>
+      <p><b>Completed Date:</b> {{ getDateString(template?.data?.completedDate) || 'Needs Entered' }} </p>
+      <p><b>Completed Notes:</b> {{ 'Needs Entered' }} </p>
+      <p>{{ requiredInstrumentsLabel }}</p>
+      <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+        <amx-icon [icon]="icons.delinquentIcon" [color]="'var(--msg-danger)'" [height]="'14px'"></amx-icon>
+        <amx-icon [icon]="icons.needsAttentionIcon" [color]="'var(--msg-warning)'" [height]="'14px'"></amx-icon>
+      </amx-flex>
+    </div>
+  </ng-template>
+</ng-template>
+
+<!-- <ng-template #pCard let-template="template">
+  <div>
+    <p><b>Procedure# {{ template?.data?.procedureNumber }}</b></p>
+    <p>{{ template?.data?.name }}</p>
+    <p>{{ getDateString(template?.data?.dateScheduled) }}</p>
+  </div>
+</ng-template>
+
+<ng-template #procedureHeader>
+  <amx-flex [align]="'center'" [gap]="'var(--space-xl)'" [height]="'40px'">
+  </amx-flex>
+  <amx-flex [gap]="'var(--space-md)'">
+    <amx-label-button [label]="'Show In Viewer'" (clicked)="showInViewer()"></amx-label-button>
+  </amx-flex>
+</ng-template> -->
+
+<!-- <ng-template #statusTemplate let-template="template">
+  <amx-flex [gap]="'var(--space-md)'">
+    <amx-icon [icon]="icons.hasStatus" [color]="getStatusColor(template?.data?.predefinedColor)"></amx-icon>
+    <label>{{ template?.data?.name }}</label>
+  </amx-flex>
+</ng-template> -->
+
+<!-- <ng-template #multiWoSelectedTemplate>
+  <amx-flex [gap]="'var(--space-md)'">
+    <amx-combo-button [icon]="icons.editIcon" [label]="'Edit Selected'" (clicked)="openEditMultiWOs()"></amx-combo-button>
+    <amx-combo-button [icon]="icons.editIcon" [label]="'Move To Review'"></amx-combo-button>
+    <amx-combo-button [icon]="icons.editIcon" [label]="'Move To History'"></amx-combo-button>
+  </amx-flex>
+</ng-template> -->
+

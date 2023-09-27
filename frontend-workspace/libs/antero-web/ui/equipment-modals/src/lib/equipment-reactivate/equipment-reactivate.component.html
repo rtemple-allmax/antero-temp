@@ -1,0 +1,6 @@
+<amx-confirmation [heading]="'Reactivate'"
+  (closed)="cancelHandler()"
+  (canceled)="cancelHandler()"
+  (confirmed)="confirmHandler()">
+  <p>Are you certain you want to reactivate the Equipment {{ record?.name }}?</p>
+</amx-confirmation>

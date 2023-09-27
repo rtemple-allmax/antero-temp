@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/services/src/lib/positioning/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/services/src/lib/positioning"],
+      "options": {
+        "jestConfig": "libs/shared/services/src/lib/positioning/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/services/src/lib/positioning/**/*.ts",
+          "libs/shared/services/src/lib/positioning/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

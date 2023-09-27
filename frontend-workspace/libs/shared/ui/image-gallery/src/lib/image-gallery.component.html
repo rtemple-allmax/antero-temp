@@ -1,0 +1,51 @@
+<div class="overlay" (click)="close()">
+  <amx-grid [columns]="'1fr 50vw 1fr'">
+    <amx-flex [width]="'100%'" [height]="'100%'" [align]="'center'" [justify]="'center'">
+      <amx-icon-button
+        [awesome]="true"
+        [icon]="icons.decrementIcon"
+        [fgColor]="'white'"
+        [height]="'50px'"
+        [showBG]="false"
+        [shouldDisable]="selectedIndex < 0"
+        (clicked)="decrement($event)">
+      </amx-icon-button>
+    </amx-flex>
+    <div
+      class="image primary"
+      [ngStyle]="{ 'background-image': getUrl() }">
+    </div>
+    <amx-flex [width]="'100%'" [height]="'100%'" [align]="'center'" [justify]="'center'">
+      <amx-icon-button
+        [awesome]="true"
+        [icon]="icons.incrementIcon"
+        [fgColor]="'var(--icon-color)'"
+        [height]="'50px'"
+        [showBG]="false"
+        [shouldDisable]="selectedIndex < 0"
+        (clicked)="increment($event)">
+      </amx-icon-button>
+    </amx-flex>
+  </amx-grid>
+  <div (click)="stopBubble($event)">
+    <amx-flex [justify]="'center'">
+      <div [ngStyle]="{ 'width': '60vw', background: 'black' }" >
+        <dx-scroll-view [direction]="'horizontal'" [scrollByContent]="true" [showScrollbar]="'always'">
+          <amx-flex [gap]="'var(--space-md)'" [width]="'60vw'">
+            <ng-container *ngFor="let thumb of thumbs; let i = index;">
+              <div
+                [id]="'thumb' + thumb.sharedID"
+                [amxFlexChild]="'0 0 100px'"
+                class="image thumb"
+                [ngClass]="{ selected: selectedIndex === i }"
+                [ngStyle]="{ 'background-image': getThumbUrl(thumb) }"
+                (click)="setSelectedIndex(i)">
+              </div>
+            </ng-container>
+          </amx-flex>
+        </dx-scroll-view>
+      </div>
+    </amx-flex>
+  </div>
+</div>
+

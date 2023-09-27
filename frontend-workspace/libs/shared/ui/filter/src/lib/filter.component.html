@@ -1,0 +1,27 @@
+<div class="filter" #wrapper (clickOutside)="close()">
+  <amx-combo-button
+    [label]="uiLabel"
+    [icon]="icon"
+    [invert]="false"
+    (clicked)="toggle()">
+  </amx-combo-button>
+  <div class="content" #content [ngClass]="{ open: isOpen }">
+    <ng-container *ngIf="isOpen">
+      <div (click)="preventBubble($event)">
+        <amx-data-table
+          [columns]="[{ dataField: displayExpr }]"
+          [data]="data"
+          [width]="width"
+          [allowGrouping]="false"
+          [showColumnHeaders]="false"
+          [selectionMode]="'single'"
+          [selectFirstRowOnLoad]="false"
+          (selectionChanged)="select($event)">
+        </amx-data-table>
+        <amx-flex [justify]="'center'" [padding]="'var(--space-md)'">
+          <amx-link-button [label]="'Clear This Filter'" (clicked)="clearedHandler()"></amx-link-button>
+        </amx-flex>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<h2 [ngStyle]="{ 'text-align': 'center' }">Update Primary Details</h2>
+<amx-separator></amx-separator>
+<amx-scroll-box [maxHeight]="'calc(100vh - (43px + 24px + 15px + 32px + 3rem))'">
+  <amx-text-box
+    [label]="'Description'"
+    [(ngModel)]="descriptionBinding.value"
+    [maxLength]="50">
+  </amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown
+    [label]="'Department'"
+    [items]="departments"
+    [(ngModel)]="departmentBinding.value"
+    (opened)="getDepartments()">
+  </amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown
+    [label]="'Condition'"
+    [items]="conditions"
+    [(ngModel)]="conditionBinding.value"
+    (opened)="getConditions()">
+  </amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown
+    [label]="'Type'"
+    [items]="types"
+    [(ngModel)]="typeBinding.value"
+    (opened)="getTypes()">
+  </amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown
+    [label]="'Group'"
+    [items]="groups"
+    [(ngModel)]="groupBinding.value"
+    (opened)="getGroups()">
+  </amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown
+    [label]="'Priority'"
+    [items]="priorities"
+    [(ngModel)]="priorityBinding.value"
+    (opened)="getPriorities()">
+  </amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown
+    [label]="'Category'"
+    [items]="categories"
+    [(ngModel)]="categoryBinding.value"
+    (opened)="getCategories()">
+  </amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown
+    [label]="'Location'"
+    [items]="locations"
+    [(ngModel)]="locationBinding.value"
+    (closed)="getLocations()">
+  </amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-number-box [label]="'Work Order Rate'" format="$ ###,###,###,##0.00" [(ngModel)]="workOrderRateBinding.value"></amx-number-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-text-box [label]="'Work Order Units'" [maxLength]="25" [(ngModel)]="workOrderUnitsBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-text-box [label]="'Asset Number'" [maxLength]="50" [(ngModel)]="assetNumberBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-text-box [label]="'Model Number'" [maxLength]="50" [(ngModel)]="modelNumberBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-text-box [label]="'Serial Number'" [maxLength]="50" [(ngModel)]="serialNumberBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-text-area [label]="'Notes'" [maxLength]="4000" [(ngModel)]="notesBinding.value"></amx-text-area>
+</amx-scroll-box>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-flex [justify]="'flex-end'">
+  <amx-combo-button [label]="'Save'" [icon]="icons.saveIcon" (clicked)="submit()"></amx-combo-button>
+</amx-flex>

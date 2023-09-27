@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Delete_Comment" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="32" height="32" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+<style type="text/css">
+	.Color1{fill:#FFFFFF;}
+	.Color2{fill:#005BAA;}
+	.Color3{fill:#00AEEF;}
+  .Color4{fill:#666666;}
+</style>
+<!-- <rect class="Color1" x="0" y="0" width="32" height="32"/> -->
+<!-- <path class="Color4" d="M32,32z M0,0z M0,0L0,32 32,32 32,0 0,0z M30,30L2,30 2,2 30,2 30,30z"/> -->
+<ellipse class="Color2" cx="22" cy="10" rx="4" ry="4"/>
+<path class="Color2" d="M32,32z M0,0z M4,28L4,28 13.6,16 23.2,28z"/>
+<path class="Color3" d="M32,32z M0,0z M22,19.6L22,19.6 18.9,22.7 23.2,28 28,28z"/>
+</svg>

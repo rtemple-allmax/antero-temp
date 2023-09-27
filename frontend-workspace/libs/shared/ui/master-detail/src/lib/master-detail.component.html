@@ -1,0 +1,134 @@
+<ng-container [ngSwitch]="deviceType">
+  <ng-container *ngSwitchCase="deviceTypes.DESKTOP">
+    <ng-container *ngTemplateOutlet="desktopTemplate"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+    <ng-container *ngTemplateOutlet="mobileTemplate"></ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-template #desktopTemplate>
+  <div class="master-detail">
+    <ng-container [ngSwitch]="viewType">
+      <ng-container *ngSwitchCase="viewTypes.LIST">
+        <ng-container *ngTemplateOutlet="desktopListTemplate"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypes.TABLE">
+        <ng-container *ngTemplateOutlet="desktopTableTemplate"></ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-template>
+
+
+<ng-template #mobileTemplate>
+  <div class="master-detail">
+    <ng-container *ngTemplateOutlet="controlsSlot"></ng-container>
+    <amx-data-table
+      #table
+      [height]="'calc(100vh - 100px)'"
+      [columns]="columns"
+      [showColumnHeaders]="false"
+      [allowFiltering]="false"
+      [showSummary]="true"
+      [showRowLines]="true"
+      [data]="data"
+      [cellTemplate]="cellTemplate"
+      [rowAlternationEnabled]="false"
+      [rowContextMenuItems]="rowContextMenuItems"
+      [remoteOperations]="remoteOperations"
+      (contentReady)="tableReadyHandler($event)"
+      (selectionChanged)="selectionChangedHandler($event)"
+      (layoutDirty)="layoutDirtyHandler()">
+    </amx-data-table>
+    <amx-drawer [width]="'100%'" [height]="'100vh'" [yOffset]="'0px'" [peek]="'0px'">
+      <div [ngStyle]="{ height: '100%', background: '#eee'}">
+       <ng-container *ngTemplateOutlet="detailsSlot"></ng-container>
+      </div>
+    </amx-drawer>
+  </div>
+</ng-template>
+
+<ng-template #desktopListTemplate>
+  <ng-container *ngTemplateOutlet="controlsSlot"></ng-container>
+  <amx-grid [columns]="masterDetailDemensions" [gap]="'var(--space-md)'" [padding]="'0 var(--space-md)'">
+      <amx-data-table
+        #table
+        [backgroundColor]="'var(--base-bg-color)'"
+        [height]="'calc(100vh - 120px)'"
+        [columns]="columns"
+        [showColumnHeaders]="true"
+        [allowFiltering]="false"
+        [showSummary]="true"
+        [showRowLines]="true"
+        [allowGrouping]="false"
+        [selectionMode]="selectionMode"
+        [data]="data"
+        [cellTemplate]="cellTemplate"
+        [contextMenuItemTemplate]="contextMenuItemTemplate"
+        [rowAlternationEnabled]="false"
+        [showFilterRow]="false"
+        [allowWrapping]="true"
+        [allowExport]="false"
+        [selectedRowKeys]="selectedRowKeys"
+        [rowContextMenuItems]="rowContextMenuItems"
+        [remoteOperations]="remoteOperations"
+        [dropdownTemplate]="dropdownTemplate"
+        (contentReady)="tableReadyHandler($event)"
+        (addRequested)="addRequestedHandler()"
+        (selectionChanged)="selectionChangedHandler($event)"
+        (contextMenuPreparing)="contextMenuHandler($event)"
+        (headerPanelContextMenuPreparing)="headerPanelcontextMenuHandler($event)"
+        (layoutDirty)="layoutDirtyHandler()">
+      </amx-data-table>
+    <div [ngStyle]="{ height: 'calc(100vh - 100px)' }">
+      <ng-container *ngTemplateOutlet="detailsSlot"></ng-container>
+    </div>
+  </amx-grid>
+</ng-template>
+
+<ng-template #desktopTableTemplate>
+  <ng-container *ngTemplateOutlet="controlsSlot"></ng-container>
+  <div [ngStyle]="{ padding: '0 var(--space-md)', 'background-color': 'var(--base-bg-color)' }">
+    <amx-data-table
+      #table
+      class="table"
+      [columns]="columns"
+      [height]="'calc(100vh - 100px)'"
+      [width]="'auto'"
+      [data]="data"
+      [allowGrouping]="true"
+      [allowFiltering]="true"
+      [allowFixing]="true"
+      [allowResizing]="true"
+      [rowAlternationEnabled]="true"
+      [showFilterRow]="true"
+      [allowWrapping]="false"
+      [selectionMode]="selectionMode"
+      [remoteOperations]="remoteOperations"
+      [rowContextMenuItems]="rowContextMenuItems"
+      [contextMenuItemTemplate]="contextMenuItemTemplate"
+      [showSummary]="true"
+      (rowClicked)="rowClickHandler($event)"
+      (contentReady)="tableReadyHandler($event)"
+      (rowDblClicked)="rowDblClickedHandler()"
+      (selectionChanged)="selectionChangedHandler($event)"
+      (contextMenuPreparing)="contextMenuHandler($event)"
+      (layoutDirty)="layoutDirtyHandler()">
+    </amx-data-table>
+  </div>
+  <amx-drawer [width]="drawerWidth" [yOffset]="'85px'" [peek]="'0px'">
+    <div [ngStyle]="{ height: '100%', background: 'var(--base-bg-color)' }">
+     <ng-container *ngTemplateOutlet="detailsSlot"></ng-container>
+    </div>
+  </amx-drawer>
+</ng-template>
+
+<ng-template #controlsSlot>
+  <ng-content select="[controls]"></ng-content>
+</ng-template>
+
+<ng-template #detailsSlot>
+  <ng-content select="[details]"></ng-content>
+</ng-template>
+   

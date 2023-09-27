@@ -1,0 +1,28 @@
+<amx-modal [heading]="heading" [maxWidth]="'800px'" (closed)="closedHandler()">
+  <ng-container *ngIf="crud === crudFunctions.CREATE else edit">
+    <amx-searchable-table-dropdown
+      [data]="data"
+      [label]="'Part'"
+      [(ngModel)]="partBinding.value"
+      (opened)="getParts()">
+    </amx-searchable-table-dropdown>
+  </ng-container>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-text-box [label]="'Comment'" [maxLength]="50" [(ngModel)]="commentBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button
+      [label]="'Save'"
+      [icon]="icons.saveIcon"
+      [invert]="true"
+      [shouldDisable]="!ready"
+      (clicked)="submit()">
+    </amx-combo-button>
+  </amx-flex>
+</amx-modal>
+
+<ng-template #edit>
+  <amx-read-only-box [label]="'Part'">
+    {{ partBinding.value?.partName }}
+  </amx-read-only-box>
+</ng-template>

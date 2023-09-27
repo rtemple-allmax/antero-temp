@@ -1,0 +1,51 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<svg viewBox="-2 -2 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Layer_1" transform="translate(0, 0)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <path d="M16, 0L16, 10L26, 10C26, 4.5 21.5, 0 16, 0z" fill="#1177D7" class="Blue" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(0, 0)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <path d="M6, 16C2.7, 16 0, 18.7 0, 22C0, 25.3 2.7, 28 6, 28C9.3, 28 12, 25.3 12, 22C12, 18.7 9.3, 16 6, 16zM9.4, 24L8, 24L4, 20L4, 24L2.6, 24C2.2, 23.4 2, 22.7 2, 22C2, 19.8 3.8, 18 6, 18C8.2, 18 10, 19.8 10, 22C10, 22.7 9.8, 23.4 9.4, 24z" fill="#727272" class="Black" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(0, 0)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <g>
+        <g>
+          <path d="M23.8, 14C23.9, 13.4 24, 12.7 24, 12L14, 12L14, 2C8.5, 2 4, 6.5 4, 12C4, 12.8 4.1, 13.5 4.3, 14.2C4.8, 14.1 5.4, 14 6, 14C10.4, 14 14, 17.6 14, 22C14.1, 22 14.1, 22 14.2, 22C15.1, 17.5 19.1, 14.1 23.8, 14z" fill="#D11C1C" class="Red" />
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(0, 0)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <g>
+        <g>
+          <path d="M23.8, 14C23.9, 13.4 24, 12.7 24, 12L14, 12L14, 2C8.5, 2 4, 6.5 4, 12C4, 12.8 4.1, 13.5 4.3, 14.2C4.8, 14.1 5.4, 14 6, 14C10.4, 14 14, 17.6 14, 22C14.1, 22 14.1, 22 14.2, 22C15.1, 17.5 19.1, 14.1 23.8, 14z" fill="#D11C1C" class="Red" />
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(0, 0)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <path d="M24, 16C19.6, 16 16, 19.6 16, 24C16, 28.4 19.6, 32 24, 32C28.4, 32 32, 28.4 32, 24C32, 19.6 28.4, 16 24, 16zM29.9, 23L28.9, 23C28.8, 21.8 28.6, 20.7 28.2, 19.7C29.1, 20.6 29.7, 21.7 29.9, 23zM23, 18.3L23, 23L21, 23C21.2, 20.8 22, 19.1 23, 18.3zM23, 25L23, 29.7C22, 29 21.2, 27.2 21, 25L23, 25zM25, 29.7L25, 25L27, 25C26.8, 27.2 26, 28.9 25, 29.7zM25, 23L25, 18.3C26, 19 26.8, 20.8 27, 23L25, 23zM19.8, 19.7C19.4, 20.7 19.2, 21.8 19.1, 23L18.1, 23C18.3, 21.7 18.9, 20.6 19.8, 19.7zM18.1, 25L19.1, 25C19.2, 26.2 19.4, 27.3 19.8, 28.3C18.9, 27.4 18.3, 26.3 18.1, 25zM28.2, 28.3C28.6, 27.3 28.8, 26.2 28.9, 25L29.9, 25C29.7, 26.3 29.1, 27.4 28.2, 28.3z" fill="#1177D7" class="Blue" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(12, 12)" style="enable-background:new 0 0 16 16">
+    <g id="Info_2_">
+      <circle cx="9" cy="9" r="7" fill="#1177D7" class="Blue" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(12, 12)" style="enable-background:new 0 0 16 16">
+    <g id="Info_2_">
+      <rect x="8" y="8" width="2" height="6" rx="0" ry="0" fill="#FFFFFF" class="White" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(12, 12)" style="enable-background:new 0 0 16 16">
+    <g id="Info_2_">
+      <rect x="8" y="4" width="2" height="2" rx="0" ry="0" fill="#FFFFFF" class="White" />
+    </g>
+  </g>
+</svg>

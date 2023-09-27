@@ -1,0 +1,55 @@
+<div
+  class="meter-container"
+  [id]="id"
+  (mouseenter)="mouseenterHandler()"
+  (mouseleave)="mouseleaveHandler()"
+  (click)="clickHandler()">
+  <div class="meter">
+    <div class="center"></div>
+    <div class="center-hide"></div>
+    <div class="bottom-hide"></div>
+    <div class="arrow-container">
+      <div class="arrow-wrapper" [style.--score]="score">
+        <div class="arrow"></div>
+      </div>
+    </div>
+    <div class="scale" [style.--i]="1"></div>
+    <div class="scale" [style.--i]="2"></div>
+    <div class="scale" [style.--i]="3"></div>
+    <div class="scale" [style.--i]="4"></div>
+    <div class="scale" [style.--i]="5"></div>
+    <div class="scale" [style.--i]="6"></div>
+    <div class="scale" [style.--i]="7"></div>
+    <div class="scale" [style.--i]="8"></div>
+    <div class="scale" [style.--i]="9"></div>
+    <div class="scale" [style.--i]="10"></div>
+  </div>
+  <div class="text" [ngStyle]="{ 'background': color }">
+    <amx-flex [justify]="'space-between'">
+      <small [ngStyle]="{ color:  getContrastColor(color)}">{{ score }}</small>
+      <small [ngStyle]="{ color:  getContrastColor(color)}">{{ ranking?.name }}</small>
+    </amx-flex>
+  </div>
+</div>
+
+<dx-popover
+  [target]="target"
+  [(visible)]="visibility">
+  <div *dxTemplate="let data = model of 'content'" [ngStyle]="{ 'z-index': 9999 }">
+    <ng-container [ngTemplateOutlet]="popoverTemplate" [ngTemplateOutletContext]="{ template: data }"></ng-container>
+  </div>
+</dx-popover>
+
+<ng-template #popoverTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <p><b>Asset Management</b></p>
+    <amx-separator [space]="'var(--space-md)'"></amx-separator>
+    <p>Probability of Failure: {{ selection?.probabilityOfFailure }}</p>
+    <p>Consequence of Failure: {{ selection?.consequenceOfFailure }}</p>
+    <amx-flex [gap]="'var(--space-md)'">
+      <span>{{ score }}</span>
+      <span [ngStyle]="{ color: color }">{{ ranking?.name }}</span>
+    </amx-flex>
+  </div>
+</ng-template>
+

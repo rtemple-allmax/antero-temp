@@ -1,0 +1,15 @@
+.cell-more {
+  opacity: 0;
+  &.hovered {
+    opacity: 1
+  }
+}
+
+.editor {
+  max-height: 0;
+  transition: all .3s ease-in-out;
+  border: 1px solid transparent;
+  &.open {
+    max-height: 1000px;
+  }
+}

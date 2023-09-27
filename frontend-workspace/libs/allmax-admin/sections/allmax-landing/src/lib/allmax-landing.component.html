@@ -1,0 +1,22 @@
+<div class="splash">
+  <div class="content">
+    <div>
+      <amx-flex [justify]="'center'">
+        <img class="logo" [src]="logo"/>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <h1 class="title">{{ title }}</h1>
+    </div>
+    <amx-flex [flow]="'column nowrap'" [align]="'center'" [gap]="'var(--space-md)'">
+      <div class="field">
+        <label>Email</label>
+        <input/>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password"/>
+      </div>
+      <button (click)="signin()">Sign In</button>
+    </amx-flex>
+  </div>
+</div>

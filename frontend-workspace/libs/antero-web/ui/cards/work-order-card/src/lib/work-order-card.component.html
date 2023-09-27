@@ -1,0 +1,26 @@
+<amx-card
+  [record]="source"
+  [title]="title"
+  [height]="'100%'"
+  [indicators]="indicators"
+  [controls]="controls"
+  (clicked)="openInViewer()">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-read-only-box [label]="'Task'">{{ source?.task?.name }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Work Type'">{{ source?.workType?.name }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Due Date'">{{ getDateString(source?.dueDate) }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Status'" [showDot]="true" [dotColor]="source?.workStatus?.color || ''">{{ source?.workStatus?.name }}</amx-read-only-box>
+  </amx-grid>
+</amx-card>
+
+<ng-template #dueDatePopoverTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    Was Due on <b>{{ getDateString(source?.dueDate) }}</b>
+  </div>
+</ng-template>
+
+<ng-template #needsAttentionPopoverTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    {{ source?.needsAttentionText }}
+  </div>
+</ng-template>

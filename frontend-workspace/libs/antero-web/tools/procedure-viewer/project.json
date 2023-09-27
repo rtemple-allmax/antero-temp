@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/tools/procedure-viewer/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/tools/procedure-viewer"],
+      "options": {
+        "jestConfig": "libs/antero-web/tools/procedure-viewer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/tools/procedure-viewer/**/*.ts",
+          "libs/antero-web/tools/procedure-viewer/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

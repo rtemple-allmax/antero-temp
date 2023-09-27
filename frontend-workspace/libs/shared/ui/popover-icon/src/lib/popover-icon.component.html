@@ -1,0 +1,27 @@
+<span
+  (mouseenter)="mouseenterHandler()"
+  (mouseleave)="mouseleaveHandler()">
+  <fa-icon
+    [id]="id"
+    [icon]="icon"
+    [ngStyle]="{
+      'font-size': height,
+      color: color,
+      cursor: 'pointer'
+    }">
+  </fa-icon>
+</span>
+
+
+<dx-popover
+  [target]="target"
+  [(visible)]="visibility">
+  <div *dxTemplate="let data = model of 'content'" [ngStyle]="{ 'z-index': 9999 }">
+    <ng-container [ngTemplateOutlet]="template || default" [ngTemplateOutletContext]="{ template: data }"></ng-container>
+  </div>
+</dx-popover>
+
+<ng-template #default let-template="template">
+<span>Popover Template</span>
+</ng-template>
+

@@ -1,0 +1,16 @@
+<amx-flex [align]="'center'" [gap]="'var(--space-lg)'" [padding]="'0 var(--space-md)'">
+  <h2>WO# {{ record?.workOrderNumber }}</h2>
+</amx-flex>
+<amx-tabs>
+  <ng-container tabsContent>
+    <amx-tab [label]="'Details'" [icon]="icons.detailsIcon">
+      <ant-work-history-tab-details *ngIf="currentIndex === 0" [height]="height"></ant-work-history-tab-details>
+    </amx-tab>
+    <amx-tab [label]="'Map'" [icon]="icons.mapIcon">
+      <ant-work-history-tab-map *ngIf="currentIndex === 1" [height]="height"></ant-work-history-tab-map>
+    </amx-tab>
+    <amx-tab [label]="'Activity'" [icon]="icons.activityIcon">
+      <ant-work-history-tab-activity *ngIf="currentIndex === 2" [height]="height"></ant-work-history-tab-activity>
+    </amx-tab>
+  </ng-container>
+</amx-tabs>

@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/ui/antero-app-frame/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/antero-web/ui/antero-app-frame"
+      ],
+      "options": {
+        "jestConfig": "libs/antero-web/ui/antero-app-frame/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/ui/antero-app-frame/**/*.ts",
+          "libs/antero-web/ui/antero-app-frame/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,49 @@
+<div class="field-wrapper" [ngClass]="{ invalid: !valid, required: required, desktop: stylingMode === 'desktop', disabled: disabled }">
+  <amx-flex [flow]="flow" [gap]="'var(--space-md)'" [align]="alignment">
+    <label *ngIf="hasLabel" class="label" [amxFlexChild]="uiLabelFlex">{{ label }}</label>
+    <div #element class="field" (click)="clickHandler()" [amxFlexChild]="'1'">
+      <dx-number-box
+        [tabIndex]="tabIndex"
+        [(ngModel)]="value"
+        [disabled]="isDisabled"
+        [placeholder]="uiPlaceholder"
+        [height]="stylingMode === 'desktop' ? '26px' : 'auto'"
+        [valueChangeEvent]="'keyup'"
+        [showSpinButtons]="showSpinButtons"
+        [format]="format"
+        [min]="min"
+        [max]="max"
+        (onKeyDown)="keyDownHandler($event)"
+        (onInput)="inputHandler()"
+        (onValueChanged)="valueChangeHandler()"
+        (onBlur)="blurHandler()">
+      </dx-number-box>
+    </div>
+  </amx-flex>
+  
+  
+  
+  <!-- <ng-container *ngIf="hasLabel">
+    <label class="label">{{ label }}</label>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  </ng-container>
+  <div #element class="field" (click)="clickHandler()">
+    <dx-number-box
+      [tabIndex]="tabIndex"
+      [(ngModel)]="value"
+      [disabled]="isDisabled"
+      [placeholder]="uiPlaceholder"
+      [height]="stylingMode === 'desktop' ? '26px' : 'auto'"
+      [valueChangeEvent]="'keyup'"
+      [showSpinButtons]="showSpinButtons"
+      [format]="format"
+      (onKeyDown)="keyDownHandler($event)"
+      (onInput)="inputHandler()"
+      (onValueChanged)="valueChangeHandler()"
+      (onBlur)="blurHandler()">
+    </dx-number-box>
+  </div> -->
+  <div class="errors-wrapper" *ngIf="!valid">
+    <label class="error-text">{{ errorMessage }}</label>
+  </div>
+</div>

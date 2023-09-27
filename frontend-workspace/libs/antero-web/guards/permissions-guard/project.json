@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/guards/permissions-guard/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/guards/permissions-guard"],
+      "options": {
+        "jestConfig": "libs/antero-web/guards/permissions-guard/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/guards/permissions-guard/**/*.ts",
+          "libs/antero-web/guards/permissions-guard/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

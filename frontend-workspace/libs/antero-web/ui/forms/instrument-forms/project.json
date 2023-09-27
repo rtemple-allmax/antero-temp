@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/ui/forms/instrument-forms/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/ui/forms/instrument-forms"],
+      "options": {
+        "jestConfig": "libs/antero-web/ui/forms/instrument-forms/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/ui/forms/instrument-forms/**/*.ts",
+          "libs/antero-web/ui/forms/instrument-forms/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

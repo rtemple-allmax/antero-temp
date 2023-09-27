@@ -1,0 +1,8 @@
+<amx-confirmation
+  [dangerous]="true"
+  (canceled)="cancelHandler()"
+  (closed)="cancelHandler()"
+  (confirmed)="confirmHandler()">
+  <span>This will delete the selected reading.  Do you wish to continue?</span>
+</amx-confirmation>
+

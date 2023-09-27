@@ -1,0 +1,14 @@
+<amx-grid [columns]="'50ch 1fr 1fr'" [alignContent]="'center'">
+  <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.instrument?.name }}</p>
+  <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.instrument?.units }}</p>
+  <amx-flex>
+    <amx-number-box [(ngModel)]="readingBinding.value"></amx-number-box>
+    <amx-icon-button
+      *ngIf="canUpdate"
+      [awesome]="true"
+      [icon]="icons.saveIcon"
+      (clicked)="updateReading()"
+      [height]="'20px'">
+    </amx-icon-button>
+  </amx-flex>
+</amx-grid>

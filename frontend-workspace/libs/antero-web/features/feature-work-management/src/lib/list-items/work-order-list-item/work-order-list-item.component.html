@@ -1,0 +1,40 @@
+<div (mouseenter)="mouseenterHandler()" (mouseleave)="mouseleaveHandler()">
+  <amx-flex [justify]="'space-between'" [align]="'center'">
+    <div>
+      <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+        <p><b>WO# {{ record?.workOrderNumber }}</b></p>
+        <div class="statusIcon" [ngStyle]="{ background: record?.workStatus?.color }"></div>
+        <amx-popover-button
+          [template]="completionTemplate"
+          [icon]="icons.confirmIcon"
+          [height]="'14px'"
+          [padding]="'0'"
+          [fgColor]="record?.isComplete ? 'var(--msg-success)' : 'var(--fg-color)'"
+          (clicked)="openAdd()">
+        </amx-popover-button>
+      </amx-flex>
+      <p [title]="'Equipment Name'">{{ record?.equipment?.name }}</p>
+      <p [title]="'Task Name'">{{ record?.task?.name }}</p>
+      <p [title]="'Date Scheduled'">{{ getDateString(record?.dateScheduled) }}</p>
+    </div>
+    <amx-dropdown-button class="cell-more" [ngClass]="{ hovered: hovered }"
+      [icon]="icons.moreIcon"
+      [fgColor]="'var(--app-color-3)'"
+      [height]="'20px'"
+      [items]="items">
+    </amx-dropdown-button>
+  </amx-flex>
+</div>
+
+<ng-template #completionTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <p><b>Due Date:</b> {{ getDateString(record?.dueDate) || 'No Date Set' }}</p>
+    <p><b>Completed Date:</b> {{ getDateString(record?.dateCompleted) || 'Needs Entered' }} </p>
+    <p><b>Completed Notes:</b> {{ 'Needs Entered' }} </p>
+    <!-- <p>{{ requiredInstrumentsLabel }}</p> -->
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+      <amx-icon [icon]="icons.delinquentIcon" [color]="'var(--msg-danger)'" [height]="'14px'"></amx-icon>
+      <amx-icon [icon]="icons.needsAttentionIcon" [color]="'var(--msg-warning)'" [height]="'14px'"></amx-icon>
+    </amx-flex>
+  </div>
+</ng-template>

@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/shortcut-button/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/shortcut-button"],
+      "options": {
+        "jestConfig": "libs/shared/ui/shortcut-button/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/shortcut-button/**/*.ts",
+          "libs/shared/ui/shortcut-button/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

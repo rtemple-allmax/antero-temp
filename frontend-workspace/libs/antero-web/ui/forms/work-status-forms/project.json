@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/ui/forms/work-status-forms/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/ui/forms/work-status-forms"],
+      "options": {
+        "jestConfig": "libs/antero-web/ui/forms/work-status-forms/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/ui/forms/work-status-forms/**/*.ts",
+          "libs/antero-web/ui/forms/work-status-forms/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

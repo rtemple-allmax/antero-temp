@@ -1,0 +1,23 @@
+<amx-modal
+  [heading]="heading"
+  (closed)="closedHandler()">
+  <amx-date-box [label]="'Date Scheduled'" [type]="'date'" [(ngModel)]="dateScheduledBinding.value"></amx-date-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-number-box [label]="'Days To Complete'" [(ngModel)]="daysToCompleteBinding.value"></amx-number-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown
+    [label]="'Work Type'"
+    [items]="types"
+    [(ngModel)]="workTypeBinding.value">
+  </amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown
+    [label]="'Work Priority'"
+    [items]="priorities"
+    [(ngModel)]="workPriorityBinding.value">
+  </amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [label]="'Save'" [invert]="true" [icon]="icons.saveIcon" (clicked)="submit()"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

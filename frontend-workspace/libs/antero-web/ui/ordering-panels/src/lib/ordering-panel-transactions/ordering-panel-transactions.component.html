@@ -1,0 +1,20 @@
+<amx-layout-panel-collapsible [title]="title">
+  <amx-data-table
+    class="subsection"
+    [allowGrouping]="false"
+    [allowFiltering]="false"
+    [allowExport]="false"
+    [data]="transactionData?.data"
+    [selectFirstRowOnLoad]="false"
+    [columns]="transactionData?.colDef?.columns || []"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [showRowLines]="true"
+    [selectionMode]="'none'"
+    [hoverStateEnabled]="false"
+    [cellTemplate]="viewType === viewTypes.LIST ? cellTemplate : null">
+  </amx-data-table>
+</amx-layout-panel-collapsible>
+
+<ng-template #cellTemplate let-template="template">
+  <ant-transaction-list-item [record]="template?.data?.transaction"></ant-transaction-list-item>
+</ng-template>

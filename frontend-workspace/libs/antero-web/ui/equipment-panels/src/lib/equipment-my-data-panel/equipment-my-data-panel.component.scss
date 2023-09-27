@@ -1,0 +1,8 @@
+.data-container {
+  padding: var(--space-lg);
+  color: var(--fg-color);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: var(--space-lg);
+}

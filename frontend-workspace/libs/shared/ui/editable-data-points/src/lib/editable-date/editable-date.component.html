@@ -1,0 +1,15 @@
+<ng-container *ngIf="showEdit else readonlyTemplate">
+  <amx-date-box
+    [label]="label"
+    [type]="dateType"
+    [(ngModel)]="binding.value">
+  </amx-date-box>
+</ng-container>
+
+<ng-template #readonlyTemplate>
+  <amx-read-only-box
+    [label]="label">
+    {{ getString(data) }}
+  </amx-read-only-box>
+</ng-template>
+

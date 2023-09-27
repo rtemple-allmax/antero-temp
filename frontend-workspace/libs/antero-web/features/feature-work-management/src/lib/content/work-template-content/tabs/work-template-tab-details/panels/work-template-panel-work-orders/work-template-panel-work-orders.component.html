@@ -1,0 +1,36 @@
+<amx-layout-panel>
+  <ng-container header>
+    <h2>Active Work</h2>
+  </ng-container>
+  <ng-container content>
+    <div [ngStyle]="{ padding: 'var(--space-md)' }">
+      <ng-container *ngIf="records.length > 0 else noData">
+        <ng-container *ngFor="let record of records">
+          <ant-work-template-work-order-list-item [record]="record"></ant-work-template-work-order-list-item>
+        </ng-container>
+      </ng-container>
+    </div>
+    
+    <!-- <amx-data-table
+      class="subsection"
+      [allowGrouping]="false"
+      [allowFiltering]="false"
+      [allowExport]="false"
+      [data]="data?.data"
+      [selectFirstRowOnLoad]="false"
+      [columns]="data?.colDef?.columns || []"
+      [showColumnHeaders]="viewType === viewTypes.TABLE"
+      [showRowLines]="true"
+      [showColumnLines]="false"
+      [selectionMode]="'none'"
+      [hoverStateEnabled]="false"
+      [cellTemplate]="viewType === viewTypes.LIST ? cellTemplate : null">
+    </amx-data-table> -->
+  </ng-container>
+</amx-layout-panel>
+
+<ng-template #noData>
+  <div class="no-data">
+    <span>None Active</span>
+  </div>
+</ng-template>

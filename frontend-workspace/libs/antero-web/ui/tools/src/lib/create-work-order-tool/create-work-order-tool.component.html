@@ -1,0 +1,175 @@
+<amx-modal [heading]="'Create Work Order'" [maxWidth]="'60vw'" [height]="height" (closed)="closeHandler()">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-searchable-table-dropdown
+      [label]="'Equipment'"
+      [data]="equipmentData"
+      [(ngModel)]="localStore.equipmentBinding.value">
+    </amx-searchable-table-dropdown>
+    <amx-searchable-dropdown
+      [label]="'Task'"
+      [items]="taskData"
+      [disabled]="tasksShouldDisable"
+      [(ngModel)]="localStore.taskBinding.value"
+      (opened)="getTasks()">
+    </amx-searchable-dropdown>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-tabs [disabled]="tabsShouldDisable" [height]="tabsHeight" [overlayText]="overlayText">
+    <amx-tab [label]="'Details'" [icon]="icons.fileIcon">
+      <ng-container *ngIf="panelIndex === 0">
+        <amx-grid [columns]="'1fr 1fr'" [gap]="'var(--space-md)'">
+          <amx-text-editor [height]="'300px'" [label]="'Instructions'"></amx-text-editor>
+          <amx-checklist-editor [height]="'300px'"></amx-checklist-editor>
+          <amx-date-box [label]="'Date Scheduled'" [(ngModel)]="localStore.dateScheduledBinding.value"></amx-date-box>
+          <amx-date-box [label]="'Due Date'"></amx-date-box>
+          <amx-searchable-dropdown [label]="'Status'"></amx-searchable-dropdown>
+          <amx-searchable-dropdown [label]="'Maintenance Group'"></amx-searchable-dropdown>
+          <amx-searchable-dropdown [label]="'Type'"></amx-searchable-dropdown>
+          <amx-searchable-dropdown [label]="'Assigned User'"></amx-searchable-dropdown>
+          <amx-searchable-dropdown [label]="'Priority'"></amx-searchable-dropdown>
+        </amx-grid>
+      </ng-container>
+    </amx-tab>
+    <amx-tab [label]="'Labor (0)'" [icon]="icons.fileIcon">
+      <ng-container *ngIf="panelIndex === 1">
+        <ant-work-order-labor-panel [height]="panelHeight"></ant-work-order-labor-panel>
+      </ng-container>
+    </amx-tab>
+    <amx-tab [label]="'Parts (0)'" [icon]="icons.fileIcon">
+      <ng-container *ngIf="panelIndex === 2">
+        <!-- <ant-work-order-parts-panel [height]="panelHeight"></ant-work-order-parts-panel> -->
+        <div [ngStyle]="{ 'padding': 'var(--space-md)', height: height }">
+          <amx-grid [columns]="'2fr 1fr 1fr auto'" [gap]="'var(--space-md)'">
+            <amx-searchable-table-dropdown [placeholder]="'Add A Part...'"></amx-searchable-table-dropdown>
+            <amx-number-box [placeholder]="'Estimated Quantity'"></amx-number-box>
+            <amx-number-box [placeholder]="'Actual Quantity'"></amx-number-box>
+            <amx-icon-button [icon]="icons.saveIcon" [awesome]="true" [height]="'20px'" [fgColor]="'var(--icon-color)'"></amx-icon-button>
+          </amx-grid>
+          <amx-check-box [label]="'Add this Part to the list of Parts associated with the selected Equipment'"></amx-check-box>
+          <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+          <ng-container *ngIf="partsData.length > 0 else noData">
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+              <ng-container *ngFor="let record of partsData">
+                <amx-card>
+                  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+                    <amx-read-only-box [label]="'Name'">{{ record?.partQuantity?.part?.name }}</amx-read-only-box>
+                    <amx-read-only-box [label]="'Description'">{{ record?.partQuantity?.part?.description }}</amx-read-only-box>
+                    <amx-read-only-box [label]="'Warehouse'">{{ record?.partQuantity?.warehouse?.name }}</amx-read-only-box>
+                    <amx-read-only-box [label]="'Area'">{{ record?.partQuantity?.area?.name }}</amx-read-only-box>
+                    <amx-read-only-box [label]="'Units'">{{ record?.unit }}</amx-read-only-box>
+                    <amx-read-only-box [label]="'Estimated Quantity'">{{ record?.estimatedQuantity }}</amx-read-only-box>
+                    <amx-read-only-box [label]="'Actual Quantity'">{{ record?.estimatedQuantity }}</amx-read-only-box>
+                  </amx-grid>
+                </amx-card>
+              </ng-container>
+            </amx-grid>
+          </ng-container>
+        </div>
+        <ng-template #noData>
+          <div class="no-data" [ngStyle]="{ height: '100px' }">
+            No parts are associated with this Work Order. 
+          </div>
+        </ng-template>
+      </ng-container>
+    </amx-tab>
+    <amx-tab [label]="'Contractors (0)'" [icon]="icons.fileIcon">
+      <ng-container *ngIf="panelIndex === 3">
+        <amx-grid [columns]="'2fr repeat(5, 1fr) auto'" [gap]="'var(--space-md)'">
+          <amx-searchable-table-dropdown [placeholder]="'Add A Contractor...'"></amx-searchable-table-dropdown>
+          <amx-number-box [placeholder]="'Invoice Number'"></amx-number-box>
+          <amx-number-box [placeholder]="'Part Cost'"></amx-number-box>
+          <amx-number-box [placeholder]="'Labor Cost'"></amx-number-box>
+          <amx-number-box [placeholder]="'Tax Cost'"></amx-number-box>
+          <amx-number-box [placeholder]="'Misc. Cost'"></amx-number-box>
+          <amx-icon-button [icon]="icons.saveIcon" [awesome]="true" [height]="'20px'" [fgColor]="'var(--icon-color)'"></amx-icon-button>
+        </amx-grid>
+        <div [ngStyle]="{ 'padding': 'var(--space-md)', height: height }">
+          <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+          <ng-container *ngIf="contractorsData.length > 0 else noData">
+              <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+                <ng-container *ngFor="let record of contractorsData">
+                  <amx-card>
+                    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+                      <amx-read-only-box [label]="'Name'">{{ record?.supplier?.name }}</amx-read-only-box>
+                      <amx-read-only-box [label]="'Invoice Number'">{{ record?.invoice }}</amx-read-only-box>
+                      <amx-read-only-box [label]="'Part Cost'">{{ record?.partCost }}</amx-read-only-box>
+                      <amx-read-only-box [label]="'Labor Cost'">{{ record?.laborCost }}</amx-read-only-box>
+                      <amx-read-only-box [label]="'Tax Cost'">{{ record?.taxCost}}</amx-read-only-box>
+                      <amx-read-only-box [label]="'Misc Cost'">{{ record?.miscCost }}</amx-read-only-box>
+                    </amx-grid>
+                  </amx-card>
+                </ng-container>
+              </amx-grid>
+          </ng-container>
+        </div>
+        <ng-template #noData>
+          <div class="no-data" [ngStyle]="{ height: '100px' }">
+            No Contractors are associated with this Work Order. 
+          </div>
+        </ng-template>
+      </ng-container>
+    </amx-tab>
+    <amx-tab [label]="'Tools (0)'" [icon]="icons.fileIcon">
+      <ng-container *ngIf="panelIndex === 4">
+        <ant-work-order-tools-panel [height]="panelHeight"></ant-work-order-tools-panel>
+      </ng-container>
+    </amx-tab>
+    <amx-tab [label]="'Misc (0)'" [icon]="icons.fileIcon">
+      <ng-container *ngIf="panelIndex === 5">
+        <ant-work-order-misc-panel [height]="panelHeight"></ant-work-order-misc-panel>
+      </ng-container>
+    </amx-tab>
+    <amx-tab [label]="'Attachments (0)'" [icon]="icons.fileIcon">
+      <ng-container *ngIf="panelIndex === 6">
+        <ant-work-order-documents-panel [height]="panelHeight"></ant-work-order-documents-panel>
+      </ng-container>
+    </amx-tab>
+    <amx-tab [label]="'Schedule Future Work'" [icon]="icons.fileIcon">
+      <ng-container *ngIf="panelIndex === 7">
+        <!-- <ant-work-order-documents-panel [height]="panelHeight"></ant-work-order-documents-panel> -->
+      </ng-container>
+    </amx-tab>
+  </amx-tabs>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'" [align]="'center'" [gap]="'var(--space-md)'">
+    <amx-combo-button [label]="'Create Template'" [title]="'only enables if scheduling options are selected & the Eq/Task is not already a template'" [icon]="icons.saveIcon" [shouldDisable]="false"></amx-combo-button>
+    <amx-combo-button [label]="'Create Work Order'" [icon]="icons.saveIcon" [shouldDisable]="false"></amx-combo-button>
+  </amx-flex>
+</amx-modal>
+
+
+<!-- Trying something new with the parts panel -->
+<!-- <div [ngStyle]="{ 'padding': 'var(--space-md)', height: height }">
+  <amx-flex [gap]="'var(--space-md)'">
+    <amx-searchable-table-dropdown [label]="'Part'"></amx-searchable-table-dropdown>
+    <amx-number-box [placeholder]="'Estimated Quantity'"></amx-number-box>
+    <amx-icon-button [icon]="icons.saveIcon"></amx-icon-button>
+  </amx-flex>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <ng-container *ngIf="partsData.length > 0 else noData">
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+      <ng-container *ngFor="let record of partsData">
+        <amx-card>
+          <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+            <amx-read-only-box [label]="'Name'">{{ record?.partQuantity?.part?.name }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Description'">{{ record?.partQuantity?.part?.description }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Warehouse'">{{ record?.partQuantity?.warehouse?.name }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Area'">{{ record?.partQuantity?.area?.name }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Units'">{{ record?.unit }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Estimated Quantity'">{{ record?.estimatedQuantity }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Actual Quantity'">{{ record?.estimatedQuantity }}</amx-read-only-box>
+          </amx-grid>
+        </amx-card>
+      </ng-container>
+    </amx-grid>
+  </ng-container>
+</div>
+
+<ng-template #noData>
+  <div class="no-data" [ngStyle]="{ height: '100px' }">
+    No Parts are associated with this Work Order. 
+  </div>
+</ng-template> -->
+
+
+<!-- end -->

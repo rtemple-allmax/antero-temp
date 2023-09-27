@@ -1,0 +1,81 @@
+<ant-app-frame [sectionName]="'Suppliers'">
+  <amx-view-switch frameControls (viewToggled)="toggleView($event)"></amx-view-switch>
+  <amx-master-detail
+    frameContent
+    [data]="data?.data"
+    [cellTemplate]="card"
+    [deviceType]="deviceType"
+    [viewType]="viewType"
+    [columns]="data?.colDef?.columns || []"
+    (selectionChanged)="selectionHandler($event)">
+    <amx-flex controls [justify]="'space-between'" [padding]="'var(--space-md) var(--space-lg) var(--space-md) var(--space-md)'" [gap]="'var(--space-md)'" [align]="'center'">
+      <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+        <amx-combo-button [label]="'Add Supplier'" [invert]="true" [icon]="icons.addIcon" (clicked)="openAdd()"></amx-combo-button>
+        <amx-search-box #searchBox (searchTermChanged)="searchHandler($event)" (downArrowClicked)="searchDownArrowHandler()"></amx-search-box>
+        <amx-dropdown-button
+          [icon]="icons.moreIcon"
+          [fgColor]="'var(--icon-color)'"
+          [height]="'20px'">
+          <amx-flex [flow]="'column nowrap'">
+          </amx-flex>
+        </amx-dropdown-button>
+      </amx-flex>
+      <!-- <amx-icon-button
+        *ngIf="viewType === viewTypes.TABLE"
+        [height]="'24px'"
+        [icon]="'iconBack'"
+        [rotation]="detailButtonRotation"
+        (clicked)="toggleDetail()">
+      </amx-icon-button> -->
+    </amx-flex>
+    <div details>
+      <ng-container [ngSwitch]="deviceType">
+        <ng-container>
+          <ng-container *ngTemplateOutlet="desktopTemplate"></ng-container>
+        </ng-container>
+        <!-- <ng-container *ngSwitchCase="deviceTypes.TABLET">
+          <ng-container *ngTemplateOutlet="tabletTemplate"></ng-container>
+        </ng-container> -->
+        <!-- <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+          <ng-container *ngTemplateOutlet="mobileTemplate"></ng-container>
+        </ng-container> -->
+      </ng-container>      
+    </div>
+  </amx-master-detail>
+</ant-app-frame>
+
+<ng-template #card let-template="template">
+  <div
+    class="equipment-list-item"
+    (mouseenter)="mouseenterHandler(template?.data?.id)"
+    (mouseleave)="mouseleaveHandler(template?.data?.id)">
+    <amx-flex [justify]="'space-between'" [gap]="'var(--space-md)'" [align]="'center'" >
+      <label [title]="'Name'" ><b>{{ template?.data?.name }}</b></label><br/>
+      <div class="cell-more" [amxFlexChild]="'var(--flex-fixed)'" [ngClass]="{ hovered: hoveredID === template?.data?.id}">
+        <amx-dropdown-button
+          [icon]="icons.moreIcon"
+          [bgColor]="'transparent'"
+          [fgColor]="'var(--fg-color)'"
+          [height]="'16px'"
+          [items]="itemContextMenuItems">
+        </amx-dropdown-button>
+      </div> 
+    </amx-flex>  
+  </div>
+</ng-template>
+
+<ng-template #desktopTemplate>
+  <h2>{{ selection?.name }}</h2>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <amx-tabs>
+      <ng-container tabsContent>
+        <amx-tab [label]="'Details'" [icon]="icons.detailsIcon">
+          <ant-suppliers-tab-details *ngIf="currentTabIndex === 0" [height]="tabHeight"></ant-suppliers-tab-details>
+        </amx-tab>
+        <amx-tab [label]="'Activity'" [icon]="icons.activityIcon">
+          <ant-suppliers-tab-activity *ngIf="currentTabIndex === 1" [height]="tabHeight"></ant-suppliers-tab-activity>
+        </amx-tab>
+      </ng-container>
+    </amx-tabs>
+</ng-template>
+

@@ -1,0 +1,63 @@
+<amx-modal
+  [heading]="heading"
+  (closed)="closedHandler()">
+  <dx-scroll-view [height]="'350px'">
+    <div
+      *ngFor="let item of checklist; let i = index"
+      [draggable]="true" 
+      [class.dragging]="i === this.draggingIndex"
+      (dragstart)="onDragStart(i)" 
+      (dragover)="onDragOver(i)" 
+      (dragend)="onDragEnd()">
+      <div [ngStyle]="{ border: 'var(--border)', padding: 'var(--space-md)' }">
+        <amx-flex [justify]="'space-between'" [align]="'center'">
+          <amx-read-only-check-box [label]="item.label"></amx-read-only-check-box>
+          <amx-flex  [gap]="'var(--space-md)'" [align]="'center'">
+            <amx-icon-button
+              [awesome]="true"
+              [icon]="icons.editIcon"
+              [fgColor]="'var(--icon-color)'"
+              (clicked)="openEditChecklistItem(i)">
+            </amx-icon-button>
+            <amx-icon-button
+              [awesome]="true"
+              [icon]="icons.deleteIcon"
+              [fgColor]="'var(--msg-danger)'"
+              (clicked)="removeChecklistItem(i)">
+            </amx-icon-button>
+          </amx-flex>
+        </amx-flex>
+      </div>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    </div>
+    <amx-flex [justify]="'center'">
+      <amx-icon-button
+        [icon]="icons.addIcon"
+        [awesome]="true"
+        [fgColor]="'var(--icon-color)'"
+        [height]="'24px'"
+        (clicked)="openAddChecklistItem()">
+      </amx-icon-button>
+    </amx-flex>
+  </dx-scroll-view>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [label]="'Save'" [invert]="true" [icon]="icons.saveIcon" (clicked)="save()"></amx-combo-button>
+  </amx-flex>
+</amx-modal>
+
+<amx-modal
+  *ngIf="showAddChecklistItem"
+  [heading]="'Add Checklist Item'"
+  [zIndex]="'var(--layer-3)'"
+  (closed)="closeAddChecklistItem()">
+  <amx-text-box [label]="'Label'" [(ngModel)]="labelBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button
+      [label]="'Save'"
+      [icon]="icons.saveIcon"
+      [invert]="true"
+      [shouldDisable]="!ready"
+      (clicked)="addChecklistItem()"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

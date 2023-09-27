@@ -1,0 +1,74 @@
+<amx-modal
+  [heading]="'Add Task'"
+  [maxWidth]="'60vw'"
+  (closed)="closedHandler()">
+  <amx-text-box [label]="'Name'" [(ngModel)]="nameBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <div>
+      <label [ngStyle]="{ color: 'var(--fg-color)' }">Instructions</label>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-text-editor
+        [(ngModel)]="textBinding.value"
+        (initialized)="editorInitializedHandler()">
+      </amx-text-editor>
+    </div>
+    <amx-group-box [label]="'Add Checklist Items'" [stretch]="true">
+      <dx-scroll-view [height]="'350px'">
+        <div
+          *ngFor="let item of checklist; let i = index"
+          [draggable]="true" 
+          [class.dragging]="i === this.draggingIndex"
+          (dragstart)="onDragStart(i)" 
+          (dragover)="onDragOver(i)" 
+          (dragend)="onDragEnd()">
+          <div [ngStyle]="{ border: 'var(--border)', padding: 'var(--space-md)' }">
+            <amx-flex [justify]="'space-between'" [align]="'center'">
+              <amx-read-only-check-box [label]="item.label"></amx-read-only-check-box>
+              <amx-flex  [gap]="'var(--space-md)'" [align]="'center'">
+                <amx-icon-button
+                  [awesome]="true"
+                  [icon]="icons.editIcon"
+                  [fgColor]="'var(--icon-color)'">
+                </amx-icon-button>
+                <amx-icon-button
+                  [awesome]="true"
+                  [icon]="icons.deleteIcon"
+                  [fgColor]="'var(--msg-danger)'"
+                  (clicked)="removeChecklistItem(i)">
+                </amx-icon-button>
+              </amx-flex>
+            </amx-flex>
+          </div>
+          <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+        </div>
+        <amx-flex [justify]="'center'">
+          <amx-icon-button
+            [icon]="icons.addIcon"
+            [awesome]="true"
+            [fgColor]="'var(--icon-color)'"
+            [height]="'24px'"
+            (clicked)="openAddChecklistItem()">
+          </amx-icon-button>
+        </amx-flex>
+      </dx-scroll-view>
+    </amx-group-box>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'space-between'" [align]="'center'">
+    <amx-check-box [label]="'Manual Only'" [(ngModel)]="manualBinding.value"></amx-check-box>
+    <amx-combo-button
+      [label]="'Save'"
+      [icon]="icons.saveIcon"
+      [invert]="true"
+      [shouldDisable]="!ready"
+      (clicked)="addHandler()">
+    </amx-combo-button>
+  </amx-flex>
+</amx-modal>
+
+<ant-add-checklist-item
+  *ngIf="showAddChecklistItem"
+  (add)="addChecklistItem($event)"
+  (closed)="closeAddChecklistItem()">
+</ant-add-checklist-item>

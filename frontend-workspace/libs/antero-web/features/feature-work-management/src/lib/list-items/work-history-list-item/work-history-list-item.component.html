@@ -1,0 +1,6 @@
+<div>
+  <p><b>WO# {{ record?.workOrderNumber }}</b></p>
+  <p>{{ record?.equipment?.name }}</p>
+  <p>{{ record?.task }}</p>
+  <p>Completed On {{ getDateString(record?.dateCompleted) }}</p>
+</div>

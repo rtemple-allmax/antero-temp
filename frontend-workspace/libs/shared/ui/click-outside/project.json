@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/click-outside/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/shared/ui/click-outside"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/ui/click-outside/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/click-outside/**/*.ts",
+          "libs/shared/ui/click-outside/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

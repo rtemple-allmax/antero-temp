@@ -1,0 +1,17 @@
+<dx-drop-down-box
+  [dataSource]="items"
+  [displayExpr]="displayExpr"
+  valueExpr="id"
+  [acceptCustomValue]="true"
+  [openOnFieldClick]="false"
+  [(value)]="selection"
+  [(opened)]="isOpen"
+  (onInput)="searchValueChanged($event)">
+  <dx-list
+    [dataSource]="items"
+    [displayExpr]="displayExpr"
+    [selectionMode]="'single'"
+    (onSelectionChanged)="select($event)">
+  </dx-list>
+</dx-drop-down-box>
+

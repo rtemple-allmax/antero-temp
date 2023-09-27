@@ -1,0 +1,13 @@
+<ng-container *ngIf="showEdit else readonlyTemplate">
+  <amx-text-box
+    [label]="label"
+    [(ngModel)]="binding.value">
+  </amx-text-box>
+</ng-container>
+
+<ng-template #readonlyTemplate>
+  <amx-read-only-box
+    [label]="label">
+    {{ data }}
+  </amx-read-only-box>
+</ng-template>

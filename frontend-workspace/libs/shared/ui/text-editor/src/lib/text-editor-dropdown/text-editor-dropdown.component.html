@@ -1,0 +1,19 @@
+<div class="dropdown" (click)="toggle()" (clickOutside)="close()">
+  <div tabindex="-1" class="value" [ngClass]="{ open: visibilityState === true }">
+    <span [ngStyle]="setSpanStyles(value)">{{ value }}</span>
+    <div class="icon-wrapper">
+      <amx-icon [icon]="icons.downCaretIcon" [height]="'var(--space-lg)'"></amx-icon>
+    </div>
+  </div>
+  <div class="items" [ngClass]="{ open: visibilityState === true }">
+    <ng-container *ngIf="items.length > 0">
+      <dx-scroll-view [height]="'150px'">
+        <ng-container *ngFor="let item of items; let i = index;">
+          <div class="item" (click)="setSelection(i, $event)">
+            <span [ngStyle]="setSpanStyles(item)">{{ item }}</span>
+          </div>
+        </ng-container>
+      </dx-scroll-view>
+    </ng-container>
+  </div>
+</div>

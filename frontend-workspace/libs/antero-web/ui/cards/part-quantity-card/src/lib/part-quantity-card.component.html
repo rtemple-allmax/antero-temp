@@ -1,0 +1,15 @@
+<amx-card
+  [record]="source"
+  [title]="title"
+  [height]="'100%'"
+  [static]="static"
+  [showHoverEffect]="showHoverEffect">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-read-only-box [label]="'Unit Cost'">{{ formatCurrency(source?.unitCost) }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Qty'">{{ source?.currentQuantity }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Min Qty'">{{ source?.minimumQuantity }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Max Qty'">{{ source?.maximumQuantity }}</amx-read-only-box>
+    <amx-read-only-box [label]="'On Order'">{{ source?.totalOnOrder }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Work Order Allocation'">{{ source?.totalOnWorkOrder }}</amx-read-only-box>
+  </amx-grid>
+</amx-card>

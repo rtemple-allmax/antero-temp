@@ -1,0 +1,18 @@
+<div [formGroup]="form">
+  <ng-container [formArrayName]="'items'">
+    <ng-container *ngFor="let item of items.controls; let i = index;">
+      <div [formGroupName]="i">
+        <amx-flex [gap]="'var(--space-sm)'" [padding]="'var(--space-sm)'" [align]="'center'">
+          <dx-check-box name="'checkbox' + i" [formControlName]="'state'"></dx-check-box>
+          <label for="'checkbox' + i">{{ item.value.label }}</label>
+        </amx-flex>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+<div
+(mouseenter)="mouseenterHandler()"
+(mouseleave)="mouseleaveHandler()">
+  <amx-grid [columns]="'50ch 1fr auto'" [gap]="'var(--space-md)'">
+    <h3 [ngStyle]="{ 'align-self': 'center' }">{{ record?.name}}</h3>
+    <p [ngStyle]="{ 'align-self': 'center', 'white-space': 'normal' }">{{ getReadingData(record) }}</p>
+    <amx-flex [align]="'center'">
+      <amx-flex [gap]="'var(--space-md)'">
+        <div (click)="stopPropagation($event)">
+          <amx-icon-button
+            [awesome]="true"
+            [icon]="icons.instrumentsIcon"
+            [height]="'20px'"
+            (clicked)="enterReadingsHandler()">
+          </amx-icon-button>
+        </div>
+        <div (click)="stopPropagation($event)">
+          <amx-icon-button
+            [awesome]="true"
+            [icon]="icons.historyIcon"
+            [height]="'20px'"
+            (clicked)="readingsHistoryHandler()">
+          </amx-icon-button>
+        </div>
+      </amx-flex> 
+      <div (click)="stopPropagation($event)" class="more" [ngClass]="{ hovered: hovered }">
+        <amx-crud-button
+          [allowEditing]="true"
+          [allowDeleting]="true"
+          (editRequested)="editHandler()"
+          (deleteRequested)="deleteHandler()">
+        </amx-crud-button>
+        <!-- <amx-dropdown-button
+          [icon]="icons.moreIcon"
+          [bgColor]="'transparent'"
+          [origin]="'right'"
+          [padding]="'var(--space-sm)'"
+          [fgColor]="'white'"
+          [height]="'20px'">
+          <amx-flex [flow]="'column nowrap'">
+            <div (click)="stopPropagation($event)">
+              <amx-dropdown-item-button
+                [label]="'Edit'"
+                [icon]="icons.editIcon"
+                (clicked)="editHandler()">
+              </amx-dropdown-item-button> 
+            </div>
+            <div (click)="stopPropagation($event)">
+              <amx-dropdown-item-button
+                [label]="'Delete'"
+                [icon]="icons.deleteIcon"
+                [danger]="true"
+                (clicked)="deleteHandler()">
+              </amx-dropdown-item-button> 
+            </div>
+          </amx-flex>
+        </amx-dropdown-button> -->
+      </div>
+    </amx-flex>
+  </amx-grid>
+</div>

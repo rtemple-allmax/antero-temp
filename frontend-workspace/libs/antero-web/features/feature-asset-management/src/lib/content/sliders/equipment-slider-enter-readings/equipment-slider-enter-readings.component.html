@@ -1,0 +1,22 @@
+<h2 [ngStyle]="{ 'text-align': 'center' }">Enter Readings</h2>
+<amx-separator></amx-separator>
+<div [formGroup]="form">
+  <amx-date-box [label]="'Reading Date'" [formControlName]="'date'"></amx-date-box>
+  <amx-spacer></amx-spacer>
+  <ng-container [formArrayName]="'items'">
+    <ng-container *ngFor="let item of items.controls; let i = index;">
+      <div [formGroupName]="i">
+        <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+          <p [amxFlexChild]="'0 0 200px'"><b>{{ item.value?.name }}</b></p>
+          <p [amxFlexChild]="'0 0 200px'">{{ item.value?.units }}</p>
+          <amx-number-box [amxFlexChild]="'1'" [formControlName]="'value'"></amx-number-box>
+        </amx-flex>
+      </div>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    </ng-container>
+  </ng-container>
+</div>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-flex [justify]="'flex-end'">
+  <amx-combo-button [label]="'Save'" [icon]="icons.saveIcon" (clicked)="submit()"></amx-combo-button>
+</amx-flex>

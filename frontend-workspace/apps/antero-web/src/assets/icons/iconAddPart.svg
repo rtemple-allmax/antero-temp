@@ -1,0 +1,29 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<svg width="32.0002" height="32.0002" viewBox="-2.0002 -2.0002 32.0002 32.0002" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Layer_1" transform="translate(-4.6668, -4.6668)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(1.1667, 0, 0, 1.1667, 0, 0)">
+      <g id="Layer_2">
+        <path d="M28, 10L28, 28L4, 28L4, 10L28, 10z" fill="#1177D7" class="Blue" />
+      </g>
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-4.6668, -4.6668)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(1.1667, 0, 0, 1.1667, 0, 0)">
+      <g id="Layer_2">
+        <path d="M6, 12L14, 12L14, 18L6, 18L6, 12z" fill="#FFFFFF" class="White" />
+      </g>
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-4.6668, -4.6668)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(1.1667, 0, 0, 1.1667, 0, 0)">
+      <g id="Layer_2">
+        <path d="M4, 8L4, 4L28, 4L28, 8L4, 8z" fill="#727272" class="Black" />
+      </g>
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(13.9998, 13.9998)" style="enable-background:new 0 0 16 16">
+    <g id="Add_1_">
+      <path d="M15, 6L10, 6L10, 1C10, 0.4 9.5, 0 9, 0L7, 0C6.5, 0 6, 0.4 6, 1L6, 6L1, 6C0.5, 6 0, 6.4 0, 7L0, 9C0, 9.6 0.5, 10 1, 10L6, 10L6, 15C6, 15.6 6.5, 16 7, 16L9, 16C9.5, 16 10, 15.6 10, 15L10, 10L15, 10C15.5, 10 16, 9.6 16, 9L16, 7C16, 6.4 15.5, 6 15, 6z" style="fill:#4DAE89" />
+    </g>
+  </g>
+</svg>

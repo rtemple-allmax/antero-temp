@@ -1,0 +1,109 @@
+<amx-window [heading]="'Work Order Viewer'" [maxWidth]="'50vw'" (sliderClosed)="sliderClosedHandler()">
+  <ng-container content>
+    <h2>WO# {{ record?.workOrderNumber }}</h2>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-tabs>
+      <amx-tab [label]="'Details'" [icon]="icons.fileIcon">
+        <ant-work-viewer-tab-details
+          *ngIf="currentIndex === 0"
+          (editAdmin)="openSlider(sliders.ADMIN)"
+          (showEquipment)="openSlider(sliders.EQUIPMENT)"
+          (showEquipmentHistory)="openSlider(sliders.EQUIPMENT_HISTORY)"
+          (showEquipmentDocuments)="openSlider(sliders.EQUIPMENT_DOCUMENTS)"
+          (editInstructions)="openSlider(sliders.INSTRUCTIONS)"
+          (enterEquipmentDowntime)="openSlider(sliders.EQUIPMENT_DOWNTIME)">
+        </ant-work-viewer-tab-details>
+      </amx-tab>
+      <amx-tab [label]="'Map'" [icon]="icons.activityIcon">
+        <ant-work-viewer-tab-map *ngIf="currentIndex === 1"></ant-work-viewer-tab-map>
+      </amx-tab>
+      <amx-tab [label]="'Activity'" [icon]="icons.activityIcon">
+        <ant-work-viewer-tab-activity *ngIf="currentIndex === 2"></ant-work-viewer-tab-activity>
+      </amx-tab>
+    </amx-tabs>
+  </ng-container>
+  <ng-container slider>
+    <ng-container [ngSwitch]="slider">
+      <ant-work-viewer-slider-admin
+        *ngSwitchCase="sliders.ADMIN">
+      </ant-work-viewer-slider-admin>
+      <ant-work-viewer-slider-checklist
+        *ngSwitchCase="sliders.CHECKLIST">
+      </ant-work-viewer-slider-checklist>
+      <ant-work-viewer-slider-completion
+        *ngSwitchCase="sliders.COMPLETION">
+      </ant-work-viewer-slider-completion>
+      <ant-work-viewer-slider-contractor-add
+        *ngSwitchCase="sliders.CONTRACTOR_ADD">
+      </ant-work-viewer-slider-contractor-add>
+      <ant-work-viewer-slider-contractor-delete
+        *ngSwitchCase="sliders.CONTRACTOR_DELETE">
+      </ant-work-viewer-slider-contractor-delete>
+      <ant-work-viewer-slider-contractor-edit
+        *ngSwitchCase="sliders.CONTRACTOR_EDIT">
+      </ant-work-viewer-slider-contractor-edit>
+      <ant-work-viewer-slider-equipment
+        *ngSwitchCase="sliders.EQUIPMENT">
+      </ant-work-viewer-slider-equipment>
+      <ant-work-viewer-slider-equipment-documents
+        *ngSwitchCase="sliders.EQUIPMENT_DOCUMENTS">
+      </ant-work-viewer-slider-equipment-documents>
+      <ant-work-viewer-slider-equipment-downtime
+        *ngSwitchCase="sliders.EQUIPMENT_DOWNTIME">
+      </ant-work-viewer-slider-equipment-downtime>
+      <ant-work-viewer-slider-equipment-history
+        *ngSwitchCase="sliders.EQUIPMENT_HISTORY"
+        [width]="'33vw'">
+      </ant-work-viewer-slider-equipment-history>
+      <ant-work-viewer-slider-instructions
+        *ngSwitchCase="sliders.INSTRUCTIONS"
+        [width]="'45vw'">
+      </ant-work-viewer-slider-instructions>
+      <ant-work-viewer-slider-instruments
+        *ngSwitchCase="sliders.INSTRUMENTS">
+      </ant-work-viewer-slider-instruments>
+      <ant-work-viewer-slider-labor-add
+        *ngSwitchCase="sliders.LABOR_ADD">
+      </ant-work-viewer-slider-labor-add>
+      <ant-work-viewer-slider-labor-delete 
+        *ngSwitchCase="sliders.LABOR_DELETE">
+      </ant-work-viewer-slider-labor-delete>
+      <ant-work-viewer-slider-labor-edit
+        *ngSwitchCase="sliders.LABOR_EDIT">
+      </ant-work-viewer-slider-labor-edit>
+      <ant-work-viewer-slider-misc-add
+        *ngSwitchCase="sliders.MISC_ADD">
+      </ant-work-viewer-slider-misc-add>
+      <ant-work-viewer-slider-misc-delete
+        *ngSwitchCase="sliders.MISC_DELETE">
+      </ant-work-viewer-slider-misc-delete>
+      <ant-work-viewer-slider-misc-edit
+        *ngSwitchCase="sliders.MISC_EDIT">
+      </ant-work-viewer-slider-misc-edit>
+      <ant-work-viewer-slider-move-to-history
+        *ngSwitchCase="sliders.MOVE_TO_HISTORY">
+      </ant-work-viewer-slider-move-to-history>
+      <ant-work-viewer-slider-move-to-review
+        *ngSwitchCase="sliders.MOVE_TO_REVIEW">
+      </ant-work-viewer-slider-move-to-review>
+      <ant-work-viewer-slider-part-add
+        *ngSwitchCase="sliders.PART_ADD">
+      </ant-work-viewer-slider-part-add>
+      <ant-work-viewer-slider-part-delete
+        *ngSwitchCase="sliders.PART_DELETE">
+      </ant-work-viewer-slider-part-delete>
+      <ant-work-viewer-slider-part-edit
+        *ngSwitchCase="sliders.PART_EDIT">
+      </ant-work-viewer-slider-part-edit>
+      <ant-work-viewer-slider-tool-add
+        *ngSwitchCase="sliders.TOOL_ADD">
+      </ant-work-viewer-slider-tool-add>
+      <ant-work-viewer-slider-tool-delete
+        *ngSwitchCase="sliders.TOOL_DELETE">
+      </ant-work-viewer-slider-tool-delete>
+      <ant-work-viewer-slider-tool-edit
+        *ngSwitchCase="sliders.TOOL_EDIT">
+      </ant-work-viewer-slider-tool-edit>
+    </ng-container>
+  </ng-container>
+</amx-window>

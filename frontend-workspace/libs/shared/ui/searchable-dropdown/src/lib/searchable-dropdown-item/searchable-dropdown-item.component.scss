@@ -1,0 +1,13 @@
+.searchable-dropdown-item {
+  padding: var(--space-md) var(--space-sm);
+  border: 1px solid transparent;
+  color: var(--fg-color);
+  &.selected {
+    border-color: var(--selected-color);
+    // color: var(--fg-color);
+  }
+  &:hover {
+    border-color: var(--highlight-color);
+    // color: var(--fg-color) !important;
+  }
+}

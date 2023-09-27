@@ -1,0 +1,20 @@
+.accordion-container {
+  background-color: var(--panel-bg-color);
+}
+.accordion-panel {
+  user-select: none;
+  border: 1px solid var(--gray-2);
+  & .header {
+    padding: var(--space-md);
+    display: flex;
+    gap: var(--space-md);
+  }
+  & .panel-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+    &.open {
+      max-height: 2300px;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+<amx-layout-panel-collapsible
+  [title]="title"
+  [allowEditing]="true"
+  [tutorialKey]="keys.EQUIPMENT_PURCHASING_DETAILS_TUTORIAL"
+  (editRequested)="editHandler()"
+  (collapsedStateChanged)="collapsedStateChangedHandler($event)">
+  <amx-grid [columns]="'1fr'" [gap]="'var(--space-lg)'" [padding]="'var(--space-md)'">
+    <amx-read-only-box
+      [label]="'Vendor'"
+      (rightClicked)="addToMyData('Vendor', 'vendor', myDataFieldTypes.OBJECT, false, 'name')">
+      {{ record?.vendor?.name }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Placed In Service'"
+      (rightClicked)="addToMyData('Placed In Service', 'dateInService', myDataFieldTypes.DATE, false)">
+      {{ getDateString(record?.dateInService) }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Manufacturer'"
+      (rightClicked)="addToMyData('Manufacturer', 'manufacturer', myDataFieldTypes.OBJECT, false, 'name')">
+      {{ record?.manufacturer?.name }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Warranty Days'"
+      (rightClicked)="addToMyData('Warranty Days', 'warrantyDays', myDataFieldTypes.VALUE, false)">
+      {{ record?.warrantyDays }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Date Purchased'"
+      (rightClicked)="addToMyData('Date Purchased', 'datePurchased', myDataFieldTypes.DATE, false)">
+      {{ getDateString(record?.datePurchased) }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Warranty Meter'"
+      (rightClicked)="addToMyData('Warranty Meter', 'warrantyMeter', myDataFieldTypes.VALUE, false)">
+      {{ record?.warrantyMeter }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Purchase Price'"
+      (rightClicked)="addToMyData('Purchase Price', 'purchasePrice', myDataFieldTypes.CURRENCY, false)">
+      {{ formatAsCurrency(record?.purchasePrice) }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Life Expectancy'"
+      (rightClicked)="addToMyData('Life Expectancy', 'lifeExpectancy', myDataFieldTypes.VALUE, false)">
+      {{ record?.lifeExpectancy }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Salvage Value'"
+      (rightClicked)="addToMyData('Salvage Value', 'salvageValue', myDataFieldTypes.CURRENCY, false)">
+      {{ formatAsCurrency(record?.salvageValue) }}
+    </amx-read-only-box>
+  </amx-grid>
+</amx-layout-panel-collapsible>
+
+

@@ -1,0 +1,31 @@
+<amx-modal [heading]="'Replace Equipment'" (closed)="closedHandler()">
+  <amx-read-only-box [label]="'Selected Equipment'">{{ selection?.name }}</amx-read-only-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <label>
+    Enter a new name for the equipment being replaced and retired to maintain equipment data and history 
+    records (name must be changed).
+  </label>
+  <br/><br/>
+  <amx-text-box [label]="'Retiring Name'" [(ngModel)]="newNameBinding.value"></amx-text-box>
+  <br/>
+  <label>
+    The replace function is intended for an equipment that is being replaced with a new equipment which performs 
+    the same functions. The equipment will be renamed and retired, retaining equipment data and history. All 
+    active work will be deleted.
+  </label>
+  <br/><br/>
+  <label>
+    The new equipment will retain the name of the equipment being retired and inherit all setup data, but will 
+    not include any historical data.
+  </label>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button
+      [label]="'Save'"
+      [icon]="icons.saveIcon"
+      [shouldDisable]="!ready"
+      [invert]="true"
+      (clicked)="submit()">
+    </amx-combo-button>
+  </amx-flex>
+</amx-modal>

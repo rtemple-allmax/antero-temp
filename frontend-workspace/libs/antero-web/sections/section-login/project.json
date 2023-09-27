@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/sections/section-login/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/sections/section-login"],
+      "options": {
+        "jestConfig": "libs/antero-web/sections/section-login/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/sections/section-login/**/*.ts",
+          "libs/antero-web/sections/section-login/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

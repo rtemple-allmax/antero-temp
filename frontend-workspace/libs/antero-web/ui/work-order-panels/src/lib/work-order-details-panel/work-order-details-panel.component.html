@@ -1,0 +1,103 @@
+<amx-layout-panel-collapsible [title]="title">
+  
+</amx-layout-panel-collapsible>
+
+
+
+
+<ng-template #noInstructions>
+  <div class="no-data" [ngStyle]="{ 'height': '350px' }">
+    No Instructions has been added to this Work Order.
+  </div>
+</ng-template>
+
+<!-- <amx-flex
+    [height]="height"
+    [flow]="'column nowrap'"
+    [padding]="'var(--space-md)'"
+    [gap]="'var(--space-md)'">
+    <amx-group-box
+      [label]="'Details'"
+      
+      [stretch]="true"
+      [actionIcon]="deviceType === deviceTypes.DESKTOP ? icons.editIcon : undefined"
+      (actionRequested)="adminEdit()">
+      <amx-grid [columns]="deviceType === deviceTypes.DESKTOP ? 'repeat(2, 1fr)' : '1fr'" [gap]="'var(--space-lg)'">
+        <amx-read-only-box [label]="'Date Scheduled'">{{ getDateString(data?.wo?.dateScheduled) }}</amx-read-only-box>
+        <amx-read-only-box [label]="'Days To Complete'">{{ data?.wo?.daysToComplete }}</amx-read-only-box>
+        <amx-read-only-box [label]="'Type'">{{ data?.wo?.workType?.name }}</amx-read-only-box>
+        <amx-read-only-box [label]="'Priority'">{{ data?.wo?.workPriority?.name }}</amx-read-only-box>
+      </amx-grid>
+    </amx-group-box>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <amx-group-box
+      [amxFlexChild]="'1'"
+      [label]="'Equipment / Task'"
+      [stretch]="true"
+      >
+      <amx-flex [flow]="'column nowrap'" [height]="'100%'" [gap]="'var(--space-lg)'">
+        <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'" [height]="'100%'">
+          <div>
+            <amx-media-object
+              [src]="primaryImage?.imageUrl"
+              [heading]="data?.wo?.equipment?.name"
+              [text]="data?.wo?.equipment?.description"
+              [isLink]="true"
+              (clicked)="showEquipment()">
+            </amx-media-object>
+            <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+              <amx-read-only-box
+                [label]="'Location'">
+                {{ data?.wo?.equipment?.location?.name }}
+              </amx-read-only-box>
+              <amx-read-only-box
+                [label]="'Department'">
+                {{ data?.wo?.equipment?.department?.name }}
+              </amx-read-only-box>
+              <amx-read-only-box
+                [label]="'Condition'">
+                {{ data?.wo?.equipment?.equipmentCondition?.name }}
+              </amx-read-only-box>
+              <amx-read-only-box
+                [label]="'Priority'">
+                {{ data?.wo?.equipment?.equipmentPriority?.name }}
+              </amx-read-only-box>
+            </amx-grid>
+          </div>
+          <div>
+            <amx-flex [justify]="'flex-end'">
+              <amx-link-button [label]="historyButtonLabel" (clicked)="showEquipmentHistory()"></amx-link-button>
+            </amx-flex>
+            <amx-group-box [label]="'Notes'" [stretch]="true"  [maxWidth]="'100%'">
+              <amx-formatted-text [text]="data?.wo?.equipment?.notes || ''"></amx-formatted-text>
+            </amx-group-box>
+          </div>
+        </amx-grid>
+        <div [amxFlexChild]="'1'">
+          <h2>{{ data?.wo?.task?.name}}</h2>
+          <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+          <amx-grid [columns]="deviceType === deviceTypes.DESKTOP ? 'repeat(2, 1fr)' : '1fr'" [gap]="'var(--space-md)'" [height]="'calc(100% - 2var(--space-md))'">
+            <amx-group-box
+              [label]="'Instructions'"
+              [actionIcon]="deviceType === deviceTypes.DESKTOP ? icons.editIcon : undefined"
+              
+              [stretch]="true"
+              (actionRequested)="editInstructions()">
+              <ng-container *ngIf="instructions else noInstructions">
+                <dx-scroll-view [height]="'100%'">
+                  <amx-formatted-text [text]="instructions"></amx-formatted-text>
+                </dx-scroll-view>
+              </ng-container>
+            </amx-group-box>
+            <ant-checklist-viewer
+              [checklist]="checklist"
+              [height]="'100%'"
+              [stretch]="true"
+              [editable]="true">
+            </ant-checklist-viewer>  
+          </amx-grid>
+        </div>
+      </amx-flex>
+    </amx-group-box>
+  </amx-flex> -->

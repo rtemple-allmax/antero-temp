@@ -1,0 +1,51 @@
+.modal-wrapper {
+  // user-select: none;
+  background-color: var(--overlay);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  & .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-height: 95vh;
+    box-shadow: var(--shadow);
+    transition: all .2s ease-in-out;
+    overflow: hidden;
+    & .modal-header {
+      // user-select: all;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      & .inner {
+        display: flex;
+        gap: var(--space-sm);
+        align-items: center;
+        & .modal-heading {
+          padding-left: var(--space-md);
+          color: white;
+        }
+      }
+    }
+    & .modal-content {
+      width: 100%;
+      // border: 1px solid white;
+      padding: var(--space-md);
+    }
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .modal-wrapper  {
+    & .modal {
+      top: var(--space-lg);
+      left: 50%;
+      transform: translate(-50%, 0);
+      max-width: calc(100vw - var(--space-lg));
+    }
+  }
+}

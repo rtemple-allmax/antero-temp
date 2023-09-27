@@ -1,0 +1,13 @@
+<div class="read-only-box" [ngClass]="{ inline: inline }" (click)="clickHandler($event)" (contextmenu)="rightClickHandler($event)">
+  <label [ngStyle]="{ 'font-size': 'var(--font-size-md)', cursor: 'pointer' }">{{ label }}</label>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <div class="content-wrapper">
+    <div [ngStyle]="{ 'padding-left': 'var(--space-lg)', 'white-space': preline ? 'pre-line' : 'normal' }">
+      <ng-content></ng-content>
+    </div>
+    <div *ngIf="showDot" class="dot" [ngStyle]="dotStyles"></div>
+    <div *ngIf="showPopover">
+      <amx-popover-button [template]="popoverTemplate"></amx-popover-button>
+    </div>
+  </div>
+</div>

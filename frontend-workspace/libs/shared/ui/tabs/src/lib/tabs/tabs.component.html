@@ -1,0 +1,24 @@
+<div class="tabs" [ngClass]="{ disabled: disabled }">
+  <amx-flex [align]="'center'">
+    <amx-flex>
+      <ng-container *ngFor="let panel of panels; let i = index;">
+        <amx-tab-button
+          [index]="i"
+          [styleType]="'underline'"
+          [label]="panel.label"
+          [icon]="panel.icon"
+          [disabled]="disabled"
+          [active]="currentIndex === i"
+          (clicked)="changeToPanel(i)">
+        </amx-tab-button>
+      </ng-container>
+    </amx-flex>
+  </amx-flex>
+  <!-- <amx-separator *ngIf="!disabled" [space]="'0'"></amx-separator> -->
+  <div [ngStyle]="{ 'height': height }" #container>
+    <ng-content></ng-content>
+  </div>  
+  <div class="overlay" (click)="preventBubble($event)">
+    <p class="overlay-text">{{ overlayText }}</p>
+  </div>
+</div>

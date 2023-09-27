@@ -1,0 +1,11 @@
+<amx-list-editor
+  [records]="records"
+  [height]="innerHeight"
+  [typeName]="[ 'Category', 'Categories' ]"
+  [valueToAdd]="initialValue"
+  (addRequested)="submitAdd($event)"
+  (editRequested)="submitEdit($event)"
+  (deleteRequested)="submitDelete($event)">
+</amx-list-editor>
+
+

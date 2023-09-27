@@ -1,0 +1,59 @@
+<ant-app-frame [sectionName]="'Home'">
+  <div frameContent class="home-view">
+    <ant-home-card [heading]="'Dashboard'" class="my-work">
+      <amx-grid [columns]="'repeat(3, 1fr)'" [padding]="'var(--space-md)'" [justifyItems]="'center'">
+        <amx-shortcut-button [label]="'Calendar'" [icon]="'iconCalendar'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Dashboard'" [icon]="'Dashboard'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Mapping'" [icon]="'CustomerQuickLocations'"></amx-shortcut-button>
+      </amx-grid>
+    </ant-home-card>
+    <ant-home-card [heading]="'Equipment'" class="equipment">
+      <div class="centered">
+        <amx-shortcut-button [label]="'Equipment'" [icon]="'iconEquipment'" (clicked)="navigate([paths.EQUIPMENT])"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Testing'" [icon]="'iconEquipment'" (clicked)="navigate([paths.TESTING])"></amx-shortcut-button>
+      </div>
+    </ant-home-card>
+    <ant-home-card [heading]="'Report Center'" class="report-center">
+      <div class="centered">
+        <amx-shortcut-button [label]="'Reporting'" [icon]="'portrait'"></amx-shortcut-button>
+      </div>
+    </ant-home-card>
+    <ant-home-card [heading]="'Support'" class="support">
+      <amx-grid [columns]="'repeat(3, 1fr)'" [padding]="'var(--space-md)'">
+        <amx-shortcut-button [label]="'Go2Tech'" [icon]="'Go2Tech'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Send Email'" [icon]="'Mail3'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Visit Website'"></amx-shortcut-button>
+      </amx-grid>
+    </ant-home-card>
+    <ant-home-card [heading]="'Work'" class="work-management">
+      <amx-grid [columns]="'repeat(5, 1fr)'" [padding]="'var(--space-md)'">
+        <amx-shortcut-button [label]="'Work Requests'" [icon]="'WorkRequest'" (clicked)="navigate([paths.WORK_REQUESTS])"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Work Setup'" [icon]="'WorkTemplate'" (clicked)="navigate([paths.WORK_SETUP])"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Current Work'" [icon]="'WorkOrder'" (clicked)="navigate([paths.CURRENT_WORK])"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Work Review'" [icon]="'WorkReview'" (clicked)="navigate([paths.WORK_REVIEW])"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Work History'" [icon]="'WorkHistory'" (clicked)="navigate([paths.WORK_HISTORY])"></amx-shortcut-button>
+      </amx-grid>
+    </ant-home-card>
+    <ant-home-card [heading]="'Parts'" class="parts">
+      <amx-grid [columns]="'repeat(4, 1fr)'" [padding]="'var(--space-md)'" [gap]="'var(--space-md)'">
+        <amx-shortcut-button [label]="'Parts'" [icon]="'SalesInvoice'" (clicked)="navigate([paths.PARTS])"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Ordering'" [icon]="'SalesInvoice'" (clicked)="navigate([paths.ORDERING])"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Suppliers'" [icon]="'Reviewers'" (clicked)="navigate([paths.SUPPLIERS])"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Transactions'" [icon]="'Reviewers'" (clicked)="navigate([paths.TRANSACTIONS])"></amx-shortcut-button>
+      </amx-grid>
+    </ant-home-card>
+    <ant-home-card [heading]="'Tools'" class="tools">
+      <amx-grid [columns]="'repeat(9, 1fr)'" [padding]="'var(--space-md)'" [gap]="'var(--space-md)'">
+        <amx-shortcut-button [label]="'Create Work Order'" [icon]="'AddWorkOrder'" (clicked)="openModal(modals.WORK_ORDER_VIEWER)"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Create Procedure'" [icon]="'CreateProcedure'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Create Purchase Order'" [icon]="'CreatePurchaseOrder'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Enter Readings'" [icon]="'iconReading'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Add Note'" [icon]="'AddItem'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Adjust Inventory'" [icon]="'InventoryAdjustment'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Parts Usage'" [icon]="'PartsUsage'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Receive Parts'" [icon]="'BarCodeShowText'"></amx-shortcut-button>
+        <amx-shortcut-button [label]="'Show Reorder Levels'" [icon]="'GreenDataBarSolid'"></amx-shortcut-button>
+      </amx-grid>
+    </ant-home-card>
+  </div>
+</ant-app-frame>

@@ -1,0 +1,9 @@
+<div
+  #dropdownItem
+  class="searchable-dropdown-item"
+  (mouseenter)="mouseenterHandler()"
+  (mouseleave)="mouseleaveHandler()"
+  [ngClass]="{ 'selected': item.selected }"
+  (mousedown)="select()">
+  <label tabindex="-1">{{ item[displayExpr] }}</label>
+</div>

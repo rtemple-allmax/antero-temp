@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/allmax-admin/sections/antero-restore-backup/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/allmax-admin/sections/antero-restore-backup"],
+      "options": {
+        "jestConfig": "libs/allmax-admin/sections/antero-restore-backup/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/allmax-admin/sections/antero-restore-backup/**/*.ts",
+          "libs/allmax-admin/sections/antero-restore-backup/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

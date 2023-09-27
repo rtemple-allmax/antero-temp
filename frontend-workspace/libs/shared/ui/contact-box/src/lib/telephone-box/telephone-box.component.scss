@@ -1,0 +1,9 @@
+.telephone-box {
+  font-size: var(--font-size-md);
+  & a {
+    display: block;
+    color: var(--icon-color);
+    font-size: var(--font-size-md);
+    padding-left: 4px;
+  }
+}

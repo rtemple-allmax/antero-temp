@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/toggle/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/shared/ui/toggle"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/ui/toggle/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/toggle/**/*.ts",
+          "libs/shared/ui/toggle/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

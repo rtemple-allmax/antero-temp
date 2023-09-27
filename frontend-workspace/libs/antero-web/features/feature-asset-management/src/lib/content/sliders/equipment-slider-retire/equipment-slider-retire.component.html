@@ -1,0 +1,18 @@
+<h2 [ngStyle]="{ 'text-align': 'center' }">Retire {{ source?.name }}</h2>
+<amx-separator></amx-separator>
+<p>
+  Once an Equipment has been retired it can no longer be used but its history will be maintained.  
+  The retired equipment will be removed from the active list and will no longer be selectable for things 
+  like work orders.
+</p>
+<br/>
+<p>
+  Open work orders will be deleted and saved work orders will be disabled and cannot be enabled.  
+</p>
+<br/>
+<p><b>Do you wish to continue?</b></p>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-flex [justify]="'flex-end'" [gap]="'var(--space-md)'">
+  <amx-combo-button [label]="'Confirm'" [fgColor]="'var(--msg-success)'" [icon]="icons.confirmIcon" (clicked)="confirmHandler()"></amx-combo-button>
+  <amx-combo-button [label]="'Cancel'" [fgColor]="'var(--msg-danger)'" [icon]="icons.cancelIcon" (clicked)="cancelHandler()"></amx-combo-button>
+</amx-flex>

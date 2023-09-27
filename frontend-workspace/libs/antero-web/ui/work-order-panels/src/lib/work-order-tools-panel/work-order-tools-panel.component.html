@@ -1,0 +1,33 @@
+<div [ngStyle]="{ 'padding': 'var(--space-md)', height: height }">
+  <!-- <amx-combo-button [label]="'Add Tool'" [icon]="icons.addIcon" (clicked)="openAdd()"></amx-combo-button> -->
+  <amx-grid [columns]="'2fr 1fr auto'" [gap]="'var(--space-md)'">
+    <amx-searchable-table-dropdown [placeholder]="'Select A Tool...'"></amx-searchable-table-dropdown>
+    <amx-number-box [placeholder]="'Estimated Usage'"></amx-number-box>
+    <amx-icon-button [icon]="icons.saveIcon" [awesome]="true" [height]="'20px'" [fgColor]="'var(--icon-color)'"></amx-icon-button>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <ng-container *ngIf="tools.length > 0 else noData">
+    <!-- <dx-scroll-view> -->
+      <amx-grid [columns]="deviceType === deviceTypes.DESKTOP ? 'repeat(2, 1fr)' : '1fr'" [gap]="'var(--space-md)'">
+        <ng-container *ngFor="let record of tools">
+          <amx-card (clicked)="openEdit(record)">
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+              <amx-read-only-box [label]="'Name'">{{ record?.equipment?.name }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Description'">{{ record?.equipment?.description }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Units'">{{ record?.equipment?.workOrderUnits }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Estimated Quantity'">{{ record?.estimatedQuantity }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Actual Quantity'">{{ record?.estimatedQuantity }}</amx-read-only-box>
+            </amx-grid>
+          </amx-card>
+        </ng-container>
+      </amx-grid>
+    <!-- </dx-scroll-view> -->
+  </ng-container>
+</div>
+
+<ng-template #noData>
+  <div class="no-data" [ngStyle]="{ height: '100px' }">
+    No Tools are associated with this Work Order.
+    I was thinking the display value for the tool could include units in some fashion. 
+  </div>
+</ng-template>

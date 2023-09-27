@@ -1,0 +1,106 @@
+<div class="wrapper">
+  <div class="content">
+    <amx-group-box [label]="'Create Antero Cloud Account'">
+      <label>Add new account to the AllMax cloud server</label>
+      <hr/>
+      <amx-number-box
+        #field
+        [label]="'Account Number'"
+        [precision]="accountNumberPrecision"
+        [required]="true"
+        [(ngModel)]="accountNumberBinding.value"
+        (validityStateChanged)="validityChangeHandler($event, 'accountNumber')">
+      </amx-number-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-text-box
+        #field
+        [label]="'Account Name'"
+        [required]="true"
+        [placeholder]="'(required)'"
+        [(ngModel)]="accountNameBinding.value"
+        (validityStateChanged)="validityChangeHandler($event, 'accountName')">
+      </amx-text-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-text-box
+        #field
+        [label]="'Company Name'"
+        [required]="true"
+        [placeholder]="'(required)'"
+        [(ngModel)]="companyNameBinding.value"
+        (validityStateChanged)="validityChangeHandler($event, 'companyName')">
+      </amx-text-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-date-box
+        #field  
+        [label]="'Purchase Date'"
+        [required]="true"
+        [type]="'date'"
+        [(ngModel)]="purchaseDateBinding.value"
+        (validityStateChanged)="validityChangeHandler($event, 'purchaseDate')">
+      </amx-date-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-date-box
+        #field  
+        [label]="'Subscription Renewal Date'"
+        [required]="true"
+        [type]="'date'"
+        [(ngModel)]="renewalDateBinding.value"
+        (validityStateChanged)="validityChangeHandler($event, 'renewalDate')">
+      </amx-date-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-number-box
+        #field
+        [label]="'Number of Seats'"
+        [required]="true"
+        [(ngModel)]="numberOfSeatsBinding.value"
+        (validityStateChanged)="validityChangeHandler($event, 'numberOfSeats')">
+      </amx-number-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [justify]="'space-between'" [gap]="'var(--space-xl)'" [padding]="'var(--space-md)'">
+        <label class="grey">Options</label>
+        <div [ngStyle]="{ 'flex': 'var(--flex-stretch)' }">
+          <amx-flex [justify]="'space-evenly'">
+            <amx-check-box [label]="'Mobile'" [(ngModel)]="mobileBinding.value"></amx-check-box>
+            <amx-check-box [label]="'Interfaces'" [(ngModel)]="interfacesBinding.value"></amx-check-box>
+          </amx-flex>
+        </div>
+      </amx-flex>
+      <amx-group-box [label]="'Account Admin Emails'" [bold]="true">
+        <amx-flex [gap]="'var(--space-md)'">
+          <amx-icon-button [icon]="icons.addIcon" [height]="'20px'" (clicked)="openAdd()"></amx-icon-button>
+          <amx-icon-button [icon]="icons.deleteIcon" [height]="'20px'"></amx-icon-button>
+        </amx-flex>
+        <amx-scroll-box [maxHeight]="'150px'">
+          <ng-container *ngIf="usersToAdd.length > 0 else noUsers">
+            <ng-container *ngFor="let user of usersToAdd">
+              <div [ngStyle]="{ padding: 'var(--space-md)' }">
+                <label>{{ user.email }}</label><br/>
+              </div>
+            </ng-container>
+          </ng-container>
+        </amx-scroll-box>
+      </amx-group-box>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <amx-flex [justify]="'center'">
+        <amx-label-button [label]="'Create Account'" [shouldDisable]="!ready" (clicked)="createAccount()"></amx-label-button>
+      </amx-flex>
+    </amx-group-box>
+  </div>
+  <amx-spacer [space]="'var(--space-xl)'"></amx-spacer>
+  <amx-flex [justify]="'center'">
+    <div
+      class="message-wrapper"
+      [ngClass]="{'show-message': showError || showSuccess }">
+      <span class="error" [ngClass]="{'show-message': showError }">{{ errorMessage }}</span>
+      <span class="success" [ngClass]="{'show-message': showSuccess }">{{ successMessage }}</span>
+    </div>
+  </amx-flex>
+</div>
+
+<ng-template #noUsers>
+  <div class="no-users">No users have been added to this account.</div>
+</ng-template>
+
+<amx-add-admin-user *ngIf="showWindow" (closed)="closeHandler()" (userAdded)="addUser($event)" [addedUsers]="usersToAdd"></amx-add-admin-user>
+
+

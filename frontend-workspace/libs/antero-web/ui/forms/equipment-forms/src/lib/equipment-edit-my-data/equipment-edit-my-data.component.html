@@ -1,0 +1,196 @@
+<amx-modal [heading]="'Edit My Data'" [maxWidth]="'800px'" (closed)="closedHandler()">
+  <div class="form-wrapper">
+    <amx-scroll-box [maxHeight]="'80vh'">
+      <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+        <amx-text-box
+          *ngIf="check('Description')"
+          [ngStyle]="{ order: getOrder('Description') }"
+          [label]="'Description'"
+          [(ngModel)]="descriptionBinding.value"
+          [maxLength]="50">
+        </amx-text-box>
+        <amx-searchable-dropdown
+          *ngIf="check('Department')"
+          [ngStyle]="{ order: getOrder('Department') }"
+          [label]="'Department'"
+          [items]="departments"
+          [(ngModel)]="departmentBinding.value"
+          (opened)="getDepartments()"
+          (addRequested)="equipmentListAddRequestHandler(lists.DEPARTMENT, $event)">
+        </amx-searchable-dropdown>
+        <amx-searchable-dropdown
+          *ngIf="check('Condition')"
+          [ngStyle]="{ order: getOrder('Condition') }"
+          [label]="'Condition'"
+          [items]="conditions"
+          [(ngModel)]="conditionBinding.value"
+          (opened)="getConditions()"
+          (addRequested)="equipmentListAddRequestHandler(lists.CONDITION, $event)">
+        </amx-searchable-dropdown>
+        <amx-searchable-dropdown
+          *ngIf="check('Type')"
+          [ngStyle]="{ order: getOrder('Type') }"
+          [label]="'Type'"
+          [items]="types"
+          [(ngModel)]="typeBinding.value"
+          (opened)="getTypes()"
+          (addRequested)="equipmentListAddRequestHandler(lists.TYPE, $event)">
+        </amx-searchable-dropdown>
+        <amx-searchable-dropdown
+          *ngIf="check('Group')"
+          [ngStyle]="{ order: getOrder('Group') }"
+          [label]="'Group'"
+          [items]="groups"
+          [(ngModel)]="groupBinding.value"
+          (opened)="getGroups()"
+          (addRequested)="equipmentListAddRequestHandler(lists.DEPARTMENT, $event)">
+        </amx-searchable-dropdown>
+        <amx-searchable-dropdown
+          *ngIf="check('Priority')"
+          [ngStyle]="{ order: getOrder('Priority') }"
+          [label]="'Priority'"
+          [items]="priorities"
+          [(ngModel)]="priorityBinding.value"
+          (opened)="getPriorities()"
+          (addRequested)="equipmentListAddRequestHandler(lists.PRIORITY, $event)">
+        </amx-searchable-dropdown>
+        <amx-searchable-dropdown
+          *ngIf="check('Category')"
+          [ngStyle]="{ order: getOrder('Category') }"
+          [label]="'Category'"
+          [items]="categories"
+          [(ngModel)]="categoryBinding.value"
+          (opened)="getCategories()"
+          (addRequested)="equipmentListAddRequestHandler(lists.CATEGORY, $event)">
+        </amx-searchable-dropdown>
+        <amx-searchable-dropdown
+          *ngIf="check('Location')"
+          [ngStyle]="{ order: getOrder('Location') }"
+          [label]="'Location'"
+          [items]="locations"
+          [(ngModel)]="locationBinding.value"
+          (opened)="getLocations()"
+          (addRequested)="equipmentListAddRequestHandler(lists.LOCATION, $event)">
+        </amx-searchable-dropdown>
+        <amx-number-box
+          *ngIf="check('Work Order Rate')"
+          [ngStyle]="{ order: getOrder('Work Order Rate') }"  
+          [label]="'Work Order Rate'"
+          format="$ ###,###,###,##0.00"
+          [(ngModel)]="workOrderRateBinding.value">
+        </amx-number-box>
+        <amx-text-box
+          *ngIf="check('Work Order Units')"
+          [ngStyle]="{ order: getOrder('Work Order Units') }"
+          [label]="'Work Order Units'"
+          [maxLength]="25"
+          [(ngModel)]="workOrderUnitsBinding.value">
+        </amx-text-box>
+        <amx-text-box
+          *ngIf="check('Asset Number')"
+          [ngStyle]="{ order: getOrder('Asset Number') }"  
+          [label]="'Asset Number'"
+          [maxLength]="50"
+          [(ngModel)]="assetNumberBinding.value">
+        </amx-text-box>
+        <amx-text-box
+          *ngIf="check('Model Number')"
+          [ngStyle]="{ order: getOrder('Model Number') }"  
+          [label]="'Model Number'"
+          [maxLength]="50"
+          [(ngModel)]="modelNumberBinding.value">
+        </amx-text-box>
+        <amx-text-box
+          *ngIf="check('Serial Number')"    
+          [ngStyle]="{ order: getOrder('Serial Number') }"
+          [label]="'Serial Number'"
+          [maxLength]="50"
+          [(ngModel)]="serialNumberBinding.value">
+        </amx-text-box>
+        <amx-text-area
+          *ngIf="check('Notes')"
+          [ngStyle]="{ order: getOrder('Notes') }"
+          [label]="'Notes'"
+          [maxLength]="4000"
+          [(ngModel)]="notesBinding.value">
+        </amx-text-area>
+        <amx-searchable-dropdown
+          *ngIf="check('Vendor')"
+          [ngStyle]="{ order: getOrder('Vendor') }"
+          [label]="'Vendor'"
+          [items]="suppliers"
+          [allowAdd]="false"
+          [(ngModel)]="vendorBinding.value"
+          (opened)="getSuppliers()">
+        </amx-searchable-dropdown>
+        <amx-date-box
+          *ngIf="check('Placed In Service')"
+          [ngStyle]="{ order: getOrder('Placed In Service') }"
+          [label]="'Placed In Service'"
+          [type]="'date'"
+          [(ngModel)]="placedInServiceBinding.value">
+        </amx-date-box>
+        <amx-searchable-dropdown
+          *ngIf="check('Manufacturer')"
+          [ngStyle]="{ order: getOrder('Manufacturer') }"
+          [label]="'Manufacturer'"
+          [items]="suppliers"
+          [allowAdd]="false"
+          [(ngModel)]="manufacturerBinding.value"
+          (opened)="getSuppliers()">
+        </amx-searchable-dropdown>
+        <amx-number-box
+          *ngIf="check('Warranty Days')"
+          [ngStyle]="{ order: getOrder('Warranty Days') }"  
+          [label]="'Warranty Days'"
+          [(ngModel)]="warrantyDaysBinding.value">
+        </amx-number-box>
+        <amx-date-box
+          *ngIf="check('Date Purchased')"
+          [ngStyle]="{ order: getOrder('Date Purchased') }"  
+          [label]="'Date Purchased'"
+          [type]="'date'"
+          [(ngModel)]="datePurchasedBinding.value">
+        </amx-date-box>
+        <amx-number-box
+          *ngIf="check('Warranty Meter')"
+          [ngStyle]="{ order: getOrder('Warranty Meter') }"  
+          [label]="'Warranty Meter'"
+          [(ngModel)]="warrantyMeterBinding.value">
+        </amx-number-box>
+        <amx-number-box
+          *ngIf="check('Purchase Price')"  
+          [ngStyle]="{ order: getOrder('Purchase Price') }"
+          [label]="'Purchase Price'"
+          format="$ ###,###,###,##0.00"
+          [(ngModel)]="purchasePriceBinding.value">
+        </amx-number-box>
+        <amx-number-box
+          *ngIf="check('Life Expectancy')"
+          [ngStyle]="{ order: getOrder('Life Expectancy') }"
+          [label]="'Life Expectancy'"
+          [precision]="{ integral: 14, fractional: 2 }"
+          [(ngModel)]="lifeExpectancyBinding.value">
+        </amx-number-box>
+        <amx-number-box
+          *ngIf="check('Salvage Value')"
+          [ngStyle]="{ order: getOrder('Salvage Value') }"
+          [label]="'Salvage Value'"
+          format="$ ###,###,###,##0.00"
+          [(ngModel)]="salvageValueBinding.value">
+        </amx-number-box>
+      </amx-grid>
+    </amx-scroll-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-flex [justify]="'space-between'" [align]="'center'" [padding]="'0 var(--space-sm)'" [gap]="'var(--space-md)'">
+      <div [amxFlexChild]="'1'">
+      </div>
+      <amx-combo-button
+        [label]="'Save'"
+        [invert]="true"
+        [icon]="icons.saveIcon"
+        (clicked)="submit()">
+      </amx-combo-button>
+    </amx-flex>
+  </div>
+</amx-modal>

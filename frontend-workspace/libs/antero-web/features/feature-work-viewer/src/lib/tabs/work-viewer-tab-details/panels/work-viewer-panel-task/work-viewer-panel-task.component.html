@@ -1,0 +1,19 @@
+<amx-layout-panel [allowEditing]="true" (editRequested)="editHandler()" *ngIf="record">
+  <ng-container header>
+    <amx-grid [columns]="'1fr 2fr'" [alignItems]="'center'" [gap]="'var(--space-xl)'" [padding]="'var(--space-md)'">
+      <h2>{{ record.name }}</h2>
+      <amx-progress-bar *ngIf="updatedChecklist.length > 0" [max]="updatedChecklist.length" [min]="0" [value]="completedCount"></amx-progress-bar>
+    </amx-grid>
+  </ng-container>
+  <ng-container content>
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-xl)'" [padding]="'var(--space-md)'">
+      <amx-formatted-text [text]="record.instructionsString || ''"></amx-formatted-text>
+      <amx-checklist
+        [checklist]="checklist"
+        (changed)="checklistChangedHandler($event)">
+      </amx-checklist>
+    </amx-grid>
+  </ng-container>
+</amx-layout-panel>
+
+

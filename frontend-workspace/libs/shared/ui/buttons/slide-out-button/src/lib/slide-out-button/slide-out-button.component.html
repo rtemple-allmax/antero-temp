@@ -1,0 +1,16 @@
+<div [ngStyle]="{ position: 'relative'}" (clickOutside)="close()" (mouseenter)="mouseenterHandler()"
+(mouseleave)="mouseleaveHandler()">
+  <button
+    class="dropdown-btn-item slide-out"
+    (click)="toggle($event)"
+    >
+    <amx-flex [gap]="'var(--space-md)'" [ngClass]="{ disabled: disabled }">
+      <amx-icon [icon]="icon" [color]="'var(--fg-color)'" [height]="'18px'" [amxFlexChild]="'0 0 20px'" [ngClass]="{ disabled: disabled }"></amx-icon>
+      <label [ngStyle]="{ color: textColor }" [ngClass]="{ disabled: disabled }">{{ label }}</label>
+    </amx-flex>
+    <amx-flex></amx-flex>
+  </button>
+  <div class="slide-out-content" [ngClass]="{ open: open, 'left-origin': origin === 'left', 'right-origin': origin === 'right' }">
+    <ng-content></ng-content>
+  </div>
+</div>

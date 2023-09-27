@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/pipes/safe-url/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/pipes/safe-url"],
+      "options": {
+        "jestConfig": "libs/shared/pipes/safe-url/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/pipes/safe-url/**/*.ts",
+          "libs/shared/pipes/safe-url/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

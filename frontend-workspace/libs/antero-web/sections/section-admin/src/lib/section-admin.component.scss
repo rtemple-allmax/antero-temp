@@ -1,0 +1,23 @@
+.admin-view {
+  & .title-wrapper {
+    padding: var(--space-md);
+    & .title {
+      text-align: center;
+    }
+  }
+}
+
+.panel-admin-users {
+  padding: var(--space-lg);
+  & .control {
+    border: none;
+    outline: 0;
+    background-color: transparent;
+    padding: var(--space-sm);
+    font-size: 22px;
+    cursor: pointer;
+    &.add { color: var(--icon-color); }
+    &.edit { color: var(--icon-color); font-size: 18px; }
+    &.delete { color: var(--msg-danger); }
+  }
+}

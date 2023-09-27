@@ -1,0 +1,60 @@
+<amx-modal
+  [heading]="heading"
+  (closed)="closedHandler()">
+  <ng-container [ngSwitch]="crud">
+    <ng-container *ngSwitchCase="crudFunctions.CREATE">
+      <ng-container *ngTemplateOutlet="addTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="crudFunctions.UPDATE">
+      <ng-container *ngTemplateOutlet="editTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="crudFunctions.DELETE">
+      <ng-container *ngTemplateOutlet="deleteTemplate"></ng-container>
+    </ng-container>
+  </ng-container>
+</amx-modal>
+
+<ng-template #addTemplate>
+  <amx-table-drop-down [label]="'Labor Class'"></amx-table-drop-down>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-table-drop-down [label]="'Labor Account'"></amx-table-drop-down>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-table-drop-down [label]="'User'"></amx-table-drop-down>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-table-drop-down [label]="'Labor Type'"></amx-table-drop-down>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-number-box [label]="'Estimated Hours'"></amx-number-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-number-box [label]="'Actual Hours'"></amx-number-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [label]="'Save'" [invert]="true" [icon]="icons.saveIcon"></amx-combo-button>
+  </amx-flex>
+</ng-template>
+<ng-template #editTemplate>
+  <amx-table-drop-down [label]="'Labor Account'"></amx-table-drop-down>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-table-drop-down [label]="'User'"></amx-table-drop-down>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-table-drop-down [label]="'Labor Type'"></amx-table-drop-down>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-number-box [label]="'Estimated Hours'"></amx-number-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-number-box [label]="'Actual Hours'"></amx-number-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [label]="'Update'" [invert]="true" [icon]="icons.saveIcon"></amx-combo-button>
+  </amx-flex>
+  <hr/>
+  <amx-link-button [label]="'Delete This Labor'" (clicked)="openDelete()"></amx-link-button>
+</ng-template>
+<ng-template #deleteTemplate>
+  <span>This will remove <b>{{ record?.laborClass?.name }}</b> from this Work Order.</span><br/>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <span><b>Do you wish to continue?</b></span>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'" [gap]="'var(--space-md)'">
+    <amx-combo-button [label]="'Yes'" [icon]="icons.confirmIcon" (clicked)="deleteRequestedHandler()"></amx-combo-button>
+    <amx-combo-button [label]="'No'" [icon]="icons.cancelIcon" (clicked)="cancelDelete()"></amx-combo-button>
+  </amx-flex>
+</ng-template>

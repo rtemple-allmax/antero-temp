@@ -1,0 +1,31 @@
+<div class="images-wrapper">
+  <amx-flex>
+    <amx-file-picker [label]="'Add Image'" (filesSelected)="imagesAddedHandler($event)"></amx-file-picker>
+  </amx-flex>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <dx-scroll-view [height]="innerHeight">
+    <ng-container *ngIf="thumbs.length > 0 else noImages">
+      <amx-drag-and-drop
+        [items]="thumbs"
+        [numItemsWide]="4"
+        [template]="thumbTemplate"
+        (orderChanged)="orderChangedHandler($event)">
+      </amx-drag-and-drop>
+    </ng-container>
+  </dx-scroll-view>
+</div>
+
+<ng-template #thumbTemplate let-data="data">
+  <amx-portrait
+    [imgData]="data"
+    (downloadRequested)="download($event)"
+    (deleteRequested)="deleteImage($event)"
+    (selectionRequested)="select($event)">
+  </amx-portrait>
+</ng-template>
+
+<ng-template #noImages>
+  <div class="no-data">
+    No images have been added to this Equipment. 
+  </div>
+</ng-template>

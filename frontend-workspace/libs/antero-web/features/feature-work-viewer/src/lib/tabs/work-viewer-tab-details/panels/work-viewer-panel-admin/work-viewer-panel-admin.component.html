@@ -1,0 +1,13 @@
+<amx-layout-panel [allowEditing]="true" (editRequested)="editHandler()">
+  <ng-container header>
+    <h2>Admin</h2>
+  </ng-container>
+  <ng-container content>
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'" [padding]="'var(--space-md)'">
+      <amx-read-only-box [label]="'Due Date'">{{ getDateString(record?.dueDate) }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Type'">{{ record?.workType?.name }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Priority'">{{ record?.workPriority?.name }}</amx-read-only-box>
+    </amx-grid>
+  </ng-container>
+</amx-layout-panel>
+

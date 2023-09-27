@@ -1,0 +1,9 @@
+.website-box {
+  font-size: var(--space-lg);
+  & a {
+    display: block;
+    color: var(--icon-color);
+    font-size: var(--space-lg);
+    padding-left: 4px;
+  }
+}

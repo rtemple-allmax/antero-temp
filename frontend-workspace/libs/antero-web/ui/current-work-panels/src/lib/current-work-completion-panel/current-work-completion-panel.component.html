@@ -1,0 +1,9 @@
+<amx-layout-panel-collapsible [title]="'Completion'">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'" [padding]="'var(--space-md)'">
+    <amx-read-only-box [label]="'Status'">{{ record?.workStatus?.name }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Date Completed'">{{ record?.dateCompleted }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Completed By'">{{ record?.completedBy?.name }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Completed Notes'">{{ record?.completedNotes }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Needs Attention'">{{ record?.needsAttentionText }}</amx-read-only-box>
+  </amx-grid>
+</amx-layout-panel-collapsible>

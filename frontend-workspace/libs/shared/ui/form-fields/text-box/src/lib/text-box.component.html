@@ -1,0 +1,27 @@
+<div class="field-wrapper" [ngClass]="{ invalid: !valid, required: required, disabled: disabled }">
+  <!-- <amx-grid [a]></amx-grid> -->
+
+
+  <amx-flex [flow]="flow" [gap]="'var(--space-md)'" [align]="alignment">
+    <label *ngIf="hasLabel" class="label" [ngClass]="{ white: whiteLabel }" [amxFlexChild]="uiLabelFlex">{{ label }}</label>
+    <div class="field" (click)="clickHandler()" [amxFlexChild]="'1'">
+      <dx-text-box
+        class="dark"
+        [tabIndex]="tabIndex"
+        [(ngModel)]="value"
+        [disabled]="isDisabled"
+        [placeholder]="uiPlaceholder"
+        [stylingMode]="'outlined'"
+        [maxLength]="maxLength"
+        [valueChangeEvent]="'keyup'"
+        [mode]="mode"
+        (onInput)="inputHandler()"
+        (onValueChanged)="valueChangeHandler()"
+        (onBlur)="blurHandler()">
+      </dx-text-box>
+    </div> 
+  </amx-flex>
+  <div class="errors-wrapper" *ngIf="!valid">
+    <label class="error-text">{{ errorMessage }}</label>
+  </div>
+</div>

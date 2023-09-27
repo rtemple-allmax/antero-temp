@@ -1,0 +1,22 @@
+<ng-container *ngIf="direction === 'horizontal' else dndTemplate">
+  <amx-grid [columns]="columns" [gap]="gap">
+    <ng-container *ngTemplateOutlet="dndTemplate"></ng-container>
+  </amx-grid>
+</ng-container>
+
+<ng-template #dndTemplate>
+  <div
+    *ngFor="let item of items; let i = index"
+    [draggable]="true" 
+    class="drag-container"
+    [ngClass]="{ dragging: i === draggingIndex, primary: i === 0 }"
+    (dragstart)="onDragStart(i)" 
+    (dragover)="onDragOver(i)" 
+    (dragend)="onDragEnd(i)">
+    <ng-container *ngTemplateOutlet="template || default; context: { data: item }"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #default>
+  Default Drag and Drop Template
+</ng-template>

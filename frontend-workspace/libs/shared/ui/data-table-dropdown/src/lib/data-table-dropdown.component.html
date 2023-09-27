@@ -1,0 +1,31 @@
+<div class="flex">
+  <label *ngIf="label">{{ label }}</label>
+  <dx-drop-down-box
+    [height]="'26px'"
+    [(value)]="value"
+    [(opened)]="isOpen"
+    [displayExpr]="displayExpr"
+    [placeholder]="placeholder"
+    [showClearButton]="showClearButton"
+    [style]="'underline'"
+    (onOpened)="onOpenedHandler($event)"
+    (onValueChanged)="valueChangedHandler($event)">
+    <div *dxTemplate="let data of 'content'">
+      <ng-container *ngIf="isOpen">
+        <amx-data-table
+          #table
+          [height]="height"
+          [showColumnHeaders]="showColumnHeaders"
+          [data]="datasource"
+          [columns]="columns"
+          [rowAlternationEnabled]="true"
+          [allowSearch]="allowSearch"
+          [cellTemplate]="cellTemplate"
+          [selectionMode]="'single'"
+          [selectFirstRowOnLoad]="false"
+          (selectionChanged)="dataTableSelectionChangedHandler($event)">
+        </amx-data-table>
+      </ng-container>
+    </div>
+  </dx-drop-down-box>
+</div>

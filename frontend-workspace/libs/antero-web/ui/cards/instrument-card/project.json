@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/ui/cards/instrument-card/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/ui/cards/instrument-card"],
+      "options": {
+        "jestConfig": "libs/antero-web/ui/cards/instrument-card/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/ui/cards/instrument-card/**/*.ts",
+          "libs/antero-web/ui/cards/instrument-card/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

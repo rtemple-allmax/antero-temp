@@ -1,0 +1,64 @@
+<div class="app">
+  <router-outlet></router-outlet>
+</div>
+
+<ngx-spinner
+  type="ball-scale-multiple"
+  [size]="'medium'"
+  color = "#fff">
+  <p style="color: white" >
+    Loading...
+  </p>
+</ngx-spinner>
+
+<amx-notifications></amx-notifications>
+<amx-error-window></amx-error-window>
+
+<amx-image-gallery
+  *ngIf="openModal === modals.IMAGE_GALLERY"
+  [thumbs]="thumbs"
+  [primaryImageID]="primaryImageID"
+  [selectedImageID]="selectedImageID"
+  (closed)="closeModals()">
+</amx-image-gallery>
+
+<ant-tools></ant-tools>
+<ant-equipment-modals></ant-equipment-modals>
+<ant-work-order-modals></ant-work-order-modals>
+<ant-part-modals></ant-part-modals>
+<ant-task-modals></ant-task-modals>
+
+<ant-part-viewer *ngIf="openModal === modals.PART_VIEWER"></ant-part-viewer>
+
+<ant-enter-readings
+  *ngIf="openModal === modals.TOOL_ENTER_READINGS">
+</ant-enter-readings>
+
+<ant-admin
+  *ngIf="openModal === modals.ADMIN"
+  (closed)="closeModals()">
+</ant-admin> 
+
+<ant-task-list
+  *ngIf="openModal === modals.TASKS_LIST">
+</ant-task-list>
+
+<!-- <ant-work-order-viewer
+  *ngIf="openModal === modals.WORK_ORDER_VIEWER"
+  (closed)="closeModals()">
+</ant-work-order-viewer> -->
+
+<ant-work-history-viewer
+  *ngIf="openModal === modals.WORK_HISTORY_VIEWER"
+  (closed)="closeModals()">
+</ant-work-history-viewer>
+
+<ant-procedure-viewer
+  *ngIf="openModal === modals.PROCEDURE_VIEWER">
+</ant-procedure-viewer>
+
+<ant-user-profile
+  *ngIf="openModal === modals.USER_PROFILE">
+</ant-user-profile>
+
+<ant-work-viewer></ant-work-viewer>

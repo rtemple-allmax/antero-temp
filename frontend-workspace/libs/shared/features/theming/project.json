@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/features/theming/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/features/theming"],
+      "options": {
+        "jestConfig": "libs/shared/features/theming/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/features/theming/**/*.ts",
+          "libs/shared/features/theming/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

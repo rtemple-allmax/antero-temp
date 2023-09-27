@@ -1,0 +1,20 @@
+<div class="layout-panel instruments-panel">
+  <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'var(--space-md)'">
+    <h2>My Instruments</h2>
+    <amx-icon-button [icon]="icons.addIcon" [fgColor]="'var(--icon-color)'" [awesome]="true" [height]="'20px'"></amx-icon-button>
+  </amx-flex>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <ng-container *ngFor="let record of records">
+    <div class="layout-panel-item">
+      <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'var(--space-md)'">
+        <h2>{{ record?.name }}</h2>
+        <p [ngStyle]="{ 'text-align': 'right'}" [amxFlexChild]="'1'">Last Reading: {{ record?.lastReading }} - {{ getDate(record?.lastReadingDate) }}</p>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [justify]="'space-between'" [gap]="'var(--space-md)'">
+        <amx-text-box [placeholder]="'Enter Reading'" [amxFlexChild]="'1'"></amx-text-box>
+        <amx-icon-button [icon]="icons.saveIcon" [fgColor]="'var(--icon-color)'" [awesome]="true" [height]="'20px'"></amx-icon-button>
+      </amx-flex>
+    </div>
+  </ng-container>
+</div>

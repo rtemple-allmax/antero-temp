@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/window/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/window"],
+      "options": {
+        "jestConfig": "libs/shared/ui/window/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/window/**/*.ts",
+          "libs/shared/ui/window/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

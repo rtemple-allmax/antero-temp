@@ -1,0 +1,18 @@
+<amx-modal [heading]="'Stock Locations'" (closed)="closedHandler()">
+  <amx-data-table
+    [data]="data?.data"
+    [columns]="data?.colDef?.columns || []"
+    [cellTemplate]="card"
+    [showRowLines]="true">
+  </amx-data-table>
+</amx-modal>
+
+<ng-template #card let-template="template">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <div>
+      <p><b>{{ template?.data?.warehouse?.name}}</b></p>
+      <p>{{ template?.data?.area?.name }}</p>
+    </div>
+    <p>{{ template?.data?.currentQuantity }}</p>
+  </amx-grid>
+</ng-template>

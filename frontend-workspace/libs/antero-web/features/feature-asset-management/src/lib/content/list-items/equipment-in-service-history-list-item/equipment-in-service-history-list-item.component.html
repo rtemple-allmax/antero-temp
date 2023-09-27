@@ -1,0 +1,44 @@
+<div (mouseenter)="mouseenterHandler()" (mouseleave)="mouseleaveHandler()">
+  <amx-flex [justify]="'space-between'" [gap]="'var(--space-md)'" [align]="'center'" >
+    <div [amxFlexChild]="'1'">
+      <ng-container *ngIf="!!record?.comment else noPopoverTemplate">
+        <amx-popover-text [template]="commentTemplate">
+          <amx-flex [gap]="'var(--sapce-md)'">
+            <p [amxFlexChild]="'0 0 100px'">{{ getDateString(record?.dateStatusChanged) }}</p>
+            <p [amxFlexChild]="'0 0 100px'">{{ text }}</p>
+            <p [amxFlexChild]="'0 0 100px'">{{ record?.userName }}</p>
+          </amx-flex>
+        </amx-popover-text>
+      </ng-container>
+    </div>
+    <div class="cell-more" [amxFlexChild]="'var(--flex-fixed)'" [ngClass]="{ hovered: hovered }">
+      <amx-crud-button
+        [allowEditing]="true"
+        (editRequested)="editHandler()">
+      </amx-crud-button>
+    </div>
+  </amx-flex>
+  <div class="editor" [ngClass]="{ open: editing }">
+    <ng-container *ngIf="editing">
+      <amx-text-area [label]="'Edit Comment'" [(ngModel)]="commentBinding.value"></amx-text-area>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [justify]="'flex-end'">
+        <amx-combo-button [label]="'Update'" [icon]="icons.saveIcon" (clicked)="submit()"></amx-combo-button>
+      </amx-flex>
+    </ng-container>
+  </div> 
+</div>
+
+<ng-template #noPopoverTemplate>
+  <amx-flex [gap]="'var(--sapce-md)'">
+    <p [amxFlexChild]="'0 0 100px'">{{ getDateString(record?.dateStatusChanged) }}</p>
+    <p [amxFlexChild]="'0 0 100px'">{{ text }}</p>
+    <p [amxFlexChild]="'0 0 100px'">{{ record?.userName }}</p>
+  </amx-flex>
+</ng-template>
+
+<ng-template #commentTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <p>{{ record?.comment }}</p>
+  </div>
+</ng-template>

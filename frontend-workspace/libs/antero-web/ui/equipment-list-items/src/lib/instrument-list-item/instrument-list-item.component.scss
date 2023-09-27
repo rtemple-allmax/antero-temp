@@ -1,0 +1,7 @@
+.more {
+  opacity: 0;
+  padding: var(--space-md) 0;
+  &.hovered {
+    opacity: 1
+  }
+}

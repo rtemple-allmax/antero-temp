@@ -1,0 +1,21 @@
+<amx-scroll-box [maxHeight]="innerHeight"> 
+  <amx-layout-panel-container [columns]="'1fr'" #panelsContainer>
+    <amx-layout-panel-collapsible [title]="'Activity'">
+      <amx-data-table
+        [data]="data?.data"
+        [showColumnHeaders]="false"
+        [allowGrouping]="false"
+        [allowExport]="false"
+        [columns]="data?.colDef?.columns || []"
+        [showRowLines]="true"
+        [selectFirstRowOnLoad]="false"
+        [cellTemplate]="activityTemplate"
+        [selectionMode]="'none'">
+      </amx-data-table>
+    </amx-layout-panel-collapsible>
+  </amx-layout-panel-container>
+</amx-scroll-box>
+
+<ng-template #activityTemplate let-template="template">
+  <p>{{ getDateTimeString(template?.data?.dateTime) }} - {{ template?.data?.userName }} <b>{{ template?.data?.actionDescription }}</b> {{ template?.data?.primaryValue }}</p>
+</ng-template>

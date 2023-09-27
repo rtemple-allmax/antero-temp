@@ -1,0 +1,127 @@
+<amx-layout-panel-collapsible [title]="'Current Work'">
+  <ng-container [ngSwitch]="deviceType">
+    <ng-container *ngSwitchCase="deviceTypes.DESKTOP">
+      <ng-container *ngTemplateOutlet="desktop"></ng-container>
+    </ng-container>
+    <!-- <ng-container *ngSwitchCase="deviceTypes.TABLET">
+      <ng-container *ngTemplateOutlet="tablet"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+      <ng-container *ngTemplateOutlet="mobile"></ng-container>
+    </ng-container> -->
+  </ng-container>
+</amx-layout-panel-collapsible>
+
+<ng-template #desktop>
+  <amx-data-table
+    class="subsection"
+    [data]="data?.data"
+    [columns]="data?.colDef?.columns || []"
+    [height]="innerHeight"
+    [allowSearch]="false"
+    [allowGrouping]="false"
+    [allowReordering]="false"
+    [allowFiltering]="false"
+    [showBorders]="false"
+    [showRowLines]="true"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [allowFixing]="false"
+    [backgroundColor]="'transparent'"
+    [cellTemplate]="woNumberTemplate"
+    [popoverButtonTemplate]="dueDateTemplate"
+    [alternatePopoverButtonTemplate]="needsAttentionTemplate"
+    [selectFirstRowOnLoad]="false"
+    [noDataText]="'No work orders have been created for this equipment.'"
+    (selectionChanged)="workOrderSelectionChangeHandler($event)">
+  </amx-data-table>   
+</ng-template>
+
+<!-- <ng-template #tablet>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <ng-container *ngIf="view === items[0]">
+      <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+        <ng-container *ngFor="let record of workOrderRecords">
+          <amx-card>
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+              <amx-read-only-box [label]="'WO#'">{{ record.workOrderNumber }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Task'">{{ record.task?.name }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Date Scheduled'">{{ convertDate(record.dateScheduled) }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Status'">{{ record.workStatus?.name }}</amx-read-only-box>
+            </amx-grid>
+          </amx-card>
+        </ng-container>
+      </amx-grid>
+    </ng-container>
+    <ng-container *ngIf="view === items[1]">
+      
+    </ng-container>
+  </div>
+</ng-template> -->
+
+<!-- <ng-template #mobile>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <ng-container *ngIf="view === items[0]">
+      <ng-container *ngFor="let record of workOrderRecords">
+        <amx-card>
+          <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+            <amx-read-only-box [label]="'WO#'">{{ record.workOrderNumber }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Task'">{{ record.task?.name }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Date Scheduled'">{{ convertDate(record.dateScheduled) }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Status'">{{ record.workStatus?.name }}</amx-read-only-box>
+          </amx-grid>
+        </amx-card>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="view === items[1]">
+      
+    </ng-container>
+  </div>
+</ng-template> -->
+
+<ng-template #woNumberTemplate let-template="template">
+  <ng-container [ngSwitch]="viewType">
+    <ng-container *ngSwitchCase="viewTypes.LIST">
+      <ant-work-order-list-item [record]="template?.data"
+        (selected)="showWorkViewer($event)"></ant-work-order-list-item>
+    </ng-container>
+    <ng-container *ngSwitchCase="viewTypes.TABLE">
+      <amx-link-button [label]="template?.data?.workOrderNumber" (clicked)="showWorkViewer(template?.data)"></amx-link-button>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #dueDateTemplate let-template="template">
+  <amx-flex [justify]="'center'">
+    <amx-popover-button
+      *ngIf="template?.data?.isDue"
+      [icon]="icons.thickDelinquentIcon"
+      [fgColor]="'var(--msg-danger)'"
+      [template]="dueDatePopoverTemplate">
+    </amx-popover-button>
+  </amx-flex>
+  <ng-template #dueDatePopoverTemplate>
+    <div [ngStyle]="{ padding: 'var(--space-md)' }">
+      <span>Past Due Since {{ getShortDateString(template?.data?.dueDate) }}</span>
+    </div>
+  </ng-template>
+</ng-template>
+
+<ng-template #needsAttentionTemplate let-template="template">
+  <amx-flex [justify]="'center'">
+    <amx-popover-button
+      *ngIf="template?.data?.needsAttention"
+      [icon]="icons.thickNeedsAttentionIcon"
+      [fgColor]="'var(--msg-warning)'"
+      [template]="warningPopoverTemplate">
+    </amx-popover-button>
+  </amx-flex>
+  
+  <ng-template #warningPopoverTemplate>
+    <div [ngStyle]="{ padding: 'var(--space-md)' }">
+      <span>Needs Attention</span><br/>
+      <span>{{ template?.data?.needsAttentionText }}</span>
+    </div>
+  </ng-template>
+</ng-template>
+

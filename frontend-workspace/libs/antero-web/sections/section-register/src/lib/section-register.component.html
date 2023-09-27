@@ -1,0 +1,57 @@
+<div class="splash" (keydown)="keyDown($event)">
+  <div class="content">
+    <div>
+      <amx-flex [justify]="'center'">
+        <img class="logo" src="assets/logoAntC.svg"/>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    </div>
+    <amx-spacer [space]="'var(--space-xl)'"></amx-spacer>
+    <ng-container *ngIf="!isRegistered else registered">
+      <ng-container *ngTemplateOutlet="unregistered"></ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #unregistered>
+  <div [ngStyle]="{ 'background': 'white', padding: 'var(--space-md)', 'border-radius': 'var(--rounded)', width: '500px' }">
+    <label [ngStyle]="{ 'text-align': 'var(--text-center)' }"><b>To complete registration, Please create a password.</b></label>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <div>
+        <div>
+          <label [ngStyle]="{ 'color': 'var(--fg-color)'}">Account</label><br/>
+          <amx-spacer [space]="'var(--space-sm)'"></amx-spacer>
+          <label><b>{{ params?.accountNumber }}</b></label>
+        </div>
+        <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+        <div>
+          <label [ngStyle]="{ 'color': 'var(--fg-color)'}">Login Email</label><br/>
+          <amx-spacer [space]="'var(--space-sm)'"></amx-spacer>
+          <label><b>{{ params?.email }}</b></label>
+        </div>
+        <hr/>
+        <amx-text-box
+          [label]="'Display Name'"
+          [placeholder]="'How should your name appear in the app?'"
+          [(ngModel)]="displayNameBinding.value">
+        </amx-text-box>
+        <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+        <amx-create-password (passwordValidated)="passwordCreatedHandler($event)"></amx-create-password>
+      </div>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <amx-flex [justify]="'center'">
+        <amx-label-button
+          [shouldDisable]="!readyToComplete"
+          [label]="'Complete Registration'"
+          (clicked)="click()">
+        </amx-label-button>
+      </amx-flex>
+  </div>
+</ng-template>
+
+<ng-template #registered>
+  <amx-flex [flow]="'column nowrap'" [align]="'center'" [gap]="'var(--space-lg)'">
+    <h3><b>You have been successfully registered!</b></h3>
+    <amx-label-button [label]="'Login'" (clicked)="goToLogin()"></amx-label-button>
+  </amx-flex>
+</ng-template>

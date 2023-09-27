@@ -1,0 +1,11 @@
+<!-- <dx-scroll-view (onScroll)="scrollHandler()">
+  <div [ngStyle]="{ 'max-height' : maxHeight }">
+    <ng-content></ng-content>
+  </div>
+</dx-scroll-view> -->
+
+<div class="scroll-box" [ngStyle]="{ 'max-height': maxHeight }" (scroll)="scrollHandler()">
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</div>

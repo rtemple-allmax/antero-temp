@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/loading/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/loading"],
+      "options": {
+        "jestConfig": "libs/shared/ui/loading/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/loading/**/*.ts",
+          "libs/shared/ui/loading/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

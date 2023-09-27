@@ -1,0 +1,46 @@
+<ng-container *ngIf="hasLabel">
+  <label class="dropdown-label" tabindex="-1" >{{ label }}</label>
+  <amx-spacer tabindex="-1" [space]="'var(--space-md)'"></amx-spacer>
+</ng-container>
+<div class="dropdown-wrapper"
+  #wrapper
+  [ngClass]="{ 'open': isOpen }"
+  (keydown)="keydownHandler($event)"
+  tabindex="-1">
+  <div class="dropdown" #dropdown tabindex="-1">
+    <input #input (click)="open()" [(ngModel)]="textBinding.value" [placeholder]="placeholder"/>
+    <amx-icon-button
+      *ngIf="hasValue"
+      [awesome]="true"
+      [icon]="icons.thickClearIcon"
+      [tabIndex]="-1"
+      [fgColor]="'var(--fg-color)'"
+      [bgColor]="'transparent'"
+      (clicked)="clear()">
+    </amx-icon-button>
+    <amx-icon-button
+      [awesome]="true"
+      [icon]="icons.downCaretIcon"
+      [tabIndex]="-1"
+      [fgColor]="'var(--fg-color)'"
+      [bgColor]="'transparent'"
+      (clicked)="toggle()">
+    </amx-icon-button>
+    <div class="ndropdown-content" [ngClass]="{ 'open': isOpen }" #content tabindex="-1">
+      <amx-data-table
+        [columns]="data?.colDef?.columns || []"
+        [allowSearch]="false"
+        [cellTemplate]="template"
+        [height]="'300px'"
+        [allowGrouping]="false"
+        [allowFiltering]="false"
+        [allowExport]="false"
+        [showColumnHeaders]="false"
+        [showRowLines]="true"
+        [data]="data?.data"
+        (rowClicked)="select($event)">
+      </amx-data-table>
+    </div>
+  </div>
+  
+</div>

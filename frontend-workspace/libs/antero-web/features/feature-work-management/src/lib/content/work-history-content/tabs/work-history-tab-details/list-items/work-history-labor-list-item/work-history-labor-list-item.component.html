@@ -1,0 +1,25 @@
+<amx-grid [columns]="'repeat(2, 50ch) 1fr'" [gap]="'var(--space-xl)'" [padding]="'var(--space-md)'">
+  <amx-popover-text [template]="laborTemplate" [ngStyle]="{ 'align-self': 'center' }">{{ record?.laborClass }}</amx-popover-text>
+  <amx-popover-text [template]="userTemplate" [ngStyle]="{ 'align-self': 'center' }">{{ record?.user }}</amx-popover-text>
+  <amx-popover-text [template]="hoursTemplate" [ngStyle]="{ 'align-self': 'center' }">{{ record?.actualHours }} / {{ record?.estimatedHours }} Hours</amx-popover-text>
+</amx-grid>
+
+<ng-template #laborTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <span>Account: {{ record?.laborAccount }}</span><br/>
+    <span>Type: {{ record?.laborType }}</span>
+  </div>
+</ng-template>
+
+<ng-template #userTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <span>Other interesting data about this user</span><br/>
+    <span>like contact info etc.</span>
+  </div>
+</ng-template>
+
+<ng-template #hoursTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <span>Actual Hours / Estimated Hours</span>
+  </div>
+</ng-template>

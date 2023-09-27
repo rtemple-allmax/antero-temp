@@ -1,0 +1,160 @@
+<amx-modal [heading]="'Work History Viewer'" (closed)="closeHandler()">
+  <h2>WO # {{ record?.workOrderNumber }}</h2>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-scroll-box [maxHeight]="'70vh'">
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+      <amx-read-only-box [label]="'Equipment'">{{ record?.equipment?.name }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Task'">{{ record?.task }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Type'">{{ record?.workType }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Completed Date'">{{ getDateString(record?.dateCompleted) }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Completed By'">{{ record?.completedBy }}</amx-read-only-box>
+    </amx-grid>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <amx-read-only-box [label]="'Completed Notes'">{{ record?.completedNotes }}</amx-read-only-box>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <ng-container *ngIf="instruments.length > 0">
+      <amx-group-box [label]="instrumentsLabel">
+        <ng-container *ngFor="let record of instruments; let i = index">
+          <div>
+            <h3><b>{{ record.instrument }}</b></h3>
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+              <amx-read-only-box [label]="'Reading'">
+                {{ record.reading }}
+              </amx-read-only-box>
+              <amx-read-only-box [label]="'Units'">
+                {{ record.units }}
+              </amx-read-only-box>
+            </amx-grid>
+          </div>
+          <amx-separator [space]="'var(--space-md)'" *ngIf="i < instruments.length - 1"></amx-separator>
+        </ng-container>
+      </amx-group-box>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    </ng-container>
+    <ng-container *ngIf="labor.length > 0">
+      <amx-group-box [label]="laborLabel">
+        <ng-container *ngFor="let record of labor; let i = index">
+          <div>
+            <h3><b>{{ record.user }}</b></h3>
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+              <amx-read-only-box [label]="'Class'">
+                {{ record.laborClass }}
+              </amx-read-only-box>
+              <amx-read-only-box [label]="'Account'">
+                {{ record.laborAccount }}
+              </amx-read-only-box>
+              <amx-read-only-box [label]="'Estimated Hours'">
+                {{ record.estimatedHours }}
+              </amx-read-only-box>
+              <amx-read-only-box [label]="'Actual Hours'">
+                {{ record.actualHours }}
+              </amx-read-only-box>
+            </amx-grid>
+          </div>
+          <amx-separator [space]="'var(--space-md)'" *ngIf="i < labor.length - 1"></amx-separator>
+        </ng-container>
+      </amx-group-box>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    </ng-container>
+    <ng-container *ngIf="parts.length > 0">
+      <amx-group-box [label]="partsLabel">
+        <ng-container *ngFor="let record of parts; let i = index">
+          <div>
+            <h3><b>{{ record.part }}</b> ({{ record.unit }})</h3>
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <amx-read-only-box [label]="'Description'">
+              {{ record.partDescription }}
+            </amx-read-only-box>
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <amx-read-only-box [label]="'Stock Location'">
+              <span>{{ record.warehouse }}<span *ngIf="record.area"> - {{ record.area }}</span></span>
+            </amx-read-only-box>
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+              <amx-read-only-box [label]="'Estimated Quantity'">
+                {{ record.estimatedQuantity }}
+              </amx-read-only-box>
+              <amx-read-only-box [label]="'Actual Quantity'">
+                {{ record.actualQuantity }}
+              </amx-read-only-box>
+            </amx-grid>
+          </div>
+          <amx-separator [space]="'var(--space-md)'" *ngIf="i < parts.length - 1"></amx-separator>
+        </ng-container>
+      </amx-group-box>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    </ng-container>
+    <ng-container *ngIf="contractors.length > 0">
+      <amx-group-box [label]="contractorsLabel">
+        <ng-container *ngFor="let record of contractors; let i = index">
+          <div>
+            <h3><b>{{ record.supplier }}</b></h3>
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <amx-read-only-box [label]="'Invoice #'">
+              {{ record.invoice }}
+            </amx-read-only-box>
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+              <amx-read-only-box [label]="'Part Cost'">
+                {{ formatCurrency(record.partCost) }}
+              </amx-read-only-box>
+              <amx-read-only-box [label]="'Labor Cost'">
+                {{ formatCurrency(record.laborCost) }}
+              </amx-read-only-box>
+              <amx-read-only-box [label]="'Tax Cost'">
+                {{ formatCurrency(record.taxCost) }}
+              </amx-read-only-box>
+              <amx-read-only-box [label]="'Misc Cost'">
+                {{ formatCurrency(record.miscCost) }}
+              </amx-read-only-box>
+            </amx-grid>
+          </div>
+          <amx-separator [space]="'var(--space-md)'" *ngIf="i < contractors.length - 1"></amx-separator>
+        </ng-container>
+      </amx-group-box>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    </ng-container>
+    <ng-container *ngIf="tools.length > 0">
+      <amx-group-box [label]="toolsLabel">
+        <ng-container *ngFor="let record of tools; let i = index">
+          <div>
+            <h3><b>{{ record.equipment }}</b><span *ngIf="record.workOrderUnits"> ({{ record.workOrderUnits }})</span></h3>
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <amx-read-only-box [label]="'Description'">
+              {{ record.equipmentDescription }}
+            </amx-read-only-box>
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+              <amx-read-only-box [label]="'Estimated Quantity'">
+                {{ record.estimatedQuantity }}
+              </amx-read-only-box>
+              <amx-read-only-box [label]="'Actual Quantity'">
+                {{ record.actualQuantity }}
+              </amx-read-only-box>
+            </amx-grid>
+          </div>
+          <amx-separator [space]="'var(--space-md)'" *ngIf="i < tools.length - 1"></amx-separator>
+        </ng-container>
+      </amx-group-box>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    </ng-container>
+    <amx-group-box *ngIf="misc.length > 0" [label]="'Misc'">
+      <ng-container *ngFor="let record of misc; let i = index">
+        <div>
+          <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+          <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+            <amx-read-only-box [label]="'Description'">
+              {{ record.description }}
+            </amx-read-only-box>
+            <amx-read-only-box [label]="'Cost'">
+              {{ formatCurrency(record.cost) }}
+            </amx-read-only-box>
+          </amx-grid>
+        </div>
+        <amx-separator [space]="'var(--space-md)'" *ngIf="i < misc.length - 1"></amx-separator>
+      </ng-container>
+    </amx-group-box>  
+  </amx-scroll-box>
+</amx-modal>

@@ -1,0 +1,61 @@
+<div class="panel-admin-users">
+  <amx-flex [gap]="'var(--space-xl)'">
+    <div amxFlexChild="30">
+      <amx-flex [gap]="'var(--space-sm)'">
+        <amx-label-button [label]="'Register New'"></amx-label-button>
+        <amx-label-button [label]="'Edit'"></amx-label-button>
+        <amx-label-button [label]="'Delete'"></amx-label-button>
+      </amx-flex>
+      <amx-spacer [space]="'var(space--lg)'"></amx-spacer>
+      <amx-group-box [label]="'Registered Users'" [black]="true">
+        <amx-scroll-box [maxHeight]="'70vh'">
+          <ng-container *ngFor="let user of users">
+            <amx-card (clicked)="selectUser(user)">
+              <amx-read-only-box [label]="'Name'">
+                {{ user.displayName }}
+              </amx-read-only-box>
+              <amx-read-only-box [label]="'Email'">
+                <a [href]="getEmailHref(user.username)">{{ user.username }}</a>
+              </amx-read-only-box>
+            </amx-card>
+            <amx-spacer [space]="'var(--space-sm)'"></amx-spacer>
+          </ng-container>
+        </amx-scroll-box>
+      </amx-group-box>
+    </div>
+    <div amxFlexChild="70">
+      <h2>{{ selectedUser?.displayName }}</h2>
+      <amx-spacer [space]="'var(space--lg)'"></amx-spacer>
+      <amx-scroll-box [maxHeight]="'70vh'">
+        <div [ngStyle]="{ background: 'white', padding: 'var(--space-sm)'}">
+          <amx-group-box [label]="'Details'">
+            <amx-read-only-box [label]="'Description'">{{ selectedUser?.description }}</amx-read-only-box>
+            <amx-spacer [space]="'var(--space-sm)'"></amx-spacer>
+            <amx-read-only-box [label]="'Mobile Number'">(123) 456-7890</amx-read-only-box>
+            <amx-spacer [space]="'var(--space-sm)'"></amx-spacer>
+            <amx-read-only-box [label]="'Email'">{{ selectedUser?.username }}</amx-read-only-box>
+          </amx-group-box>
+        </div>
+        <amx-spacer [space]="'var(space--lg)'"></amx-spacer>
+        <div [ngStyle]="{ background: 'white', padding: 'var(--space-sm)'}">
+          <amx-group-box [label]="'Maintenance Groups'">
+            <amx-flex [gap]="'var(--space-sm)'">
+              <amx-label-button [label]="'Add'"></amx-label-button>
+              <amx-label-button [label]="'Remove'"></amx-label-button>
+            </amx-flex>
+          </amx-group-box>
+        </div>
+        <amx-spacer [space]="'var(space--lg)'"></amx-spacer>
+        <div [ngStyle]="{ background: 'white', padding: 'var(--space-sm)'}">
+          <amx-group-box [label]="'Certificates'">
+            <amx-flex [gap]="'var(--space-sm)'">
+              <amx-label-button [label]="'Add'"></amx-label-button>
+              <amx-label-button [label]="'Edit'"></amx-label-button>
+              <amx-label-button [label]="'Remove'"></amx-label-button>
+            </amx-flex>
+          </amx-group-box>
+        </div>
+      </amx-scroll-box>
+    </div>
+  </amx-flex>
+</div>

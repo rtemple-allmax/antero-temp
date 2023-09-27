@@ -1,0 +1,59 @@
+.master-detail {
+  height: 100%;
+  & .section-header {
+    position: relative;
+    padding: var(--space-md);
+    text-align: center;
+    & .controls {
+      position: absolute;
+      top: 0;
+      left: var(--space-md);
+      bottom: 0;
+      width: calc(500px - var(--space-lg));
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: var(--space-sm);
+      gap: var(--space-md);
+      & button {
+        background: transparent;
+        border: none;
+        outline: 0;
+        cursor: pointer;
+        & img {
+          width: 32px;
+        }
+      }
+    }
+  }
+  & .inner {
+    display: flex;
+    height: calc(100% - 50px);
+    & .master {
+      height: 100%;
+      flex: 0 0 500px;
+    }
+    & .detail {
+      height: 100%;
+      flex: 1;
+    }
+  }
+  &.edit-mode {
+    & .section-header, & .master, & .controls {
+      position: relative;
+      &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;;
+        background-color: rgb(200, 200, 200, .5);
+      }
+    }
+    & .detail {
+      background-color: white;
+    }
+  }
+}
+

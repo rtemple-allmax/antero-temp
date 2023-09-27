@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/ui/task-modals/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/ui/task-modals"],
+      "options": {
+        "jestConfig": "libs/antero-web/ui/task-modals/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/ui/task-modals/**/*.ts",
+          "libs/antero-web/ui/task-modals/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

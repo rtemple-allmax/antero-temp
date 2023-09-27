@@ -1,0 +1,18 @@
+<div class="search-box-wrapper">
+  <amx-flex [align]="'center'">
+    <amx-icon-button [shouldDisable]="true" [icon]="icons.searchIcon" [awesome]="true" [height]="'14px'" [showHoverEffect]="false" [fgColor]="'var(--icon-color)'"></amx-icon-button>
+    <div class="search-box">
+      <input #input [placeholder]="'Search...'" [(ngModel)]="valueBinding.value" (keydown)="keydownHandler($event)"/>
+    </div>
+    <amx-icon-button
+      [awesome]="true"
+      [icon]="icons.thickClearIcon"
+      [tabIndex]="-1"
+      [fgColor]="'var(--fg-color)'"
+      [bgColor]="'transparent'"
+      (clicked)="clear()">
+    </amx-icon-button>
+  </amx-flex>
+</div>
+
+

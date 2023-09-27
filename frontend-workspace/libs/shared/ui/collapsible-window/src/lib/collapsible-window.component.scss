@@ -1,0 +1,48 @@
+.window {
+  position: fixed;
+  background-color: var(--panel-bg-color);
+  width: 90vw;
+  max-height: calc(var(--vh-1) * 95);
+  transition: all .2s ease-in-out;
+  z-index: 100;
+  & .window-header {
+    padding: var(--space-md) var(--space-lg);
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    background-color: var(--app-color);
+    color: white;
+    white-space: nowrap;
+    & .inner {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+      & .window-heading {
+        font-size: var(--space-xl);
+      }
+    }
+    & .close-btn {
+      background-color: transparent;
+      border: none;
+      outline: 0;
+      cursor: pointer;
+    }
+  }
+  & .window-content {
+    transition: all .2s ease-in-out;
+    padding: var(--space-md);
+    width: 100%;
+    overflow: hidden;
+  }
+  &.minimized {
+    width: fit-content;
+    transition: all .2 ease-in-out;
+    & .window-content {
+      padding: 0;
+      height: 0;
+    }
+    &:hover {
+      width: 250px;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+  <div (mouseenter)="mouseenterHandler()" (mouseleave)="mouseleaveHandler()">
+    <amx-grid [columns]="'1fr 2fr auto'">
+      <p [ngStyle]="{ 'align-self': 'center' }"><b>{{ getDateTimeString(record?.dateOfReading) }}</b></p>
+      <p [ngStyle]="{ 'align-self': 'center' }">{{ readingValue }}</p>
+      <div (click)="stopPropagation($event)" class="more" [ngClass]="{ hovered: hovered }">
+        <amx-flex [height]="'100%'" [align]="'center'" [justify]="'center'">
+          <amx-dropdown-button
+            [ngStyle]="{ 'align-self': 'center'}"
+            [icon]="icons.moreIcon"
+            [bgColor]="'transparent'"
+            [origin]="'right'"
+            [padding]="'var(--space-sm)'"
+            [fgColor]="'white'"
+            [height]="'20px'">
+            <amx-flex [flow]="'column nowrap'">
+              <amx-dropdown-item-button [icon]="icons.editIcon" [label]="'Edit'" (clicked)="editHandler()"></amx-dropdown-item-button>
+              <amx-dropdown-item-button [icon]="icons.deleteIcon" [label]="'Delete'" [danger]="true" (clicked)="deleteHandler()"></amx-dropdown-item-button>
+            </amx-flex>
+          </amx-dropdown-button>
+        </amx-flex>
+      </div>
+    </amx-grid>
+  </div>
+  
+

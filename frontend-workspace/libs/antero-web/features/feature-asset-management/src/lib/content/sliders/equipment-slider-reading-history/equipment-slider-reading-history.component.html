@@ -1,0 +1,20 @@
+<h2 [ngStyle]="{ 'text-align': 'center' }">{{ record?.name }} - Readings History</h2>
+<amx-separator></amx-separator>
+<amx-data-table
+  [height]="'calc(100vh - 110px)'"
+  [backgroundColor]="'transparent'"
+  [data]="data?.data"
+  [columns]="data?.colDef?.columns || []"
+  [allowGrouping]="false"
+  [showBorders]="false"
+  [allowExport]="false"
+  [showRowLines]="true"
+  [showColumnLines]="false"
+  [hoverStateEnabled]="true"
+  [selectFirstRowOnLoad]="false"
+  [showColumnHeaders]="viewType === viewTypes.TABLE"
+  [cellTemplate]="dataTemplate">
+</amx-data-table>
+<ng-template #dataTemplate let-template="template">
+  {{ template?.data?.dateOfReading }}
+</ng-template>

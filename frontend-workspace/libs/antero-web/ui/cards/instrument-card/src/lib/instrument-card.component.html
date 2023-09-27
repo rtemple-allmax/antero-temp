@@ -1,0 +1,20 @@
+<amx-card
+  [record]="source"
+  [title]="source?.name"
+  [height]="'100%'"
+  [controls]="controls"
+  [options]="options"
+  [titleWidth]="titleWidth"
+  [indicators]="indicators"
+  (clicked)="enterReadingsHandler()">
+  <amx-grid [columns]="'repeat(1, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-read-only-box [label]="'Recent Readings'">
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <ng-container *ngFor="let reading of recentReadings">
+        <p [ngStyle]="{ 'whitespace': 'no-wrap' }">{{ getReadingData(reading) }}</p>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      </ng-container>
+    </amx-read-only-box>
+    <!-- <amx-read-only-box [label]="'Units'">{{ source?.units }}</amx-read-only-box> -->
+  </amx-grid>
+</amx-card>

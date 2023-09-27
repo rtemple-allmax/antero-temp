@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<svg viewBox="-2 -4 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Layer_1" transform="translate(-2, -4)" style="enable-background:new 0 0 32 32">
+    <g id="Window">
+      <path d="M30, 10L30, 5C30, 4.5 29.5, 4 29, 4L3, 4C2.5, 4 2, 4.5 2, 5L2, 10L30, 10z" fill="#1177D7" class="Blue" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-2, -4)" style="enable-background:new 0 0 32 32">
+    <g id="Window">
+      <path d="M28, 10L28, 26L4, 26L4, 10L2, 10L2, 27C2, 27.5 2.5, 28 3, 28L29, 28C29.5, 28 30, 27.5 30, 27L30, 10L28, 10z" fill="#727272" class="Black" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(10, 8)" style="enable-background:new 0 0 16 16">
+    <g id="Check_2_">
+      <path d="M0, 8L2, 6L6, 10L14, 2L16, 4L6, 14C6, 14 0, 7.9 0, 8z" fill="#039C23" class="Green" />
+    </g>
+  </g>
+</svg>

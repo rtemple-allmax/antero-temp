@@ -1,0 +1,20 @@
+<!-- <amx-layout-panel-collapsible
+  [title]="title"
+  [allowEditing]="true"
+  [disableControls]="fields.length < 1"
+  (editRequested)="editHandler()"
+  (collapsedStateChanged)="collapsedStateChangedHandler($event)">
+  <div class="data-container" #sortable>
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'" [padding]="'var(--space-md)'">
+      <ng-container *ngFor="let field of fields">
+        <amx-read-only-box
+          [label]="field.label"
+          [preline]="field.formatted"
+          (rightClicked)="removeFromMyData(field.label)">
+          {{ getFieldValue(record, field) }}
+        </amx-read-only-box>
+      </ng-container>
+    </amx-grid>
+  </div>
+  
+</amx-layout-panel-collapsible> -->

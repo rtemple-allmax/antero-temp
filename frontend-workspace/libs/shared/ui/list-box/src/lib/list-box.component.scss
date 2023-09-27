@@ -1,0 +1,16 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  & .item-btn {
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    text-align: left;
+    padding: var(--space-md);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    &:hover {
+      background-color: var(--highlight-color);
+    }
+  }
+}

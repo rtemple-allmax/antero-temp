@@ -1,0 +1,21 @@
+<amx-layout-panel-collapsible [title]="title" [allowEditing]="true">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [padding]="'var(--space-md)'" [gap]="'var(--space-md)'">
+    <amx-read-only-box [label]="'Description'">{{ record?.description }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Stocking Units'">{{ record?.stockingUnit }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Tracking Type'">{{ trackingType }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Equipment Type'">{{ record?.equipmentType?.name }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Product Type'">{{ record?.productType?.name }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Product Group'">{{ record?.productGroup?.name }}</amx-read-only-box>
+  </amx-grid>
+  <ng-container *ngIf="record?.orderInBulk">
+    <div [ngStyle]="{ padding: 'var(--space-md)' }">
+      <amx-group-box [label]="'Bulk Ordering'">
+        <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+          <amx-read-only-box [label]="'Bulk Units'">{{ record?.bulkUnit }}</amx-read-only-box>
+          <amx-read-only-box [label]="'Number per Bulk Unit'">{{ record?.conversionFactor }}</amx-read-only-box>
+        </amx-grid>
+      </amx-group-box>
+    </div>    
+  </ng-container>
+</amx-layout-panel-collapsible>
+

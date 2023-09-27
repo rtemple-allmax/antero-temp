@@ -1,0 +1,20 @@
+<h2 [ngStyle]="{ 'text-align': 'center' }">Add Part</h2>
+<amx-separator></amx-separator>
+<amx-searchable-dropdown
+  [items]="data"
+  [label]="'Part'"
+  [(ngModel)]="partBinding.value"
+  (opened)="getParts()">
+</amx-searchable-dropdown>
+<amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+<amx-text-box [label]="'Comment'" [maxLength]="50" [(ngModel)]="commentBinding.value"></amx-text-box>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-flex [justify]="'flex-end'">
+  <amx-combo-button
+    [label]="'Save'"
+    [icon]="icons.saveIcon"
+    [invert]="true"
+    [shouldDisable]="!ready"
+    (clicked)="submit()">
+  </amx-combo-button>
+</amx-flex>

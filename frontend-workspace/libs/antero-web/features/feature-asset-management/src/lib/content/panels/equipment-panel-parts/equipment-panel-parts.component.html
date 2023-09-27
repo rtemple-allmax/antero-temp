@@ -1,0 +1,30 @@
+<amx-layout-panel
+  [allowAdding]="true"
+  [disableControls]="shouldDisable"
+  (addRequested)="addHandler()"
+  (collapsedStateChanged)="collapsedStateChangeHandler($event)">
+  <ng-container header>
+    <h2>{{ title }}</h2>
+  </ng-container>
+  <ng-container content>
+    <amx-data-table
+      class="subsection"
+      [backgroundColor]="'transparent'"
+      [data]="data?.data"
+      [selectFirstRowOnLoad]="false"
+      [columns]="data?.colDef?.columns || []"
+      [allowGrouping]="false"
+      [showBorders]="false"
+      [showRowLines]="true"
+      [showColumnLines]="false"
+      [allowExport]="false"
+      [showColumnHeaders]="viewType === viewTypes.TABLE"
+      [cellTemplate]="dataTemplate">
+    </amx-data-table>
+  </ng-container>
+</amx-layout-panel>
+
+<ng-template #dataTemplate let-template="template">
+  <ant-equipment-list-item-part [record]="template?.data" [shouldDisable]="shouldDisable"></ant-equipment-list-item-part>
+</ng-template>
+

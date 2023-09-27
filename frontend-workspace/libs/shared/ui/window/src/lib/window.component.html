@@ -1,0 +1,43 @@
+<ng-container *ngIf="windowIsOpen">
+  <div class="modal-wrapper" [ngStyle]="{ 'z-index': zIndex }">
+    <div class="modal" [ngStyle]="{ 'max-width': maxWidth, 'background-color': bgColor }">
+      <div class="modal-header" [ngStyle]="{ 'background-color': headerBGColor }">
+        <div class="inner">
+          <h3 class="modal-heading">{{ heading }}</h3>
+        </div>
+        <div>
+          <amx-icon-button
+            [icon]="icons.deleteIcon"
+            [awesome]="true"
+            [fgColor]="'white'"
+            [height]="'24px'"
+            [danger]="true"
+            (clicked)="close()">
+          </amx-icon-button>
+        </div>
+      </div>
+      <div class="modal-content" [ngStyle]="{ 'max-height': maxHeight, 'min-height': minHeight, height: height }">
+        <ng-content select="[content]"></ng-content>
+      </div>
+      <div
+        class="slider"
+        [ngClass]="{ open: sliderIsOpen, opaque: true }">
+        <div class="slider-inner"
+          (mouseenter)="mouseenterHandler()"
+          (mouseleave)="mouseleaveHandler()"
+          [ngClass]="{ opaque: true }">
+          <ng-content select="[slider]"></ng-content>
+        </div>
+        <div class="close-tab">
+          <amx-icon-button
+            [icon]="icons.deleteIcon"
+            [awesome]="true"
+            [height]="'24px'"
+            [fgColor]="'white'"
+            (clicked)="slideOut()">
+          </amx-icon-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/editable-data-points/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/editable-data-points"],
+      "options": {
+        "jestConfig": "libs/shared/ui/editable-data-points/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/editable-data-points/**/*.ts",
+          "libs/shared/ui/editable-data-points/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

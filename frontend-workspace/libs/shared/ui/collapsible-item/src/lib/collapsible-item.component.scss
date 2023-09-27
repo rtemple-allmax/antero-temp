@@ -1,0 +1,21 @@
+.collapsible-item {
+  & .header {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-sm);
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #bbb;
+    & .icon {
+      transition: all .2 ease-in-out;
+    }
+  }
+  & .content {
+    height: auto;
+    transition: all .2 ease-in-out;
+    overflow: hidden;
+    &.collapsed {
+      height: 0;
+    }
+  }
+}

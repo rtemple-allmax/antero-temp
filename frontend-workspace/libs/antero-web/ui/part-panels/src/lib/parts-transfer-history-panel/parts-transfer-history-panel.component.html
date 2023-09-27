@@ -1,0 +1,22 @@
+<amx-layout-panel-collapsible [title]="title">
+  <amx-data-table
+    class="subsection"
+    [allowGrouping]="false"
+    [allowFiltering]="false"
+    [allowExport]="false"
+    [data]="transferData?.data"
+    [selectFirstRowOnLoad]="false"
+    [columns]="transferData?.colDef?.columns || []"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [showRowLines]="true"
+    [showColumnLines]="false"
+    [selectionMode]="'none'"
+    [hoverStateEnabled]="false"
+    [cellTemplate]="viewType === viewTypes.LIST ? cellTemplate : null">
+  </amx-data-table>
+</amx-layout-panel-collapsible>
+
+<ng-template #cellTemplate let-template="template">
+  <ant-part-transfer-list-item [record]="template?.data"></ant-part-transfer-list-item>
+</ng-template>
+

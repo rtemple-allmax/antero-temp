@@ -1,0 +1,42 @@
+<div class="field-wrapper" [ngClass]="{ invalid: !valid, required: required }">
+  <label *ngIf="!!label" class="label">{{ label }}</label>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <div class="field relative">
+    <dx-drop-down-box
+      [tabIndex]="tabIndex"
+      [(value)]="value"
+      [(opened)]="isOpen"
+      [displayExpr]="displayExpr"
+      [placeholder]="placeholder"
+      [showClearButton]="false"
+      [dataSource]="tableData?.data || ''"
+      [disabled]="isDisabled"
+      [style]="'underline'"
+      [dropDownOptions]="dropdownOptions"
+      (onOpened)="openHandler()"
+      (onInput)="inputHandler()"
+      (onValueChanged)="valueChangeHandler()"
+      (onBlur)="blurHandler()">
+      <div *dxTemplate="let data of 'content'">
+        <amx-data-table
+          [height]="height"
+          [showColumnHeaders]="true"
+          [allowFiltering]="false"
+          [allowGrouping]="false"
+          [allowReordering]="false"
+          [data]="tableData?.data"
+          [columns]="tableData?.colDef?.columns || []"
+          [rowAlternationEnabled]="true"
+          [allowSearch]="true"
+          [selectFirstRowOnLoad]="false"
+          [cellTemplate]="cellTemplate"
+          [selectionMode]="'single'"
+          (selectionChanged)="gridSelectionHandler($event)">
+        </amx-data-table>
+      </div>
+    </dx-drop-down-box>
+  </div>
+  <div class="errors-wrapper" *ngIf="!valid">
+    <label class="error-text">{{ errorMessage }}</label>
+  </div>
+</div>

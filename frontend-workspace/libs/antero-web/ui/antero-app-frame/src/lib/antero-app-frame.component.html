@@ -1,0 +1,59 @@
+<div class="app-frame">
+  <div class="top-bar">
+    <div class="left">
+      <img src="assets/logoAntC.svg" [ngStyle]="{ width: '32px' }"/>
+      <amx-flex [align]="'baseline'" [gap]="'var(--space-sm)'">
+        <label class="open-sans" [ngStyle]="{ 'font-size': 'var(--font-size-lg)', color: 'white' }">antero</label>
+        <label [ngStyle]="{ color: 'white'  }">#0.0.230215 (Mill)</label>
+      </amx-flex>
+    </div>
+    <amx-flex [align]="'center'"[gap]="'var(--space-lg)'">
+      <h2 [ngStyle]="{ 'color': 'white' }">{{ sectionName }}</h2>
+      <ng-content select="[frameControls]"></ng-content>
+      <!-- <amx-view-switch (viewToggled)="toggleView($event)"></amx-view-switch> -->
+    </amx-flex>
+    <div class="right">
+      <amx-icon-button
+        [icon]="icons.bellIcon"
+        [awesome]="true"
+        [height]="'24px'"
+        [fgColor]="'white'">
+      </amx-icon-button>
+      <amx-dropdown-button
+        [icon]="icons.userIcon"
+        [fgColor]="'white'"
+        [height]="'24px'"
+        [padding]="'0'"
+        [origin]="'right'"
+        [items]="userMenuItems">
+      </amx-dropdown-button>
+    </div>
+  </div>
+  <div class="view">
+    <div class="sidebar">
+      <ant-sidebar></ant-sidebar>
+    </div>
+    <div class="content">
+      <ng-content select="[frameContent]"></ng-content>
+    </div>
+  </div>
+  <div class="slider" [ngStyle]="{ width: sidebarCollapsed ? 'calc(50ch + 1rem + 120px)' : 'calc(50ch + 1.5rem + 250px)' }" [ngClass]="{ open: sliderIsOpen }">
+    <ng-content select="[frameSlider]"></ng-content>
+    <div class="close-tab">
+      <amx-icon-button
+        [icon]="icons.deleteIcon"
+        [awesome]="true"
+        [height]="'24px'"
+        [fgColor]="'white'"
+        (clicked)="slideOut()">
+      </amx-icon-button>
+    </div>
+  </div>
+</div>
+
+<ng-template #only1Database>
+  <amx-dropdown-item-button
+    [label]="dbName"
+    [icon]="icons.fileIcon">
+  </amx-dropdown-item-button>
+</ng-template>

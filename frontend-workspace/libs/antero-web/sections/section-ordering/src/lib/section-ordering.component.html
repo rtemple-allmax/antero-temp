@@ -1,0 +1,99 @@
+<ant-app-frame [sectionName]="'Ordering & Receiving'">
+  <amx-master-detail
+    frameContent
+    [data]="data?.data"
+    [columns]="data?.colDef?.columns || []"
+    [masterWidth]="deviceType === deviceTypes.MOBILE ? '100%' : '50ch'"
+    [cellTemplate]="card"
+    [deviceType]="deviceType"
+    [rowContextMenuItems]="rowContextMenuItems"
+    [allowAdd]="true"
+    [selectionMode]="'single'"
+    [addLabel]="'Add Equipment'"
+    [viewType]="viewType"
+    (tableReady)="tableReadyHandler($event)"
+    (selectionChanged)="selectionChangedHandler($event)"
+    (contextMenuPreparing)="contextMenuHandler($event)"
+    (layoutDirty)="layoutDirtyHandler(layoutTypes.EQUIPMENT_GRID)">
+    <amx-flex controls [justify]="'space-between'" [padding]="'var(--space-md) var(--space-lg) var(--space-md) var(--space-md)'" [gap]="'var(--space-md)'" [align]="'center'">
+      <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+        <amx-combo-button [label]="'Add Equipment'" [invert]="true" [icon]="icons.addIcon" (clicked)="openAdd()"></amx-combo-button>
+        <amx-search-box #searchBox (searchTermChanged)="searchHandler($event)" (downArrowClicked)="searchDownArrowHandler()"></amx-search-box>
+        <amx-dropdown-button
+          [icon]="icons.moreIcon"
+          [fgColor]="'var(--icon-color)'"
+          [height]="'20px'"
+          [items]="sectionContextMenuItems">
+        </amx-dropdown-button>
+      </amx-flex>
+      <amx-icon-button
+        *ngIf="viewType === viewTypes.TABLE"
+        [height]="'24px'"
+        [icon]="'iconBack'"
+        [rotation]="detailButtonRotation"
+        (clicked)="toggleDetail()">
+      </amx-icon-button>
+    </amx-flex>
+
+    <div details>
+      <ng-container [ngSwitch]="deviceType">
+        <ng-container *ngSwitchCase="deviceTypes.DESKTOP">
+          <ng-container *ngTemplateOutlet="desktopTemplate"></ng-container>
+        </ng-container>
+        <!-- <ng-container *ngSwitchCase="deviceTypes.TABLET">
+          <ng-container *ngTemplateOutlet="tabletTemplate"></ng-container>
+        </ng-container> -->
+        <!-- <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+          <ng-container *ngTemplateOutlet="mobileTemplate"></ng-container>
+        </ng-container> -->
+      </ng-container>      
+    </div>
+  </amx-master-detail>
+</ant-app-frame>
+
+<ng-template #card let-template="template">
+  <div
+    class="equipment-list-item"
+    (mouseenter)="mouseenterHandler(template?.data?.id)"
+    (mouseleave)="mouseleaveHandler(template?.data?.id)">
+    <amx-flex [justify]="'space-between'" [gap]="'var(--space-md)'" [align]="'center'" >
+      <div>
+        <ng-container *ngIf="template?.data?.purchaseOrderNumber"><b>PO# {{ template?.data?.purchaseOrderNumber}}</b></ng-container>
+        <p><b>{{ template?.data?.supplier?.name }}</b></p>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+        <p>{{ getDateString(template?.data?.orderDate) }}</p>
+      </div>
+      <div class="cell-more" [amxFlexChild]="'var(--flex-fixed)'" [ngClass]="{ hovered: hoveredID === template?.data?.id}">
+        <amx-dropdown-button
+          [icon]="icons.moreIcon"
+          [bgColor]="'transparent'"
+          [fgColor]="'var(--fg-color)'"
+          [height]="'16px'"
+          [items]="itemContextMenuItems">
+        </amx-dropdown-button>
+      </div> 
+    </amx-flex>  
+  </div>
+</ng-template>
+
+<ng-template #desktopTemplate>
+  <h2>
+    <ng-container *ngIf="selection?.purchaseOrderNumber">
+      <b>PO# {{ selection?.purchaseOrderNumber }}</b>&nbsp;
+    </ng-container>{{ selection?.supplier?.name }}
+  </h2>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <p>{{ getDateString(selection?.orderDate) }}</p>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <amx-tabs>
+      <ng-container tabsContent>
+        <amx-tab [label]="'Details'" [icon]="icons.detailsIcon">
+          <ant-ordering-tab-details *ngIf="currentTabIndex === 0" [height]="tabHeight"></ant-ordering-tab-details>
+        </amx-tab>
+        <amx-tab [label]="'Activity'" [icon]="icons.activityIcon">
+          <ant-ordering-tab-activity *ngIf="currentTabIndex === 1" [height]="tabHeight"></ant-ordering-tab-activity>
+        </amx-tab>
+      </ng-container>
+    </amx-tabs>
+</ng-template>
+

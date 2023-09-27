@@ -1,0 +1,31 @@
+<amx-layout-panel (collapsedStateChanged)="collapsedStateChangeHandler($event)">
+  <ng-container header>
+    <amx-flex [justify]="'space-between'">
+      <h2>{{ title }}</h2>
+      <amx-flex>
+        <amx-file-picker (filesSelected)="addRequestedHandler($event)"></amx-file-picker>
+        <amx-icon-button
+          [awesome]="true"
+          [height]="'20px'"
+          [shouldDisable]="selected.length < 1"
+          [icon]="icons.downloadIcon"
+          (clicked)="downloadRequestHandler()">
+        </amx-icon-button>
+        <amx-icon-button
+          [awesome]="true"
+          [height]="'20px'"
+          [shouldDisable]="selected.length < 1"
+          [icon]="icons.deleteIcon"
+          (clicked)="deleteRequestHandler()">
+        </amx-icon-button>
+      </amx-flex>
+    </amx-flex>
+  </ng-container>
+  <ng-container content>
+    <amx-file-explorer
+      [files]="docs"
+      [allowAdd]="false"
+      (selectionChanged)="selectionChangedHandler($event)">
+    </amx-file-explorer>
+  </ng-container>
+</amx-layout-panel>

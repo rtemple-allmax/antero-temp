@@ -1,0 +1,9 @@
+.map-wrapper {
+  position: relative;
+  & .map-controls {
+    position: absolute;
+    top: var(--space-lg);
+    right: var(--space-lg);
+    z-index: 5000;
+  }
+}

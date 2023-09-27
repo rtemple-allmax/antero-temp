@@ -1,0 +1,15 @@
+<ng-container [ngSwitch]="crud">
+  <ng-container *ngSwitchCase="crudFunctions.CREATE">
+    <ant-instrument-add
+      [parent]="selectedEquipment"
+      (addRequested)="addHandler($event)">
+    </ant-instrument-add>
+  </ng-container>
+  <ng-container *ngSwitchCase="crudFunctions.UPDATE">
+    <ant-instrument-edit
+      [source]="selectedInstrument"
+      (editRequested)="editHandler($event)">
+    </ant-instrument-edit>
+  </ng-container>
+</ng-container>
+

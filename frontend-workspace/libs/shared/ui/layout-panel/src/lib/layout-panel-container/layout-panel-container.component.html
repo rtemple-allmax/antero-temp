@@ -1,0 +1,6 @@
+<div
+  #sortable
+  class="layout-panel-container"
+  [ngStyle]="{ 'grid-template-columns': columns, 'grid-auto-flow': masonry ? 'row dense' : 'row' }">
+  <ng-content></ng-content>
+</div>

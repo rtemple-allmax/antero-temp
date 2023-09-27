@@ -1,0 +1,40 @@
+.group-box {
+  display: block;
+  border: var(--border);
+  min-inline-size: 0;
+  color: var(--fg-color);
+  &.white {
+    border-color: white;
+    & .group-label {
+      color: white;
+    }
+  }
+  &.black {
+    border-color: black;
+    & .group-label {
+      color: black;
+    }
+  }
+  &.stretch {
+    height: 100%;
+  }
+  &.disabled, &.disabled * {
+    opacity: .5;
+  }
+  & .group-label {
+    margin-left: 12px;
+    padding: 0 8px;
+    color: var(--fg-color);
+    display: flex;
+    gap: var(--space-sm);
+    font-size: var(--font-size-sm);
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 12px;
+    &.bold {
+      font-weight: bold;
+      color: var(--app-color);
+    }
+  }
+}

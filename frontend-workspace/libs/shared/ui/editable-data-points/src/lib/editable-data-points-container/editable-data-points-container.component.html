@@ -1,0 +1,12 @@
+<div class="editable-data-points-container">
+  <ng-content></ng-content>
+  <amx-flex [justify]="'flex-end'">
+    <amx-icon-button
+      *ngIf="isEditing"
+      [awesome]="true"
+      [icon]="icons.saveIcon"
+      [height]="'20px'"
+      (clicked)="clickHandler()">
+    </amx-icon-button>
+  </amx-flex>
+</div> 

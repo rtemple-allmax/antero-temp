@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/features/feature-work-management/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/features/feature-work-management"],
+      "options": {
+        "jestConfig": "libs/antero-web/features/feature-work-management/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/features/feature-work-management/**/*.ts",
+          "libs/antero-web/features/feature-work-management/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

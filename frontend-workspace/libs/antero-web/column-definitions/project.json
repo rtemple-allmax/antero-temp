@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/column-definitions/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/column-definitions"],
+      "options": {
+        "jestConfig": "libs/antero-web/column-definitions/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/column-definitions/**/*.ts",
+          "libs/antero-web/column-definitions/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

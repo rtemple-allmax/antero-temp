@@ -1,0 +1,75 @@
+<amx-list-editor
+  [records]="records"
+  [height]="innerHeight"
+  [allowAdd]="false"
+  [allowDelete]="false"
+  [typeName]="[ 'Criticality Ranking', 'Criticality Rankings' ]"
+  [itemLabels]="[ '(1 - 5)', '(6 - 10)', '(11 - 15)', '(16 - 20)', '(21 -25)' ]"
+  (editRequested)="submitEdit($event)">
+</amx-list-editor>
+
+<!-- <div [ngStyle]="{ height: height, border: border, padding: padding }">
+  <ng-container *ngIf="records.length > 0 else noRecords">
+    <amx-scroll-box [maxHeight]="innerHeight">
+      <ng-container *ngFor="let record of records">
+        <div class="record">
+          <ng-container *ngTemplateOutlet="crud !== crudFunctions.UPDATE ||
+          !selection ||
+          selection.id !== record.id ?
+          readTemplate :
+          editTemplate; context: { data: record }"></ng-container>
+        </div>
+      </ng-container>
+    </amx-scroll-box>
+  </ng-container>
+</div>
+
+<ng-template #readTemplate let-data="data">
+  <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'.5rem'">
+    <amx-flex [gap]="'.5rem'">
+      <label>{{ data.name }}</label>
+      <label>{{ data.lowerScore }}</label>
+      <label>-</label>
+      <label>{{ data.upperScore }}</label>
+    </amx-flex>
+    <amx-icon-button
+      [icon]="icons.editIcon"
+      [fgColor]="'var(--app-color-3)'"
+      [height]="'20px'"
+      [awesome]="true"
+      (clicked)="editRecord(data)">
+    </amx-icon-button>
+  </amx-flex>
+</ng-template>
+
+<ng-template #editTemplate let-data="data">
+  <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'1rem'">
+    <amx-flex [gap]="'.5rem'" [align]="'center'" [amxFlexChild]="'1'">
+      <amx-text-box
+        [amxFlexChild]="'0 0 200px'"
+        [placeholder]="'Add New Criticality Ranking...'"
+        [(ngModel)]="editNameBinding.value">
+      </amx-text-box>
+      <amx-flex [gap]="'.5rem'" [align]="'center'">
+        <label>{{ data.lowerScore }}</label>
+        <label>-</label>
+        <label>{{ data.upperScore }}</label>
+      </amx-flex>
+    </amx-flex>
+    <amx-icon-button
+      [awesome]="true"
+      [icon]="icons.saveIcon"
+      [height]="'20px'"
+      [padding]="'6px'"
+      [shouldDisable]="!editReady"
+      [fgColor]="editReady ? 'var(--app-color-3)' : 'var(--gray-2)'"
+      (clicked)="submitEdit()">
+    </amx-icon-button>
+  </amx-flex>
+</ng-template>
+
+<ng-template #noRecords>
+  <div class="no-data">
+    <label>No Criticality Rankings have been created.</label>
+  </div>
+</ng-template> -->

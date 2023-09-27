@@ -1,0 +1,7 @@
+<amx-confirmation
+  [dangerous]="true"
+  (canceled)="cancelHandler()"
+  (closed)="cancelHandler()"
+  (confirmed)="confirmHandler()">
+  <span>{{ text }}</span>
+</amx-confirmation>

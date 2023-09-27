@@ -1,0 +1,58 @@
+<div class="splash" (keydown)="keyDownHandler($event)">
+  <div class="content">
+    <div>
+      <amx-flex [justify]="'center'">
+        <img class="logo" src="assets/logoAntC.svg"/>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    </div>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <div class="field-wrapper">
+      <label>Login Email</label>
+      <amx-spacer [space]="'var(--space-sm)'"></amx-spacer>
+      <div class="field no-padding">
+        <!-- <amx-flex> -->
+          <input
+            [autofocus]="true"
+            [ngStyle]="{ 'padding': 'var(--space-md)', width: '100%' }"
+            name="email"
+            (keyup)="emailChangeHandler($event)"/>
+        <!-- </amx-flex> -->
+      </div>
+    </div>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <div class="field-wrapper">
+      <label>Password</label>
+      <amx-spacer [space]="'var(--space-sm)'"></amx-spacer>
+      <div class="field no-padding">
+        <input
+          [ngStyle]="{ 'padding': 'var(--space-md)', width: '100%' }"
+          type="password"
+          name="password"
+          (keyup)="passwordChangeHandler($event)"/>
+      </div>
+    </div>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <amx-flex [flow]="'column nowrap'" [align]="'center'">
+      <amx-label-button [label]="'Sign In'" (clicked)="clickHandler()"></amx-label-button>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <amx-link-button [label]="'Forgot Password'" (clicked)="forgotPassword()"></amx-link-button>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <div class="forgot-password-box" *ngIf="showForgotPasswordBox">
+        <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+          <span>{{ forgotPasswordLabel }}</span>
+          <amx-label-button
+            *ngIf="emailMissing"
+            [shouldDisable]="!emailBinding.value" 
+            [label]="'Send Email'"
+            (clicked)="forgotPassword()">
+          </amx-label-button>
+        </amx-flex>
+      </div>
+      <amx-spacer [space]="'var(--space-xl)'"></amx-spacer>
+      <span [ngStyle]="{ 'font-size': 'var(--font-size-sm)'}">
+        Contact Us at <amx-link-button [label]="'allmaxsoftware.com'" (clicked)="goToWebsite()"></amx-link-button>
+      </span>
+    </amx-flex>      
+  </div>
+</div>

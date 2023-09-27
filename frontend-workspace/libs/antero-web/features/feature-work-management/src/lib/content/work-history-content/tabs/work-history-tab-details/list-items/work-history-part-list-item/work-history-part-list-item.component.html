@@ -1,0 +1,22 @@
+<amx-grid [columns]="'calc(50ch + 50px + 1rem) 50ch 1fr'" [gap]="'var(--space-xl)'" [padding]="'var(--space-md)'">
+  <amx-media-object
+    [heading]="record?.part"
+    [text]="record?.partDescription"
+    [src]="primaryImage?.imageUrl"
+    [listItem]="true">
+  </amx-media-object>
+  <div [ngStyle]="{ 'align-self': 'center' }">
+    <span>{{ record?.warehouse }}</span><br/>
+    <span>{{ record?.area }}</span>
+  </div>
+  <amx-popover-text [template]="qtyTemplate" [ngStyle]="{ 'align-self': 'center' }">
+    <span>{{ record?.actualQuantity }} / {{ record?.estimatedQuantity }} {{ record?.unit }}</span>
+  </amx-popover-text>
+</amx-grid>
+
+<ng-template #qtyTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <span>Actual Quantity / Estimated Quantity</span>
+  </div>
+</ng-template>
+

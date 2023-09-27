@@ -1,0 +1,73 @@
+<div tabindex="-1" (focusout)="focusOutHandler()">
+  <ng-container *ngIf="hasLabel">
+    <label [ngStyle]="{ color: disabled ? 'var(--disabled-color)' : 'var(--fg-color)' }" tabindex="-1"><b>{{ label }}</b></label>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  </ng-container>
+  <div class="searchable-dropdown" [ngClass]="{ disabled : disabled }" #wrapper (keydown)="keydownHandler($event)">
+    <div class="searchable-dropdown-field" #dropdown>
+      <amx-flex [align]="'center'" [height]="'100%'">
+        <input #input [disabled]="disabled" (click)="open()" [(ngModel)]="binding.value" [placeholder]="placeholder"/>
+        <!-- <amx-icon-button
+          *ngIf="allowAdd"
+          [awesome]="true"
+          [icon]="icons.addIcon"
+          [tabIndex]="-1"
+          [fgColor]="disabled ? 'var(--disabled-color)' : 'var(--icon-color)'"
+          [bgColor]="'transparent'"
+          (clicked)="addItem()">
+        </amx-icon-button> -->
+        <amx-icon-button
+          *ngIf="!!binding.value"
+          [awesome]="true"
+          [icon]="icons.thickClearIcon"
+          [tabIndex]="-1"
+          [shouldDisable]="disabled"
+          [fgColor]="disabled ? 'var(--disabled-color)' : 'var(--fg-color)'"
+          [bgColor]="'transparent'"
+          (clicked)="clear()">
+        </amx-icon-button>
+        <amx-icon-button
+          [awesome]="true"
+          [icon]="icons.downCaretIcon"
+          [shouldDisable]="disabled"
+          [showHoverEffect]="false"
+          [tabIndex]="-1"
+          [fgColor]="disabled ? 'var(--disabled-color)' : 'var(--fg-color)'"
+          [bgColor]="'transparent'"
+          (clicked)="toggle()">
+        </amx-icon-button>
+      </amx-flex>
+    </div>
+    <div class="searchable-dropdown-content" [ngClass]="{ open: isOpen }" #content>
+      <ng-container *ngIf="!table else tableTemplate">
+        <ng-container *ngIf="itemsToDisplay.length > 0 else noItems">
+          <dx-scroll-view [height]="contentHeight" tabindex="-1">
+            <ng-container *ngFor="let item of itemsToDisplay; let i = index;">
+              <amx-searchable-dropdown-item
+                [item]="item"
+                (hoverIn)="mouseenterHandler(item)"
+                (hoverOut)="mouseleaveHandler()"
+                (selectedChanged)="select(item)">
+              </amx-searchable-dropdown-item>
+            </ng-container>    
+          </dx-scroll-view>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #tableTemplate>
+  <amx-data-table
+    [height]="contentHeight"
+    [allowGrouping]="false"
+    [showColumnHeaders]="false"
+    [data]="tableData?.data"
+    [columns]="tableData?.colDef?.columns || []"
+    (rowClicked)="select($event)">
+  </amx-data-table>
+</ng-template>
+
+<ng-template #noItems>
+  <p tabindex="-1" [ngStyle]="{ 'color': 'var(--fg-color)', padding: 'var(--space-md) var(--space-sm)'  }"><i>{{ noItemText }}</i></p>
+</ng-template>

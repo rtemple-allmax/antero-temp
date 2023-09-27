@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/delete-confirmation/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/delete-confirmation"],
+      "options": {
+        "jestConfig": "libs/shared/ui/delete-confirmation/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/delete-confirmation/**/*.ts",
+          "libs/shared/ui/delete-confirmation/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

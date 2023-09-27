@@ -1,0 +1,9 @@
+<amx-modal [heading]="heading" [maxWidth]="maxWidth" [headerBGColor]="dangerous ? 'var(--msg-danger)' : 'var(--app-color)'" [zIndex]="'var(--layer-5)'" (closed)="closedHandler()">
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <ng-content></ng-content>
+  <br/><br/>
+  <amx-flex [justify]="'flex-end'" [align]="'center'" [gap]="'var(--space-md)'">
+    <amx-combo-button [label]="confirmLabel" [icon]="icons.confirmIcon" [fgColor]="'var(--msg-success)'" (clicked)="confirmHandler()"></amx-combo-button>
+    <amx-combo-button [label]="cancelLabel" [icon]="icons.cancelIcon" [fgColor]="'var(--msg-danger)'" (clicked)="cancelHandler()"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

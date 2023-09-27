@@ -1,0 +1,13 @@
+<div
+  class="sidebar-icon-btn"
+  [ngClass]="{ active: active }"
+  (click)="item?.handler()">
+  <amx-flex [align]="'center'">
+    <amx-flex [amxFlexChild]="'0 0 40px'" [justify]="'center'" [gap]="'var(--space-md)'" [padding]="'var(--space-sm) 0'">
+      <amx-icon-button [showHoverEffect]="false" [awesome]="true" [icon]="item?.icon" [height]="'20px'"></amx-icon-button>
+    </amx-flex>
+    <div [amxFlexChild]="'1'">
+      <label  class="label" [ngClass]="{'expanded': !collapsed }">{{ item?.label }}</label>
+    </div>
+  </amx-flex>
+</div>

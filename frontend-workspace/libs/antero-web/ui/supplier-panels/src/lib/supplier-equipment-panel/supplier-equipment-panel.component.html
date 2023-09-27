@@ -1,0 +1,23 @@
+<amx-layout-panel-collapsible [title]="title" [allowAdding]="true" (addRequested)="addHandler()">
+  <amx-data-table
+    class="subsection"
+    [allowGrouping]="false"
+    [allowFiltering]="false"
+    [allowExport]="false"
+    [data]="eqData?.data"
+    [selectFirstRowOnLoad]="false"
+    [columns]="eqData?.colDef?.columns || []"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [showRowLines]="true"
+    [showColumnLines]="false"
+    [selectionMode]="'none'"
+    [hoverStateEnabled]="false"
+    [cellTemplate]="viewType === viewTypes.LIST ? cellTemplate : null">
+  </amx-data-table>
+</amx-layout-panel-collapsible>
+
+<ng-template #cellTemplate let-template="template">
+  <ant-supplier-equipment-list-item [record]="template?.data"></ant-supplier-equipment-list-item>
+</ng-template>
+
+

@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/data-table-dropdown/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/data-table-dropdown"],
+      "options": {
+        "jestConfig": "libs/shared/ui/data-table-dropdown/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/data-table-dropdown/**/*.ts",
+          "libs/shared/ui/data-table-dropdown/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

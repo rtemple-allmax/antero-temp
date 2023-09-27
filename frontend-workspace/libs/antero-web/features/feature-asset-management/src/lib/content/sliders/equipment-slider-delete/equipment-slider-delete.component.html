@@ -1,0 +1,20 @@
+<h2 [ngStyle]="{ 'text-align': 'center' }">Delete {{ source?.name }}</h2>
+<amx-separator></amx-separator>
+<span>
+  {{ messages[0] }} 
+  <b>{{ messages[1] }}</b> {{ messages[2] }} <i><u>{{ messages[3] }}</u></i> 
+  {{ messages[4] }}
+</span>
+<br/><br/>
+<span>
+  {{ messages[5] }} 
+</span>
+<br/><br/>
+<span><b>
+  {{ messages[6] }}
+</b></span>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-flex [justify]="'flex-end'" [gap]="'var(--space-md)'">
+  <amx-combo-button [label]="'Confirm'" [fgColor]="'var(--msg-success)'" [icon]="icons.confirmIcon" (clicked)="confirmHandler()"></amx-combo-button>
+  <amx-combo-button [label]="'Cancel'" [fgColor]="'var(--msg-danger)'" [icon]="icons.cancelIcon" (clicked)="cancelHandler()"></amx-combo-button>
+</amx-flex>

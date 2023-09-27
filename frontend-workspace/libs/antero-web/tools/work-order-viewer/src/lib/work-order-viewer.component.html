@@ -1,0 +1,222 @@
+<amx-modal
+  [heading]="'Work Order Viewer'"
+  [maxWidth]="width"
+  [height]="height"
+  (closed)="closedHandler()">
+  <ng-container [ngSwitch]="deviceType">
+    <ng-container *ngSwitchCase="deviceTypes.DESKTOP">
+      <ng-container *ngTemplateOutlet="desktopTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+      <ng-container *ngTemplateOutlet="mobileTemplate"></ng-container>
+    </ng-container>
+  </ng-container>
+</amx-modal>
+
+
+<ng-template #desktopTemplate>
+  <amx-flex [justify]="'space-between'" [align]="'center'">
+    <amx-flex [align]="'center'" [gap]="'var(--space-xl)'">
+      <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+        <h2>WO# {{ data?.wo?.workOrderNumber}}</h2>
+        <amx-popover-icon
+          *ngIf="data?.wo?.isDue"
+          [icon]="icons.delinquentIcon"
+          [color]="'var(--msg-danger)'"
+          [height]="'20px'"
+          [template]="delinquentTemplate">
+        </amx-popover-icon>
+        <amx-popover-icon
+          *ngIf="data?.wo?.needsAttention"
+          [icon]="icons.needsAttentionIcon"
+          [height]="'20px'"
+          [color]="'var(--msg-warning)'">
+        </amx-popover-icon>
+      </amx-flex>
+    </amx-flex>
+    <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+      <dx-select-box
+        [items]="statuses"
+        [value]="statuses[0]"
+        [displayExpr]="'name'">
+      </dx-select-box>
+      <amx-label-button [label]="'Assign To'" (clicked)="openModal(modals.WORK_ORDER_COMPLETE)"></amx-label-button>
+      <amx-label-button [label]="'Complete'" (clicked)="openModal(modals.WORK_ORDER_COMPLETE)"></amx-label-button>
+      <amx-label-button [label]="'Move To Review'" (clicked)="openModal(modals.WORK_ORDER_MOVE_TO_REVIEW)"></amx-label-button>
+      <amx-label-button [label]="'Move To History'" (clicked)="openModal(modals.WORK_ORDER_MOVE_TO_HISTORY)"></amx-label-button>
+    </amx-flex>
+    
+  </amx-flex>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-tabs [height]="tabHeight" [styleType]="'underline'">
+    <amx-tab [label]="'Details'" [icon]="icons.taskIcon" [bgColor]="'transparent'">
+      <ant-work-order-details-panel
+        [height]="panelHeight">
+      </ant-work-order-details-panel>
+    </amx-tab>
+    <amx-tab [label]="'Completion'" [icon]="icons.instrumentsIcon" [bgColor]="'transparent'">
+      <ant-work-order-completion-panel
+        *ngIf="panelIndex === 1"
+        [height]="panelHeight">
+      </ant-work-order-completion-panel>
+    </amx-tab>
+    <amx-tab [label]="partsLabel" [icon]="icons.partsIcon" [bgColor]="'transparent'">
+      <ant-work-order-parts-panel
+        *ngIf="panelIndex === 2"
+        [height]="panelHeight">
+      </ant-work-order-parts-panel>
+    </amx-tab>
+    <amx-tab [label]="laborLabel" [icon]="icons.laborIcon" [bgColor]="'transparent'">
+      <ant-work-order-labor-panel
+        *ngIf="panelIndex === 3"
+        [height]="panelHeight">
+      </ant-work-order-labor-panel>
+    </amx-tab>
+    <amx-tab [label]="contractorsLabel" [icon]="icons.contractorIcon" [bgColor]="'transparent'">
+      <ant-work-order-contractors-panel
+        *ngIf="panelIndex === 4"
+        [height]="panelHeight">
+      </ant-work-order-contractors-panel>
+    </amx-tab>
+    <amx-tab [label]="toolsLabel" [icon]="icons.toolsIcon" [bgColor]="'transparent'">
+      <ant-work-order-tools-panel
+        *ngIf="panelIndex === 5"
+        [height]="panelHeight"
+        (addRequested)="openModal(modals.WORK_ORDER_ADD_EDIT_EQUIPMENT, crudFunctions.CREATE)"
+        (editRequested)="openModal(modals.WORK_ORDER_ADD_EDIT_EQUIPMENT, crudFunctions.UPDATE)">
+    </ant-work-order-tools-panel>
+    </amx-tab>
+    <amx-tab [label]="miscLabel" [icon]="icons.miscIcon" [bgColor]="'transparent'">
+      <ant-work-order-misc-panel
+        *ngIf="panelIndex === 6"
+        [height]="panelHeight">
+      </ant-work-order-misc-panel>
+    </amx-tab>
+    <amx-tab [label]="'Documents'" [icon]="icons.documentsIcon" [bgColor]="'transparent'">
+      <ant-work-order-documents-panel
+        *ngIf="panelIndex === 7"
+        [height]="panelHeight">
+      </ant-work-order-documents-panel>
+    </amx-tab>
+    <!-- <amx-tab [label]="'Map'" [icon]="icons.mapIcon" [bgColor]="'transparent'">
+      <ant-work-order-map-panel
+        *ngIf="panelIndex === 8"
+        [height]="panelHeight"
+        [data]="data">
+      </ant-work-order-map-panel>
+    </amx-tab> -->
+    <amx-tab [label]="'Audit'" [icon]="icons.auditIcon" [bgColor]="'transparent'">
+      <ant-work-order-audit-panel
+        *ngIf="panelIndex === 8"
+        [height]="panelHeight"
+        [data]="data">
+      </ant-work-order-audit-panel>
+    </amx-tab>
+  </amx-tabs>
+</ng-template>
+
+<ng-template #mobileTemplate>
+  <amx-flex [flow]="'column nowrap'" [height]="mobileInnerHeight">
+    <amx-flex [justify]="'space-between'" [align]="'center'" >
+      <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+        <h2>WO# {{ data?.wo?.workOrderNumber}}</h2>
+        <amx-popover-icon
+          *ngIf="data?.wo?.isDue"
+          [icon]="icons.delinquentIcon"
+          [color]="'var(--msg-danger)'"
+          [height]="'20px'"
+          [template]="delinquentTemplate">
+        </amx-popover-icon>
+        <amx-popover-icon
+          *ngIf="data?.wo?.needsAttention"
+          [icon]="icons.needsAttentionIcon"
+          [height]="'20px'"
+          [color]="'var(--msg-warning)'">
+        </amx-popover-icon>
+      </amx-flex>
+      <!-- <dx-select-box
+        [items]="statuses"
+        [value]="statuses[0]"
+        [displayExpr]="'name'">
+      </dx-select-box> -->
+    </amx-flex>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <amx-flex [justify]="'space-between'" [gap]="'var(--space-md)'">
+      <div>
+        <h2><b>{{ data?.wo?.equipment?.name }}</b></h2>
+        <p>{{ data?.wo?.task?.name }}</p>    
+      </div>
+      <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+        <amx-icon-button [awesome]="true" [icon]="icons.mapIcon" [height]="'20px'" [fgColor]="'var(--icon-color)'"></amx-icon-button>
+        <amx-icon-button [awesome]="true" [icon]="icons.commentsIcon" [height]="'20px'" [fgColor]="'var(--icon-color)'"></amx-icon-button>
+      </amx-flex>
+    </amx-flex>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <div [ngStyle]="{ border: 'var(--border)' }">
+      <dx-scroll-view [height]="'72vh'" #mobileScroll>
+        <amx-accordion-container [startingIndex]="0" [shouldSetScrollPosition]="true">
+          <amx-accordion-panel [label]="'Details'" [icon]="icons.taskIcon">
+            <ant-work-order-details-panel
+              *ngIf="panelIndex === 0">
+            </ant-work-order-details-panel>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Completion'" [icon]="icons.instrumentsIcon">
+            <ant-work-order-completion-panel
+              *ngIf="panelIndex === 1">
+            </ant-work-order-completion-panel>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Parts'" [icon]="icons.partsIcon">
+            <ant-work-order-parts-panel
+              *ngIf="panelIndex === 2">
+            </ant-work-order-parts-panel>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Labor'" [icon]="icons.laborIcon">
+            <ant-work-order-labor-panel
+              *ngIf="panelIndex === 3">
+            </ant-work-order-labor-panel>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Contractors'" [icon]="icons.contractorIcon">
+            <ant-work-order-contractors-panel
+              *ngIf="panelIndex === 4">
+            </ant-work-order-contractors-panel>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Tools'" [icon]="icons.toolsIcon">
+            <ant-work-order-tools-panel
+              *ngIf="panelIndex === 5"
+              (addRequested)="openModal(modals.WORK_ORDER_ADD_EDIT_EQUIPMENT, crudFunctions.CREATE)"
+              (editRequested)="openModal(modals.WORK_ORDER_ADD_EDIT_EQUIPMENT, crudFunctions.UPDATE)">
+          </ant-work-order-tools-panel>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Misc'" [icon]="icons.miscIcon">
+            <ant-work-order-misc-panel
+              *ngIf="panelIndex === 6">
+            </ant-work-order-misc-panel>
+          </amx-accordion-panel>
+        </amx-accordion-container>
+      </dx-scroll-view>
+    </div>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-flex [justify]="'space-around'" [gap]="'var(--space-md)'">
+      <amx-label-button [label]="'Complete'" (clicked)="openModal(modals.WORK_ORDER_COMPLETE)"></amx-label-button>
+      <amx-label-button [label]="'Move To Review'" (clicked)="openModal(modals.WORK_ORDER_MOVE_TO_REVIEW)"></amx-label-button>
+      <amx-label-button [label]="'Move To History'" (clicked)="openModal(modals.WORK_ORDER_MOVE_TO_HISTORY)"></amx-label-button>
+    </amx-flex>
+  </amx-flex>
+</ng-template>
+
+<ng-template #delinquentTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <span>{{ getDateString(data?.wo?.dueDate) }}</span>
+  </div>
+</ng-template>
+
+<ng-template #needsAttentionTemplate>
+  <span>{{ data?.wo?.needsAttentionText }}</span>
+</ng-template>
+
+<ng-template #statusTemplate let-template="template">
+  <amx-flex [gap]="'var(--space-md)'">
+    <amx-icon [icon]="icons.hasStatus" [color]="getStatusColor(template?.data?.predefinedColor)"></amx-icon>
+    <label>{{ template?.data?.name }}</label>
+  </amx-flex>
+</ng-template>

@@ -1,0 +1,14 @@
+<amx-card
+  [record]="source"
+  [title]="source?.name"
+  [height]="'100%'"
+  [controls]="controls"
+  [options]="options"
+  [indicators]="indicators">
+</amx-card>
+
+<ng-template #instructionsTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <amx-formatted-text [text]="source?.instructionsString || 'This task contains no instructions'"></amx-formatted-text>
+  </div>
+</ng-template>

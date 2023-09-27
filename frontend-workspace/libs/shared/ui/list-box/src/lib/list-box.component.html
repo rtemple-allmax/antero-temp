@@ -1,0 +1,31 @@
+<div class="list-box">
+  <label *ngIf="hasLabel">{{ label }}</label>
+  <dx-drop-down-box
+    [tabIndex]="tabIndex"
+    [(value)]="value"
+    [(opened)]="isOpen"
+    [dataSource]="itemsToDisplay"
+    [displayExpr]="'displayExpr'"
+    [height]="stylingMode === 'desktop' ? '26px' : 'auto'"
+    [openOnFieldClick]="false"
+    [placeholder]="placeholder"
+    [acceptCustomValue]="true"
+    [disabled]="disabled"
+    [displayExpr]="'displayValue'"
+    [valueExpr]="'value'"
+    (onInput)="inputHandler($event)"
+    (onValueChanged)="valueChangeHandler()"
+    (onBlur)="blurHandler()">
+    <div *dxTemplate="let data of 'content'">
+      <div class="content">
+        <ng-container *ngIf="itemsToDisplay.length > 0">
+          <ng-container *ngFor="let item of itemsToDisplay">
+            <button class="item-btn" (click)="setValue(item)">
+              <label>{{ item.displayValue }}</label>
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </dx-drop-down-box>
+</div>

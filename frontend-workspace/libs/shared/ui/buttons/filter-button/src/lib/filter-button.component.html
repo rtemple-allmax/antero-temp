@@ -1,0 +1,29 @@
+<div class="button-wrapper" [ngStyle]="{ opacity: opacity }">
+  <button class="filter-btn" [ngClass]="{ 'has-filter': selection.length > 0 }" (click)="toggle()" (clickOutside)="clickOutsideHandler()">
+    <amx-flex [align]="'center'" [gap]="'var(--space-sm)'">
+      <amx-icon
+        [icon]="icon"
+        [color]="this.selection.length > 0 ? activeIconColor : iconColor"
+        [height]="'14px'">
+      </amx-icon>
+      <p class="label">{{ btnLabel }}</p>
+      <div *ngIf="showCount" class="count">{{ selection.length }}</div>
+    </amx-flex>
+  </button>
+  <div (click)="stopPropagation($event)" class="dropdown-wrapper" [ngClass]="{ open: open, right: origin === 'right' }" >
+    <amx-data-table
+      [columns]="cols"
+      [data]="data"
+      [showColumnHeaders]="false"
+      [allowSearch]="allowSearch"
+      [selectionMode]="selectionMode"
+      [cellTemplate]="cellTemplate"
+      (selectionChanged)="selectionChangedHandler($event)">
+    </amx-data-table>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-flex [justify]="'center'">
+      <amx-link-button [label]="'Clear This Filter'" (clicked)="clearedHandler()"></amx-link-button>
+    </amx-flex>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  </div>
+</div>

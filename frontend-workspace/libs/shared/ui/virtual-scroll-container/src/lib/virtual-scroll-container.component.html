@@ -1,0 +1,50 @@
+<!-- <div [ngStyle]="{ border: '1px solid #bbb', padding: 'var(--space-md)' }">
+  <cdk-virtual-scroll-viewport [itemSize]="itemSize" [ngStyle]="{ height: innerHeight }">
+    <div [style.height]="itemSize + 'px'" *cdkVirtualFor="let row of itemSet">
+      <amx-grid [columns]="columns" [gap]="'var(--space-md)'">
+        <div *ngFor="let item of row">
+          <div  [ngStyle]="{ height: '80px', 'background': 'red' }" (click)="test()">
+            <amx-card>Test</amx-card>
+            <ng-container
+              *ngTemplateOutlet="itemTemplate || defaultTemplate; context: { method: test, item: item }">
+            </ng-container>      
+          </div>
+        </div>
+        
+      </amx-grid>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    </div>
+  </cdk-virtual-scroll-viewport>  
+</div>
+
+<ng-template #defaultTemplate let-item="item">
+  Undefined Template
+</ng-template> -->
+
+<!-- <div [ngStyle]="{ border: 'var(--border)', padding: 'var(--space-md)' }"> -->
+  <!-- <li-virtual-scroll [items]="items" [gridList]="true">
+    <div *liVirtualItem="let item" (click)="test()">
+      {{ item.id }}
+    </div>
+  </li-virtual-scroll> -->
+  <!-- <cdk-virtual-scroll-viewport [itemSize]="itemSize" [ngStyle]="{ height: innerHeight }">
+    <div [style.height]="itemSize + 'px'" *cdkVirtualFor="let row of itemSet">
+      <amx-grid [columns]="columns" [gap]="'var(--space-md)'">
+        <div *ngFor="let item of row">
+          <div  [ngStyle]="{ height: '80px', 'background': 'red' }" (click)="test()">
+            <amx-card>Test</amx-card>
+            <ng-container
+              *ngTemplateOutlet="itemTemplate || defaultTemplate; context: { method: test, item: item }">
+            </ng-container>      
+          </div>
+        </div>
+        
+      </amx-grid>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    </div>
+  </cdk-virtual-scroll-viewport>   -->
+<!-- </div> -->
+
+<ng-template #defaultTemplate let-item="item">
+  Undefined Template
+</ng-template>

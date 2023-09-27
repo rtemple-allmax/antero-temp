@@ -1,0 +1,49 @@
+<div>
+  <amx-flex [justify]="'space-between'" [align]="'center'" [padding]="'var(--space-lg)'">
+    <amx-flex [gap]="'var(--space-md)'" [height]="'100%'" [align]="'center'">
+      <p>WO# {{ record?.workOrderNumber }}</p>
+      <amx-popover-text *ngIf="record?.workStatus" [template]="statusTemplate">
+        <div class="status-icon" [ngStyle]="{ background: record?.workStatus?.color }"></div>
+      </amx-popover-text>
+      <amx-popover-button *ngIf="record?.isDue" [icon]="icons.delinquentIcon" [template]="delinquentTemplate" [fgColor]="'var(--msg-danger)'"></amx-popover-button>
+      <amx-popover-button *ngIf="record?.needsAttention" [icon]="icons.needsAttentionIcon" [template]="needsAttentionTemplate" [fgColor]="'var(--msg-warning)'"></amx-popover-button>
+    </amx-flex>
+    <amx-popover-button
+      [template]="completionTemplate"
+      [icon]="icons.confirmIcon"
+      [height]="'14px'"
+      [padding]="'0'"
+      [fgColor]="record?.isComplete ? 'var(--msg-success)' : 'var(--fg-color)'">
+    </amx-popover-button>
+  </amx-flex>
+</div>
+
+<ng-template #completionTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <p><b>Due Date:</b> {{ getDateString(record?.dueDate) || 'No Date Set' }}</p>
+    <p><b>Completed Date:</b> {{ getDateString(record?.dateCompleted) || 'Needs Entered' }} </p>
+    <p><b>Completed Notes:</b> {{ 'Needs Entered' }} </p>
+    <!-- <p>{{ requiredInstrumentsLabel }}</p> -->
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+      <amx-icon [icon]="icons.delinquentIcon" [color]="'var(--msg-danger)'" [height]="'14px'"></amx-icon>
+      <amx-icon [icon]="icons.needsAttentionIcon" [color]="'var(--msg-warning)'" [height]="'14px'"></amx-icon>
+    </amx-flex>
+  </div>
+</ng-template>
+
+<ng-template #delinquentTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <p>Past Due Since {{ getDateString(record?.dueDate) }}</p>
+  </div>
+</ng-template>
+<ng-template #needsAttentionTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <p>{{ record?.needsAttentionText }}</p>
+  </div>
+</ng-template>
+<ng-template #statusTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <p>{{ record?.workStatus?.name }}</p>
+  </div>
+</ng-template>
+

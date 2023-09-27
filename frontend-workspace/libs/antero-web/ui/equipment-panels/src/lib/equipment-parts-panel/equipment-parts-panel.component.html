@@ -1,0 +1,44 @@
+<amx-layout-panel-collapsible
+  [title]="title"
+  [allowAdding]="true"
+  (addRequested)="addHandler()"
+  (collapsedStateChanged)="collapsedStateChangedHandler($event)">
+  <ng-container *ngFor="let record of partsData; let i = index;">
+    <ant-equipment-part-list-item #part [record]="record"></ant-equipment-part-list-item>
+    <amx-separator *ngIf="i < partsData.length - 1" [space]="'0'" [color]="'var(--border-color)'"></amx-separator>
+  </ng-container>
+  <!-- <amx-data-table
+    class="subsection"
+    [backgroundColor]="'transparent'"
+    [data]="data?.data"
+    [selectFirstRowOnLoad]="false"
+    [columns]="data?.colDef?.columns || []"
+    [height]="innerHeight"
+    [allowGrouping]="false"
+    [showBorders]="false"
+    [showRowLines]="true"
+    [showColumnLines]="false"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [cellTemplate]="dataTemplate"
+    (contextMenuPreparing)="contextMenuHandler($event)"
+    (selectionChanged)="selectionHandler($event)">
+  </amx-data-table> -->
+</amx-layout-panel-collapsible>
+
+<!-- <ng-template #noData>
+  <div class="no-data">
+    No Parts have been added to this Equipment.
+  </div>
+</ng-template>
+
+<ng-template #dataTemplate let-template="template">
+  <ng-container [ngSwitch]="viewType">
+    <ng-container *ngSwitchCase="viewTypes.TABLE">
+      <amx-link-button [label]="template?.data?.part?.name" (clicked)="selectionHandler(template?.data)"></amx-link-button>
+    </ng-container>
+    <ng-container *ngSwitchCase="viewTypes.LIST">
+      <ant-equipment-part-list-item [record]="template?.data"></ant-equipment-part-list-item>
+    </ng-container>
+  </ng-container>
+</ng-template> -->
+

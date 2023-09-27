@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/buttons/crud-button/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/buttons/crud-button"],
+      "options": {
+        "jestConfig": "libs/shared/ui/buttons/crud-button/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/buttons/crud-button/**/*.ts",
+          "libs/shared/ui/buttons/crud-button/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

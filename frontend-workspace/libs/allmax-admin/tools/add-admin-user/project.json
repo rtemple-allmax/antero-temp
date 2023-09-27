@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/allmax-admin/tools/add-admin-user/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/allmax-admin/tools/add-admin-user"],
+      "options": {
+        "jestConfig": "libs/allmax-admin/tools/add-admin-user/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/allmax-admin/tools/add-admin-user/**/*.ts",
+          "libs/allmax-admin/tools/add-admin-user/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

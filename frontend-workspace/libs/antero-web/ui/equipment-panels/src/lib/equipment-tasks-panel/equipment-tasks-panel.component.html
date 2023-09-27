@@ -1,0 +1,42 @@
+<amx-layout-panel-collapsible [title]="'Work Setup'" [allowAdding]="true" (addRequested)="addHandler()">
+  <amx-data-table
+    class="subsection"
+    [backgroundColor]="'transparent'"
+    [data]="data?.data"
+    [columns]="data?.colDef?.columns || []"
+    [height]="innerHeight"
+    [allowGrouping]="false"
+    [hoverStateEnabled]="true"
+    [showRowLines]="true"
+    [showBorders]="false"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [cellTemplate]="dataTemplate"
+    [selectFirstRowOnLoad]="false"
+    [noDataText]="'No tasks have been created for this equipment.'"
+    (contextMenuPreparing)="contextMenuHandler($event)"
+    (selectionChanged)="selectionHandler($event)">
+  </amx-data-table>
+</amx-layout-panel-collapsible>
+
+<ng-template #noData>
+  <div class="no-data">
+    No Instruments have been added to this Equipment.
+  </div>
+</ng-template>
+
+<ng-template #dataTemplate let-template="template">
+  <ng-container [ngSwitch]="viewType">
+    <ng-container *ngSwitchCase="viewTypes.LIST">
+      <ant-task-list-item [record]="template?.data"></ant-task-list-item>
+    </ng-container>
+    <ng-container *ngSwitchCase="viewTypes.TABLE">
+      <amx-popover-button [label]="template?.data?.name" [type]="popoverButtonTypes.TEXT" [template]="instructionsTemplate"></amx-popover-button>
+      <ng-template #instructionsTemplate>
+        <div [ngStyle]="{ padding: 'var(--space-md)' }">
+          <amx-formatted-text [text]="template?.data?.instructionsString || 'This task contains no instructions'"></amx-formatted-text>
+        </div>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+</ng-template>
+

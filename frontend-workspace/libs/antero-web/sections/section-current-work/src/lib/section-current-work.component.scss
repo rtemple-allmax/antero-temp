@@ -1,0 +1,33 @@
+.dropdown-item {
+  background-color: white;
+  outline: 0;
+  padding: var(--space-md);
+  white-space: nowrap;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  position: relative; 
+}
+
+.dropdown-item:hover {
+  background-color: var(--highlight-color);
+}
+
+.details {
+  height: calc(100vh - 82px);
+  padding: var(--space-md);
+}
+
+.statusIcon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+}
+
+.cell-more {
+  opacity: 0;
+}
+
+.cell-more.hovered {
+  opacity: 1
+}

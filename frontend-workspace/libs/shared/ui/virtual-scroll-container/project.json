@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/virtual-scroll-container/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/virtual-scroll-container"],
+      "options": {
+        "jestConfig": "libs/shared/ui/virtual-scroll-container/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/virtual-scroll-container/**/*.ts",
+          "libs/shared/ui/virtual-scroll-container/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

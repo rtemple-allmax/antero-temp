@@ -1,0 +1,53 @@
+<div
+  *ngIf="visibility"
+  #container
+  class="window"
+  [ngClass]="{ minimized: isMinimized }"
+  [ngStyle]="{
+    overflow: overflow,
+    'max-width': maxWidth,
+    top: top,
+    left: left,
+    transform: transform,
+    'z-index': zIndex,
+    'box-shadow': 'var(--shadow)'
+  }"
+  (click)="stopPropagation($event)">
+  <div>
+    <div class="window-header" [ngClass]="{ 'padding-bottom': !showSeparator }" (click)="toggleMinimize()">
+      <amx-flex [gap]="'var(--space-md)'" [justify]="'space-between'" [align]="'center'">
+        <h3 [ngStyle]="{ 'font-size': 'var(--font-size-lg)' }">{{ heading }}</h3>
+        <amx-flex [align]="'baseline'">
+          <div
+            [ngStyle]="{
+              'width': '25px',
+              'border-bottom': '3px solid white',
+              position: 'relative',
+              top: '-10px'}"
+            >
+          </div>
+          <button class="close-btn" (click)="close()">
+            <img [src]="'assets/icons/iconDelete_white.svg'">
+          </button>
+        </amx-flex>
+        
+      </amx-flex>
+      <!-- <div [ngStyle]="{ display: 'flex', gap: '.25rem' }">
+        <div
+          [ngStyle]="{
+            'width': '25px',
+            'border-bottom': '3px solid white',
+            position: 'relative',
+            top: '-10px'}"
+          (click)="toggleMinimize()">
+        </div>
+        <button class="close-btn" (click)="close()">
+          <img [src]="'assets/icons/iconDelete_white.svg'">
+        </button>
+      </div> -->
+    </div>
+    <div class="window-content" [ngStyle]="{ 'max-height': maxHeight }">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>  

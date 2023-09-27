@@ -1,0 +1,12 @@
+<div class="field-wrapper">
+  <div class="field">
+    <dx-select-box
+      [items]="items"
+      [value]="value"
+      [valueExpr]="'id'"
+      [acceptCustomValue]="true"
+      [displayExpr]="'displayName'"
+      (onItemClick)="itemClickHandler($event)">
+    </dx-select-box>
+  </div>
+</div>

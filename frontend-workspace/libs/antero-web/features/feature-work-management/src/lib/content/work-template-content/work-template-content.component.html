@@ -1,0 +1,16 @@
+<h2>{{ record?.equipment?.name }}</h2>
+<h2>{{ record?.task?.name }}</h2>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-tabs>
+  <ng-container tabsContent>
+    <amx-tab [label]="'Details'" [icon]="icons.detailsIcon">
+      <ant-work-template-tab-details *ngIf="currentIndex === 0" [height]="height"></ant-work-template-tab-details>
+    </amx-tab>
+    <amx-tab [label]="'Map'" [icon]="icons.mapIcon">
+      <ant-work-template-tab-map *ngIf="currentIndex === 1" [height]="height"></ant-work-template-tab-map>
+    </amx-tab>
+    <amx-tab [label]="'Activity'" [icon]="icons.activityIcon">
+      <ant-work-template-tab-activity *ngIf="currentIndex === 2" [height]="height"></ant-work-template-tab-activity>
+    </amx-tab>
+  </ng-container>
+</amx-tabs>

@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/form-bases/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/form-bases"],
+      "options": {
+        "jestConfig": "libs/antero-web/form-bases/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/form-bases/**/*.ts",
+          "libs/antero-web/form-bases/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

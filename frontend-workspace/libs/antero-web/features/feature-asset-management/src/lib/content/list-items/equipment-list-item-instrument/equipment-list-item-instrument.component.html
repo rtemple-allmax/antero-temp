@@ -1,0 +1,178 @@
+<amx-crud-list-item>
+  <ng-container content>
+    <amx-grid [columns]="'50ch 1fr auto'" [gap]="'var(--space-md)'">
+      <h3 [ngStyle]="{ 'align-self': 'center' }">{{ record?.name }}</h3>
+      <p [ngStyle]="{ 'align-self': 'center', 'white-space': 'normal' }">{{ readingData }}</p>
+      <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+        <amx-icon-button
+          [awesome]="true"
+          [icon]="icons.instrumentsIcon"
+          [height]="'20px'"
+          (clicked)="enterReadingsHandler()">
+        </amx-icon-button>
+        <amx-icon-button
+          [awesome]="true"
+          [icon]="icons.historyIcon"
+          [height]="'20px'"
+          (clicked)="historyHandler()">
+        </amx-icon-button>
+      </amx-flex>
+    </amx-grid>
+  </ng-container>
+  <ng-container editor>
+    <amx-text-box
+      [label]="'Name'"
+      [(ngModel)]="nameBinding.value"
+      [required]="true"
+      [maxLength]="50"
+      [placeholder]="'(required)'"
+      [customValidators]="customValidators"
+      (validityStateChanged)="validityHandler($event, 'name')">
+    </amx-text-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-select-box
+      [label]="'Type'"
+      [dataSource]="typeData"
+      [(ngModel)]="typeBinding.value">
+    </amx-select-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-text-box
+      [label]="'Units'"
+      [required]="true"
+      [maxLength]="50"
+      [placeholder]="'(required)'"
+      [(ngModel)]="unitsBinding.value"
+      (validityStateChanged)="validityHandler($event, 'units')">
+    </amx-text-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-number-box [label]="'Rollover Value'" [(ngModel)]="rolloverBinding.value"></amx-number-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-flex [justify]="'flex-end'" [gap]="'var(--space-md)'">
+      <amx-combo-button
+        [label]="'Cancel'"
+        [icon]="icons.cancelIcon"
+        [fgColor]="'var(--msg-danger)'"
+        (clicked)="cancel()">
+      </amx-combo-button>
+      <amx-combo-button
+        [label]="'Save'"
+        [icon]="icons.saveIcon"
+        [shouldDisable]="!ready"
+        (clicked)="submit()">
+      </amx-combo-button>
+    </amx-flex>
+  </ng-container>
+  <ng-container confirmation>
+    <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+      <p>Are you sure you want to delete the Instrument <b>{{ record?.name }}?</b></p>
+      <amx-combo-button
+        [label]="'Confirm'"
+        [icon]="icons.confirmIcon"
+        (clicked)="confirm()">
+      </amx-combo-button>
+      <amx-combo-button
+        [label]="'Cancel'"
+        [icon]="icons.cancelIcon"
+        (clicked)="cancel()">
+      </amx-combo-button>
+    </amx-flex>
+  </ng-container>
+</amx-crud-list-item>
+
+
+
+
+
+
+<!-- <div (mouseenter)="mouseenterHandler()" (mouseleave)="mouseleaveHandler()">
+  <amx-grid [columns]="'50ch 1fr auto'" [gap]="'var(--space-md)'">
+    <h3 [ngStyle]="{ 'align-self': 'center' }">{{ record?.name }}</h3>
+    <p [ngStyle]="{ 'align-self': 'center', 'white-space': 'normal' }">{{ readingData }}</p>
+    <amx-flex [align]="'center'">
+      <amx-flex [gap]="'var(--space-md)'">
+        <amx-icon-button
+          [awesome]="true"
+          [icon]="icons.instrumentsIcon"
+          [height]="'20px'"
+          (clicked)="enterReadingsHandler()">
+        </amx-icon-button>
+        <amx-icon-button
+          [awesome]="true"
+          [icon]="icons.historyIcon"
+          [height]="'20px'"
+          (clicked)="historyHandler()">
+        </amx-icon-button>
+      </amx-flex> 
+      <div  class="more" [ngClass]="{ hovered: hovered }" [ngStyle]="{ 'align-self': 'center' }">
+        <amx-crud-button
+          [allowEditing]="true"
+          [allowDeleting]="true"
+          (editRequested)="editHandler()"
+          (deleteRequested)="deleteHandler()">
+        </amx-crud-button>
+      </div>
+    </amx-flex>
+  </amx-grid>
+  <div class="editor" [ngClass]="{ editing: editing }">
+    <ng-container *ngIf="editing">
+      <amx-text-box
+        [label]="'Name'"
+        [(ngModel)]="nameBinding.value"
+        [required]="true"
+        [maxLength]="50"
+        [placeholder]="'(required)'"
+        [customValidators]="customValidators"
+        (validityStateChanged)="validityHandler($event, 'name')">
+      </amx-text-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-select-box
+        [label]="'Type'"
+        [dataSource]="typeData"
+        [(ngModel)]="typeBinding.value">
+      </amx-select-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-text-box
+        [label]="'Units'"
+        [required]="true"
+        [maxLength]="50"
+        [placeholder]="'(required)'"
+        [(ngModel)]="unitsBinding.value"
+        (validityStateChanged)="validityHandler($event, 'units')">
+      </amx-text-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-number-box [label]="'Rollover Value'" [(ngModel)]="rolloverBinding.value"></amx-number-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [justify]="'flex-end'" [gap]="'var(--space-md)'">
+        <amx-combo-button
+          [label]="'Cancel'"
+          [icon]="icons.cancelIcon"
+          [fgColor]="'var(--msg-danger)'"
+          (clicked)="cancel()">
+        </amx-combo-button>
+        <amx-combo-button
+          [label]="'Save'"
+          [icon]="icons.saveIcon"
+          [shouldDisable]="!ready"
+          (clicked)="submit()">
+        </amx-combo-button>
+      </amx-flex>
+    </ng-container>
+  </div>
+  <div class="confirmation" [ngClass]="{ deleting: deleting }">
+    <ng-container *ngIf="deleting">
+      <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+        <p>Are you sure you want to delete the Instrument <b>{{ record?.name }}?</b></p>
+        <amx-combo-button
+          [label]="'Confirm'"
+          [icon]="icons.confirmIcon"
+          (clicked)="confirm()">
+        </amx-combo-button>
+        <amx-combo-button
+          [label]="'Cancel'"
+          [icon]="icons.cancelIcon"
+          (clicked)="cancel()">
+        </amx-combo-button>
+      </amx-flex>
+    </ng-container>
+  </div>
+</div> -->

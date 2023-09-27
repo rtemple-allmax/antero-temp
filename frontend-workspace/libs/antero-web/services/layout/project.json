@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/services/layout/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/services/layout"],
+      "options": {
+        "jestConfig": "libs/antero-web/services/layout/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/services/layout/**/*.ts",
+          "libs/antero-web/services/layout/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

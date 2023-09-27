@@ -1,0 +1,10 @@
+<amx-modal [heading]="'Manage Custom Fields'" [maxWidth]="'800px'" (closed)="closedHandler()">
+  <label [ngStyle]="{ 'font-size': '--font-size-md' }"><b>{{ fieldList.length }}/20 Used</b></label>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-list-editor
+  [height]="'var(--vh-30)'"
+  [typeName]="[ 'Custom Field', 'Custom Fields' ]"
+  [displayExpr]="'label'"
+  [records]="fieldList">
+</amx-list-editor>
+</amx-modal>

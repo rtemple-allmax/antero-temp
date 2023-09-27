@@ -1,0 +1,63 @@
+.field-wrapper {
+  & .field {
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    transition: all .3s ease-in-out;
+    // background-color: white;
+    // padding-left: .5rem;
+    border-radius: 5px;
+    &.relative {
+      position: relative;
+      & .icon {
+        position: absolute;
+        right: var(--space-sm);
+        top: 50%;
+        pointer-events: none;
+        transform: translateY(-50%);
+      }
+    }
+
+  }
+  & .field-label {
+    color: var(--fg-color);
+    font-weight: bold;
+    &.white {
+      color: white;
+    }
+  }
+  &.disabled {
+    & .label {
+      color: var(--disabled-color);
+    }
+  }
+  &.required {
+    & .label {
+      font-weight: bold;
+    }
+  }
+  &.invalid {
+    & .label {
+      color: var(--msg-danger);
+    }
+    & .errors-wrapper {
+      & .error-text {
+        color: var(--msg-danger);
+      }
+    }
+    & .field {
+      border-color: var(--msg-danger);
+    }
+  }
+}
+
+::ng-deep {
+  & .dx-texteditor-input {
+    background: transparent;
+    border: none;
+    outline: 0;
+  }
+  & .dx-texteditor.dx-editor-outlined  {
+    background: transparent;
+  }
+}

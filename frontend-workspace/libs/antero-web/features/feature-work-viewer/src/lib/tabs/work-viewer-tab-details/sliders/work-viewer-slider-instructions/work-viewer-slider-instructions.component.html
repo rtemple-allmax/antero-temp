@@ -1,0 +1,16 @@
+<ng-container *ngIf="!waiting">
+  <div [ngStyle]="{ width: width }">
+    <amx-grid [useLayout]="true" [layout]="uiLayout">
+      <div>
+        <h2 [ngStyle]="{ 'text-align': 'center' }">Instuctions</h2>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+        <amx-text-editor [height]="'calc(95vh - 280px)'"></amx-text-editor>
+      </div>
+      <div>
+        <h2 [ngStyle]="{ 'text-align': 'center' }">Checklist</h2>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+        <div>Im a checklist editor</div>
+      </div>
+    </amx-grid>
+  </div>
+</ng-container>

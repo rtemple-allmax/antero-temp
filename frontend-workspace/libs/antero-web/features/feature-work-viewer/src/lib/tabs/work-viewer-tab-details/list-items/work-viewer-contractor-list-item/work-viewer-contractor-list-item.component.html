@@ -1,0 +1,16 @@
+<amx-grid [columns]="'50ch repeat(2, 1fr)'" [gap]="'var(--space-xl)'" [padding]="'var(--space-md)'">
+  <span [ngStyle]="{ 'align-self': 'center' }">{{ record?.supplier?.name }}</span>
+  <span [ngStyle]="{ 'align-self': 'center' }">Invoice# {{ record?.invoice }}</span>
+  <amx-popover-text [template]="costTemplate" [ngStyle]="{ 'align-self': 'center' }">{{ totalCost }}</amx-popover-text>
+</amx-grid>
+
+
+
+<ng-template #costTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <span>Part Cost: {{ formatAsCurrency(record?.partCost) }}</span><br/>
+    <span>Labor Cost: {{ formatAsCurrency(record?.laborCost) }}</span><br/>
+    <span>Tax Cost: {{ formatAsCurrency(record?.taxCost) }}</span><br/>
+    <span>Misc Cost: {{ formatAsCurrency(record?.miscCost) }}</span><br/>
+  </div>
+</ng-template>

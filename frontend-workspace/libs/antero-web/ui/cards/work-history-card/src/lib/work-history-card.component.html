@@ -1,0 +1,15 @@
+<amx-card
+  [record]="source"
+  [title]="title"
+  [height]="'100%'"
+  [controls]="controls"
+  [options]="options"
+  [indicators]="indicators"
+  (clicked)="showWorkHistoryViewer()">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-read-only-box [label]="'Date Completed'">{{ getDateString(source?.dateCompleted) }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Task'">{{ source?.task }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Type'">{{ source?.workType }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Priority'">{{ source?.workPriority }}</amx-read-only-box>
+  </amx-grid>
+</amx-card>

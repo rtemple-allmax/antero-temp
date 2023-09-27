@@ -1,0 +1,12 @@
+<amx-modal [heading]="'Add Checklist Item'" (closed)="closedHandler()">
+  <amx-text-box [label]="'Label'" [(ngModel)]="labelBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button
+      [label]="'Save'"
+      [invert]="true"
+      [icon]="icons.saveIcon"
+      [shouldDisable]="!ready"
+      (clicked)="addItem()"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

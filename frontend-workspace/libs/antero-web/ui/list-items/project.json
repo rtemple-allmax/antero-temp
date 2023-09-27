@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/ui/list-items/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/ui/list-items"],
+      "options": {
+        "jestConfig": "libs/antero-web/ui/list-items/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/ui/list-items/**/*.ts",
+          "libs/antero-web/ui/list-items/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

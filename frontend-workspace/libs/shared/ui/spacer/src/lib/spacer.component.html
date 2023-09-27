@@ -1,0 +1,6 @@
+<ng-container *ngIf="vertical else horz">
+  <div tabindex="-1" class="spacer vert" [ngStyle]="{ 'padding-top': space, height: space, 'line-height': space }"></div>
+</ng-container>
+<ng-template #horz>
+  <div tabindex="-1" class="spacer horz" [ngStyle]="{ 'padding-left': space, width: space }"></div>
+</ng-template>

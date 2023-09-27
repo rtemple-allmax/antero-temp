@@ -1,0 +1,59 @@
+<div class="list-editor">
+  <ng-container *ngIf="records.length > 0 else noRecords">
+    <amx-scroll-box [maxHeight]="height" (scrolled)="scrollHandler()">
+      <ng-container *ngFor="let record of records; let i = index;">
+        <div class="record">
+          <ng-container *ngTemplateOutlet="!showEditForm(record) ? readTemplate : editTemplate; context: { data: record, index: i }"></ng-container>
+        </div>
+        <amx-separator [space]="'var(--space-md)'" *ngIf="i < records.length - 1"></amx-separator>
+      </ng-container>
+    </amx-scroll-box>
+  </ng-container>
+  <ng-container >
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <ng-container *ngIf="allowAdd">
+      <amx-single-entry-form-text
+        #addForm
+        [placeholder]="addPlaceholder"
+        [source]="valueToAdd"
+        (submitted)="addRecord($event)">
+      </amx-single-entry-form-text>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #readTemplate let-data="data" let-index="index">
+  <amx-list-item  
+    #listItem
+    [label]="itemLabels.length > index ? itemLabels[index] : null"
+    [record]="data"
+    [displayExpr]="displayExpr"
+    [allowEdit]="allowEdit"
+    [allowDelete]="allowDelete"
+    (editRequested)="setMode(crudFunctions.UPDATE, $event)"
+    (deleteRequested)="setMode(crudFunctions.DELETE, $event)">
+  </amx-list-item>
+</ng-template>
+
+<ng-template #editTemplate let-index="index">
+  <amx-single-entry-form-text
+    [label]="itemLabels.length > index ? itemLabels[index] : null"
+    [source]="editableValue"
+    (submitted)="editRecord($event)">
+  </amx-single-entry-form-text>
+</ng-template>
+
+<amx-confirmation *ngIf="allowDelete && crud === crudFunctions.DELETE"
+  [dangerous]="true"
+  (canceled)="setMode(crudFunctions.CREATE)"
+  (closed)="setMode(crudFunctions.CREATE)"
+  (confirmed)="deleteRecord()">
+  <span>This will delete the selected {{ typeName[0] }}.</span><br/>
+  <span><b>Do you wish to continue?</b></span>
+</amx-confirmation>
+
+<ng-template #noRecords>
+  <div class="empty" [ngStyle]="{ height: '100px' }">
+    <label>No {{ typeName[1] }} have been created.</label>
+  </div>
+</ng-template>

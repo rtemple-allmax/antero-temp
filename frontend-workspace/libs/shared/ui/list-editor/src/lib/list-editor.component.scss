@@ -1,0 +1,15 @@
+.list-editor {
+  padding: var(--space-md);
+  // background-color: white;
+  border: var(--border);
+}
+
+.empty {
+  width: 100%;
+  font-size: 17px;
+  color: var(--fg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Helvetica Neue", "Segoe UI", helvetica, verdana, sans-serif;
+}

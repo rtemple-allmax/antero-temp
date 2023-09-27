@@ -1,0 +1,28 @@
+.progress-bar {
+  display: flex;
+  cursor: pointer;
+  
+  & .percent {
+    flex: 1;
+    background-color: rgb(220, 220, 220);
+    height: 20px;
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+    
+    & .percent-inner {
+      height: 100%;
+      width: 0;
+      transition: all .3s ease-in-out;
+      border-radius: inherit;
+    }
+    
+    & .progress-text {
+      position: absolute;
+      top: 50%;
+      right: .5rem;
+      transform: translateY(-50%);
+    }
+  
+  }
+}

@@ -1,0 +1,3 @@
+<div *ngIf="text" (click)="handleNestedLinks($event)" [ngStyle]="{ 'width': '100%' }">
+  <div [innerHTML]="text | trustHTML" [ngStyle]="{ 'white-space': 'pre-line' }"></div>
+</div>

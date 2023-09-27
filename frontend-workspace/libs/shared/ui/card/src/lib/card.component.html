@@ -1,0 +1,98 @@
+<div
+  class="card"
+  [ngClass]="{ 'hover-effect': showHoverEffect, static: static }"
+  [ngStyle]="{ height: height }"
+  (click)="clickHandler()"
+  (mouseenter)="mouseenterHandler()"
+  (mouseleave)="mouseleaveHandler()"
+  (contextmenu)="contextMenuHandler($event)"
+  (clickOutside)="closeContextMenu()">
+  <amx-flex [gap]="'var(--space-lg)'" [height]="'100%'">
+    <div [amxFlexChild]="'1'">
+      <amx-grid [columns]="columns" [gap]="'var(--space-md)'">
+        <div>
+          <h3 class="title" [title]="titleExpr"><b>{{ title }}</b></h3>
+          <amx-flex [gap]="'var(--space-md)'" [padding]="'0'">
+            <ng-container *ngTemplateOutlet="indicatorsTemplate"></ng-container>
+          </amx-flex>
+        </div>
+        <div><ng-content></ng-content></div>
+        <div [ngStyle]="{ 'justify-self' : 'end' }">
+          <amx-flex [gap]="'var(--space-md)'" *ngIf="controls.length > 0">
+            <ng-container *ngTemplateOutlet="controlsTemplate"></ng-container>
+          </amx-flex> 
+        </div>
+      </amx-grid>
+    </div>
+    <amx-flex [align]="'center'" [height]="'100%'" [amxFlexChild]="'0 0 20px'">
+      <ng-container *ngIf="options.length > 0">
+        <div (click)="stopPropagation($event)" class="more" [ngClass]="{ hovered: hovered }">
+          <amx-dropdown-button
+            [icon]="icons.moreIcon"
+            [bgColor]="'transparent'"
+            [origin]="'right'"
+            [padding]="'var(--space-sm)'"
+            [fgColor]="'white'"
+            [height]="'20px'">
+            <amx-flex [flow]="'column nowrap'">
+              <ng-container *ngTemplateOutlet="optionsTemplate"></ng-container>
+            </amx-flex>
+          </amx-dropdown-button>
+        </div>
+      </ng-container>
+    </amx-flex>
+  </amx-flex>
+  <div
+    class="context-menu"
+    [ngClass]="{ visible: showContextMenu }"
+    [ngStyle]="{ top: top, left: left }">
+    <amx-flex [flow]="'column nowrap'">
+      <ng-container *ngTemplateOutlet="optionsTemplate"></ng-container>
+    </amx-flex>
+  </div>
+</div>
+
+<ng-template #optionsTemplate>
+  <ng-container *ngFor="let option of options">
+    <div (click)="stopPropagation($event)">
+      <amx-dropdown-item-button
+        [label]="option.label"
+        [icon]="option.icon"
+        [danger]="option.danger"
+        (clicked)="optionClickedHandler(option)">
+      </amx-dropdown-item-button> 
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #controlsTemplate>
+  <ng-container *ngFor="let control of controls; let i = index;">
+    <div (click)="stopPropagation($event)">
+      <amx-icon-button
+        [awesome]="true"
+        [icon]="control.icon"
+        [fgColor]="control.color"
+        [height]="'20px'"
+        (clicked)="controlClickedHandler(control)">
+      </amx-icon-button>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #indicatorsTemplate>
+  <ng-container *ngFor="let indicator of indicators">
+    <ng-container [ngSwitch]="indicator.type">
+      <ng-container *ngSwitchCase="indicatorTypes.ICON">
+        <amx-icon [icon]="indicator.icon" [height]="'16px'" [color]="indicator.color"></amx-icon>
+      </ng-container>
+      <ng-container *ngSwitchCase="indicatorTypes.POPOVER">
+        <amx-popover-button
+          [icon]="indicator.icon"
+          [fgColor]="indicator.color"
+          [height]="'16px'"
+          [template]="indicator.template">
+        </amx-popover-button>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>

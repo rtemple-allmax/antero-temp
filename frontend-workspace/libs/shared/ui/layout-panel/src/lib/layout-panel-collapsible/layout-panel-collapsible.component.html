@@ -1,0 +1,47 @@
+<div
+  #container
+  class="layout-panel-collapsible" [attr.data-id]="title">
+  <div class="drag-handle">
+    <amx-flex [justify]="'space-between'" [align]="'center'" [padding]="'0 var(--space-sm)'">
+      <amx-flex [gap]="'var(--space-xl)'" [align]="'center'">
+        <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+          <amx-icon-button
+            [icon]="icons.downCaretIcon"
+            [showHoverEffect]="false"
+            [fgColor]="'var(--icon-color)'"
+            [awesome]="true"
+            (clicked)="toggle()"
+            [ngStyle]="{ transform: iconTransform, transition: 'all .2s ease-in-out' }">
+          </amx-icon-button>
+          <div>
+            <h2 [ngStyle]="{ 'color': 'var(--fg-color)' }">{{ title }}</h2>
+          </div>
+        </amx-flex>
+        <amx-tutorial-text [key]="tutorialKey">Right click on any field in this panel to add it to My Data</amx-tutorial-text>
+      </amx-flex>
+      <amx-flex>
+        <amx-icon-button
+          *ngIf="allowAdding"
+          [awesome]="true"
+          [height]="'20px'"
+          [shouldDisable]="disableControls"
+          [icon]="icons.addIcon"
+          (clicked)="addingHandler()">
+        </amx-icon-button>
+        <amx-icon-button
+          *ngIf="allowEditing"
+          [awesome]="true"
+          [height]="'20px'"
+          [shouldDisable]="disableControls"
+          [icon]="icons.editIcon"
+          (clicked)="editingHandler()">
+        </amx-icon-button>
+      </amx-flex>
+    </amx-flex>  
+  </div>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <div class="sortable-content" [ngClass]="{ collapsed: collapsed }">
+    <amx-separator [space]="'0'" [color]="'var(--border-color)'"></amx-separator>
+    <ng-content></ng-content>
+  </div>
+</div>

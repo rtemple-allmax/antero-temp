@@ -1,0 +1,65 @@
+<div class="splash" (keydown)="keyDownHandler($event)">
+  <div class="content">
+    <div>
+      <amx-flex [justify]="'center'">
+        <img class="logo" src="assets/logoAntC.svg"/>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <h1 [ngStyle]="{ 'text-align': 'var(--text-center)' }">Please Select A Database</h1>
+    </div>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <div class="select-db">
+      <ng-container *ngIf="accounts.length <= 1 else multiAccount">
+        <amx-flex [justify]="'space-between'" [align]="'center'">
+          <div>
+            <p [ngStyle]="{ 'color': 'var(--fg-color)' }">{{ accounts[0] }} - {{ accountName }}</p>
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <p [ngStyle]="{ 'color': 'var(--fg-color)' }">{{ seats }}</p>
+          </div>
+          <amx-label-button
+            *ngIf="accountsAndDbs.length > 1"
+            [label]="'Change Account'"
+            (clicked)="changeAccount()">
+          </amx-label-button>
+        </amx-flex>
+      </ng-container>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <div [ngStyle]="{ 'border': 'var(--border)' }">
+        <ng-container *ngIf="accountSelected else noAccountSelected">
+          <amx-scroll-box [maxHeight]="'350px'">
+            <div [ngStyle]="{ 'min-height': '300px' }">
+              <ng-container *ngFor="let db of databases">
+                <div class="db-list-item" [ngClass]="{ 'selected': db.selected }" (click)="selectDB(db)">
+                  <label>{{ db.displayName }}</label>
+                </div>
+              </ng-container>
+            </div>
+          </amx-scroll-box>
+        </ng-container>
+      </div>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+        <amx-flex [justify]="'center'">
+          <amx-label-button
+            [label]="'Open Database'"
+            [shouldDisable]="!selectedDB"
+            (clicked)="openDB()">
+          </amx-label-button>
+        </amx-flex>
+        <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    </div>    
+  </div>
+</div>
+
+<ng-template #multiAccount>
+  <label [ngStyle]="{ 'color': 'var(--fg-color)' }">Select an account</label>
+  <amx-spacer [space]="'var(--space-sm)'"></amx-spacer>
+  <dx-select-box [items]="accounts" (onValueChanged)="accountChangeHandler($event)"></dx-select-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <p [ngStyle]="{ 'color': 'var(--fg-color)' }">{{ accountName }}</p>
+</ng-template>
+
+<ng-template #noAccountSelected>
+  <div class="no-data">
+    Please select an account.
+  </div>
+</ng-template>

@@ -1,0 +1,142 @@
+<div [ngStyle]="{ width: width }">
+  <h2 [ngStyle]="{ 'text-align': 'center'}">Equipment Work History</h2>
+  <amx-data-table
+    class="subsection"
+    [data]="data?.data"
+    [columns]="data?.colDef?.columns || []"
+    [height]="'35vh'"
+    [allowReordering]="false"
+    [allowGrouping]="false"
+    [allowFiltering]="false"
+    [allowExport]="false"
+    [showRowLines]="true"
+    [allowFixing]="false"
+    [allowSearch]="false"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [showBorders]="false"
+    [backgroundColor]="'transparent'"
+    [cellTemplate]="cellTemplate"
+    [selectFirstRowOnLoad]="false"
+    [noDataText]="'No work orders have been completed for this equipment.'"
+    (selectionChanged)="selectionHandler($event)">
+  </amx-data-table>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <amx-separator></amx-separator>
+    <amx-scroll-box [maxHeight]="'35vh'">
+      <amx-flex [justify]="'space-between'">
+        <p>{{ getDateString(record?.dateCompleted) }}</p>
+        <p>{{ record?.completedBy }}</p>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <p>{{ record?.completedNotes }}</p>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <p>{{ instrumentsLabel }}</p>
+      <amx-separator></amx-separator>
+      <ng-container *ngFor="let item of instruments">
+        <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'var(--space-md)'">
+          <p>{{ item.instrument }}</p>
+          <p>{{ item.reading }} {{ item.units }}</p>
+        </amx-flex>
+      </ng-container>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <p>{{ laborLabel }}</p>
+      <amx-separator></amx-separator>
+      <ng-container *ngFor="let item of labor">
+        <amx-flex [justify]="'space-between'" [align]="'center'">
+          <amx-popover-text [template]="laborTemplate">{{ item.user }}</amx-popover-text>
+          <amx-popover-text [template]="laborHoursTemplate">{{ item.actualHours }} / {{ item.estimatedHours }} Hours</amx-popover-text>
+        </amx-flex>
+        <ng-template #laborTemplate>
+          <div [ngStyle]="{ padding: 'var(--space-md)'}">
+            <p>Class: {{ item.laborClass }}</p>
+            <p>Account: {{ item.laborAccount }}</p>
+          </div>
+        </ng-template>
+        <ng-template #laborHoursTemplate>
+          <div [ngStyle]="{ padding: 'var(--space-md)'}">
+            <p>Actual Hours / Estimated Hours</p>
+          </div>
+        </ng-template>
+      </ng-container>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <p>{{ partsLabel }}</p>
+      <amx-separator></amx-separator>
+      <ng-container *ngFor="let item of parts">
+        <amx-flex [justify]="'space-between'">
+          <amx-grid [columns]="'repeat(2, 25ch)'" [gap]="'var(--space-xl)'">
+            <div>
+              <p>{{ item.part }}</p>
+              <p>{{ item.partDescription }}</p>
+            </div>
+            <div>
+              <p>{{ item.warehouse }}</p>
+              <p>{{ item.area }}</p>
+            </div>
+          </amx-grid>
+          <amx-popover-text [template]="partQtyTemplate">{{ item.actualQuantity }} / {{ item.estimatedQuantity}} {{ item.unit }}</amx-popover-text>
+        </amx-flex>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+        <ng-template #partQtyTemplate>
+          <div [ngStyle]="{ padding: 'var(--space-md)'}">
+            <p>Actual Quantity / Estimated Quantity</p>
+          </div>
+        </ng-template>
+      </ng-container>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <p>{{ contractorsLabel }}</p>
+      <amx-separator></amx-separator>
+      <amx-grid [columns]="'1fr auto'">
+        <ng-container *ngFor="let item of contractors">
+          <div>
+            <p>{{ item.supplier }}</p>
+            <p>Inv# {{item.invoice }}</p>
+          </div>
+          <amx-popover-text [template]="costTemplate">{{ calculateCost(item) }}</amx-popover-text>
+          <ng-template #costTemplate>
+            <div [ngStyle]="{ padding: 'var(--space-md)'}">
+              <p>Part Cost: {{ formatAsCurrency(item.partCost) }}</p>
+              <p>Labor Cost: {{ formatAsCurrency(item.laborCost) }}</p>
+              <p>Misc Cost: {{ formatAsCurrency(item.miscCost) }}</p>
+              <p>Tax Cost: {{ formatAsCurrency(item.taxCost) }}</p>
+            </div>
+          </ng-template>
+        </ng-container>
+      </amx-grid>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <p>{{ toolsLabel }}</p>
+      <amx-separator></amx-separator>
+      <ng-container *ngFor="let item of tools">
+        <amx-flex [justify]="'space-between'">
+          <div>
+            <p>{{ item.equipment }}</p>
+            <p>{{ item.equipmentDescription }}</p>
+          </div>
+          <amx-popover-text [template]="toolQtyTemplate">{{ item.actualQuantity}} / {{ item.estimatedQuantity }} {{ item.workOrderUnits }}</amx-popover-text>
+        </amx-flex>
+        <ng-template #toolQtyTemplate>
+          <div [ngStyle]="{ padding: 'var(--space-md)' }">
+            <p> Actual {{ item.workOrderUnits }} / Estimated {{ item.workOrderUnits }}</p>
+            <p>{{ formatAsCurrency(item.workOrderRate ) }} per {{ item.workOrderUnits }}</p>
+          </div>
+        </ng-template>
+      </ng-container>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <p>{{ miscLabel }}</p>
+      <amx-separator></amx-separator>
+      <ng-container *ngFor="let item of misc">
+        <amx-flex [justify]="'space-between'">
+          <p>{{ item.description }}</p>
+          <p>{{ formatAsCurrency(item.cost) }}</p>
+        </amx-flex>
+      </ng-container>
+    </amx-scroll-box>
+  </div>
+</div>
+
+<ng-template #cellTemplate let-template="template">
+  <div>
+    <p><b>WO# {{ template?.data?.workOrderNumber }}</b></p>
+    <p>Completed On {{ getDateString(template?.data?.dateCompleted) }}</p>
+    <p>{{ template?.data?.task }}</p>
+  </div>
+</ng-template>

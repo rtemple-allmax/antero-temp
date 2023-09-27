@@ -1,0 +1,27 @@
+<amx-grid [columns]="'1fr 1fr 1fr 1fr 1fr'">
+  
+  <div>
+    <p [ngStyle]="{ 'align-self': 'center' }"><b>{{ getDateString(record?.dateTransferred) }}</b></p>
+    <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.quantity }} {{ record?.units }} ({{ formatAsCurrency(record?.unitCost) }})</p>
+  </div>
+
+  <div>
+    <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.sourceWarehouse }}</p>
+    <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.sourceArea }}</p>
+  </div>
+  
+  <amx-flex [justify]="'center'" [height]="'100%'">
+    <amx-icon [ngStyle]="{ 'text-align' : 'center' }" [icon]="icons.arrowRightIcon" [height]="'20px'" [color]="'var(--fg-color)'"></amx-icon>
+  </amx-flex>
+  
+  <div>
+    <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.destinationWarehouse }}</p>
+    <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.destinationArea }}</p>
+  </div>
+
+  <div>
+    <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.userName }}</p>
+    <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.comment }}</p>
+  </div>
+
+</amx-grid>

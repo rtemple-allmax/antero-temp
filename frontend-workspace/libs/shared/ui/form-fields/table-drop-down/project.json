@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/form-fields/table-drop-down/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/form-fields/table-drop-down"],
+      "options": {
+        "jestConfig": "libs/shared/ui/form-fields/table-drop-down/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/form-fields/table-drop-down/**/*.ts",
+          "libs/shared/ui/form-fields/table-drop-down/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

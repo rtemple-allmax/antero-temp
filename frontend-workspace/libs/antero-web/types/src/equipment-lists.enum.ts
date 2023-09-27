@@ -1,0 +1,10 @@
+export enum EquipmentLists {
+  CATEGORY,
+  CONDITION,
+  DEPARTMENT,
+  GROUP,
+  LOCATION,
+  PRIORITY,
+  TYPE,
+  SUPPLIER
+}

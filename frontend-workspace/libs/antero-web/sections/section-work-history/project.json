@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/sections/section-work-history/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/sections/section-work-history"],
+      "options": {
+        "jestConfig": "libs/antero-web/sections/section-work-history/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/sections/section-work-history/**/*.ts",
+          "libs/antero-web/sections/section-work-history/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

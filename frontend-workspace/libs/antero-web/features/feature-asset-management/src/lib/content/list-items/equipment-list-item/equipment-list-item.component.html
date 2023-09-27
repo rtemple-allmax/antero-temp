@@ -1,0 +1,20 @@
+<div (mouseenter)="mouseenterHandler()" (mouseleave)="mouseleaveHandler()">
+  <amx-flex [justify]="'space-between'" [gap]="'var(--space-md)'" [align]="'center'" >
+    <div>
+      <amx-flex [gap]="'var(--space-md)'">
+      <label [title]="'Name'" ><b>{{ record?.name }}</b></label><br/>
+      <label *ngIf="record?.retired" >(retired)</label>
+      </amx-flex>
+      <label [title]="'Description'" >{{ record?.description }}</label>
+    </div>
+    <div class="cell-more" [amxFlexChild]="'var(--flex-fixed)'" [ngClass]="{ hovered: hovered }">
+      <amx-dropdown-button
+        [icon]="icons.moreIcon"
+        [bgColor]="'transparent'"
+        [fgColor]="'var(--fg-color)'"
+        [height]="'16px'"
+        [items]="itemContextMenuItems">
+      </amx-dropdown-button>
+    </div> 
+  </amx-flex>  
+</div>

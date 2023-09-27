@@ -1,0 +1,26 @@
+<h2 [ngStyle]="{ 'text-align': 'center' }">Update RIME score</h2>
+<amx-separator></amx-separator>
+<amx-number-box
+  [label]="'Probability of Failure'"
+  [(ngModel)]="probabilityBinding.value"
+  [min]="1"
+  [max]="5"
+  (validityStateChanged)="validateProbability($event)">
+</amx-number-box>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-number-box
+  [label]="'Consequence of Failure'"
+  [(ngModel)]="consequenceBinding.value"
+  [min]="1"
+  [max]="5"
+  (validityStateChanged)="validateConsequence($event)">
+</amx-number-box>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-flex [justify]="'flex-end'">
+  <amx-combo-button
+    [label]="'Save'"
+    [icon]="icons.saveIcon"
+    [shouldDisable]="!ready"
+    (clicked)="submit()">
+  </amx-combo-button>
+</amx-flex>

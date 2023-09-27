@@ -1,0 +1,7 @@
+<button
+  class="btn label-btn"
+  [ngStyle]="{ opacity: opacity }" 
+  [disabled]="disabled || opacity === 0"
+  (click)="click($event)">
+  {{ label }}
+</button>

@@ -1,0 +1,31 @@
+<div [ngStyle]="{ 'padding': 'var(--space-md)' }">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+    <amx-group-box [label]="'Instructions'">
+      <dx-scroll-view [height]="'200px'"></dx-scroll-view>
+    </amx-group-box>
+    <amx-group-box [label]="'Checklist'">
+      <dx-scroll-view [height]="'200px'"></dx-scroll-view>
+    </amx-group-box>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-xl)'"></amx-spacer>
+  <amx-group-box [btnLabel]="'Edit'" [actionIcon]="icons.editIcon">
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+      <amx-read-only-box [label]="'Work Type'"></amx-read-only-box>
+      <amx-read-only-box [label]="'Work Priority'"></amx-read-only-box>
+      <amx-read-only-box [label]="'Days To Complete'"></amx-read-only-box>
+      <amx-read-only-box [label]="'Maintenance Group'"></amx-read-only-box>
+    </amx-grid>
+  </amx-group-box>
+  <amx-spacer [space]="'var(--space-xl)'"></amx-spacer>
+  <amx-group-box [label]="'Work Orders'">
+    <a [href]="'#'" [ngStyle]="{ color: 'var(--highlight-color)' }">Task Last Completed On 10/7/2022 (WO#221)</a>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <p><b>Open</b></p>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-data-table
+      [height]="'275px'"
+      [allowSearch]="false"
+      [showSummary]="false">
+    </amx-data-table>
+  </amx-group-box>
+</div>

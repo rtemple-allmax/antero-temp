@@ -1,0 +1,20 @@
+<amx-flex [gap]="'var(--space-sm)'" [flow]="flow">
+  <label *ngIf="label"><b>{{ label }}</b></label>
+  <amx-flex [align]="'center'" [gap]="'var(--space-md)'" [amxFlexChild]="'1'" >
+    <amx-text-box
+      [amxFlexChild]="'1'"
+      [placeholder]="placeholder"
+      [(ngModel)]="binding.value">
+    </amx-text-box>
+    <amx-icon-button
+      [awesome]="true"
+      [icon]="icon"
+      [height]="'20px'"
+      [padding]="'6px'"
+      [shouldDisable]="!ready"
+      [fgColor]="ready ? 'var(--icon-color)' : 'var(--disabled-color)'"
+      (clicked)="submit()">
+    </amx-icon-button>
+  </amx-flex>
+  
+</amx-flex>

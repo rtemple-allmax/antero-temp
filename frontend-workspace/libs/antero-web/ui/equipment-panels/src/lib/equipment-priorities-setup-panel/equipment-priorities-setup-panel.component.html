@@ -1,0 +1,9 @@
+<amx-list-editor
+  [records]="records"
+  [height]="innerHeight"
+  [typeName]="[ 'Priority', 'Priorities' ]"
+  [valueToAdd]="initialValue"
+  (addRequested)="submitAdd($event)"
+  (editRequested)="submitEdit($event)"
+  (deleteRequested)="submitDelete($event)">
+</amx-list-editor>

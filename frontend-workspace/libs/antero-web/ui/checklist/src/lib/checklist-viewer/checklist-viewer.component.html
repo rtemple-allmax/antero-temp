@@ -1,0 +1,14 @@
+<dx-scroll-view [height]="height">
+  <ng-container *ngIf="!readonly else readonlyTemplate">
+    <ng-container *ngFor="let item of ordered; let i = index;">
+      <amx-check-box [label]="item.label"></amx-check-box>
+    </ng-container>
+  </ng-container>
+</dx-scroll-view>
+
+
+<ng-template #readonlyTemplate>
+  <ng-container *ngFor="let item of ordered; let i = index;">
+    <amx-read-only-check-box [label]="item.label"></amx-read-only-check-box>
+  </ng-container>
+</ng-template>

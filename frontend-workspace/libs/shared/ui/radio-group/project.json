@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/radio-group/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/shared/ui/radio-group"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/ui/radio-group/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/radio-group/**/*.ts",
+          "libs/shared/ui/radio-group/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

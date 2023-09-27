@@ -1,0 +1,42 @@
+<div class="map-wrapper" [ngStyle]="{ height: height, width: '100%', overflow: 'hidden' }">
+  <ng-container *ngIf="showToolbar">
+    <amx-flex [padding]="'var(--space-md)'" [gap]="'var(--space-md)'">
+      <amx-combo-button
+        [label]="'Set Location'"
+        [icon]="icons.mapIcon"
+        (clicked)="switchInteractionMode(interactionModes.SET_LOCATION)">
+      </amx-combo-button>
+      <amx-combo-button
+        [label]="'Clear Location'"
+        [icon]="icons.clearIcon"
+        (clicked)="clearLocation()">
+      </amx-combo-button>
+      <!-- <amx-combo-button
+        [label]="'Show In Mapping'"
+        [icon]="icons.openIcon"
+        (clicked)="showInMapping()">
+      </amx-combo-button> -->
+    </amx-flex>
+  </ng-container>
+  <div
+    class="map-wrapper"
+    #container
+    [id]="mapDOMID"
+    [ngClass]="{
+      'map-set': interactionMode === interactionModes.SET_LOCATION,
+      'map-normal': interactionMode === interactionModes.NORMAL
+    }"
+    [ngStyle]="{
+      width: '100%',
+      height: mapHeight
+    }">
+    <div class="map-controls">
+      <amx-icon-button
+        [icon]="baseLayerName === 'road' ? icons.satelliteIcon: icons.streetsIcon"
+        [fgColor]="baseLayerName === 'road' ? 'black': 'white'"
+        [awesome]="true"
+        (clicked)="changeBaseLayer()"></amx-icon-button>
+    </div>
+  </div>
+  
+</div>

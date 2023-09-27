@@ -1,0 +1,9 @@
+<amx-modal [heading]="'Add Task'" (closed)="closedHandler()">
+  <amx-text-box [label]="'Name'" [(ngModel)]="nameBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-text-editor [label]="'Instructions'" [(ngModel)]="htmlBinding.value"></amx-text-editor>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [shouldDisable]="!ready" [label]="'Save'" [icon]="icons.saveIcon" (clicked)="submitAdd()"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

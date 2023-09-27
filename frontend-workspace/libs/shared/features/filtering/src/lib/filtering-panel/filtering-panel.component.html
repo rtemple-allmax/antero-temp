@@ -1,0 +1,25 @@
+<amx-flex [justify]="'flex-end'" [align]="'center'" [gap]="'var(--space-md)'" (clickOutside)="closeFilters()">
+  <amx-flex [justify]="'flex-end'" [align]="'center'" [gap]="'var(--space-md)'">       
+    <!-- where the tags go -->
+  </amx-flex>
+  <div class="filters-wrapper">
+    <amx-icon-button
+      [icon]="icons.filterIcon"
+      [awesome]="true"
+      [height]="'20px'"
+      [showBG]="true"
+      [fgColor]="currentFilters.length > 0 ? 'var(--selected-color)' : 'var(--fg-color)'"
+      (clicked)="toggleFilters()">
+    </amx-icon-button>
+    <div class="filters" [ngClass]="{ open: filtersOpen }">
+      <div [ngStyle]="{ 'border-bottom': 'var(--border)', padding: 'var(--space-md)' }">
+        <amx-link-button [label]="'Clear All'"></amx-link-button>
+      </div>
+      <amx-accordion-container>
+        <ng-container *ngFor="let filter of filters">
+          <amx-accordion-panel [label]="filter.type"></amx-accordion-panel>
+        </ng-container>
+      </amx-accordion-container>
+    </div>
+  </div>
+</amx-flex>

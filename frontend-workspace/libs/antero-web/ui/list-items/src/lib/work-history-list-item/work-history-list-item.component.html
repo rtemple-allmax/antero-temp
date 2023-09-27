@@ -1,0 +1,19 @@
+<div>
+  <amx-grid [columns]="'1fr 2fr'">
+    <amx-flex [gap]="'var(--space-sm)'" [align]="'center'">
+      <div>
+        <amx-popover-button [label]="workOrderNumberLabel" [type]="popoverTypes.TEXT" [template]="workOrderNumberTemplate"></amx-popover-button>
+        <p [title]="'Task Name'" [ngStyle]="{'width': '200px' }">{{ record?.task }}</p>
+      </div>
+    </amx-flex>
+    <amx-flex [gap]="'var(--space-md)'" [align]="'center'" [height]="'100%'">
+      <p>Completed On {{ getDateString(record?.dateCompleted) }}</p>
+    </amx-flex>
+  </amx-grid>
+  <ng-template #workOrderNumberTemplate>
+    <div [ngStyle]="{ padding: 'var(--space-md)' }">
+      <p>Type: {{ record?.workType }}</p>
+    </div>
+  </ng-template>
+</div>
+

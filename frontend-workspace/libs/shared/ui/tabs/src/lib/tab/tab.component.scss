@@ -1,0 +1,7 @@
+.tab-panel {
+  height: 0;
+}
+.tab-panel.active {
+  height: 100%;
+  padding-top: var(--space-md);
+}

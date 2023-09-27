@@ -1,0 +1,30 @@
+<amx-scroll-box [maxHeight]="'100%'">
+  <h3 [ngStyle]="{ 'text-align': 'center'}">Equipment Lists</h3>
+  <amx-separator></amx-separator>
+  <amx-accordion-container>
+    <amx-accordion-panel [label]="'Categories'">
+      <ng-container *ngIf="accordionIndex === 0">
+        <div [ngStyle]="{ height: '300px' }"></div>
+      </ng-container>
+    </amx-accordion-panel>
+    <amx-accordion-panel [label]="'Conditions'">
+      <ng-container *ngIf="accordionIndex === 1">Test 1</ng-container>
+    </amx-accordion-panel>
+    <amx-accordion-panel [label]="'Departments'">
+      <ng-container *ngIf="accordionIndex === 2">Test 2</ng-container>
+    </amx-accordion-panel>
+    <amx-accordion-panel [label]="'Groups'">
+      <ng-container *ngIf="accordionIndex === 3">Test 3</ng-container>
+    </amx-accordion-panel>
+    <amx-accordion-panel [label]="'Locations'">
+      <ng-container *ngIf="accordionIndex === 4">Test 4</ng-container>
+    </amx-accordion-panel>
+    <amx-accordion-panel [label]="'Priorities'">
+      <ng-container *ngIf="accordionIndex === 5">Test 5</ng-container>
+    </amx-accordion-panel>
+    <amx-accordion-panel [label]="'Types'">
+      <ng-container *ngIf="accordionIndex === 6">Test 6</ng-container>
+    </amx-accordion-panel>
+  </amx-accordion-container>
+</amx-scroll-box>
+

@@ -1,0 +1,22 @@
+<ng-container *ngIf="!useLayout else useLayoutTemplate">
+  <div [ngStyle]="styles">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </div>
+</ng-container>
+
+<ng-template #useLayoutTemplate>
+  <div class="layout" [ngStyle]="styles_UseLayout" [ngClass]="{
+    'layout-col-1': layout === layouts.COLS_1,
+    'layout-col-2': layout === layouts.COLS_2,
+    'layout-col-3': layout === layouts.COLS_3
+  }">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>
+
+
+

@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/error-window/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/error-window"],
+      "options": {
+        "jestConfig": "libs/shared/ui/error-window/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/error-window/**/*.ts",
+          "libs/shared/ui/error-window/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

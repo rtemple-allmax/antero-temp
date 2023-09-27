@@ -1,0 +1,53 @@
+<amx-modal [heading]="'Equipment Lists'" [maxWidth]="'800px'" [height]="'600px'" (closed)="closedHandler()">
+  <amx-tabs [height]="tabsHeight">
+    <amx-tab [label]="'Categories'">
+      <ant-equipment-categories-setup-panel
+        *ngIf="tabIndex === 0"
+        [height]="panelHeight">
+      </ant-equipment-categories-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Conditions'">
+      <ant-equipment-conditions-setup-panel
+        *ngIf="tabIndex === 1"
+        [height]="panelHeight">
+      </ant-equipment-conditions-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Criticality Rankings'">
+      <ant-equipment-criticality-setup-panel
+        *ngIf="tabIndex === 2"
+        [height]="panelHeight">
+      </ant-equipment-criticality-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Departments'">
+      <ant-equipment-departments-setup-panel
+        *ngIf="tabIndex === 3"
+        [height]="panelHeight">
+      </ant-equipment-departments-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Groups'">
+      <ant-equipment-groups-setup-panel
+        *ngIf="tabIndex === 4"
+        [height]="panelHeight">
+      </ant-equipment-groups-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Locations'">
+      <ant-equipment-locations-setup-panel
+        *ngIf="tabIndex === 5"
+        [height]="panelHeight">
+      </ant-equipment-locations-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Priorities'">
+      <ant-equipment-priorities-setup-panel
+        *ngIf="tabIndex === 6"
+        [height]="panelHeight">
+      </ant-equipment-priorities-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Types'">
+      <ant-equipment-types-setup-panel
+        *ngIf="tabIndex === 7"
+        [height]="panelHeight">
+      </ant-equipment-types-setup-panel>
+    </amx-tab>
+  </amx-tabs>
+</amx-modal>
+

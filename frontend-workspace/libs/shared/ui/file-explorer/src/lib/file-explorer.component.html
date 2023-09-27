@@ -1,0 +1,43 @@
+<div [ngStyle]="{ padding: 'var(--space-md)' }">
+  <amx-file-picker
+    *ngIf="allowAdd"
+    [label]="'Add Document(s)'"
+    (filesSelected)="filesAddedHandler($event)">
+  </amx-file-picker>
+  <div [ngStyle]="{ 'height': 'calc(100% - 40px)', padding: 'var(--space-lg)' }">
+    <ng-container *ngIf="files.length > 0 else noDocs">
+      <amx-grid [height]="'100%'" [columns]="'repeat(8, 1fr)'">
+        <ng-container *ngFor="let file of files">
+          <amx-shortcut-button
+            [awesome]="true"
+            [label]="file.document?.name || ''"
+            [icon]="getFileIcon(file.document?.extension || '')"
+            [selected]="isInSelection(file)"
+            (clicked)="clickHandler(file)"
+            (rightClicked)="rightClickHandler(file)"
+            (ctrlClicked)="ctrlClickHandler(file)"
+            (dblClicked)="dblClickHandler(file)">
+            <amx-dropdown-item-button
+              [label]="'Download Selected'"
+              [icon]="icons.downloadIcon"
+              (clicked)="downloadHandler()">
+            </amx-dropdown-item-button>
+            <amx-dropdown-item-button
+              [label]="'Delete Selected'"
+              [danger]="true"
+              [icon]="icons.deleteIcon"
+              (clicked)="deleteHandler()">
+            </amx-dropdown-item-button>
+          </amx-shortcut-button>
+        </ng-container>
+      </amx-grid>
+    </ng-container>
+  </div>
+</div>
+
+
+<ng-template #noDocs>
+  <div class="no-data">
+    <p>No Documents have been added to this {{ parentTypeName }}.</p>
+  </div>
+</ng-template>

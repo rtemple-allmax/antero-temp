@@ -1,0 +1,6 @@
+.layout {
+  gap: var(--space-md);
+  &.layout-col-1 { grid-template-columns: 1fr; }
+  &.layout-col-2 { grid-template-columns: repeat(2, 1fr); }
+  &.layout-col-3 { grid-template-columns: repeat(3, 1fr); }
+}

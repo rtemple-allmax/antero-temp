@@ -1,0 +1,25 @@
+<div class="field-wrapper" [ngClass]="{ invalid: !valid, required: required, desktop: stylingMode === 'desktop' }">
+  <div [ngClass]="{ inline: inline }">
+    <label class="label">{{ label }}</label>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <div class="field">
+      <dx-select-box
+        [tabIndex]="tabIndex"
+        [(value)]="value"
+        [dataSource]="dataSource"
+        [disabled]="isDisabled"
+        [displayExpr]="displayExpr"
+        
+        [placeholder]="placeholder"
+        [acceptCustomValue]="allowSearch"
+        [searchEnabled]="allowSearch"
+        [height]="stylingMode === 'desktop' ? '26px' : 'auto'"
+        (onBlur)="blurHandler()"
+        (onOpened)="openHandler()">
+      </dx-select-box>
+    </div>
+  </div>
+  <div class="errors-wrapper" *ngIf="!valid">
+    <label class="error-text">{{ errorMessage }}</label>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<amx-modal [heading]="heading" (closed)="closedHandler()">
+  <amx-text-box
+    [label]="'Name'"
+    [(ngModel)]="nameBinding.value">
+  </amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-text-box
+    [label]="'Description'"
+    [(ngModel)]="descriptionBinding.value">
+  </amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-select-box
+      [label]="'Tracking Type'"
+      [required]="true"
+      [dataSource]="typeData"
+      [(ngModel)]="trackingTypeBinding.value">
+    </amx-select-box>
+    <amx-searchable-dropdown
+      [label]="'Product Group'"
+      [items]="productGroups"
+      [allowAdd]="false"
+      [(ngModel)]="productGroupBinding.value"
+      (opened)="getProductGroups()">
+    </amx-searchable-dropdown>
+    <amx-searchable-dropdown
+      [label]="'Product Type'"
+      [items]="productTypes"
+      [allowAdd]="false"
+      [(ngModel)]="productTypeBinding.value"
+      (opened)="getProductTypes()">
+    </amx-searchable-dropdown>
+    <amx-searchable-dropdown
+      [label]="'Equipment Type'"
+      [items]="equipmentTypes"
+      [allowAdd]="false"
+      [(ngModel)]="equipmentTypeBinding.value"
+      (opened)="getEquipmentTypes()">
+    </amx-searchable-dropdown>
+    <amx-text-box
+      [label]="'Stocking Unit'"
+      [(ngModel)]="stockingUnitBinding.value">
+    </amx-text-box>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-check-box
+    [label]="'Order In Bulk'"
+    [(ngModel)]="orderInBulkBinding.value">
+  </amx-check-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-text-box
+      [label]="'Bulk Units'"
+      [disabled]="!bulkOrderingEnabled"
+      [(ngModel)]="bulkUnitBinding.value">
+    </amx-text-box>
+    <amx-number-box
+      [label]="'Number per Bulk Unit'"
+      [disabled]="!bulkOrderingEnabled"
+      [(ngModel)]="conversionRateBinding.value">
+    </amx-number-box>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-text-area
+    [label]="'Notes'"
+    [(ngModel)]="notesBinding.value">
+  </amx-text-area>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [gap]="'var(--space-md)'">
+    <amx-check-box
+      [label]="'Include Stock Locations'"
+      [(ngModel)]="includeStockBinding.value">
+    </amx-check-box>
+    <amx-check-box
+      [label]="'Include Suppliers'"
+      [(ngModel)]="includeSuppliersBinding.value">
+    </amx-check-box>
+  </amx-flex>
+  
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-searchable-dropdown
+      [label]="'Warehouse'"
+      [items]="warehouses"
+      [disabled]="!stockLocationsEnabled"
+      [(ngModel)]="warehouseBinding.value"
+      (opened)="getWarehouses()">
+    </amx-searchable-dropdown>
+    <amx-searchable-dropdown
+      [label]="'Area'"
+      [items]="areas"
+      [disabled]="!stockLocationsEnabled || !areasEnabled"
+      [(ngModel)]="areaBinding.value">
+    </amx-searchable-dropdown>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button 
+      [label]="'Save'"
+      [icon]="icons.saveIcon"
+      (clicked)="submit()">
+    </amx-combo-button>
+  </amx-flex>
+</amx-modal>

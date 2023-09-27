@@ -1,0 +1,17 @@
+<div class="drawer" 
+  [ngClass]="{ open: isOpen }"
+  [ngStyle]="{
+    transform: transform,
+    'background-color': bgColor,
+    'top': top,
+    'bottom': bottom,
+    'right': right,
+    'left': left,
+    'width': width,
+    'z-index': zIndex,
+    'height': height,
+    'border-left': borderLeft ? 'var(--border)' : 'none',
+    'border-right': borderRight ? 'var(--border)' : 'none'
+  }">
+  <ng-content></ng-content>
+</div>

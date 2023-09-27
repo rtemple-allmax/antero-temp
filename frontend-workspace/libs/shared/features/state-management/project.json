@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/features/state-management/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/features/state-management"],
+      "options": {
+        "jestConfig": "libs/shared/features/state-management/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/features/state-management/**/*.ts",
+          "libs/shared/features/state-management/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

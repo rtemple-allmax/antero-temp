@@ -1,0 +1,8 @@
+<amx-list-editor
+  [records]="records"
+  [typeName]="[ 'Location', 'Locations' ]"
+  [valueToAdd]="initialValue"
+  (addRequested)="addLocation($event)"
+  (editRequested)="editLocation($event)"
+  (deleteRequested)="deleteLocation($event)">
+</amx-list-editor>

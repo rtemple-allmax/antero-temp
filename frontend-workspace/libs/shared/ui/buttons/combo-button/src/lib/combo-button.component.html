@@ -1,0 +1,13 @@
+<button
+  #button
+  [ngStyle]="{ height: height, color: color , background: bg, 'border-color': borderColor }"
+  class="combo-btn"
+  [type]="'button'"
+  [title]="tooltip"
+  [disabled]="disabled"
+  (mouseenter)="mouseenterHandler()"
+  (mouseleave)="mouseleaveHandler()"
+  (click)="click($event)">
+  <fa-icon [icon]="icon" [ngStyle]="{ 'font-size': 'var(--font-size-md)',  color: color }"></fa-icon>
+  {{ label }}
+</button>

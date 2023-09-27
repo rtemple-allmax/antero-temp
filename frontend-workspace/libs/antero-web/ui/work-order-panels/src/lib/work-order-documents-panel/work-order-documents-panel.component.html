@@ -1,0 +1,61 @@
+<!-- <amx-flex [flow]="'column nowrap'" [height]="height" [gap]="'1rem'">
+  <amx-group-box
+    [amxFlexChild]="'1'"
+    [label]="'Attachments'"
+    [black]="true"
+    [stretch]="true">
+    <amx-flex [align]="'center'" [gap]="'1rem'">
+      <amx-crud-toolbar [disabled]="true"></amx-crud-toolbar>
+      <amx-icon-button [awesome]="true" [icon]="icons.downloadIcon" [fgColor]="'#bbb'"></amx-icon-button>
+    </amx-flex>
+    <ng-container *ngIf="attachments.length > 0 else noAttachments">
+      <amx-grid [columns]="'repeat(7, 1fr)'">
+        <ng-container *ngFor="let a of attachments; let i = index">
+          <amx-flex [flow]="'column nowrap'" [gap]="'.5rem'" [align]="'center'">
+            <amx-icon-button [awesome]="true" [icon]="getIcon(a.document)" [height]="'25px'" [shouldDisable]="true"></amx-icon-button>
+            <label>{{ a.document?.name }}</label>
+          </amx-flex>
+        </ng-container>
+      </amx-grid>
+    </ng-container>
+  </amx-group-box>
+  <amx-group-box
+    [amxFlexChild]="'1'"
+    [label]="'Equipment Documents'"
+    [black]="true"
+    [stretch]="true">
+    <amx-flex [align]="'center'" [gap]="'1rem'" [padding]="'.5rem'">
+      <amx-icon-button [awesome]="true" [icon]="icons.downloadIcon" [fgColor]="'#bbb'" [shouldDisable]="true"></amx-icon-button>
+    </amx-flex>
+    <ng-container *ngIf="eqDocuments.length > 0 else noEqDocuments">
+      <amx-grid [columns]="'repeat(7, 1fr)'">
+        <ng-container *ngFor="let e of eqDocuments; let i = index">
+          <amx-flex [flow]="'column nowrap'" [gap]="'.5rem'" [align]="'center'">
+            <amx-icon-button [awesome]="true" [icon]="getIcon(e.document)" [height]="'25px'"></amx-icon-button>
+            <label [ngStyle]="{ 'text-align': 'center'}">{{ e.document?.name }}</label>
+          </amx-flex>
+        </ng-container>
+      </amx-grid>
+    </ng-container>
+  </amx-group-box>
+</amx-flex>
+
+<ng-template #noAttachments>
+  <div class="no-data">
+    No Attachments have been associated with this Work Order.
+  </div>
+</ng-template>
+
+<ng-template #noEqDocuments>
+  <div class="no-data">
+    No Documents have been associated with this Work Order's Equipment.
+  </div>
+</ng-template> -->
+
+<amx-file-explorer
+    [files]="data"
+    [parentTypeName]="'Work Order'"
+    (addRequested)="addRequestHandler($event)"
+    (deleteRequested)="deleteRequestHandler($event)"
+    (downloadRequested)="downloadRequestHandler($event)">
+  </amx-file-explorer>

@@ -1,0 +1,20 @@
+<div
+  #portrait
+  [id]="id"
+  class="portrait"
+  [ngClass]="{ primary: imgData?.isPrimary }"
+  [ngStyle]="{ 'background-image': url }">
+</div>
+<dx-context-menu
+  [dataSource]="menuItems"
+  [width]="200"
+  [target]="target"
+  (onItemClick)="itemClick($event)">
+  <div *dxTemplate="let data of 'item'; let i = index">
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'" [padding]="'var(--space-sm)'">
+      <amx-icon [icon]="data.icon" [color]="data.danger ? 'var(--msg-danger)' : 'var(--icon-color)'"></amx-icon>
+      <label [ngStyle]="{ color: data.danger ? 'var(--msg-danger)' : 'var(--icon-color)' }">{{ data.text }}</label>
+    </amx-flex>
+</div>
+</dx-context-menu>
+

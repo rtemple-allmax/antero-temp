@@ -1,0 +1,7 @@
+<amx-confirmation
+  [dangerous]="true"
+  (confirmed)="confirmedHandler()"
+  (canceled)="canceledHandler()"
+  (closed)="canceledHandler()">
+  <span>Are you sure you want to delete the Part <b>{{ selection?.partName }}</b>?</span>
+</amx-confirmation>

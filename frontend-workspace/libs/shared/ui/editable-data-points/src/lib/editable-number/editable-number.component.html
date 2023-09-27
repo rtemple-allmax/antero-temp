@@ -1,0 +1,15 @@
+<ng-container *ngIf="showEdit else readonlyTemplate">
+  <amx-number-box
+    [label]="label"
+    [min]="min"
+    [max]="max"
+    [(ngModel)]="binding.value">
+  </amx-number-box>
+</ng-container>
+
+<ng-template #readonlyTemplate>
+  <amx-read-only-box
+    [label]="label">
+    {{ data }}
+  </amx-read-only-box>
+</ng-template>

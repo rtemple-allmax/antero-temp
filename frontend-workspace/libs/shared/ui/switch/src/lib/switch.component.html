@@ -1,0 +1,27 @@
+<div class="switch">
+  <amx-flex [align]="'center'" [gap]="type === 'labels' ? 'var(--space-md)' : '0'">
+    <ng-container *ngIf="type === 'labels' else buttonsTemplate">
+      <div (click)="toggleChange(0)">
+        <label 
+          class="label left"
+          [ngStyle]="{ 'font-size': size, color: this.selectedValue === values[0] ? onColor : offColor }">
+          {{ values[0] }}
+        </label>
+      </div>
+      <div>/</div>
+      <div (click)="toggleChange(1)">
+        <label
+          class="label right"
+          [ngStyle]="{ 'font-size': size, color: this.selectedValue === values[1] ? onColor : offColor }">
+          {{ values[1] }}
+        </label>
+      </div>
+    </ng-container>
+  </amx-flex>
+</div>
+
+
+<ng-template #buttonsTemplate>
+  <button class="btn left" [ngClass]="{ active: this.selectedValue === values[0] }" (click)="toggleChange(0)">{{ values[0] }}</button>
+  <button class="btn right" [ngClass]="{ active: this.selectedValue === values[1] }" (click)="toggleChange(1)">{{ values[1] }}</button>
+</ng-template>

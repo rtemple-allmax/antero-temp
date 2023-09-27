@@ -1,0 +1,20 @@
+<fieldset class="group-box"
+  [ngClass]="{ stretch: stretch, white: white, black: black, disabled: shouldDisable }"
+  [ngStyle]="{ padding: padding, overflow: overflow, 'max-width': maxWidth }">
+  <legend
+    class="group-label" [ngClass]="{ bold: bold }">
+    <ng-container *ngIf="!hasIcon">
+      {{ label }}
+    </ng-container>
+    <ng-container *ngIf="hasIcon">
+      <amx-icon-button
+        [awesome]="true"
+        [fgColor]="iconColor"
+        [height]="'16px'"
+        [icon]="actionIcon"
+        (clicked)="clickHandler()">
+      </amx-icon-button>
+    </ng-container>
+  </legend>
+  <ng-content></ng-content>
+</fieldset>

@@ -1,0 +1,27 @@
+<amx-modal [heading]="'Edit Purchasing Details'" (closed)="closedHandler()">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-searchable-dropdown
+        [label]="'Vendor'"
+        [items]="suppliers"
+        [allowAdd]="false"
+        [(ngModel)]="vendorBinding.value">
+      </amx-searchable-dropdown>
+      <amx-date-box [label]="'Placed In Service'" [type]="'date'" [(ngModel)]="placedInServiceBinding.value"></amx-date-box>
+      <amx-searchable-dropdown
+        [label]="'Manufacturer'"
+        [items]="suppliers"
+        [allowAdd]="false"
+        [(ngModel)]="manufacturerBinding.value">
+      </amx-searchable-dropdown>
+      <amx-number-box [label]="'Warranty Days'" [(ngModel)]="warrantyDaysBinding.value"></amx-number-box>
+      <amx-date-box [label]="'Date Purchased'" [type]="'date'" [(ngModel)]="datePurchasedBinding.value"></amx-date-box>
+      <amx-number-box [label]="'Warranty Meter'" [(ngModel)]="warrantyMeterBinding.value"></amx-number-box>
+      <amx-number-box [label]="'Purchase Price'" format="$ ###,###,###,##0.00" [(ngModel)]="purchasePriceBinding.value"></amx-number-box>
+      <amx-number-box [label]="'Life Expectancy'" [precision]="{ integral: 14, fractional: 2 }" [(ngModel)]="lifeExpectancyBinding.value"></amx-number-box>
+      <amx-number-box [label]="'Salvage Value'" format="$ ###,###,###,##0.00" [(ngModel)]="salvageValueBinding.value"></amx-number-box>
+    </amx-grid> 
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [label]="'Save'" [icon]="icons.saveIcon" (clicked)="submit()"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

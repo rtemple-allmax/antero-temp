@@ -1,0 +1,25 @@
+.slide-out {
+  position: absolute;
+  top: 36px;
+  bottom: 0;
+  right: 0;
+  width: 400px;
+  transition: all .3s ease-in-out;
+  transform: translateX(100%);
+  background: rgba(255, 255, 255, .1);
+  box-shadow: var(--shadow);
+  &.open {
+    transform: translateX(0);
+    &.opaque {
+      background: rgba(255, 255, 255, 1);
+    }
+    & .slide-out-inner {
+      opacity: .1;
+      transition: all .3s ease-in-out;
+      padding: var(--space-lg) var(--space-md);
+      &.opaque {
+        opacity: 1;
+      } 
+    }
+  }
+}

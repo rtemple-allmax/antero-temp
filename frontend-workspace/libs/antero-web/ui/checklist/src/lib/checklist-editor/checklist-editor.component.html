@@ -1,0 +1,65 @@
+<amx-modal
+  #editor
+  [heading]="'Edit Checklist'"
+  (closed)="closedHandler()">
+  <amx-group-box [label]="'Add Checklist Items'" [stretch]="true">
+    <dx-scroll-view [height]="'350px'">
+      <div
+        *ngFor="let item of checklist; let i = index"
+        [draggable]="true" 
+        [class.dragging]="i === this.draggingIndex"
+        (dragstart)="onDragStart(i)" 
+        (dragover)="onDragOver(i)" 
+        (dragend)="onDragEnd()">
+        <div class="checklist-item">
+          <amx-flex [justify]="'space-between'" [align]="'center'">
+            <amx-read-only-check-box [label]="item.label"></amx-read-only-check-box>
+            <amx-flex  [gap]="'var(--space-md)'" [align]="'center'">
+              <amx-icon-button
+                [awesome]="true"
+                [icon]="icons.editIcon"
+                (clicked)="openItemEditor(item)">
+              </amx-icon-button>
+              <amx-icon-button
+                [awesome]="true"
+                [icon]="icons.deleteIcon"
+                [fgColor]="'var(--msg-danger)'"
+                (clicked)="removeItem(i)">
+              </amx-icon-button>
+            </amx-flex>
+          </amx-flex>
+        </div>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      </div>
+      <amx-flex [justify]="'center'">
+        <amx-icon-button
+          [icon]="icons.addIcon"
+          [awesome]="true"
+          [height]="'24px'"
+          (clicked)="openItemEditor()">
+        </amx-icon-button>
+      </amx-flex>
+    </dx-scroll-view>
+  </amx-group-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [label]="'Save'" [invert]="true" [icon]="icons.saveIcon" (clicked)="changeHandler()"></amx-combo-button>
+  </amx-flex>
+</amx-modal>
+
+<amx-modal
+  *ngIf="showItemEditor"
+  [heading]="'Add Checklist Item'"
+  [zIndex]="'var(--layer-3)'"
+  (closed)="closedItemEditorHandler()">
+  <amx-text-box [label]="'Label'" [(ngModel)]="itemLabelBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button
+      [label]="'Save'"
+      [icon]="icons.saveIcon"
+      [invert]="true"
+      [shouldDisable]="!itemReady"
+      (clicked)="submitItem()"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

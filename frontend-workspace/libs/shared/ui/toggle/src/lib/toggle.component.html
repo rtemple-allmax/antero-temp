@@ -1,0 +1,16 @@
+<amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+  <label><b>{{ label }}</b></label>
+  <ng-container *ngIf="!readonly else readonlyTemplate">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="value"/>
+    <span class="slider"></span>
+  </label>
+</ng-container>
+</amx-flex>
+
+<ng-template #readonlyTemplate>
+  <ng-container *ngIf="state">
+    <amx-icon [icon]="icons.confirmIcon"></amx-icon>
+  </ng-container>
+</ng-template>
+

@@ -1,0 +1,5 @@
+<ng-container *ngIf="selected">
+  <div class="tab-panel" [ngClass]="{ active: selected }" [ngStyle]="{ 'background-color': bgColor }">
+    <ng-content></ng-content>
+  </div>
+</ng-container>

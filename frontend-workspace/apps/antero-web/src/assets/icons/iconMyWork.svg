@@ -1,0 +1,41 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Layer_1" transform="translate(-2, -2)" style="enable-background:new 0 0 32 32">
+    <g>
+      <g>
+        <path d="M2.1, 12.4C2.1, 12.2 2, 12.1 2, 11.9C2.1, 12.1 2.1, 12.2 2.1, 12.4z" fill="#727272" class="Black" />
+      </g>
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-2, -2)" style="enable-background:new 0 0 32 32">
+    <g>
+      <g>
+        <path d="M2.1, 11.9C2.1, 11.8 2.1, 11.7 2.1, 11.6C2, 11.7 2.1, 11.8 2.1, 11.9z" fill="#727272" class="Black" />
+      </g>
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-2, -2)" style="enable-background:new 0 0 32 32">
+    <g>
+      <g>
+        <path d="M24, 12C22.9, 13.1 21.1, 13.1 20, 12C18.9, 10.9 18.9, 9.1 20, 8L25, 3C23.8, 2.4 22.4, 2 21, 2C16, 2 12, 6 12, 11C12, 12.5 12.4, 13.8 13, 15L2, 26L6, 30L17, 19C18.2, 19.6 19.6, 20 21, 20C26, 20 30, 16 30, 11C30, 9.5 29.6, 8.2 29, 7L24, 12z" fill="#727272" class="Black" />
+      </g>
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(-2, -2)" style="enable-background:new 0 0 32 32">
+    <g>
+      <g>
+        <path d="M24, 12C22.9, 13.1 21.1, 13.1 20, 12C18.9, 10.9 18.9, 9.1 20, 8L25, 3C23.8, 2.4 22.4, 2 21, 2C16, 2 12, 6 12, 11C12, 12.5 12.4, 13.8 13, 15L2, 26L6, 30L17, 19C18.2, 19.6 19.6, 20 21, 20C26, 20 30, 16 30, 11C30, 9.5 29.6, 8.2 29, 7L24, 12z" fill="#1177D7" class="Blue" />
+      </g>
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(16, 16)" style="enable-background:new 0 0 16 16">
+    <g id="User">
+      <path d="M4, 4.9C3.9, 5.3 4.1, 5.5 4.3, 5.8C4.5, 6.1 4.2, 6.8 4.9, 6.8C4.9, 6.8 4.9, 6.9 4.9, 6.9C5.3, 8.4 6.2, 10 8, 10C9.8, 10 10.8, 8.4 11.2, 6.9C11.2, 6.9 11.2, 6.8 11.2, 6.8C11.9, 6.8 11.6, 6.1 11.8, 5.8C12, 5.5 12.1, 5.3 12, 4.9C11.9, 4.6 11.7, 4.7 11.6, 4.7C12.8, 1.6 10.9, 1.8 10.9, 1.8C10.9, 1.8 10.7, 0 7.2, 0C4, 0 3.6, 2.5 4.3, 4.7C4.3, 4.8 4.1, 4.8 4, 4.9z" fill="#727272" class="Black" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(16, 16)" style="enable-background:new 0 0 16 16">
+    <g id="User">
+      <path d="M10.7, 10C10.2, 10.9 9.3, 12 8, 12C6.7, 12 5.9, 10.9 5.3, 10C3.8, 12.1 0, 10.6 0, 15.1L0, 16L16, 16L16, 15.1C16, 10.6 12.2, 12.1 10.7, 10z" fill="#727272" class="Black" />
+    </g>
+  </g>
+</svg>

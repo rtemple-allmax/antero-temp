@@ -1,0 +1,11 @@
+export enum Themes {
+  NONE,
+  ANTERO,
+  ANTERO_DARK,
+  SYNEXUS,
+  SYNEXUS_DARK,
+  WASTEWATER,
+  WASTEWATER_DARK,
+  WATER,
+  WATER_DARK
+}

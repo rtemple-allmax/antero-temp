@@ -1,0 +1,26 @@
+<amx-layout-panel>
+  <ng-container header>
+    <h2>Labor</h2>
+  </ng-container>
+  <ng-container content>
+    <amx-data-table
+      class="subsection"
+      [allowGrouping]="false"
+      [allowFiltering]="false"
+      [allowExport]="false"
+      [data]="data?.data"
+      [selectFirstRowOnLoad]="false"
+      [columns]="data?.colDef?.columns || []"
+      [showColumnHeaders]="viewType === viewTypes.TABLE"
+      [showRowLines]="true"
+      [showColumnLines]="false"
+      [selectionMode]="'none'"
+      [hoverStateEnabled]="false"
+      [cellTemplate]="viewType === viewTypes.LIST ? cellTemplate : null">
+    </amx-data-table>
+  </ng-container>
+</amx-layout-panel>
+
+<ng-template #cellTemplate let-template="template">
+  <ant-work-order-labor-list-item [record]="template?.data"></ant-work-order-labor-list-item>
+</ng-template>

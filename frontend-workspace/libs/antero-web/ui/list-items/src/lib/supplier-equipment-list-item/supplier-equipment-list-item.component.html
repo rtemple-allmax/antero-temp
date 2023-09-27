@@ -1,0 +1,14 @@
+<div>
+  <amx-grid [columns]="'1fr 1fr 1fr'">
+    <amx-media-object
+      [heading]="record?.name"
+      [listItem]="true"
+      [text]="record?.description">
+    </amx-media-object>
+    <amx-flex [justify]="'center'" [align]="'center'" [height]="'100%'">
+      <p>{{ formatAsCurrency(record?.purchasePrice) }}</p>
+    </amx-flex>
+    <p [ngStyle]="{ 'align-self': 'center' }">Purchased On: {{ getDateString(record?.datePurchased) }}</p>
+  </amx-grid>
+</div>
+

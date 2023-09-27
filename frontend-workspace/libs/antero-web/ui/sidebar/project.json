@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/ui/sidebar/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/ui/sidebar"],
+      "options": {
+        "jestConfig": "libs/antero-web/ui/sidebar/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/ui/sidebar/**/*.ts",
+          "libs/antero-web/ui/sidebar/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,71 @@
+<div class="wrapper"
+(mouseenter)="mouseenterHandler()"
+(mouseleave)="mouseleaveHandler()"
+[ngStyle]="{ padding: 'var(--space-md)'}">
+  <amx-grid [columns]="'50ch 1fr auto'">
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+      <amx-avatar [src]="primaryImage?.thumbnailUrl"></amx-avatar>
+      <div>
+        <p [ngStyle]="{ color: 'var(--fg-color)'}">{{ record?.part?.name }}</p>
+        <amx-popover-text [template]="popoverTemplate">{{ text }}</amx-popover-text>
+      </div>
+    </amx-flex>    
+    <p [title]="'Comment'" [ngStyle]="{ 'align-self': 'center' }">{{ record?.comment }}</p>
+    <div  class="more" [ngClass]="{ hovered: hovered }" [ngStyle]="{ 'align-self': 'center' }">
+      <amx-crud-button
+        [shouldDisable]="shouldDisable"
+        [allowEditing]="true"
+        [allowDeleting]="true"
+        (editRequested)="editHandler()"
+        (deleteRequested)="deleteHandler()">
+      </amx-crud-button>
+    </div>
+  </amx-grid>
+  <div class="editor" [ngClass]="{ editing: editing }">
+    <ng-container *ngIf="editing">
+      <amx-text-box
+        [label]="'Comment'"
+        [(ngModel)]="commentBinding.value">
+      </amx-text-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [justify]="'flex-end'">
+        <amx-combo-button
+          [label]="'Save'"
+          [icon]="icons.saveIcon"
+          (clicked)="submit()">
+        </amx-combo-button>
+      </amx-flex>
+    </ng-container>
+  </div>
+  <div class="confirmation" [ngClass]="{ deleting: deleting }">
+    <ng-container *ngIf="deleting">
+      <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+        <p>Are you sure you want to remove the Part <b>{{ record?.part?.name }}?</b></p>
+        <amx-combo-button
+          [label]="'Confirm'"
+          [icon]="icons.confirmIcon"
+          [fgColor]="'var(--msg-success)'"
+          (clicked)="confirm()">
+        </amx-combo-button>
+        <amx-combo-button
+          [label]="'Cancel'"
+          [icon]="icons.cancelIcon"
+          [fgColor]="'var(--msg-danger)'"
+          (clicked)="cancel()">
+        </amx-combo-button>
+      </amx-flex>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #popoverTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <h3>Stock Locations</h3>
+    <amx-separator [space]="'var(--space-md)'" [color]="'var(--disabled-color)'"></amx-separator>
+    <ng-container *ngFor="let stock of stockLocations">
+      <p>{{ stock?.warehouse?.name }} <span *ngIf="stock?.area">- {{stock?.area?.name }}</span> ({{ stock?.currentQuantity }} {{ record?.part?.stockingUnit }})</p>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    </ng-container>
+  </div>
+</ng-template>
+

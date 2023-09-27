@@ -1,0 +1,44 @@
+<amx-flex [align]="'center'" [gap]="'var(--space-lg)'" [padding]="'0 var(--space-md)'">
+  <h2>WO# {{ record?.workOrderNumber }}</h2>
+  <amx-popover-button
+    *ngIf="record?.isDue"
+    [icon]="icons.delinquentIcon"
+    [height]="'20px'"
+    [fgColor]="'var(--msg-danger)'"
+    [padding]="'0'"
+    [template]="pastDuePopoverTemplate">
+  </amx-popover-button>
+  <amx-popover-button
+    *ngIf="record?.needsAttention"
+    [icon]="icons.needsAttentionIcon"
+    [height]="'20px'"
+    [fgColor]="'var(--msg-warning)'"
+    [padding]="'0'"
+    [template]="needsAttentionPopoverTemplate">
+  </amx-popover-button>
+</amx-flex>
+<amx-tabs>
+  <ng-container tabsContent>
+    <amx-tab [label]="'Details'" [icon]="icons.detailsIcon">
+      <ant-work-order-tab-details *ngIf="currentIndex === 0" [height]="height"></ant-work-order-tab-details>
+    </amx-tab>
+    <amx-tab [label]="'Map'" [icon]="icons.mapIcon">
+      <ant-work-order-tab-map *ngIf="currentIndex === 1" [height]="height"></ant-work-order-tab-map>
+    </amx-tab>
+    <amx-tab [label]="'Activity'" [icon]="icons.activityIcon">
+      <ant-work-order-tab-activity *ngIf="currentIndex === 2" [height]="height"></ant-work-order-tab-activity>
+    </amx-tab>
+  </ng-container>
+</amx-tabs>
+
+<ng-template #pastDuePopoverTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <span>Past Due Since {{ getDateString(record?.dueDate) }}</span>
+  </div>
+</ng-template>
+<ng-template #needsAttentionPopoverTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <span>{{ record?.needsAttentionText }}</span>
+  </div>
+</ng-template>
+

@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/tools/task-list/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/tools/task-list"],
+      "options": {
+        "jestConfig": "libs/antero-web/tools/task-list/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/tools/task-list/**/*.ts",
+          "libs/antero-web/tools/task-list/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,40 @@
+<div [ngStyle]="{ 'background-color': 'var(--base-bg-color)', border: '1px solid #bbb' }">
+  <div id="ql-toolbar" class="flex">
+    <span class="ql-formats no-wrap">
+      <button class="ql-bold"></button>
+      <button class="ql-italic"></button>
+      <button class="ql-underline"></button>
+      <button class="ql-strike"></button>
+    </span>
+    <span class="ql-formats">
+      <select class="ql-color"></select>
+      <select class="ql-background"></select>
+    </span>
+    <span class="ql-formats">
+      <button class="ql-list" value="ordered"></button>
+      <button class="ql-list" value="bullet"></button>
+      <select class="ql-align"></select>
+      <button class="ql-table"></button>
+      <button class="ql-link"></button>
+    </span>
+  </div>
+  <div class="flex" [amxFlexChild]="'1'" [ngStyle]="{ 'justify-content': 'space-between' }">
+    <amx-text-editor-dropdown
+      class="stretch"
+      #fontDropdown
+      [cssProperty]="'font-family'"
+      [initialIndex]="3"
+      (opened)="handleCloseSizeDropdown()"
+      (selectionChanged)="fontHandler($event)">
+    </amx-text-editor-dropdown>
+    <amx-text-editor-dropdown
+      class="slim"
+      #sizeDropdown
+      [cssProperty]="''"
+      [initialIndex]="4"
+      (opened)="handleCloseFontDropdown()"
+      (selectionChanged)="sizeHandler($event)">
+    </amx-text-editor-dropdown>
+  </div>
+  <div #container [ngStyle]="{ 'height': innerHeight }"></div>
+</div>

@@ -1,0 +1,19 @@
+.more {
+  opacity: 0;
+  padding: var(--space-md) 0;
+  &.hovered {
+    opacity: 1
+  }
+}
+
+.fab {
+  position: fixed;
+  right: var(--space-xl);
+  bottom: var(--space-xl);
+  height: 35px;
+  width: 35px;
+  background-color: var(--icon-color);
+  border-color: transparent;
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+}

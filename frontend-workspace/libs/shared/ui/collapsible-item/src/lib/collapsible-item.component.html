@@ -1,0 +1,15 @@
+<div class="collapsible-item">
+  <div class="header" [ngClass]="{ collapsed: collapsed }" (click)="toggle()">
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+      <fa-icon class="icon" [icon]="icons.downCaretIcon" [ngStyle]="{ 'transform': iconTransform }"></fa-icon>
+      <label>{{ label }}</label>
+    </amx-flex>
+    <div>
+      <ng-content select="[itemButtons]"></ng-content>
+    </div>
+  </div>
+  <div class="content" [ngClass]="{ collapsed: collapsed }">
+    <ng-content select="[itemContent]"></ng-content>
+  </div>
+</div>
+

@@ -1,0 +1,84 @@
+.button-wrapper {
+  position: relative;
+  width: fit-content;
+  & .filter-btn {
+    padding: var(--space-md);
+    background-color: var(--panel-bg-color);
+    color: black;
+    border: var(--border);
+    &.has-filter {
+      background-color: var(--app-color);
+      color: white;
+      & .count {
+        background-color: white;
+        color: var(--app-color);
+        padding: var(--space-sm) var(--space-md);
+        font-size: var(--font-size-md);
+      }
+    }
+  }
+  & .dropdown-wrapper {
+    position: absolute;
+    top: 100%;
+    width: fit-content;
+    display: none;
+    z-index: 8500;
+    left: 0;
+    right: unset;
+    background-color: var(--panel-bg-color);
+    border: var(--border);
+    &.right {
+      left: unset;
+      right: 0;
+    }
+    &.open {
+      display: block;
+      width: 200px;
+    }
+  }
+}
+
+// .filter-btn {
+//   padding: var(--space-md);
+//   background-color: white;
+//   color: black;
+//   border: 1px solid #bbb;
+// }
+
+// .filter-btn .label {
+//   /* padding: var(--space-sm) var(--space-md); */
+//   /* font-size: 1.1rem; */
+// } 
+
+// .filter-btn.has-filter {
+//   background-color: rgb(62, 133, 124);
+//   color: white;
+// }
+
+// .filter-btn.has-filter .count {
+//   background-color: white;
+//   color: rgb(62, 133, 124);
+//   padding: var(--space-sm) var(--space-md);
+//   font-size: 1.1rem;
+// }
+
+// .button-wrapper .dropdown-wrapper {
+//   position: absolute;
+//   top: 100%;
+//   width: fit-content;
+//   display: none;
+//   z-index: 8500;
+//   left: 0;
+//   background-color: white;
+//   border: 1px solid #bbb;
+
+// }
+
+// .button-wrapper .dropdown-wrapper.right {
+  
+// }
+
+// .button-wrapper .dropdown-wrapper.open {
+//   display: block;
+//   width: 200px;
+// }

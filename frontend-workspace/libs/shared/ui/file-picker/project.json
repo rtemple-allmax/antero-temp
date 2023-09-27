@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/file-picker/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/file-picker"],
+      "options": {
+        "jestConfig": "libs/shared/ui/file-picker/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/file-picker/**/*.ts",
+          "libs/shared/ui/file-picker/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

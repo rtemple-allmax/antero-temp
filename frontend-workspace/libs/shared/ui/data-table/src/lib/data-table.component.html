@@ -1,0 +1,108 @@
+<div #wrapper class="wrapper" tabindex="-1" [ngStyle]="{ height: height }" (keydown)="wrapperKeyDownHandler($event)">
+  <dx-data-grid
+    class="data-table"
+    #table
+    [ngStyle]="{ 'background-color': backgroundColor }"
+    [width]="width"
+    [height]="innerHeight"
+    [columns]="columns"
+    [showColumnHeaders]="showColumnHeaders"
+    [columnWidth]="defaultColumnWidth"
+    [showBorders]="showBorders"
+    [dataSource]="data || []"
+    [errorRowEnabled]="false"
+    [rowAlternationEnabled]="rowAlternationEnabled"
+    [activeStateEnabled]="true"
+    [remoteOperations]="remoteOperations"
+    [allowColumnReordering]="allowReordering"
+    [columnResizingMode]="columnResizingMode"
+    [allowColumnResizing]="allowResizing"
+    [showRowLines]="showRowLines"
+    [showColumnLines]="showColumnLines"
+    [hoverStateEnabled]="hoverStateEnabled"
+    [noDataText]="noDataText"
+    [wordWrapEnabled]="allowWrapping"
+    [focusedRowEnabled]="false"
+    [(focusedRowKey)]="focusedRowKey"
+    [(selectedRowKeys)]="selectedRowKeys"
+    (onKeyDown)="keyDownHandler($event)"
+    (onSelectionChanged)="selectionChangedHandler($event, null)"
+    (onContentReady)="contentReadyHandler($event)"
+    (onRowDblClick)="rowDblClickHandler()"
+    (onRowClick)="rowClickHandler($event)"
+    (onOptionChanged)="optionChangedHandler($event)"
+    (onContextMenuPreparing)="contextMenuHandler($event)"
+    (onToolbarPreparing)="toolbarPreparingHandler($event)">
+    <dxo-column-chooser [enabled]="false" [mode]="'select'" [allowSearch]="true"></dxo-column-chooser>
+    <dxo-column-fixing [enabled]="allowFixing"></dxo-column-fixing>
+    <dxo-header-filter [visible]="allowFiltering"></dxo-header-filter>
+    <dxo-filter-panel [filterEnabled]="allowFiltering" [visible]="allowFiltering"></dxo-filter-panel>
+    <dxo-filter-row [visible]="false"></dxo-filter-row>
+    <dxo-selection [mode]="selectionMode" [showCheckBoxesMode]="'never'"></dxo-selection>
+    <dxo-search-panel [visible]="false" [searchVisibleColumnsOnly]="false"></dxo-search-panel>
+    <dxo-load-panel [enabled]="false"></dxo-load-panel>
+    <dxo-scrolling [mode]="'standard'"></dxo-scrolling>
+    <dxo-paging [enabled]="true" [pageSize]="20"></dxo-paging>
+    <dxo-pager
+      [visible]="true"
+      [allowedPageSizes]="[20]"
+      [displayMode]="displayMode"
+      [showPageSizeSelector]="false"
+      [showInfo]="showInfo"
+      [showNavigationButtons]="showNavButtons">
+    </dxo-pager>
+    <dxo-group-panel [visible]="allowGrouping"></dxo-group-panel>
+    <dxo-export [enabled]="allowExport"></dxo-export>
+    <dxo-master-detail [enabled]="expandable" template="expanded"></dxo-master-detail>
+    <div *dxTemplate="let data of 'iconHeaderCellTemplate'">
+      <amx-flex [justify]="'center'">
+        <amx-icon-button [awesome]="true" [icon]="data?.column?.icon" [fgColor]="data?.column?.iconColor"></amx-icon-button>
+      </amx-flex>
+    </div>
+    <div *dxTemplate="let data of 'iconCellTemplate'" [ngStyle]="{ display: 'flex', 'justify-content': 'center' }">
+      <ng-container *ngIf="data?.column?.showIcon(data.data)">
+        <amx-icon-button [padding]="'0'" [awesome]="true" [icon]="data?.column?.icon" [fgColor]="data?.column?.iconColor"></amx-icon-button>
+      </ng-container>
+    </div>
+    <div *dxTemplate="let data of 'bgColorCellTemplate'" [ngStyle]="{ height: '34px'}">
+      <div [ngStyle]="{ 'background-color': data?.column.bgColor(data.data), 'height': '100%', display: 'flex', 'align-items': 'center' }">
+        <span [ngStyle]="{ color: data?.column.fgColor(data.data), 'margin-left': '2px' }">{{ data?.displayValue }}</span>
+      </div>
+    </div>
+    <div *dxTemplate="let data of 'cellTemplate'">
+      <ng-container [ngTemplateOutlet]="cellTemplate || defaultCell" [ngTemplateOutletContext]="{ template: data }"></ng-container>
+    </div>
+    <div *dxTemplate="let data of 'expanded'">
+      <ng-container [ngTemplateOutlet]="expandedTemplate || defaultExpanded" [ngTemplateOutletContext]="{ template: data }"></ng-container>
+    </div>
+    <div *dxTemplate="let data of 'contextMenuItemTemplate'">
+      <amx-dropdown-item-button
+        [label]="data?.text"
+        [icon]="data?.icon"
+        [danger]="data?.danger"
+        (clicked)="data?.clickHandler">
+      </amx-dropdown-item-button>
+    </div>
+    <div *dxTemplate="let data of 'buttonsTemplate'">
+      <ng-container [ngTemplateOutlet]="buttonsTemplate || defaultCell" [ngTemplateOutletContext]="{ template: data }"></ng-container>
+    </div>
+    <div *dxTemplate="let data of 'popoverButtonTemplate'">
+      <ng-container [ngTemplateOutlet]="popoverButtonTemplate || defaultCell" [ngTemplateOutletContext]="{ template: data }"></ng-container>
+    </div>
+    <div *dxTemplate="let data of 'alternatePopoverButtonTemplate'">
+      <ng-container [ngTemplateOutlet]="alternatePopoverButtonTemplate || defaultCell" [ngTemplateOutletContext]="{ template: data }"></ng-container>
+    </div>
+  </dx-data-grid>
+</div>
+
+<ng-template #defaultCell let-template="template">
+  <div>
+    <span>{{ template?.data?.name }}</span>
+  </div>
+</ng-template> 
+
+<ng-template #defaultExpanded let-template="template">
+  <div>
+    <span>{{ template?.data?.name }}</span>
+  </div>
+</ng-template> 

@@ -1,0 +1,25 @@
+<amx-modal [heading]="'Add Admin User'" (closed)="closeHandler()">
+  <amx-text-box
+    #emailBox
+    [label]="'Email'"
+    [placeholder]="'(required)'"
+    [required]="true"
+    [email]="true"
+    [(ngModel)]="emailBinding.value"
+    (validityStateChanged)="emailValidityStateChangeHandler($event)">
+  </amx-text-box>
+  <span *ngIf="showError" class="error">A User with this email address has already been added.</span>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-text-box
+    #nameBox
+    [label]="'Display Name'"
+    [placeholder]="'(required)'"
+    [required]="true"
+    [(ngModel)]="displayNameBinding.value"
+    (validityStateChanged)="nameValidityStateChangeHandler($event)">
+  </amx-text-box>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-flex [justify]="'center'">
+    <amx-label-button [label]="'Add User'" [shouldDisable]="addUserNotReady" (clicked)="addUser()"></amx-label-button>
+  </amx-flex>
+</amx-modal>

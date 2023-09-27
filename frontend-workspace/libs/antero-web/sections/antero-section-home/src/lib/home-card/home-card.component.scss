@@ -1,0 +1,11 @@
+.home-card {
+  background-color: white;
+  padding: var(--space-md);
+  justify-items: center;
+  & .card-header {
+    background-color: var(--app-color);
+    color: white;
+    text-transform: uppercase;
+    padding: 2px;
+  }
+}

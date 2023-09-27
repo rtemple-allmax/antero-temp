@@ -1,0 +1,47 @@
+:host {
+  display: inline;
+  justify-self: center;
+  width: fit-content;
+}
+
+.wrapper {
+  position: relative;
+  & .shortcut-btn {
+    width: fit-content;
+    background-color: transparent;
+    border: 1px solid transparent;
+    outline: 0;
+    & img {
+      max-width: 32px;
+    }
+    &:hover {
+      border-color: var(--highlight-color);
+    }
+    &.selected {
+      border-color: var(--app-color);
+    }
+    & .truncate {
+      width: 100px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  & .context-menu {
+    // min-width: 100px;
+    // min-height: 100px;
+    background-color: var(--panel-bg-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow: var(--shadow);
+    display: none;
+    padding: var(--space-md);
+    z-index: 1;
+    &.open {
+      display: block;
+    }
+  }
+}
+
+

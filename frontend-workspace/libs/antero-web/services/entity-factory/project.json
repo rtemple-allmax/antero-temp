@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/services/entity-factory/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/antero-web/services/entity-factory"
+      ],
+      "options": {
+        "jestConfig": "libs/antero-web/services/entity-factory/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/services/entity-factory/**/*.ts",
+          "libs/antero-web/services/entity-factory/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

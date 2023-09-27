@@ -1,0 +1,52 @@
+<ng-container *ngFor="let record of records; let i = index;">
+  <ng-container *ngTemplateOutlet="!showEditForm(record) ? readTemplate : editTemplate; context: { data: record, index: i }"></ng-container>  
+</ng-container>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-single-entry-form-text
+  #addForm
+  [icon]="icons.addIcon"
+  [placeholder]="'Add Labor Account'"
+  (submitted)="addRecord($event)">
+</amx-single-entry-form-text>
+
+<ng-template #readTemplate let-data="data" let-index="index">
+  <amx-flex [justify]="'space-between'" [align]="'center'">
+    <h3>{{ data.name }}</h3>
+    <amx-dropdown-button
+      [icon]="icons.moreIcon"
+      [fgColor]="'var(--icon-color)'"
+      [height]="'20px'">
+      <amx-dropdown-item-button
+        [icon]="icons.editIcon"
+        [label]="'Edit'"
+        (clicked)="setMode(crudFunctions.UPDATE, data)">
+      </amx-dropdown-item-button>
+      <amx-dropdown-item-button
+        [icon]="icons.deleteIcon"
+        [danger]="true"
+        [label]="'Delete'"
+        (clicked)="setMode(crudFunctions.DELETE, data)">
+      </amx-dropdown-item-button>
+    </amx-dropdown-button>
+  </amx-flex>
+  <ng-container *ngIf="index < records.length - 1">
+    <amx-separator [space]="'var(--space-md)'"></amx-separator>
+  </ng-container>
+</ng-template>
+
+<ng-template #editTemplate>
+  <amx-single-entry-form-text
+    #editForm
+    [source]="selectedRecord?.name"
+    (submitted)="editRecord($event)">
+  </amx-single-entry-form-text>
+</ng-template>
+
+<amx-confirmation *ngIf="crud === crudFunctions.DELETE"
+  [dangerous]="true"
+  (canceled)="setMode(crudFunctions.CREATE)"
+  (closed)="setMode(crudFunctions.CREATE)"
+  (confirmed)="deleteRecord()">
+  <span>This will delete the selected Labor Account.</span><br/>
+  <span><b>Do you wish to continue?</b></span>
+</amx-confirmation>

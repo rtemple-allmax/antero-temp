@@ -1,0 +1,29 @@
+<div [ngStyle]="{ 'padding': 'var(--space-md)', height: height  }">
+  <!-- <amx-combo-button [label]="'Add Misc'" [icon]="icons.addIcon" (clicked)="openAdd()"></amx-combo-button> -->
+  <amx-grid [columns]="'2fr 1fr auto'">
+    <amx-text-box [placeholder]="'Description'"></amx-text-box>
+    <amx-number-box [placeholder]="'Cost'"></amx-number-box>
+    <amx-icon-button [icon]="icons.saveIcon" [awesome]="true" [height]="'20px'" [fgColor]="'var(--icon-color)'"></amx-icon-button>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <ng-container *ngIf="misc.length > 0 else noData">
+    <dx-scroll-view>
+      <amx-grid [columns]="deviceType === deviceTypes.DESKTOP ? 'repeat(2, 1fr)' : '1fr'" [gap]="'var(--space-md)'">
+        <ng-container *ngFor="let record of misc">
+          <amx-card (clicked)="openEdit(record)">
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+              <amx-read-only-box [label]="'Description'">{{ record?.description }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Cost'">{{ record?.cost }}</amx-read-only-box>
+            </amx-grid>
+          </amx-card>
+        </ng-container>
+      </amx-grid>
+    </dx-scroll-view>
+  </ng-container>
+</div>
+
+<ng-template #noData>
+  <div class="no-data" [ngStyle]="{ height: '100px' }">
+    No Misc records are associated with this Work Order. 
+  </div>
+</ng-template>

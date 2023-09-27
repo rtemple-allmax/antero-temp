@@ -1,0 +1,15 @@
+<div class="file-picker">
+  <input
+    #filePicker
+    type="file"
+    [disabled]="disabled"
+    [multiple]="true"
+    (change)="fileSelectionHandler($event)"/>
+  <amx-icon-button
+    [awesome]="true"
+    [icon]="icons.addIcon"
+    [fgColor]="color"
+    [height]="'20px'"
+    (clicked)="add()">
+  </amx-icon-button>
+</div>

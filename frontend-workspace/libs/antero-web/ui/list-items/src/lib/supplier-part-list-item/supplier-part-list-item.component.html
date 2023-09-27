@@ -1,0 +1,78 @@
+<div class="wrapper" (mouseenter)="mouseenterHandler()" (mouseleave)="mouseleaveHandler()" [ngStyle]="{ padding: 'var(--space-md)'}">
+  <ng-container [ngSwitch]="typeToDisplay">
+    <ng-container *ngSwitchCase="'supplier'">
+      <ng-container *ngTemplateOutlet="supplierTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'part'">
+      <ng-container *ngTemplateOutlet="partTemplate"></ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #supplierTemplate>
+  <amx-grid [columns]="'50ch 1fr 1fr auto'">
+    <amx-flex [gap]="'var(--space-md)'" [align]="'center'" [ngStyle]="{ 'align-self': 'center' }">
+      <p>{{ record?.supplier?.name }}</p>
+      <amx-popover-button *ngIf="record?.isPrimary" [icon]="icons.primaryIcon" [template]="primaryTemplate"></amx-popover-button>
+    </amx-flex>
+    <amx-flex [height]="'100%'" [align]="'center'">
+      <amx-popover-text [template]="descriptionTemplate">Item # {{ record?.itemNumber}}</amx-popover-text>
+    </amx-flex>
+    <amx-flex [height]="'100%'" [align]="'center'">
+      <amx-popover-text [template]="costTemplate">Last Received {{ getDateString(record?.lastReceivedDate) }}</amx-popover-text>
+    </amx-flex>
+    <div class="more" [ngClass]="{ hovered: hovered }" [ngStyle]="{ 'align-self': 'center' }">
+      <amx-dropdown-button
+        [icon]="icons.moreIcon"
+        [bgColor]="'transparent'"
+        [origin]="'right'"
+        [padding]="'var(--space-sm)'"
+        [height]="'20px'"
+        [items]="itemContextMenu">
+      </amx-dropdown-button>
+    </div>
+  </amx-grid>
+</ng-template>
+
+<ng-template #partTemplate>
+  <amx-grid [columns]="'50ch 1fr 1fr auto'">
+    <div>
+      <p>{{ record?.part?.name }}</p>
+      <p>{{ record?.part?.description }}</p>
+    </div>
+    <amx-flex [height]="'100%'" [align]="'center'">
+      <amx-popover-text [template]="descriptionTemplate">Item # {{ record?.itemNumber}}</amx-popover-text>
+    </amx-flex>
+    <amx-flex [height]="'100%'" [align]="'center'">
+      <amx-popover-text [template]="costTemplate">Last Received {{ getDateString(record?.lastReceivedDate) }}</amx-popover-text>
+    </amx-flex>
+    <div class="more" [ngClass]="{ hovered: hovered }" [ngStyle]="{ 'align-self': 'center' }">
+      <amx-dropdown-button
+        [icon]="icons.moreIcon"
+        [bgColor]="'transparent'"
+        [origin]="'right'"
+        [padding]="'var(--space-sm)'"
+        [height]="'20px'"
+        [items]="itemContextMenu">
+      </amx-dropdown-button>
+    </div>
+  </amx-grid>
+</ng-template>
+
+<ng-template #primaryTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <p>Primary Supplier</p>
+  </div>
+</ng-template>
+
+<ng-template #descriptionTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <p>{{ record?.itemDescription || 'Please add a description' }}</p>
+  </div>
+</ng-template>
+
+<ng-template #costTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <p>{{ formatAsCurrency(record?.lastReceivedCost) || 'Cost' }}</p>
+  </div>
+</ng-template>

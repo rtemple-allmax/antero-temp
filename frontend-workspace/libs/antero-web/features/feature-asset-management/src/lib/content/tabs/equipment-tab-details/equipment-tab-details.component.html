@@ -1,0 +1,24 @@
+<amx-scroll-box [maxHeight]="innerHeight"> 
+  <amx-layout-panel-container [columns]="'1fr'" #panelsContainer (orderChanged)="orderChangedHandler($event)">
+    <ant-equipment-panel-customized-data
+      (collapsedStateChanged)="collapsedStateChangedHandler(collapsiblePanels.MY_DATA, $event)">
+    </ant-equipment-panel-customized-data>
+    <ant-equipment-panel-details
+      (collapsedStateChanged)="collapsedStateChangedHandler(collapsiblePanels.DETAILS, $event)">
+    </ant-equipment-panel-details>
+    <ant-equipment-panel-purchasing
+      (collapsedStateChanged)="collapsedStateChangedHandler(collapsiblePanels.PURCHASING, $event)"></ant-equipment-panel-purchasing>
+    <ant-equipment-panel-instruments
+      (collapsedStateChanged)="collapsedStateChangedHandler(collapsiblePanels.INSTRUMENTS, $event)">
+    </ant-equipment-panel-instruments>
+    <ant-equipment-panel-parts
+      (collapsedStateChanged)="collapsedStateChangedHandler(collapsiblePanels.PARTS, $event)">
+    </ant-equipment-panel-parts>
+    <ant-equipment-panel-documents
+      (collapsedStateChanged)="collapsedStateChangedHandler(collapsiblePanels.DOCUMENTS, $event)">
+    </ant-equipment-panel-documents>
+    <ant-equipment-panel-custom-fields
+      (collapsedStateChanged)="collapsedStateChangedHandler(collapsiblePanels.CUSTOM, $event)">
+    </ant-equipment-panel-custom-fields>
+  </amx-layout-panel-container>
+</amx-scroll-box>

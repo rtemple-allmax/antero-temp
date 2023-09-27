@@ -1,0 +1,13 @@
+.spacer {
+  overflow: hidden;
+  &.vert {
+    display: block;
+    padding-left: 0;
+    width: initial;
+  }
+  &.horz {
+    display: inline-block;
+    padding-top: 0;
+    height: initial;
+  }
+}

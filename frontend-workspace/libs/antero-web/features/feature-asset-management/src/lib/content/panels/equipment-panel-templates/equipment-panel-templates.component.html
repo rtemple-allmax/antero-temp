@@ -1,0 +1,82 @@
+<!-- <ng-container [ngSwitch]="deviceType">
+  <ng-container *ngSwitchCase="deviceTypes.DESKTOP">
+    <ng-container *ngTemplateOutlet="desktop"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="deviceTypes.TABLET">
+    <ng-container *ngTemplateOutlet="tablet"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+    <ng-container *ngTemplateOutlet="mobile"></ng-container>
+  </ng-container>
+</ng-container> -->
+
+<amx-layout-panel>
+  <div header>
+    <h2>Saved Work Orders</h2>
+  </div>
+  <div content>
+    <amx-data-table
+      [allowSearch]="false"
+      [allowGrouping]="false"
+      [allowReordering]="false"
+      [allowFiltering]="false"
+      [allowFixing]="false"
+      [allowExport]="false"
+      [showColumnHeaders]="false"
+      [selectionMode]="'none'"
+      [data]="data?.data"
+      [selectFirstRowOnLoad]="false"
+      [noDataText]="'No templates have been created for this equipment.'"
+      [columns]="data?.colDef?.columns || []"
+      (selectionChanged)="selectionChangedHandler($event)">
+  </amx-data-table>
+  </div>
+</amx-layout-panel>
+
+<!-- <ng-template #desktop>
+  <amx-data-table
+    [height]="height"
+    [allowSearch]="false"
+    [allowGrouping]="false"
+    [allowReordering]="false"
+    [allowFiltering]="false"
+    [allowFixing]="false"
+    [selectionMode]="'none'"
+    [data]="data?.data"
+    [selectFirstRowOnLoad]="false"
+    [noDataText]="'No templates have been created for this equipment.'"
+    [columns]="data?.colDef?.columns || []">
+  </amx-data-table>
+</ng-template>
+
+<ng-template #tablet>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+      <ng-container *ngFor="let record of records">
+        <amx-card>
+          <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+            <amx-read-only-box [label]="'Task'">{{ record?.task?.name }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Last Scheduled'">{{ getDateString(record.dateLastScheduled) }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Last Completed'">{{ getDateString(record.dateLastCompleted) }}</amx-read-only-box>
+          </amx-grid>
+        </amx-card>
+      </ng-container>
+    </amx-grid> 
+  </div>
+</ng-template>
+
+<ng-template #mobile>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <ng-container *ngFor="let record of records">
+      <amx-card [static]="true">
+        <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+          <amx-read-only-box [label]="'Task'">{{ record?.task?.name }}</amx-read-only-box>
+          <amx-read-only-box [label]="'Last Scheduled'">{{ getDateString(record.dateLastScheduled) }}</amx-read-only-box>
+          <amx-read-only-box [label]="'Last Completed'">{{ getDateString(record.dateLastCompleted) }}</amx-read-only-box>
+        </amx-grid>
+      </amx-card>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    </ng-container>
+  </div>
+</ng-template> -->
+

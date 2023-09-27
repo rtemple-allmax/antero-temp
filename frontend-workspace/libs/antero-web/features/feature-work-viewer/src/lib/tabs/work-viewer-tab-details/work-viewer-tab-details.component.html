@@ -1,0 +1,20 @@
+<amx-scroll-box [maxHeight]="'70vh'">
+  <amx-layout-panel-container>
+    <ant-work-viewer-panel-equipment
+      (showEquipment)="showEquipmentHandler()"
+      (showHistory)="showEquipmentHistoryHandler()"
+      (showDocuments)="showEquipmentDocumentsHandler()"
+      (enterDowntime)="enterDowntimeHandler()">
+    </ant-work-viewer-panel-equipment>
+    <ant-work-viewer-panel-task (editInstructions)="editInstructionsHandler()"></ant-work-viewer-panel-task>
+    <ant-work-viewer-panel-attachments></ant-work-viewer-panel-attachments>
+    <ant-work-viewer-panel-instruments></ant-work-viewer-panel-instruments>
+    <ant-work-viewer-panel-completion></ant-work-viewer-panel-completion>
+    <ant-work-viewer-panel-admin (editAdmin)="editAdminHandler()"></ant-work-viewer-panel-admin>
+    <ant-work-viewer-panel-parts></ant-work-viewer-panel-parts>
+    <ant-work-viewer-panel-labor></ant-work-viewer-panel-labor>
+    <ant-work-viewer-panel-contractors></ant-work-viewer-panel-contractors>
+    <ant-work-viewer-panel-tools></ant-work-viewer-panel-tools>
+    <ant-work-viewer-panel-misc></ant-work-viewer-panel-misc>
+  </amx-layout-panel-container>
+</amx-scroll-box>

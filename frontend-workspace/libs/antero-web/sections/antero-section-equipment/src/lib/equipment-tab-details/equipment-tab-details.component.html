@@ -1,0 +1,11 @@
+<amx-scroll-box [maxHeight]="innerHeight" (scrolled)="scrollHandler()"> 
+  <amx-layout-panel-container [columns]="'1fr'" #panelsContainer>
+    <ant-equipment-my-data-panel></ant-equipment-my-data-panel>
+    <ant-equipment-details-panel></ant-equipment-details-panel>
+    <ant-equipment-purchasing-panel></ant-equipment-purchasing-panel>
+    <ant-equipment-parts-panel></ant-equipment-parts-panel>
+    <ant-equipment-instruments-panel></ant-equipment-instruments-panel>
+    <ant-equipment-documents-panel></ant-equipment-documents-panel>
+    <ant-equipment-custom-fields-panel></ant-equipment-custom-fields-panel>
+  </amx-layout-panel-container>
+</amx-scroll-box>

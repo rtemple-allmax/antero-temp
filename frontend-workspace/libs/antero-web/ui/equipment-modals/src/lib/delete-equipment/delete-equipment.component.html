@@ -1,0 +1,23 @@
+<amx-confirmation
+  [dangerous]="true"
+  [headerBGColor]="'var(--msg-danger)'"
+  (confirmed)="confirmedHandler()"
+  (canceled)="canceledHandler()"
+  (closed)="canceledHandler()">
+  <span>
+    Deleting the equipment 
+    <b>{{ record?.name }}</b> will <i><u>permanently delete</u></i> 
+    the entry from the database along with all associated data.
+  </span>
+  <br/><br/>
+  <span>
+    All open work orders and work order history will be removed,
+    which will cause cost and part usage report data to change. 
+    This is not recoverable in any way except to restore a complete 
+    database backup. 
+  </span>
+  <br/><br/>
+  <span><b>
+    This action cannot be undone, do you wish to continue?
+  </b></span>
+</amx-confirmation>

@@ -1,0 +1,161 @@
+<amx-modal #modal [heading]="'My Profile'" [maxWidth]="'50vw'" (closed)="closedHandler()">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-group-box [label]="'My Profile'" [stretch]="true">
+      <amx-flex [gap]="'var(--space-lg)'">
+        <amx-avatar></amx-avatar>
+        <div class="link" (click)="editProfile()">
+          <h2>{{ user?.fullName }}</h2>
+          <h3>{{ user?.description }}</h3>
+        </div>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-md)'" [justify]="'space-between'" [align]="'center'">
+        <label class="link" (click)="editProfile()">Primary Phone:</label>
+        <label>{{ user?.primaryPhone }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-md)'" [justify]="'space-between'" [align]="'center'">
+        <label class="link" (click)="editProfile()">Secondary Phone:</label>
+        <label>{{ user?.contact2 }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-md)'" [justify]="'space-between'" [align]="'center'">
+        <label class="link" (click)="editProfile()">Primary Email:</label>
+        <label>{{ user?.username }}</label>
+      </amx-flex>
+    </amx-group-box>
+    <amx-group-box [label]="'My Preferences'" [stretch]="true">
+      <amx-flex [justify]="'flex-end'">
+        <amx-combo-button [icon]="icons.saveIcon" [invert]="true" [label]="'Update'" (clicked)="updatePreferences()"></amx-combo-button>
+      </amx-flex>
+      <amx-check-box
+        [label]="'Show Move to Review confirmation on Work Orders'"
+        [(ngModel)]="woReviewBinding.value">
+      </amx-check-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-check-box
+        [label]="'Show Move to History confirmation on Work Orders'"
+        [(ngModel)]="woHistoryBinding.value">
+      </amx-check-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-check-box
+        [label]="'Show Move to History confirmation on Procedures'"
+        [(ngModel)]="pHistoryBinding.value">
+      </amx-check-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-check-box
+        [label]="'Show Complete Order confirmation on Purchase Orders'"
+        [(ngModel)]="poBinding.value">
+      </amx-check-box>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+        <amx-toggle [label]="'Dark Mode'" [(ngModel)]="darkModeBinding.value"></amx-toggle>
+        <amx-toggle [label]="'Reset Tutorials'" [(ngModel)]="resetTutorialsBinding.value"></amx-toggle>
+      </amx-flex>      
+    </amx-group-box>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-group-box [label]="'My Permissions'" [stretch]="true">
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Work Setup</label>
+        <label>{{ getSecurityLevelLabel(role?.workTemplatesSection) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Current Work</label>
+        <label>{{ getSecurityLevelLabel(role?.workManager) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Work History</label>
+        <label>{{ getSecurityLevelLabel(role?.workHistorySection) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Equipment</label>
+        <label>{{ getSecurityLevelLabel(role?.equipmentSection) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Parts</label>
+        <label>{{ getSecurityLevelLabel(role?.partsSection) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Order & Recieving</label>
+        <label>{{ getSecurityLevelLabel(role?.orderingReceivingSection) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Suppliers</label>
+        <label>{{ getSecurityLevelLabel(role?.supplierSection ) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    </amx-group-box>
+    <amx-group-box [label]="'My Priviledges'" [stretch]="true">
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Move To History</label>
+        <label>{{ getPriviledgeLabel(role?.moveToHistory) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Parts Usage</label>
+        <label>{{ getPriviledgeLabel(role?.partsUsage) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Receive Inventory</label>
+        <label>{{ getPriviledgeLabel(role?.receiveInventory) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>Report Manager</label>
+        <label>{{ getPriviledgeLabel(role?.reportManager) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-flex [gap]="'var(--space-lg)'" [justify]="'space-between'">
+        <label>View Audit Trail</label>
+        <label>{{ getPriviledgeLabel(role?.viewAuditTrail) }}</label>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    </amx-group-box>
+  </amx-grid>    
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-group-box [label]="'My Certificates'">
+      <ng-container *ngIf="certificates.length > 0 else noCerts"></ng-container>
+    </amx-group-box>
+    <amx-group-box [label]="'My Maintenance Groups'">
+      <ng-container *ngIf="groups.length > 0 else noGroups"></ng-container>
+    </amx-group-box>
+  </amx-grid>
+</amx-modal>
+
+<ng-template #noCerts>
+  <div class="no-data" [ngStyle]="{ height: '100px' }">
+    You do not have any Certificates.
+  </div>
+</ng-template>
+
+<ng-template #noGroups>
+  <div class="no-data" [ngStyle]="{ height: '100px' }">
+    You have not been assigned to any Maintenance Groups.
+  </div>
+</ng-template>
+
+<amx-modal *ngIf="profileEditable" [heading]="'Edit Contact Info'" (closed)="editClosedHandler()">
+  <amx-text-box [label]="'Full Name'" [(ngModel)]="nameBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-text-box [label]="'Job Title'" [(ngModel)]="titleBinding.value"></amx-text-box>  
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-text-box [label]="'Primary Phone'" [(ngModel)]="primaryPhoneBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-text-box [label]="'Secondary Phone'" [(ngModel)]="secondaryPhoneBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-text-box [label]="'Primary Email'" [(ngModel)]="emailBinding.value"></amx-text-box>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [label]="'Update'" [invert]="true" [icon]="icons.saveIcon"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

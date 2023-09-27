@@ -1,0 +1,32 @@
+<div>
+  <amx-grid [columns]="'50ch 1fr 1fr'" [gap]="'var(--space-md)'">
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'" [height]="'100%'">
+      <span [amxFlexChild]="'1'">{{ record?.name }}</span>
+      <amx-popover-button *ngIf="record?.isPrimary" [icon]="icons.primaryIcon" [template]="primaryTemplate"></amx-popover-button>
+    </amx-flex>
+    <div>
+      <span>{{ record?.address }}</span><br/>
+      <span>{{ record?.city }}<span *ngIf="record?.city && record?.stateOrProvince">,</span> {{ record?.stateOrProvince }} {{ record?.postalCode }} {{ record?.country }}</span>
+    </div>
+    <div>
+      <ng-container *ngIf="record?.phone1Description">
+        <amx-contact-box [label]="record?.phone1Description || ''" [value]="record?.phone1Number || ''"></amx-contact-box>
+      </ng-container>
+      <ng-container *ngIf="record?.phone2Description">
+        <amx-contact-box [label]="record?.phone2Description || ''" [value]="record?.phone2Number || ''"></amx-contact-box>
+      </ng-container>
+      <ng-container *ngIf="record?.phone3Description">
+        <amx-contact-box [label]="record?.phone3Description || ''" [value]="record?.phone3Number || ''"></amx-contact-box>
+      </ng-container>
+      <ng-container *ngIf="record?.phone4Description">
+        <amx-contact-box [label]="record?.phone4Description || ''" [value]="record?.phone4Number || ''"></amx-contact-box>
+      </ng-container>
+    </div>
+  </amx-grid>
+</div>
+
+<ng-template #primaryTemplate>
+  <div [ngStyle]="{ 'padding': 'var(--space-md)' }">
+    <span>Primary Contact</span>
+  </div>
+</ng-template>

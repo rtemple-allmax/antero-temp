@@ -1,0 +1,13 @@
+<amx-layout-panel>
+  <ng-container header>
+    <amx-flex [gap]="'100px'" [align]="'center'">
+      <h2>Scheduling</h2>
+      <amx-toggle [(ngModel)]="enabled" [label]="toggleLabel"></amx-toggle>
+    </amx-flex>
+  </ng-container>
+  <ng-container content>
+    <div [ngStyle]="{ padding: 'var(--space-md)'}">
+      <span>This saved work order will create new work orders on the second Tuesday of every month.</span>
+    </div>
+  </ng-container>
+</amx-layout-panel>

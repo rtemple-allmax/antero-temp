@@ -1,0 +1,52 @@
+<div #dropdown class="button-wrapper" [ngStyle]="{ opacity: opacity }">
+  <amx-icon-button
+    [icon]="icon"
+    [awesome]="true"
+    [id]="id"
+    [padding]="padding"
+    [fgColor]="fgColor"
+    [height]="height">
+  </amx-icon-button>
+  <!-- <div #content class="dropdown-wrapper" [ngClass]="{ open: open, left: origin === 'left', right: origin === 'right' }" >
+    <ng-content></ng-content>
+  </div> -->
+  <dx-context-menu
+    [items]="items"
+    [target]="target"
+    (onItemClick)="itemClick($event)"
+    [width]="200"
+    [position]="{ at: 'left bottom', my: 'left top' }"
+    [showEvent]="'click'">
+    <div *dxTemplate="let data of 'contextMenuItemTemplate'">
+      <ng-container *ngIf="data?.text === 'separator'">
+        <amx-separator [space]="'0'" [color]="'var(--fg-color)'"></amx-separator>
+      </ng-container>
+      <ng-container *ngIf="data?.text !== 'separator'">
+        <amx-dropdown-item-button
+          [label]="data?.text"
+          [icon]="data?.icon"
+          [shouldDisable]="data?.disabled"
+          [danger]="data?.danger"
+          (clicked)="data?.clickHandler">
+        </amx-dropdown-item-button>
+      </ng-container>
+    </div>
+    <div *dxTemplate="let data of 'contextMenuSlideoutItemTemplate'">
+      <amx-slide-out-button
+        [label]="data?.text"
+        [icon]="data?.icon">
+        <amx-flex [flow]="'column nowrap'">
+          <ng-container *ngFor="let item of data?.subItems">
+            <amx-dropdown-item-button
+              [label]="item.displayName"
+              [subItem]="true"
+              (clicked)="data?.onItemClick(item.propname)">  
+            </amx-dropdown-item-button>
+          </ng-container>
+        </amx-flex>
+      </amx-slide-out-button>
+    </div>
+  </dx-context-menu>
+</div>
+
+

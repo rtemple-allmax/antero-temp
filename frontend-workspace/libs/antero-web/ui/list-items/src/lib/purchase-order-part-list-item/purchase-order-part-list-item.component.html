@@ -1,0 +1,39 @@
+<ng-container [ngSwitch]="typeToDisplay">
+  <ng-container *ngSwitchCase="'part'">
+    <ng-container *ngTemplateOutlet="partTemplate"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'purchaseOrder'">
+    <ng-container *ngTemplateOutlet="purchaseOrderTemplate"></ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-template #purchaseOrderTemplate>
+  <amx-grid [columns]="'50ch repeat(2, 1fr)'">
+    <div>
+      <p [ngStyle]="{ 'align-self': 'center' }"><b>{{ getDateString(record?.purchaseOrder?.orderDate) }}</b></p>
+      <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.purchaseOrder?.supplier?.name }}</p>
+    </div>
+    <p [ngStyle]="{ 'align-self': 'center' }">PO# {{ record?.purchaseOrder?.purchaseOrderNumber }}</p>
+    <p [ngStyle]="{ 'align-self': 'center' }">Req# {{ record?.purchaseOrder?.requistionNumber }}</p>
+  </amx-grid>
+</ng-template>
+
+<ng-template #partTemplate>
+  <amx-grid [columns]="'50ch repeat(2, 1fr)'">
+    <amx-popover-text [template]="stockLocationTemplate">
+      <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.partQuantity?.part?.name }}</p>
+      <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.partQuantity?.part?.description }}</p>
+    </amx-popover-text>
+    <p>Item# {{ record?.itemNumber}}</p>
+    <p>Received {{ record?.quantityReceived }} of {{ record?.quantityOrdered }} {{ record?.orderUnit }} @ {{ formatAsCurrency(record?.unitCost) }}</p>
+  </amx-grid>
+</ng-template>
+
+<ng-template #stockLocationTemplate>
+  <div [ngStyle]="{ 'padding': 'var(--space-md)'}">
+    <h4>Stock Location</h4>
+    <amx-separator></amx-separator>
+    <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.partQuantity?.warehouse?.name }}</p>
+    <p [ngStyle]="{ 'align-self': 'center' }">{{ record?.partQuantity?.area?.name }}</p>
+  </div>
+</ng-template>

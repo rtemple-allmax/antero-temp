@@ -1,0 +1,31 @@
+<amx-grid [columns]="'1fr 35px'" [gap]="'var(--space-md)'" [alignItems]="'end'">
+  <amx-text-box
+    #nameField
+    [label]="'Name'"
+    [(ngModel)]="nameBinding.value"
+    [inline]="true"
+    [required]="true"
+    [bypassValidation]="true"
+    [labelFlex]="labelFlexBasis">
+  </amx-text-box>
+  <div [tabIndex]="-1"></div>
+  <amx-color-box
+    [labelFlex]="labelFlexBasis"
+    #colorField
+    [label]="'Color'"
+    [inline]="true"
+    [(ngModel)]="colorBinding.value">
+  </amx-color-box>
+  <amx-icon-button
+    [ngStyle]="{ 'align-self': 'end' }"
+    [awesome]="true"
+    [icon]="icons.saveIcon"
+    [height]="'20px'"
+    [padding]="'6px'"
+    [shouldDisable]="!ready"
+    [fgColor]="ready ? 'var(--icon-color)' : 'var(--disabled-color)'"
+    (clicked)="submit(crudFunctions.UPDATE)">
+  </amx-icon-button>
+</amx-grid>
+
+

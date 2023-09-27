@@ -1,0 +1,36 @@
+<div class="wrapper"
+(mouseenter)="mouseenterHandler()"
+(mouseleave)="mouseleaveHandler()"
+
+[ngStyle]="{ padding: 'var(--space-md)'}">
+  <amx-grid [columns]="'50ch 1fr auto'">
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+      <amx-avatar [src]="record?.partPrimaryImage?.thumbnailUrl" (filesSelected)="filesSelectedHandler($event)"></amx-avatar>
+      <div>
+        <p [ngStyle]="{ color: 'var(--fg-color)'}">{{ record?.partName }}</p>
+        <p [ngStyle]="{ color: 'var(--fg-color)'}">{{ text }} <amx-popover-button [label]="popoverLabel" [type]="popoverTypes.TEXT" [template]="popoverTemplate"></amx-popover-button></p>
+      </div>
+    </amx-flex>    
+    <p [title]="'Comment'" [ngStyle]="{ 'align-self': 'center' }">{{ record?.comment }}</p>
+    <div  class="more" [ngClass]="{ hovered: hovered }" [ngStyle]="{ 'align-self': 'center' }">
+      <amx-crud-button
+        [allowEditing]="true"
+        [allowDeleting]="true"
+        (editRequested)="editHandler()"
+        (deleteRequested)="deleteHandler()">
+      </amx-crud-button>
+    </div>
+  </amx-grid>
+</div>
+
+<ng-template #popoverTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <h3>Stock Locations</h3>
+    <amx-separator [space]="'var(--space-md)'" [color]="'var(--disabled-color)'"></amx-separator>
+    <ng-container *ngFor="let stock of record?.stockLocations">
+      <p>{{ stock?.warehouse?.name }} <span *ngIf="stock?.area">- {{stock?.area?.name }}</span> ({{ stock?.currentQuantity }} {{ record?.units }})</p>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    </ng-container>
+  </div>
+</ng-template>
+

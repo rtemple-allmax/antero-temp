@@ -1,0 +1,12 @@
+<button
+  class="dropdown-btn-item"
+  [disabled]="disabled"
+  [ngClass]="{ danger: danger, 'sub-item': subItem }"
+  (mouseenter)="mouseenterHandler()"
+  (mouseleave)="mouseleaveHandler()"
+  (click)="clickHandler($event)">
+  <amx-flex [gap]="'var(--space-md)'" [ngClass]="{ disabled: disabled }" (click)="clickHandler($event)">
+    <amx-icon [icon]="icon" [color]="'var(--fg-color)'" [height]="'18px'" [amxFlexChild]="'0 0 20px'" [ngClass]="{ disabled: disabled }" (click)="clickHandler($event)"></amx-icon>
+    <label [ngStyle]="{ color: 'var(--fg-color)' }" [ngClass]="{ disabled: disabled }" (click)="clickHandler($event)">{{ label }}</label>
+  </amx-flex>
+</button>

@@ -1,0 +1,28 @@
+<div [ngStyle]="{ padding: 'var(--space-md)' }">
+  <amx-combo-button [icon]="'iconAdd'" [label]="'Add Part'"></amx-combo-button>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-card (clicked)="test()">Blah</amx-card>
+  <!-- <amx-virtual-scroll-container
+    [columnCount]="2"
+    [items]="wtParts"
+    [itemSize]="itemSize"
+    [itemTemplate]="itemTemplate"
+    [height]="'calc(100vh - 245px)'">
+  </amx-virtual-scroll-container> -->
+  <!-- <amx-virtual-scroll-container [items]="wtParts"></amx-virtual-scroll-container> -->
+</div>
+
+<ng-template #itemTemplate let-method="method" let-item="item">
+  <amx-card
+    #card
+    [height]="innerItemSize"
+    [selected]="item.id === selectedPart?.id"
+    (clicked)="method()">
+    <amx-flex [height]="'100%'" [flow]="'column nowrap'" [justify]="'center'">
+      <p><b>{{ item?.partQuantity?.part?.name }}</b></p>
+      <p>{{ item?.partQuantity?.part?.description }}</p>
+      <p>{{ item?.estimatedQuantity }} {{ item?.partQuantity?.part?.stockingUnit }}</p>      
+    </amx-flex>
+  </amx-card>
+</ng-template>
+

@@ -1,0 +1,20 @@
+<div>
+  <h2 [ngStyle]="{ 'text-align': 'center'}">Customize My View</h2>
+  <amx-separator [space]="'var(--space-md)'"></amx-separator>
+  <p>
+    Marking a field as a favorite will add the field to your My Data panel.  
+    Marking a field as not visible will remove the field from all detail panels and forms.
+  </p>
+  <amx-scroll-box [maxHeight]="'calc(100vh - 170px)'">
+    <amx-layout-panel-container (indexChanged)="indexChangedHandler($event)">
+      <ng-container *ngFor="let item of fields">
+        <amx-customization-item
+          [title]="item.propName"
+          [item]="item"
+          (visibilityChanged)="visibilityChangedHandler($event)"
+          (favoriteChanged)="favoriteChangedHandler($event)">
+        </amx-customization-item>
+      </ng-container>
+    </amx-layout-panel-container>
+  </amx-scroll-box>
+</div>

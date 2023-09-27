@@ -1,0 +1,41 @@
+<div>
+  <amx-grid [columns]="'1fr 1fr auto 20px'">
+    <amx-flex [gap]="'var(--space-sm)'" [align]="'center'">
+      <div>
+        <amx-popover-button
+          [label]="workOrderNumberLabel"
+          [type]="popoverTypes.TEXT"
+          [template]="workOrderNumberTemplate"
+          (clicked)="selectWorkOrder()">
+        </amx-popover-button>
+        <p [title]="'Task Name'" [ngStyle]="{'width': '200px'}">{{ record?.task?.name}}</p>
+      </div>
+      <div>
+        <!-- <amx-popover-button *ngIf="record?.isDue" [icon]="icons.delinquentIcon" [template]="delinquentTemplate" [fgColor]="'var(--msg-danger)'"></amx-popover-button> -->
+        <!-- <amx-popover-button *ngIf="record?.needsAttention" [icon]="icons.needsAttentionIcon" [template]="needsAttentionTemplate" [fgColor]="'var(--msg-warning)'"></amx-popover-button> -->
+      </div>
+    </amx-flex>
+    <amx-flex [gap]="'var(--space-md)'" [align]="'center'" [height]="'100%'">
+      <p>Due On {{ getDateString(record?.dueDate) }}</p>
+      <p>{{ record?.workPriority?.name }} Priority</p>
+    </amx-flex>
+    <amx-flex [height]="'100%'" [align]="'center'">
+      <amx-icon-button [awesome]="true" [height]="'20px'" [icon]="!record?.isComplete ?  icons.confirmIcon : icons.cancelIcon" [fgColor]="'var(--icon-color)'"></amx-icon-button>
+    </amx-flex>
+  </amx-grid>
+  <ng-template #delinquentTemplate>
+    <div [ngStyle]="{ padding: 'var(--space-md)' }">
+      <p>Past Due Since {{ getDateString(record?.dueDate) }}</p>
+    </div>
+  </ng-template>
+  <ng-template #needsAttentionTemplate>
+    <div [ngStyle]="{ padding: 'var(--space-md)' }">
+      <p>{{ record?.needsAttentionText }}</p>
+    </div>
+  </ng-template>
+  <ng-template #workOrderNumberTemplate>
+    <div [ngStyle]="{ padding: 'var(--space-md)' }">
+      <p>Type: {{ record?.workType?.name }}</p>
+    </div>
+  </ng-template>
+</div>

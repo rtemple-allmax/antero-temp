@@ -1,0 +1,22 @@
+export enum RoutePaths {
+  ADMIN = 'admin',
+  LOGIN = 'login',
+  REGISTER = 'register',
+  PASSWORD = 'password',
+  SELECT_DATABASE = 'select-database',
+  // HOME = 'home',
+  DASHBOARD = 'dashboard',
+  EQUIPMENT = 'equipment',
+  MAPPING = 'mapping',
+  CURRENT_WORK = 'current-work',
+  WORK_SETUP = 'work-setup',
+  WORK_HISTORY = 'work-history',
+  PARTS = 'parts',
+  ORDERING = 'ordering',
+  SUPPLIERS = 'suppliers',
+  WORK_REVIEW = 'work-review',
+  WORK_REQUESTS = 'work-requests',
+  TRANSACTIONS = 'transactions',
+  TESTING = 'testing',
+  WORK = 'work'
+}

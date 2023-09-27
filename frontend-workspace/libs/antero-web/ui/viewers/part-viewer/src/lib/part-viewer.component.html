@@ -1,0 +1,7 @@
+<amx-modal [heading]="'Part Viewer'" (closed)="closedHandler()">
+  <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+    <amx-avatar [src]="primaryImage?.thumbnailUrl"></amx-avatar>
+    <h2><b>{{ record?.name }}</b></h2>
+  </amx-flex>
+  <ant-parts-detail-panel [title]="'Primary Details'"></ant-parts-detail-panel>
+</amx-modal>

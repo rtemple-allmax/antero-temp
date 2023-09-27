@@ -1,0 +1,38 @@
+<amx-layout-panel
+  [allowAdding]="true"
+  (addRequested)="addHandler()"
+  (collapsedStateChanged)="collapsedStateChangeHandler($event)">
+  <ng-container header>
+    <h2>{{ title }}</h2>
+  </ng-container>
+  <ng-container content>
+    <amx-data-table
+      class="subsection"
+      [ngClass]="{ subsection: viewType === viewTypes.LIST }"
+      [backgroundColor]="'transparent'"
+      [data]="data?.data"
+      [columns]="data?.colDef?.columns || []"
+      [allowGrouping]="false"
+      [showBorders]="false"
+      [allowExport]="false"
+      [showRowLines]="true"
+      [showColumnLines]="false"
+      [hoverStateEnabled]="true"
+      [selectFirstRowOnLoad]="false"
+      [showColumnHeaders]="viewType === viewTypes.TABLE"
+      [cellTemplate]="dataTemplate"
+      [noDataText]="'No Instruments have been added to this Equipment.'"
+      (selectionChanged)="selectionChangedHandler($event)">
+    </amx-data-table>
+  </ng-container>
+</amx-layout-panel>
+
+<ng-template #noData>
+  <div class="no-data">
+    No Instruments have been added to this Equipment.
+  </div>
+</ng-template>
+
+<ng-template #dataTemplate let-template="template">
+  <ant-equipment-list-item-instrument [record]="template?.data"></ant-equipment-list-item-instrument>
+</ng-template>

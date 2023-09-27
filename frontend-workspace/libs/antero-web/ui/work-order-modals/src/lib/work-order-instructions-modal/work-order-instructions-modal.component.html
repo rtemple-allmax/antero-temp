@@ -1,0 +1,14 @@
+<amx-modal
+  [heading]="heading"
+  (closed)="closedHandler()">
+  <amx-text-editor [(ngModel)]="textBinding.value"></amx-text-editor>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button
+      [label]="'Update'"
+      [invert]="true"
+      [icon]="icons.saveIcon"
+      (clicked)="submit()">
+    </amx-combo-button>
+  </amx-flex>
+</amx-modal>

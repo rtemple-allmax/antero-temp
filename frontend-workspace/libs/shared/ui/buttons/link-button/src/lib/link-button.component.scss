@@ -1,0 +1,15 @@
+button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  & label {
+    color: var(--icon-color);
+    cursor: pointer;
+    &:hover {
+      color: var(--fg-color);
+      text-decoration: underline;
+    }
+  }
+}

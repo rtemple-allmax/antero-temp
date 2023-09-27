@@ -1,0 +1,31 @@
+<div (mouseenter)="mouseenterHandler()" (mouseleave)="mouseleaveHandler()">
+  <amx-grid [columns]="'1fr auto auto'">
+    <h3 [ngStyle]="{ 'align-self': 'center'}">{{ record?.name }}</h3>
+    <amx-popover-button [ngStyle]="{ 'align-self': 'center'}" [icon]="icons.thickFileIcon" [fgColor]="'var(--icon-color)'" [template]="instructionsTemplate"></amx-popover-button>
+    <div (click)="stopPropagation($event)" class="more" [ngClass]="{ hovered: hovered }">
+      <amx-flex [height]="'100%'" [align]="'center'" [justify]="'center'">
+        <amx-dropdown-button
+          [ngStyle]="{ 'align-self': 'center'}"
+          [icon]="icons.moreIcon"
+          [bgColor]="'transparent'"
+          [origin]="'right'"
+          [padding]="'var(--space-sm)'"
+          [fgColor]="'white'"
+          [height]="'20px'">
+          <amx-flex [flow]="'column nowrap'">
+            <amx-dropdown-item-button [icon]="icons.editIcon" [label]="'Edit'" (clicked)="editHandler()"></amx-dropdown-item-button>
+            <amx-dropdown-item-button [icon]="icons.deleteIcon" [label]="'Delete'" [danger]="true" (clicked)="deleteHandler()"></amx-dropdown-item-button>
+          </amx-flex>
+        </amx-dropdown-button>
+      </amx-flex>
+      
+    </div>
+  </amx-grid>
+</div>
+
+<ng-template #instructionsTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <amx-formatted-text [text]="record?.instructionsString || 'This task contains no instructions'"></amx-formatted-text>
+  </div>
+</ng-template>
+

@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/form-fields/text-box/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/shared/ui/form-fields/text-box"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/ui/form-fields/text-box/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/form-fields/text-box/**/*.ts",
+          "libs/shared/ui/form-fields/text-box/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

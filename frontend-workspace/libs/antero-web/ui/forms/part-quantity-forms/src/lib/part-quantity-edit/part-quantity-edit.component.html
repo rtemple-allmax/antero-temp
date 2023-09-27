@@ -1,0 +1,40 @@
+<amx-modal [heading]="'Edit Stock Location'" (closed)="closedHandler()">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-searchable-dropdown
+      [label]="'Warehouse'"
+      [items]="warehouses"
+      [(ngModel)]="warehouseBinding.value"
+      (opened)="getWarehouses()">
+    </amx-searchable-dropdown>
+    <amx-searchable-dropdown
+      [label]="'Area'"
+      [items]="areas"
+      [disabled]="!areasEnabled"
+      [(ngModel)]="areaBinding.value">
+    </amx-searchable-dropdown>
+    <amx-number-box
+      [label]="'Unit Cost'"
+      [(ngModel)]="unitCostBinding.value">
+    </amx-number-box>
+    <amx-number-box
+      [label]="'Quantity'"
+      [(ngModel)]="qtyBinding.value">
+    </amx-number-box>
+    <amx-number-box
+      [label]="'Min Quantity'"
+      [(ngModel)]="minBinding.value">
+    </amx-number-box>
+    <amx-number-box
+      [label]="'Max Quantity'"
+      [(ngModel)]="maxBinding.value">
+    </amx-number-box>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button
+      [label]="'Save'"
+      [icon]="icons.saveIcon"
+      (clicked)="submit()">
+    </amx-combo-button>
+  </amx-flex>
+</amx-modal>

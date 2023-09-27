@@ -1,0 +1,48 @@
+<ng-container *ngFor="let record of records; let i = index;">
+  <ng-container *ngTemplateOutlet="!showEditForm(record) ? readTemplate : editTemplate; context: { data: record, index: i }"></ng-container>  
+  <amx-separator [space]="'var(--space-md)'"></amx-separator>
+</ng-container>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<ant-work-status-add
+  #addForm
+  (addRequested)="addRecord($event)">
+</ant-work-status-add>
+
+<ng-template #readTemplate let-data="data" let-index="index">
+  <amx-flex [justify]="'space-between'" [align]="'center'">
+    <div [amxFlexChild]="'1'" [ngStyle]="{ 'background-color' : data.color, padding: 'var(--space-md)' }">
+      <h3 [ngStyle]="{ color: getTextColor(data.color) }">{{ data.name }}</h3>
+    </div>
+    <amx-dropdown-button
+      [icon]="icons.moreIcon"
+      [fgColor]="'var(--icon-color)'"
+      [height]="'20px'">
+      <amx-dropdown-item-button
+        [icon]="icons.editIcon"
+        [label]="'Edit'"
+        (clicked)="setMode(crudFunctions.UPDATE, data)">
+      </amx-dropdown-item-button>
+      <amx-dropdown-item-button
+        [icon]="icons.deleteIcon"
+        [danger]="true"
+        [label]="'Delete'"
+        (clicked)="setMode(crudFunctions.DELETE, data)">
+      </amx-dropdown-item-button>
+    </amx-dropdown-button>
+  </amx-flex>
+</ng-template>
+
+<ng-template #editTemplate>
+  <ant-work-status-edit
+    [source]="selectedRecord"
+    (editRequested)="editRecord($event)">
+  </ant-work-status-edit>
+</ng-template>
+
+<ng-container *ngIf="crud === crudFunctions.DELETE">
+  <ant-work-status-delete
+    [source]="selectedRecord"
+    (canceled)="setMode(crudFunctions.CREATE)"
+    (deleteRequested)="deleteRecord($event)">
+  </ant-work-status-delete>
+</ng-container>

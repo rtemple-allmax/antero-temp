@@ -1,0 +1,40 @@
+<button
+  class="crud-btn"
+  (click)="clickHandler($event)"
+  (mouseenter)="mouseenterHandler()"
+  (mouseleave)="mouseleaveHandler()"
+  (clickOutside)="close()"
+  [disabled]="disabled"
+  [ngStyle]="{ opacity: opacity }"
+  [type]="'button'"
+  [id]="id"
+  [title]="tooltip"
+  [tabIndex]="tabIndex">
+  <amx-flex [height]="'100%'" [align]="'center'" [justify]="'center'">
+    <fa-icon
+      [icon]="icon"
+      [ngStyle]="{
+        'font-size': iconHeight,
+        color: !disabled ? 'var(--icon-color)' : 'pink'
+      }">
+    </fa-icon>
+  </amx-flex>
+</button>
+<ng-container *ngIf="!disabled && items.length > 0 && !addOnly && !editOnly && !deleteOnly">
+  <dx-context-menu
+    [items]="items"
+    [target]="target"
+    (onItemClick)="itemClickHandler($event)"
+    [width]="200"
+    [position]="{ at: 'left bottom', my: 'left top' }"
+    [showEvent]="'click'">
+    <div *dxTemplate="let data of 'contextMenuItemTemplate'">
+      <amx-dropdown-item-button
+        [label]="data?.text"
+        [icon]="data?.icon"
+        [shouldDisable]="data?.disabled"
+        [danger]="data?.danger">
+      </amx-dropdown-item-button>
+    </div>
+  </dx-context-menu>
+</ng-container>

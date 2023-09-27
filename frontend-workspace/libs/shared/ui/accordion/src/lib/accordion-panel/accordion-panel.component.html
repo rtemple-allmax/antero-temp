@@ -1,0 +1,17 @@
+<div class="accordion-panel">
+  <div class="header" [ngClass]="{ collapsed: collapsed }" (click)="headerClicked()">
+    <fa-icon
+      [icon]="icons.downCaretIcon"
+      [ngStyle]="{
+        'font-size': fontSize,
+        'color': 'var(--fg-color)',
+        'transform': iconTransform,
+        transition: 'all .2s ease-in-out'
+      }">
+    </fa-icon>
+    <h3 [ngStyle]="{ 'font-size': '18px', 'color': 'var(--fg-color)' }">{{ label }}</h3>
+  </div>
+  <div class="panel-content" [ngClass]="{ open: !collapsed }">
+    <ng-content></ng-content>
+  </div>
+</div>

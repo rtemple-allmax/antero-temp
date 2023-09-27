@@ -1,0 +1,24 @@
+<div class="customizable-field">
+  <amx-flex *ngIf="item" [gap]="'var(--space-md)'" [align]="'center'">
+    <div class="drag-handle">
+      <fa-icon [icon]="icons.dragIcon" [ngStyle]="{ color: 'var(--fg-color)'}"></fa-icon>
+    </div>
+    <p [amxFlexChild]="'1'">{{ item.label }}</p>
+    <amx-icon-button
+      [awesome]="true"
+      [icon]="icons.thickVisibilityIcon"
+      [fgColor]="item.visible ? 'var(--icon-color)' : 'var(--disabled-color)'"
+      [height]="'20px'"
+      (clicked)="toggleVisibility()">
+    </amx-icon-button>
+    <amx-icon-button
+      [awesome]="true"
+      [icon]="icons.thickFavoriteIcon"
+      [fgColor]="item.favorite ? 'var(--msg-danger)' : 'var(--disabled-color)'"
+      [shouldDisable]="item.visible === 0"
+      [height]="'20px'"
+      (clicked)="toggleFavorite()">
+    </amx-icon-button>
+  </amx-flex>
+</div>
+

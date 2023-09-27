@@ -1,0 +1,18 @@
+<div class="field-wrapper" [ngClass]="{ invalid: !valid, required: required }">
+  <label class="label" *ngIf="!!label">{{ label }}</label>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <div #element class="field" (click)="clickHandler()">
+    <dx-text-area
+      [(ngModel)]="value"
+      [tabIndex]="tabIndex"
+      [disabled]="isDisabled"
+      [maxLength]="maxLength"
+      [placeholder]="placeholder"
+      [height]="'150px'"
+      (onBlur)="blurHandler()">
+    </dx-text-area>
+  </div>
+  <div class="errors-wrapper" *ngIf="!valid">
+    <label class="error-text">{{ errorMessage }}</label>
+  </div>
+</div>

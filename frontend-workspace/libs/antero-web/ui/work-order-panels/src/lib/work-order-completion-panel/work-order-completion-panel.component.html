@@ -1,0 +1,50 @@
+<amx-flex [height]="height" [flow]="'column nowrap'" [gap]="'var(--space-lg)'" [padding]="'var(--space-md)'">
+  <ant-checklist-viewer [checklist]="checklist"></ant-checklist-viewer>
+  <amx-group-box
+    [label]="'Completion Info'"
+    [stretch]="true"
+    [black]="true">
+    <amx-grid [columns]="deviceType === deviceTypes.DESKTOP ? 'repeat(2, 1fr)' : '1fr'" [gap]="'var(--space-md)'">
+      <amx-read-only-box [label]="'Date Completed'">{{ data?.wo?.dateCompleted }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Completed By'">{{ data?.wo?.completedBy?.name }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Completed Notes'">{{ data?.wo?.completedNotes }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Needs Attention'">{{ data?.wo?.needsAttentionText }}</amx-read-only-box>
+    </amx-grid>
+    <amx-flex [gap]="'var(--space-lg)'">
+      <amx-link-button [label]="'Equipment downtime'"></amx-link-button>
+      <amx-link-button [label]="'Attachments'"></amx-link-button>
+    </amx-flex>
+  </amx-group-box>
+  <amx-group-box
+    [label]="'Instruments'"
+    [black]="true"
+    [stretch]="true"
+    [amxFlexChild]="'2'">
+    <ng-container *ngIf="instruments.length > 0 else noData">
+      <amx-grid [columns]="deviceType === deviceTypes.DESKTOP ? 'repeat(2, 1fr)' : '1fr'" [gap]="'var(--space-lg)'">
+        <ng-container *ngFor="let record of instruments let i = index">
+          <amx-card (clicked)="enterReading(record)">
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+              <amx-read-only-box [label]="'Name'">{{ record.instrument?.name }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Units'">{{ record.instrument?.units }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Reading'">{{ record.reading }}</amx-read-only-box>
+            </amx-grid>
+          </amx-card>
+        </ng-container>
+      </amx-grid>
+    </ng-container>
+  </amx-group-box>
+</amx-flex>
+  
+  <ng-template #noData>
+    <div class="no-data">
+      No Instruments are associated with this Work Order.
+    </div>
+  </ng-template>
+  
+  <ng-template #noChecklist>
+    <div class="no-data" [ngStyle]="{ 'height': '100%' }">
+      No Checklist has been added to this Work Order.
+    </div>
+  </ng-template>
+  

@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/collapsible/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/collapsible"],
+      "options": {
+        "jestConfig": "libs/shared/ui/collapsible/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/collapsible/**/*.ts",
+          "libs/shared/ui/collapsible/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

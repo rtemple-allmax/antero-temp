@@ -1,0 +1,27 @@
+<amx-layout-panel-collapsible
+  [tutorialKey]="keys.EQUIPMENT_CUSTOM_DETAILS_TUTORIAL"
+  [title]="title"
+  (collapsedStateChanged)="collapsedStateChangedHandler($event)">
+  <amx-grid [columns]="'1fr'" [gap]="'var(--space-lg)'">
+    <amx-contact-box [label]="customLabels?.equipmentCustom01 || 'Custom 1'" [value]="record?.custom01 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom02 || 'Custom 2'" [value]="record?.custom02 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom03 || 'Custom 3'" [value]="record?.custom03 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom04 || 'Custom 4'" [value]="record?.custom04 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom05 || 'Custom 5'" [value]="record?.custom05 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom06 || 'Custom 6'" [value]="record?.custom06 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom07 || 'Custom 7'" [value]="record?.custom07 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom08 || 'Custom 8'" [value]="record?.custom08 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom09 || 'Custom 9'" [value]="record?.custom09 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom10 || 'Custom 10'" [value]="record?.custom10 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom11 || 'Custom 11'" [value]="record?.custom11 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom12 || 'Custom 12'" [value]="record?.custom12 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom13 || 'Custom 13'" [value]="record?.custom13 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom14 || 'Custom 14'" [value]="record?.custom14 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom15 || 'Custom 15'" [value]="record?.custom15 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom16 || 'Custom 16'" [value]="record?.custom16 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom17 || 'Custom 17'" [value]="record?.custom17 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom18 || 'Custom 18'" [value]="record?.custom18 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom19 || 'Custom 19'" [value]="record?.custom19 || ''"></amx-contact-box>
+    <amx-contact-box [label]="customLabels?.equipmentCustom20 || 'Custom 20'" [value]="record?.custom20 || ''"></amx-contact-box>
+  </amx-grid>
+</amx-layout-panel-collapsible>

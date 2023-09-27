@@ -1,0 +1,9 @@
+<amx-confirmation
+  [dangerous]="true"
+  (canceled)="cancelHandler()"
+  (closed)="cancelHandler()"
+  (confirmed)="submit(crudFunctions.DELETE)">
+  <span>This will delete the selected Labor Type.</span><br/>
+  <span><b>Do you wish to continue?</b></span>
+</amx-confirmation>
+

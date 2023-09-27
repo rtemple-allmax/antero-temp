@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/ui/equipment-modals/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/ui/equipment-modals"],
+      "options": {
+        "jestConfig": "libs/antero-web/ui/equipment-modals/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/ui/equipment-modals/**/*.ts",
+          "libs/antero-web/ui/equipment-modals/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

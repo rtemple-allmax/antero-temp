@@ -1,0 +1,29 @@
+<amx-confirmation
+  [heading]="'Delete Confirmation'"
+  [headerBGColor]="'var(--msg-danger)'"
+  (closed)="cancelHandler()"
+  (canceled)="cancelHandler()"
+  (confirmed)="confirmHandler()">
+  <ng-container *ngIf="affectedTypes.length === 0 else verbose">
+    <p>This action will permanently delete the {{ typeName }} <b>{{ recordName }}</b> along with any associated data.</p>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <p><b>Do you wish to continue?</b></p>
+  </ng-container>
+</amx-confirmation>
+
+<ng-template #verbose>
+  <p>This action will permanently delete the {{ typeName }} <b>{{ recordName }}</b> along with the following associated data.</p>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <ul>
+    <ng-container *ngFor="let type of affectedTypes">
+      <li>{{ type }}</li>
+    </ng-container>
+  </ul>
+  <!-- <amx-grid [columns]="'repeat(2, 1fr)'">
+    <ng-container *ngFor="let type of affectedTypes">
+      <p [ngStyle]="{ display: 'list-item' }">{{ type }}</p>
+    </ng-container>
+  </amx-grid> -->
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <p><b>This action cannot be undone, do you wish to continue?</b></p>
+</ng-template>

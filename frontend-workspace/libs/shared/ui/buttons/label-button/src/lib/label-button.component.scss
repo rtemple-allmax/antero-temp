@@ -1,0 +1,24 @@
+.btn {
+  background-color: transparent;
+  border: 1px solid #bbb;
+  outline: 0;
+  opacity: 1;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  &.label-btn {
+    padding: var(--space-md);
+    border-color: transparent;
+    background-color: var(--icon-color);
+    color: white;
+    &:hover {
+      background-color: white;
+      border-color: var(--icon-color);
+      color: var(--fg-color);
+    }
+    &:disabled {
+      background-color: #ccc;
+      color: var(--disabled-color);
+      border-color: var(--disabled-color);
+    }
+  }
+}

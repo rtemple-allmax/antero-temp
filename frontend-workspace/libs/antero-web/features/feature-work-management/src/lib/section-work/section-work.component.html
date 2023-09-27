@@ -1,0 +1,96 @@
+<ant-app-frame [sectionName]="sectionName">
+  <ng-container frameControls>
+    <amx-dropdown-button
+      [icon]="icons.downCaretIcon"
+      [height]="'20px'"
+      [items]="dataTypeItems"
+      [fgColor]="'white'">
+    </amx-dropdown-button>
+  </ng-container>
+  <amx-master-detail
+    frameContent
+    [data]="data?.data"
+    [columns]="data?.colDef?.columns || []"
+    [masterWidth]="deviceType === deviceTypes.MOBILE ? '100%' : '50ch'"
+    [cellTemplate]="viewType === viewTypes.LIST ? masterListItemTemplate : undefined"
+    [deviceType]="deviceType"
+    [rowContextMenuItems]="rowContextMenuItems"
+    [allowAdd]="true"
+    [selectionMode]="dataType === dataTypes.CURRENT ? 'multiple': 'single'"
+    [viewType]="viewType"
+    (tableReady)="tableReadyHandler($event)"
+    (selectionChanged)="selectionChangedHandler($event)"
+    (contextMenuPreparing)="contextMenuHandler($event)"
+    (layoutDirty)="layoutDirtyHandler(layoutTypes.WORK_MANAGEMENT_GRID)">
+    <amx-flex controls [justify]="'space-between'" [padding]="'var(--space-md) var(--space-lg) var(--space-md) var(--space-md)'" [gap]="'var(--space-md)'" [align]="'center'">
+      <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+        <amx-combo-button [label]="'Create Work Order'" [invert]="true" [icon]="icons.addIcon" (clicked)="openAdd()"></amx-combo-button>
+        <amx-search-box #searchBox (searchTermChanged)="searchHandler($event)" (downArrowClicked)="searchDownArrowHandler()"></amx-search-box>
+        <amx-dropdown-button
+          [icon]="icons.moreIcon"
+          [fgColor]="'var(--icon-color)'"
+          [height]="'20px'"
+          [items]="sectionContextMenuItems">
+        </amx-dropdown-button>
+      </amx-flex>
+      <amx-icon-button
+        *ngIf="viewType === viewTypes.TABLE"
+        [height]="'24px'"
+        [icon]="'iconBack'"
+        [rotation]="detailButtonRotation"
+        (clicked)="toggleDetail()">
+      </amx-icon-button>
+    </amx-flex>
+    <div details>
+      <ng-container [ngSwitch]="dataType">
+        <ng-container *ngSwitchCase="dataTypes.CURRENT">
+          <ant-work-order-content></ant-work-order-content>
+        </ng-container>
+        <ng-container *ngSwitchCase="dataTypes.MY_WORK">
+          <ant-work-order-content></ant-work-order-content>
+        </ng-container>
+        <ng-container *ngSwitchCase="dataTypes.REVIEW">
+          <ant-work-order-content></ant-work-order-content>
+        </ng-container>
+        <ng-container *ngSwitchCase="dataTypes.SAVED">
+          <ant-work-template-content></ant-work-template-content>
+        </ng-container>
+        <ng-container *ngSwitchCase="dataTypes.HISTORY">
+          <ant-work-history-content></ant-work-history-content>
+        </ng-container>
+        <ng-container *ngSwitchCase="dataTypes.REQUEST">
+          <ant-work-request-content></ant-work-request-content>
+        </ng-container>
+      </ng-container>
+    </div>
+  </amx-master-detail>
+</ant-app-frame>
+
+<ng-template #masterListItemTemplate let-template="template">
+  <ng-container [ngSwitch]="dataType">
+    <ng-container *ngSwitchCase="dataTypes.CURRENT">
+      <!-- <p>{{ template?.data?.workOrderNumber }}</p> -->
+      <ant-work-order-list-item [record]="template?.data"></ant-work-order-list-item>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.MY_WORK">
+      <!-- <p>{{ template?.data?.workOrderNumber }}</p> -->
+      <ant-work-order-list-item [record]="template?.data"></ant-work-order-list-item>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.REVIEW">
+      <!-- <p>{{ template?.data?.workOrderNumber }}</p> -->
+      <ant-work-order-list-item [record]="template?.data"></ant-work-order-list-item>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.SAVED">
+      <!-- <p>{{ template?.data?.workOrderNumber }}</p> -->
+      <ant-work-template-list-item [record]="template?.data"></ant-work-template-list-item>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.HISTORY">
+      <!-- <p>{{ template?.data?.workOrderNumber }}</p> -->
+      <ant-work-history-list-item [record]="template?.data"></ant-work-history-list-item>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.REQUEST">
+      <!-- <p>{{ template?.data?.workOrderNumber }}</p> -->
+      <ant-work-request-list-item [record]="template?.data"></ant-work-request-list-item>
+    </ng-container>
+  </ng-container>
+</ng-template>

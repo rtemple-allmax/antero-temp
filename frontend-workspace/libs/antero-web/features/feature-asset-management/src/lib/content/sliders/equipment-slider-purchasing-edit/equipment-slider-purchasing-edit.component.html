@@ -1,0 +1,37 @@
+<h2 [ngStyle]="{ 'text-align': 'center' }">Edit {{ source?.name }}</h2>
+<amx-separator></amx-separator>
+<amx-scroll-box [maxHeight]="'calc(100vh - (43px + 24px + 15px + 32px + 3rem))'">
+  <amx-searchable-dropdown
+      [label]="'Vendor'"
+      [items]="suppliers"
+      [allowAdd]="false"
+      [(ngModel)]="vendorBinding.value"
+      (opened)="getSuppliers()">
+    </amx-searchable-dropdown>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-date-box [label]="'Placed In Service'" [type]="'date'" [(ngModel)]="placedInServiceBinding.value"></amx-date-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-searchable-dropdown
+      [label]="'Manufacturer'"
+      [items]="suppliers"
+      [allowAdd]="false"
+      [(ngModel)]="manufacturerBinding.value"
+      (opened)="getSuppliers()">
+    </amx-searchable-dropdown>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-number-box [label]="'Warranty Days'" [(ngModel)]="warrantyDaysBinding.value"></amx-number-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-date-box [label]="'Date Purchased'" [type]="'date'" [(ngModel)]="datePurchasedBinding.value"></amx-date-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-number-box [label]="'Warranty Meter'" [(ngModel)]="warrantyMeterBinding.value"></amx-number-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-number-box [label]="'Purchase Price'" format="$ ###,###,###,##0.00" [(ngModel)]="purchasePriceBinding.value"></amx-number-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-number-box [label]="'Life Expectancy'" [precision]="{ integral: 14, fractional: 2 }" [(ngModel)]="lifeExpectancyBinding.value"></amx-number-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-number-box [label]="'Salvage Value'" format="$ ###,###,###,##0.00" [(ngModel)]="salvageValueBinding.value"></amx-number-box>
+</amx-scroll-box>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-flex [justify]="'flex-end'">
+  <amx-combo-button [label]="'Save'" [icon]="icons.saveIcon" (clicked)="submit()"></amx-combo-button>
+</amx-flex>

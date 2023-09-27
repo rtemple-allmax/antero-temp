@@ -1,0 +1,83 @@
+<ant-work-order-admin-info-modal
+  *ngIf="currentModal === modals.WORK_ORDER_EDIT_ADMIN_INFO"
+  (closed)="closeModal()">
+</ant-work-order-admin-info-modal>
+
+<ant-work-order-complete-modal
+  *ngIf="currentModal === modals.WORK_ORDER_COMPLETE"
+  (closed)="closeModal()">
+</ant-work-order-complete-modal>
+
+<ant-work-order-contractor-modal
+  *ngIf="currentModal === modals.WORK_ORDER_ADD_EDIT_SUPPLIER"
+  (closed)="closeModal()">
+</ant-work-order-contractor-modal>
+
+<ant-work-order-equipment-modal
+  *ngIf="currentModal === modals.WORK_ORDER_EQUIPMENT"
+  (closed)="closeModal()">
+</ant-work-order-equipment-modal>
+
+<ant-work-order-equipment-history-modal
+  *ngIf="currentModal === modals.WORK_ORDER_EQUIPMENT_HISTORY"
+  (closed)="closeModal()">
+</ant-work-order-equipment-history-modal>
+
+<ant-work-order-instructions-modal
+  *ngIf="currentModal === modals.WORK_ORDER_EDIT_INSTRUCTIONS"
+  (closed)="closeModal()">
+</ant-work-order-instructions-modal>
+
+<ant-work-order-instrument-modal
+  *ngIf="currentModal === modals.WORK_ORDER_ENTER_READINGS"
+  [record]="selectedInstrument"
+  (closed)="closeModal()">
+</ant-work-order-instrument-modal>
+
+<ant-work-order-labor-modal
+  *ngIf="currentModal === modals.WORK_ORDER_ADD_EDIT_LABOR"
+  (closed)="closeModal()">
+</ant-work-order-labor-modal>
+
+<ant-work-order-misc-modal
+  *ngIf="currentModal === modals.WORK_ORDER_ADD_EDIT_MISC"
+  (closed)="closeModal()">
+</ant-work-order-misc-modal>
+
+<ant-work-order-move-to-history-modal
+  *ngIf="currentModal === modals.WORK_ORDER_MOVE_TO_HISTORY"
+  [data]="data"
+  (closed)="closeModal()">
+</ant-work-order-move-to-history-modal>
+
+<ant-work-order-move-to-review-modal
+  *ngIf="currentModal === modals.WORK_ORDER_MOVE_TO_REVIEW"
+  [data]="data"
+  (closed)="closeModal()">
+</ant-work-order-move-to-review-modal>
+
+<ant-work-order-part-modal
+  *ngIf="currentModal === modals.WORK_ORDER_ADD_EDIT_PART"
+  (closed)="closeModal()">
+</ant-work-order-part-modal>
+
+<ant-work-order-tool-modal
+  *ngIf="currentModal === modals.WORK_ORDER_ADD_EDIT_EQUIPMENT"
+  (closed)="closeModal()">
+</ant-work-order-tool-modal>
+
+<ant-work-order-edit-multiple-modal
+  *ngIf="currentModal === modals.WORK_ORDER_EDIT_MULTIPLE">
+</ant-work-order-edit-multiple-modal>
+
+<ant-work-lists-modal
+  *ngIf="currentModal === modals.WORK_LISTS">
+</ant-work-lists-modal>
+
+<ant-checklist-editor
+  *ngIf="currentModal === modals.WORK_ORDER_EDIT_CHECKLIST"
+  (closed)="closeModal()"
+  (changed)="checklistEditorChangeHandler($event)">
+</ant-checklist-editor>
+
+<ant-work-order-part-add *ngIf="currentModal === modals.ADD_WORK_ORDER_PART"></ant-work-order-part-add>

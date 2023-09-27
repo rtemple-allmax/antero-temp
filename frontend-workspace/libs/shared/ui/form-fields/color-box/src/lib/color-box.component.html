@@ -1,0 +1,28 @@
+<div class="field-wrapper" [ngClass]="{ invalid: !valid, required: required, disabled: disabled }" >
+  <amx-flex [flow]="flow" [gap]="'var(--space-md)'" [align]="alignment">
+    <label *ngIf="hasLabel" class="label" [amxFlexChild]="uiLabelFlex">{{ label }}</label>
+    <div class="field color-box"  (click)="clickHandler()" (keydown)="keydownHandler($event)" [amxFlexChild]="'1'" [tabIndex]="0" [ngStyle]="{ 'background-color': uiColor }">
+      <amx-flex [align]="'center'">
+        <label [ngStyle]="{ color: textColor }" [amxFlexChild]="'1'" >
+          Select A Color...
+          <input #colorInput type="color" [(ngModel)]="value"/>
+        </label>
+        <amx-icon-button
+          [awesome]="true"
+          [icon]="icons.downCaretIcon"
+          [shouldDisable]="disabled"
+          [tabIndex]="-1"
+          [fgColor]="textColor"
+          [showHoverEffect]="false"
+          [bgColor]="'transparent'"
+          (clicked)="openColorPicker()">
+        </amx-icon-button>
+      </amx-flex>
+    </div>
+  </amx-flex>
+  <div class="errors-wrapper" *ngIf="!valid">
+    <label class="error-text">{{ errorMessage }}</label>
+  </div>
+</div>
+
+

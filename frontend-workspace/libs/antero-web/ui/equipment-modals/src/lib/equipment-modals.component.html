@@ -1,0 +1,39 @@
+<!-- <ant-add-edit-equipment
+  *ngIf="modal === modals.EQUIPMENT_ADD_EDIT"
+  [sourceRecord]="selection"
+  [categories]="categories"
+  [conditions]="conditions"
+  [departments]="departments"
+  [groups]="groups"
+  [locations]="locations"
+  [priorities]="priorities"
+  [suppliers]="suppliers"
+  [types]="types">
+</ant-add-edit-equipment> -->
+
+<ant-equipment-add *ngIf="modal === modals.EQUIPMENT_ADD"></ant-equipment-add>
+<ant-equipment-edit *ngIf="modal === modals.EQUIPMENT_EDIT"></ant-equipment-edit>
+<ant-equipment-copy *ngIf="modal === modals.EQUIPMENT_COPY"></ant-equipment-copy>
+
+<ant-add-edit-equipment-part-modal *ngIf="modal === modals.EQUIPMENT_ADD_EDIT_PART"></ant-add-edit-equipment-part-modal>
+<ant-add-edit-instrument *ngIf="modal === modals.EQUIPMENT_ADD_EDIT_INSTRUMENT"></ant-add-edit-instrument>
+<ant-delete-equipment *ngIf="modal === modals.EQUIPMENT_DELETE"></ant-delete-equipment>
+<ant-delete-equipment-document *ngIf="modal === modals.EQUIPMENT_DELETE_DOCUMENT"></ant-delete-equipment-document>
+<ant-delete-equipment-image *ngIf="modal === modals.EQUIPMENT_DELETE_IMAGE"></ant-delete-equipment-image>
+<ant-delete-equipment-part *ngIf="modal === modals.EQUIPMENT_DELETE_PART"></ant-delete-equipment-part>
+<ant-delete-instrument *ngIf="modal === modals.EQUIPMENT_DELETE_INSTRUMENT"></ant-delete-instrument>
+<ant-delete-reading *ngIf="modal === modals.EQUIPMENT_DELETE_READING"></ant-delete-reading>
+<ant-edit-reading *ngIf="modal === modals.EQUIPMENT_EDIT_READING"></ant-edit-reading>
+<ant-equipment-lists *ngIf="modal === modals.EQUIPMENT_LISTS"></ant-equipment-lists>
+<ant-equipment-reactivate *ngIf="modal === modals.EQUIPMENT_REACTIVATE"></ant-equipment-reactivate>
+<ant-equipment-replace *ngIf="modal === modals.EQUIPMENT_REPLACE"></ant-equipment-replace>
+<ant-equipment-retire *ngIf="modal === modals.EQUIPMENT_RETIRE"></ant-equipment-retire>
+<ant-in-service-history *ngIf="modal === modals.EQUIPMENT_IN_SERVICE_HISTORY"></ant-in-service-history>
+<ant-in-service-toggle *ngIf="modal === modals.EQUIPMENT_IN_SERVICE_TOGGLE"></ant-in-service-toggle>
+<ant-readings-history *ngIf="modal === modals.EQUIPMENT_READINGS_HISTORY"></ant-readings-history>
+<ant-custom-fields *ngIf="modal === modals.EQUIPMENT_ADD_EDIT_CUSTOM_FIELDS"></ant-custom-fields>
+<ant-manage-criticality *ngIf="modal === modals.MANAGE_CRITICALITY"></ant-manage-criticality>
+<ant-equipment-edit-my-data *ngIf="modal === modals.EQUIPMENT_EDIT_MY_DATA"></ant-equipment-edit-my-data>
+<ant-equipment-edit-primary *ngIf="modal === modals.EQUIPMENT_EDIT_PRIMARY"></ant-equipment-edit-primary>
+<ant-equipment-edit-purchasing *ngIf="modal === modals.EQUIPMENT_EDIT_PURCHASING"></ant-equipment-edit-purchasing>
+<ant-equipment-edit-custom *ngIf="modal === modals.EQUIPMENT_EDIT_CUSTOM"></ant-equipment-edit-custom>

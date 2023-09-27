@@ -1,0 +1,50 @@
+<amx-layout-panel-collapsible
+  [title]="title"
+  [allowAdding]="true"
+  (addRequested)="addHandler()"
+  (collapsedStateChanged)="collapsedStateChangedHandler($event)">
+  <amx-flex [gap]="'var(--space-md)'" [padding]="'var(--space-md)'" [align]="'center'" *ngIf="viewType === viewTypes.TABLE">
+    <amx-combo-button
+      [icon]="icons.instrumentsIcon"
+      [label]="'Enter Readings'"
+      (clicked)="enterReadingsHandler()">
+    </amx-combo-button>
+    <amx-search-box #searchBox (searchTermChanged)="searchHandler($event)"></amx-search-box>
+  </amx-flex>
+  <amx-data-table
+    class="subsection"
+    [ngClass]="{ subsection: viewType === viewTypes.LIST }"
+    [backgroundColor]="'transparent'"
+    [data]="instrumentsData?.data"
+    [columns]="instrumentsData?.colDef?.columns || []"
+    [height]="innerHeight"
+    [allowGrouping]="false"
+    [showBorders]="false"
+    [allowExport]="false"
+    [showRowLines]="true"
+    [showColumnLines]="false"
+    [hoverStateEnabled]="true"
+    [selectFirstRowOnLoad]="false"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [cellTemplate]="dataTemplate"
+    [noDataText]="'No Instruments have been added to this Equipment.'"
+    (contextMenuPreparing)="contextMenuHandler($event)">
+  </amx-data-table>
+</amx-layout-panel-collapsible >
+
+<ng-template #noData>
+  <div class="no-data">
+    No Instruments have been added to this Equipment.
+  </div>
+</ng-template>
+
+<ng-template #dataTemplate let-template="template">
+  <ng-container [ngSwitch]="viewType">
+    <ng-container *ngSwitchCase="viewTypes.TABLE">
+      <amx-link-button [label]="template?.data?.name" (clicked)="instrumentSelectionHandler(template?.data)"></amx-link-button>
+    </ng-container>
+    <ng-container *ngSwitchCase="viewTypes.LIST">
+      <ant-instrument-list-item #instrument [record]="template?.data"></ant-instrument-list-item>
+    </ng-container>
+  </ng-container>
+</ng-template>

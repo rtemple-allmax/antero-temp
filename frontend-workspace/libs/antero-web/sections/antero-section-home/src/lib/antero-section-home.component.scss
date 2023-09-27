@@ -1,0 +1,38 @@
+.home-view {
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr 1fr 1.5fr 1.5fr 1fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas: 
+    'my-work    my-work    equipment  reporting support support'
+    'management management management parts     parts   parts'
+    'tools      tools      tools      tools     tools   tools';
+  & .my-work {
+    grid-area: my-work;
+  }
+  & .equipment {
+    grid-area: equipment;
+  }
+  & .report-center {
+    grid-area: reporting;
+  }
+  & .support {
+    grid-area: support;
+  }
+  & .tools {
+    grid-area: tools;
+  }
+  & .work-management {
+    grid-area: management;
+  }
+  & .parts {
+    grid-area: parts;
+  }
+  & .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-md);
+  }
+}

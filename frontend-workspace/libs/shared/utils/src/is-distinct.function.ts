@@ -1,0 +1,1 @@
+export const isDistinct = (arr: any[]) => arr.filter((x, i) => i === arr.findIndex(y => JSON.stringify(y) === JSON.stringify(x)))

@@ -1,0 +1,39 @@
+.sidebar-icon-btn {
+  cursor: pointer;
+  position: relative;
+  padding-right: 10px; 
+  // height: 32px;
+  border: 1px solid transparent;
+  &.active {
+    border-color: var(--selected-color);
+    // background-color: #dfdfdf;
+  }
+  &:hover {
+    border-color: var(--highlight-color);
+    // background-color: #dfdfdf;
+  }
+  & .label {
+    white-space: nowrap;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+    color: var(--fg-color);
+    &.expanded {
+      animation-name: fade-in;
+      animation-timing-function: ease-in-out;
+      animation-duration: .3s;
+      animation-delay: .3s;
+      animation-fill-mode: forwards;
+      pointer-events: all;  
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

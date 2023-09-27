@@ -1,0 +1,47 @@
+.card {
+  position: relative;
+  background-color: transparent;
+  padding: var(--space-lg);
+  // border: 1px solid #bbb;
+  &.hover-effect {
+    cursor: pointer;
+    &:hover {
+      border-color: var(--highlight-color);
+    }
+  }
+  &.static {
+    box-shadow: none;
+  }
+  & .title {
+    text-align: left;
+    color: var(--fg-color);
+  }
+  & .title-area {
+    grid-area: title;
+  }
+  & .indicators-area {
+    grid-area: indicator;
+  }
+  & .fields-area {
+    grid-area: fields;
+  }
+  & .more {
+    opacity: 0;
+    &.hovered {
+      opacity: 1;
+    }
+  }
+  & .context-menu {
+    display: none;
+    position: absolute;
+    width: fit-content;
+    height: auto;
+    z-index: 100000;
+    background-color: var(--base-bg-color);
+    box-shadow: var(--shadow);
+    &.visible {
+      display: block;
+    }
+  }
+}
+

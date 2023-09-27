@@ -1,0 +1,19 @@
+<ng-container *ngIf="showEdit else readonlyTemplate">
+  <amx-searchable-dropdown
+    [label]="label"
+    [items]="items"
+    [usePositioning]="false"
+    [contentHeight]="'200px'"
+    [(ngModel)]="binding.value"
+    (opened)="openedHandler()"
+    (addRequested)="addHandler($event)">
+  </amx-searchable-dropdown>
+</ng-container>
+
+<ng-template #readonlyTemplate>
+  <amx-read-only-box
+    [label]="label">
+    {{ data ? data[displayExpr]: '' }}
+  </amx-read-only-box>
+</ng-template>
+

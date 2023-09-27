@@ -1,0 +1,48 @@
+<div class="layout-panel work-orders-panel">
+  <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'var(--space-md)'">
+    <h2>My Work</h2>
+    <amx-icon-button [icon]="icons.addIcon" [fgColor]="'var(--icon-color)'" [awesome]="true" [height]="'20px'"></amx-icon-button>
+  </amx-flex>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <!-- <ng-container *ngFor="let record of records"> -->
+    <div class="layout-panel-item">
+      <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'var(--space-md)'">
+        <h2>WO #11</h2>
+        <amx-icon-button [icon]="icons.confirmIcon" [fgColor]="'var(--fg-color)'" [awesome]="true" [height]="'20px'"></amx-icon-button>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-grid [columns]="'repeat(2, 1fr) auto'" [gap]="'var(--space-md)'">
+        <amx-text-box [placeholder]="'Enter Completed Date...'"></amx-text-box>
+        <amx-text-box [placeholder]="'Enter Completed Notes...'"></amx-text-box>
+        <amx-icon-button [icon]="icons.saveIcon" [fgColor]="'var(--icon-color)'" [awesome]="true" [height]="'20px'"></amx-icon-button>
+      </amx-grid>
+    </div>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <div class="layout-panel-item">
+      <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'var(--space-md)'">
+        <h2>WO #318</h2>
+        <amx-icon-button [icon]="icons.confirmIcon" [fgColor]="'var(--fg-color)'" [awesome]="true" [height]="'20px'"></amx-icon-button>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-grid [columns]="'repeat(2, 1fr) auto'" [gap]="'var(--space-md)'">
+        <amx-text-box [placeholder]="'Enter Completed Date...'"></amx-text-box>
+        <amx-text-box [placeholder]="'Enter Completed Notes...'"></amx-text-box>
+        <amx-icon-button [icon]="icons.saveIcon" [fgColor]="'var(--icon-color)'" [awesome]="true" [height]="'20px'"></amx-icon-button>
+      </amx-grid>
+    </div>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <div class="layout-panel-item">
+      <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'var(--space-md)'">
+        <h2>WO #54</h2>
+        <amx-icon-button [icon]="icons.confirmIcon" [fgColor]="'var(--fg-color)'" [awesome]="true" [height]="'20px'"></amx-icon-button>
+      </amx-flex>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <amx-grid [columns]="'repeat(2, 1fr) auto'" [gap]="'var(--space-md)'">
+        <amx-text-box [placeholder]="'Enter Completed Date...'"></amx-text-box>
+        <amx-text-box [placeholder]="'Enter Completed Notes...'"></amx-text-box>
+        <amx-icon-button [icon]="icons.saveIcon" [fgColor]="'var(--icon-color)'" [awesome]="true" [height]="'20px'"></amx-icon-button>
+      </amx-grid>
+    </div>
+  <!-- </ng-container> -->
+</div>
+

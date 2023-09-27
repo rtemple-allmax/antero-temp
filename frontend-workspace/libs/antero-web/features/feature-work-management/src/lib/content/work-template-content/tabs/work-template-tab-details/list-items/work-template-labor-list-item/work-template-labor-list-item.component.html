@@ -1,0 +1,13 @@
+<amx-flex [justify]="'space-between'" [align]="'center'">
+  <amx-popover-text [template]="laborClassTemplate">
+    <span>Class: {{ record?.laborClass?.name }}</span>
+  </amx-popover-text>
+  <span>{{ record?.estimatedHours }} Estimated Hours</span>
+</amx-flex>
+
+<ng-template #laborClassTemplate>
+  <div [ngStyle]="{ padding: '.5rem' }">
+    <p>Account: {{ record?.laborAccount?.name }}</p>
+    <p>Type: {{ record?.laborType?.name }}</p>
+  </div>
+</ng-template>

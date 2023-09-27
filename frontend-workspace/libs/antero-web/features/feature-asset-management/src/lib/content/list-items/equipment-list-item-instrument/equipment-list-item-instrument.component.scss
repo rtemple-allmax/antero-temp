@@ -1,0 +1,17 @@
+.editor {
+  max-height: 0;
+  transition: all .3s ease-in-out;
+  border: 1px solid transparent;
+  &.editing {
+    max-height: 1000px;
+  }
+}
+
+.confirmation {
+  max-height: 0;
+  transition: all .3s ease-in-out;
+  border: 1px solid transparent;
+  &.deleting {
+    max-height: 1000px;
+  }
+}

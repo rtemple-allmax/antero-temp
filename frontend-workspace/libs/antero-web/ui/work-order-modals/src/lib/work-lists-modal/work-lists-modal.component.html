@@ -1,0 +1,25 @@
+<amx-modal [heading]="'Work Lists'" (closed)="closedHandler()">
+  <amx-tabs [height]="height">
+    <amx-tab [label]="'Labor Account'">
+      <ant-labor-account-setup-panel
+        [height]="height"
+        *ngIf="tabIndex === 0">
+      </ant-labor-account-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Labor Class'">
+      <ant-labor-class-setup-panel *ngIf="tabIndex === 1"></ant-labor-class-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Labor Type'">
+      <ant-labor-type-setup-panel *ngIf="tabIndex === 2"></ant-labor-type-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Work Priority'">
+      <ant-work-priority-setup-panel *ngIf="tabIndex === 3"></ant-work-priority-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Work Status'">
+      <ant-work-status-setup-panel *ngIf="tabIndex === 4"></ant-work-status-setup-panel>
+    </amx-tab>
+    <amx-tab [label]="'Work Type'">
+      <ant-work-type-setup-panel *ngIf="tabIndex === 5"></ant-work-type-setup-panel>
+    </amx-tab>
+  </amx-tabs>
+</amx-modal>

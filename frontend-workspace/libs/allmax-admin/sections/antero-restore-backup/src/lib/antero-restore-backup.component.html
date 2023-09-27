@@ -1,0 +1,39 @@
+<div [ngStyle]="{
+    width: 'var(--vw-100)',
+    height: 'var(--vh-100)',
+    display: 'flex',
+    'flex-direction': 'column',
+    'justify-content': 'center',
+    'align-items': 'center'
+  }">
+  <div [ngStyle]="{ width: 'var(--vw-30)' }">
+    <h1 [ngStyle]="{ 'text-align': 'var(--text-center)' }">Restore Backup</h1>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <div [ngStyle]="{
+      width: '100%',
+      'background-color': 'white',
+      'box-shadow': 'var(--shadow)',
+      padding: 'var(--space-md)'
+    }">
+    <amx-flex [align]="'center'">
+      <amx-file-picker (filesSelected)="filesSelectedHandler($event)"></amx-file-picker>
+      <label [ngStyle]="{ color: 'var(--app-fg-color)' }">{{ fileName }}</label>
+    </amx-flex>
+    <amx-text-box [label]="'New Database Name'" [(ngModel)]="nameBinding.value"></amx-text-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-number-box
+      [label]="'Account Number'"
+      [precision]="{ integral: 6, fractional: 0 }"
+      [(ngModel)]="acctNumberBinding.value">
+    </amx-number-box>
+    <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+    <amx-flex [justify]="'center'">
+      <amx-label-button [label]="'Upload'" [shouldDisable]="!ready" (clicked)="upload()"></amx-label-button>
+    </amx-flex>
+    </div>
+  </div>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <div *ngIf="message" [ngStyle]="{ color: isError ? 'var(--msg-danger)': 'var(--msg-success)' }">
+    <h1>{{ message }}</h1>
+  </div>
+</div>

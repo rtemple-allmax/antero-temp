@@ -1,0 +1,18 @@
+<amx-layout-panel>
+  <ng-container header>
+    <h2>Information</h2>
+  </ng-container>
+  <ng-container content>
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'" [padding]="'var(--space-md)'">
+      <!-- <amx-read-only-box [label]="'Due Date'">{{ getDateString(record?.dueDate) }}</amx-read-only-box> -->
+      <amx-read-only-box [label]="'Type'">{{ record?.workType }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Priority'">{{ record?.workPriority }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Status'">{{ record?.workStatus }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Date Completed'">{{ getDateString(record?.dateCompleted) }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Completed By'">{{ record?.completedBy }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Completed Notes'">{{ record?.completedNotes }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Needs Attention'">{{ record?.needsAttentionText }}</amx-read-only-box>
+    </amx-grid>
+  </ng-container>
+</amx-layout-panel>
+

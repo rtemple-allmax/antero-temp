@@ -1,0 +1,113 @@
+<amx-layout-panel-collapsible [title]="'Work History'">
+  <amx-flex [padding]="'0 var(--space-md)'" [justify]="'flex-end'">
+    <amx-filter
+      [label]="'Date Completed'"
+      [icon]="icons.filterIcon"
+      [origin]="'right'"
+      [items]="completedDateFilterOptions"
+      [(ngModel)]="filterBinding.value">
+    </amx-filter>
+  </amx-flex>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <ng-container [ngSwitch]="deviceType">
+    <ng-container *ngSwitchCase="deviceTypes.DESKTOP">
+      <ng-container *ngTemplateOutlet="desktop"></ng-container>
+    </ng-container>
+    <!-- <ng-container *ngSwitchCase="deviceTypes.TABLET">
+      <ng-container *ngTemplateOutlet="tablet"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+      <ng-container *ngTemplateOutlet="mobile"></ng-container>
+    </ng-container> -->
+  </ng-container>
+</amx-layout-panel-collapsible>
+
+<ng-template #desktop>
+  <amx-data-table
+    class="subsection"
+    [data]="data?.data"
+    [columns]="data?.colDef?.columns || []"
+    [height]="innerHeight"
+    [allowReordering]="false"
+    [allowGrouping]="false"
+    [allowFiltering]="false"
+    [showRowLines]="true"
+    [allowFixing]="false"
+    [allowSearch]="true"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [backgroundColor]="'transparent'"
+    [cellTemplate]="woNumberTemplate"
+    [selectFirstRowOnLoad]="false"
+    [noDataText]="'No work orders have been completed for this equipment.'"
+    (selectionChanged)="showWorkHistoryViewer($event)">
+  </amx-data-table>
+</ng-template>
+
+<!-- <ng-template #tablet>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <ng-container *ngIf="dataType === items[0]">
+      <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+        <ng-container *ngFor="let record of workOrderRecords">
+          <amx-card>
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+              <amx-read-only-box [label]="'WO#'">{{ record.workOrderNumber }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Task'">{{ record.task }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Date Completed'">{{ getDateString(record.dateCompleted) }}</amx-read-only-box>
+            </amx-grid>
+          </amx-card>
+        </ng-container>
+      </amx-grid>
+    </ng-container>
+    <ng-container *ngIf="view === items[1]">
+      
+    </ng-container>
+  </div>
+</ng-template> -->
+
+<!-- <ng-template #mobile>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <ng-container *ngIf="view === items[0]">
+      <ng-container *ngFor="let record of workOrderRecords">
+        <amx-card>
+          <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+            <amx-read-only-box [label]="'WO#'">{{ record.workOrderNumber }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Task'">{{ record.task }}</amx-read-only-box>
+            <amx-read-only-box [label]="'Date Completed'">{{ getDateString(record.dateCompleted) }}</amx-read-only-box>
+          </amx-grid>
+        </amx-card>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="view === items[1]">
+      
+    </ng-container>
+  </div>
+</ng-template> -->
+
+<ng-template #woNumberTemplate let-template="template">
+  <ng-container [ngSwitch]="viewType">
+    <ng-container *ngSwitchCase="viewTypes.LIST">
+      <ant-work-history-list-item [record]="template?.data"></ant-work-history-list-item>
+    </ng-container>
+    <ng-container *ngSwitchCase="viewTypes.TABLE">
+      <amx-link-button [label]="template?.data?.workOrderNumber" (clicked)="showWorkHistoryViewer(template?.data)"></amx-link-button>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+
+<amx-modal [heading]="'Custom Date Range'" *ngIf="showCustomRange">
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button
+      [label]="'Save'"
+      [icon]="icons.saveIcon"
+      [invert]="true"
+      [shouldDisable]="!customRangeReady"
+      (clicked)="submitCustomRange()">
+    </amx-combo-button>
+  </amx-flex>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-date-box [label]="'Start Date'" [type]="'date'" [(ngModel)]="dateStartBinding.value"></amx-date-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-date-box [label]="'End Date'" [type]="'date'" [(ngModel)]="dateEndBinding.value"></amx-date-box>
+</amx-modal>

@@ -1,0 +1,29 @@
+<amx-layout-panel (collapsedStateChanged)="collapsedStateChangeHandler($event)">
+  <ng-container header>
+    <h2>Custom Fields</h2>
+  </ng-container>
+  <ng-container content>
+    <amx-grid [useLayout]="true" [layout]="layouts.COLS_2" [gap]="'var(--space-lg)'">
+      <!-- <amx-contact-box [label]="customLabels?.equipmentCustom01 || 'Custom 1'" [value]="record?.custom01 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom02 || 'Custom 2'" [value]="record?.custom02 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom03 || 'Custom 3'" [value]="record?.custom03 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom04 || 'Custom 4'" [value]="record?.custom04 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom05 || 'Custom 5'" [value]="record?.custom05 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom06 || 'Custom 6'" [value]="record?.custom06 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom07 || 'Custom 7'" [value]="record?.custom07 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom08 || 'Custom 8'" [value]="record?.custom08 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom09 || 'Custom 9'" [value]="record?.custom09 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom10 || 'Custom 10'" [value]="record?.custom10 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom11 || 'Custom 11'" [value]="record?.custom11 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom12 || 'Custom 12'" [value]="record?.custom12 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom13 || 'Custom 13'" [value]="record?.custom13 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom14 || 'Custom 14'" [value]="record?.custom14 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom15 || 'Custom 15'" [value]="record?.custom15 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom16 || 'Custom 16'" [value]="record?.custom16 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom17 || 'Custom 17'" [value]="record?.custom17 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom18 || 'Custom 18'" [value]="record?.custom18 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom19 || 'Custom 19'" [value]="record?.custom19 || ''" [deviceType]="deviceType"></amx-contact-box>
+      <amx-contact-box [label]="customLabels?.equipmentCustom20 || 'Custom 20'" [value]="record?.custom20 || ''" [deviceType]="deviceType"></amx-contact-box> -->
+    </amx-grid>
+  </ng-container>
+</amx-layout-panel>

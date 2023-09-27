@@ -1,0 +1,19 @@
+.portrait {
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  background-position-x: center;
+  position: relative;
+  height: 200px;
+  background-position-y: center;
+  // border: 5px solid var(--gray-4);
+  // &:hover {
+  //   border-color: var(--app-color-2); 
+  // }
+  // &.selected {
+  //   border-color: var(--app-color-2); 
+  // }
+  // &.primary {
+  //   border-color: var(--app-color-3);
+  // }
+}

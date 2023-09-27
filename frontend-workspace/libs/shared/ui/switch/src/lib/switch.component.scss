@@ -1,0 +1,28 @@
+.switch {
+  & .label {
+    cursor: pointer;
+    padding: var(--space-sm);
+  }
+  & .btn {
+    border: var(--border);
+    outline: 0;
+    padding: var(--space-md) var(--space-lg);
+    cursor: pointer;
+    color: var(icon-color);
+    background-color: transparent;
+    &.left {
+      border-radius: 100px 0 0 100px;
+    }
+    &.right {
+      border-radius: 0 100px 100px 0;
+    }
+    &.active{
+      background-color: var(--selected-color);
+      color: white;
+    }
+    &:hover {
+      background-color: var(--highlight-color);
+      color: white;
+    }
+  }
+}

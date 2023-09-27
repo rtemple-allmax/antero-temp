@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ErrorWindowComponent } from './error-window.component';
+
+describe('ErrorWindowComponent', () => {
+  let component: ErrorWindowComponent;
+  let fixture: ComponentFixture<ErrorWindowComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ErrorWindowComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ErrorWindowComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

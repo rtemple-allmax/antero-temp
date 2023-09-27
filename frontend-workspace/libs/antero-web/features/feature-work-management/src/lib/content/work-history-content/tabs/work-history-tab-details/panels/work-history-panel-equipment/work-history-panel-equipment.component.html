@@ -1,0 +1,27 @@
+<amx-layout-panel>
+  <ng-container header>
+    <amx-flex [justify]="'space-between'" [gap]="'100px'" [align]="'center'">
+      <amx-flex [gap]="'100px'" [align]="'center'">
+        <amx-media-object
+          [src]="primaryImage?.imageUrl"
+          [heading]="record?.name"
+          [text]="record?.description"
+          [isLink]="true"
+          (clicked)="showEquipment()">
+        </amx-media-object>
+        <span [ngStyle]="{ color: statusColor }">{{ statusText }}</span>
+      </amx-flex>
+      <amx-icon-button [awesome]="true" [icon]="icons.historyIcon" [height]="'20px'" (clicked)="showEquipmentHistory()"></amx-icon-button>
+      <amx-icon-button [awesome]="true" [icon]="icons.thickFileIcon" [height]="'20px'" (clicked)="showEquipmentHistory()"></amx-icon-button>
+    </amx-flex>
+  </ng-container>
+  <ng-container content>
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'" [padding]="'var(--space-md)'">
+      <amx-read-only-box [label]="'Location'">{{ record?.location?.name }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Department'">{{ record?.department?.name }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Condition'">{{ record?.equipmentCondition?.name }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Priority'">{{ record?.equipmentPriority?.name }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Notes'">{{ record?.notes }}</amx-read-only-box>
+    </amx-grid>
+  </ng-container>
+</amx-layout-panel>

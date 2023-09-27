@@ -1,0 +1,13 @@
+<amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-xl)'" [padding]="'var(--space-md)'">
+  <div>
+    <p>{{ record?.equipment }}</p>
+    <p>{{ record?.equipmentDescription }}</p>
+  </div>
+  <amx-popover-text [template]="qtyTemplate" [ngStyle]="{ 'align-self': 'center' }">{{ record?.actualQuantity }} / {{ record?.estimatedQuantity }}</amx-popover-text>
+</amx-grid>
+
+<ng-template #qtyTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <span>Actual {{ record?.workOrderUnits }} / Estimated {{ record?.workOrderUnits }}</span>
+  </div>
+</ng-template>

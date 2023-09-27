@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/utils/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/utils"],
+      "options": {
+        "jestConfig": "libs/antero-web/utils/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/utils/**/*.ts",
+          "libs/antero-web/utils/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

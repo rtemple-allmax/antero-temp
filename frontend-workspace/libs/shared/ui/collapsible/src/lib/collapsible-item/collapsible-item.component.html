@@ -1,0 +1,25 @@
+<div class="collapsible-item">
+  <div class="header" [ngClass]="{ collapsed: collapsed }" (click)="toggle()">
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+      <fa-icon class="icon" [icon]="icons.downCaretIcon" [ngStyle]="{ 'transform': iconTransform, color: 'var(--icon-color)' }"></fa-icon>
+      <label [ngStyle]="{ color: 'var(--fg-color)', 'font-size': 'var(--font-size-lg)' }">{{ label }}</label>
+      <!-- <ng-container *ngIf="indicators.length > 0">
+        <ng-container *ngFor="let indicator of indicators">
+          <amx-icon [icon]="indicator"></amx-icon>
+        </ng-container>
+      </ng-container> -->
+    </amx-flex>
+    <div>
+      <ng-content select="[itemButtons]"></ng-content>
+    </div>
+  </div>
+  <div class="content" [ngClass]="{ collapsed: collapsed }">
+    <ng-container *ngIf="showContent">
+      <div [ngStyle]="{ padding: padding }">
+        <ng-content select="[itemContent]"></ng-content>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+

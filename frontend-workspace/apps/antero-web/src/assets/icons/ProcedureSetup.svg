@@ -1,0 +1,28 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<svg viewBox="-2 -2 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Format_Cells" transform="translate(0, 0)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.9333, 0, 0, 0.9333, 0, 0)">
+      <path d="M29, 0L1, 0C0.4, 0 0, 0.4 0, 1L0, 6L30, 6L30, 1C30, 0.4 29.6, 0 29, 0z" fill="#1177D7" class="Blue" />
+    </g>
+  </g>
+  <g id="Format_Cells" transform="translate(0, 0)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.9333, 0, 0, 0.9333, 0, 0)">
+      <path d="M30, 6L30, 29C30, 29.6 29.6, 30 29, 30L1, 30C0.4, 30 0, 29.6 0, 29L0, 6L2, 6L2, 28L28, 28L28, 6L30, 6zM24, 12L14, 12L14, 14L24, 14L24, 12zM24, 20L14, 20L14, 22L24, 22L24, 20zM12, 21C12, 22.7 10.7, 24 9, 24C7.3, 24 6, 22.7 6, 21C6, 19.3 7.3, 18 9, 18C10.7, 18 12, 19.3 12, 21zM10, 21C10, 20.4 9.6, 20 9, 20C8.4, 20 8, 20.4 8, 21C8, 21.6 8.4, 22 9, 22C9.6, 22 10, 21.6 10, 21zM9, 10C7.3, 10 6, 11.3 6, 13C6, 14.7 7.3, 16 9, 16C10.7, 16 12, 14.7 12, 13C12, 11.3 10.7, 10 9, 10z" fill="#727272" class="Black" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(14, 14)" style="enable-background:new 0 0 16 16">
+    <g id="Clock_1_">
+      <circle cx="8" cy="8" r="8" fill="#D11C1C" class="Red" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(14, 14)" style="enable-background:new 0 0 16 16">
+    <g id="Clock_1_">
+      <circle cx="8" cy="8" r="6" fill="#FFFFFF" class="White" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(14, 14)" style="enable-background:new 0 0 16 16">
+    <g id="Clock_1_">
+      <polygon points="8,8 8,4 6,4 6,8 6,10 8,10 12,10 12,8  " fill="#727272" class="Black" />
+    </g>
+  </g>
+</svg>

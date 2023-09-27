@@ -1,0 +1,23 @@
+<div [ngStyle]="{ padding: 'var(--space-md)' }">
+  <amx-flex [justify]="'space-between'">
+    <p [ngStyle]="{ color: 'var(--msg-success)' }"><b>Equipment Is In Service</b></p>
+    <p [ngStyle]="{ color: 'var(--msg-danger)' }"><b>This template is NOT ready to generate work orders.</b></p>
+  </amx-flex>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-radio-group
+    [items]="schedulingTypes"
+    (changed)="radioChangedHandler($event)">
+  </amx-radio-group>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <ng-container [ngSwitch]="schedulingType">
+    <ng-container *ngSwitchCase="schedulingTypes[0]">
+      Instrument
+    </ng-container>
+    <ng-container *ngSwitchCase="schedulingTypes[1]">
+      Calendar
+    </ng-container>
+    <ng-container *ngSwitchCase="schedulingTypes[2]">
+      Out of Service
+    </ng-container>
+  </ng-container>
+</div>

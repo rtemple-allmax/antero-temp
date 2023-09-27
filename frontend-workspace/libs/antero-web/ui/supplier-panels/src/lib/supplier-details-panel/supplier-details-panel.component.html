@@ -1,0 +1,28 @@
+<amx-layout-panel-collapsible [title]="title">
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+      <amx-read-only-box [label]="'Address'">
+        <span>{{ record?.address }}</span><br/>
+        <span>{{ record?.city }}<span *ngIf="record?.city && record?.stateOrProvince">,</span> {{ record?.stateOrProvince }} {{ record?.postalCode }} {{ record?.country }}</span>
+      </amx-read-only-box>
+      <div>
+        <amx-read-only-box [label]="'Account Number'">{{ record?.accountNumber }}</amx-read-only-box>
+        <amx-read-only-box [label]="'Federal ID Number'">{{ record?.federalIDNumber }}</amx-read-only-box>
+      </div>
+      <amx-read-only-box [label]="'Website'"></amx-read-only-box>
+      <ng-container *ngIf="record?.phone1Description">
+        <amx-contact-box [label]="record?.phone1Description || ''" [value]="record?.phone1Number || ''"></amx-contact-box>
+      </ng-container>
+      <ng-container *ngIf="record?.phone2Description">
+        <amx-contact-box [label]="record?.phone2Description || ''" [value]="record?.phone2Number || ''"></amx-contact-box>
+      </ng-container>
+      <ng-container *ngIf="record?.phone3Description">
+        <amx-contact-box [label]="record?.phone3Description || ''" [value]="record?.phone3Number || ''"></amx-contact-box>
+      </ng-container>
+      <ng-container *ngIf="record?.phone4Description">
+        <amx-contact-box [label]="record?.phone4Description || ''" [value]="record?.phone4Number || ''"></amx-contact-box>
+      </ng-container>
+    </amx-grid>
+    <amx-read-only-box [preline]="true" [label]="'Notes'">{{ record?.notes }}</amx-read-only-box>
+  </div>
+</amx-layout-panel-collapsible>

@@ -1,0 +1,22 @@
+<ng-container [ngSwitch]="type">
+  <amx-email-box
+    *ngSwitchCase="types.EMAIL"
+    [label]="label"
+    [email]="value">
+  </amx-email-box>
+  <amx-telephone-box
+    *ngSwitchCase="types.PHONE"
+    [label]="label"
+    [number]="value">
+  </amx-telephone-box>
+  <amx-read-only-box
+    *ngSwitchCase="types.NONE"
+    [label]="label">
+    {{ value }}
+  </amx-read-only-box>
+  <amx-website-box
+    *ngSwitchCase="types.WEBSITE"
+    [label]="label"
+    [address]="value">
+  </amx-website-box>
+</ng-container>

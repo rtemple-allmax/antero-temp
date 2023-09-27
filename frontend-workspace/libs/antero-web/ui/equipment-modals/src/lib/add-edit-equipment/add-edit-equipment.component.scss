@@ -1,0 +1,28 @@
+.form-wrapper {
+  & .save-btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+  & .required-template {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  & .more-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+    & label {
+      cursor: pointer;
+      color: var(--icon-color);
+    }
+    & img {
+      cursor: pointer;
+      transform: rotate(180deg);
+    }
+  }
+}

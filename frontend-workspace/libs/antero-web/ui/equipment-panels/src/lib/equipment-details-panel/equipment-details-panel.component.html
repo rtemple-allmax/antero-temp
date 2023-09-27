@@ -1,0 +1,80 @@
+<amx-layout-panel-collapsible
+  [title]="title"
+  [allowEditing]="true"
+  [tutorialKey]="keys.EQUIPMENT_PRIMARY_DETAILS_TUTORIAL"
+  (editRequested)="editHandler()"
+  (collapsedStateChanged)="collapsedStateChangedHandler($event)">
+  <amx-grid [columns]="'1fr'" [gap]="'var(--space-lg)'" [padding]="'var(--space-md)'">
+    <amx-read-only-box
+      [label]="'Description'"
+      (rightClicked)="addToMyData('Description', 'description', myDataFieldTypes.VALUE, false)">
+      {{ record?.description }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Department'"
+      (rightClicked)="addToMyData('Department', 'department', myDataFieldTypes.OBJECT, false, 'name')">
+      {{ record?.department?.name }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Condition'"
+      (rightClicked)="addToMyData('Condition', 'equipmentCondition', myDataFieldTypes.OBJECT, false, 'name')">
+      {{ record?.equipmentCondition?.name }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Type'"
+      (rightClicked)="addToMyData('Type', 'equipmentType', myDataFieldTypes.OBJECT, false, 'name')">
+      {{ record?.equipmentType?.name }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Group'"
+      (rightClicked)="addToMyData('Group', 'group', myDataFieldTypes.OBJECT, false, 'name')">
+      {{ record?.group?.name }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Priority'"
+      (rightClicked)="addToMyData('Priority', 'equipmentPriority', myDataFieldTypes.OBJECT, false, 'name')">
+      {{ record?.equipmentPriority?.name }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Category'"
+      (rightClicked)="addToMyData('Category', 'category', myDataFieldTypes.OBJECT, false, 'name')">
+      {{ record?.category?.name }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Location'"
+      (rightClicked)="addToMyData('Location', 'location', myDataFieldTypes.OBJECT, false, 'name')">
+      {{ record?.location?.name }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Model Number'"
+      (rightClicked)="addToMyData('Model Number', 'modelNumber', myDataFieldTypes.VALUE, false)">
+      {{ record?.modelNumber }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Work Order Rate'"
+      (rightClicked)="addToMyData('Work Order Rate', 'workOrderRate', myDataFieldTypes.VALUE, false)">
+      {{ formatAsCurrency(record?.workOrderRate) }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Serial Number'"
+      (rightClicked)="addToMyData('Serial Number', 'serialNumber', myDataFieldTypes.VALUE, false)">
+      {{ record?.serialNumber }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Asset Number'"
+      (rightClicked)="addToMyData('Asset Number', 'assetNumber', myDataFieldTypes.VALUE, false)">
+      {{ record?.serialNumber }}
+    </amx-read-only-box>
+    <amx-read-only-box 
+      [label]="'Work Order Units'"
+      (rightClicked)="addToMyData('Work Order Units', 'workOrderUnits', myDataFieldTypes.VALUE, false)">
+      {{ record?.workOrderUnits }}
+    </amx-read-only-box>
+    <amx-read-only-box
+      [label]="'Notes'"
+      [preline]="true"
+      (rightClicked)="addToMyData('Notes', 'notes', myDataFieldTypes.VALUE, true)">
+      {{ record?.notes }}
+    </amx-read-only-box>
+  </amx-grid>
+</amx-layout-panel-collapsible>

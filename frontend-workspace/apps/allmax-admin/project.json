@@ -1,0 +1,105 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/allmax-admin/src",
+  "prefix": "amx",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/allmax-admin",
+        "index": "apps/allmax-admin/src/index.html",
+        "main": "apps/allmax-admin/src/main.ts",
+        "polyfills": "apps/allmax-admin/src/polyfills.ts",
+        "tsConfig": "apps/allmax-admin/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/allmax-admin/src/favicon.ico",
+          "apps/allmax-admin/src/assets"
+        ],
+        "styles": [
+          "node_modules/devextreme/dist/css/dx.common.css",
+          "node_modules/devextreme/dist/css/dx.light.css",
+          "node_modules/@devexpress/analytics-core/dist/css/dx-analytics.common.css",
+          "node_modules/@devexpress/analytics-core/dist/css/dx-analytics.light.css",
+          "node_modules/devexpress-reporting/dist/css/dx-webdocumentviewer.css",
+          "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
+          "apps/allmax-admin/src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "10mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/allmax-admin/src/environments/environment.ts",
+              "with": "apps/allmax-admin/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "allmax-admin:build:production"
+        },
+        "development": {
+          "browserTarget": "allmax-admin:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "allmax-admin:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/allmax-admin/**/*.ts",
+          "apps/allmax-admin/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/apps/allmax-admin"
+      ],
+      "options": {
+        "jestConfig": "apps/allmax-admin/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

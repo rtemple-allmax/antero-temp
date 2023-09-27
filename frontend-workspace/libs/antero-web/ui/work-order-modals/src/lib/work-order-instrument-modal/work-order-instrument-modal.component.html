@@ -1,0 +1,9 @@
+<amx-modal
+  [heading]="heading"
+  (closed)="closedHandler()">
+  <amx-number-box [label]="'Reading'" [(ngModel)]="readingBinding.value"></amx-number-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [label]="'Update'" [icon]="icons.saveIcon" [invert]="true" (clicked)="save()" [shouldDisable]="!ready"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

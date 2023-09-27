@@ -1,0 +1,30 @@
+<amx-layout-panel
+  [allowEditing]="true"
+  [disableControls]="shouldDisable"
+  (editRequested)="editHandler()"
+  (collapsedStateChanged)="collapsedStateChangeHandler($event)">
+  <ng-container header>
+    <h2>{{ title }}</h2>
+  </ng-container>
+  <ng-container content>
+    <amx-grid
+      [useLayout]="true"
+      [layout]="layouts.COLS_2"
+      [gap]="'var(--space-lg)'"
+      [padding]="'var(--space-md)'">
+      <ng-container *ngFor="let field of fields">
+        <amx-read-only-box [label]="field.label">{{ getFieldValue(record, field) }}</amx-read-only-box>
+      </ng-container>
+      <!-- <amx-read-only-box [label]="'Vendor'">{{ record?.vendor?.name }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Placed In Service'">{{ getDateString(record?.dateInService) }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Manufacturer'">{{ record?.manufacturer?.name }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Warranty Days'">{{ record?.warrantyDays }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Date Purchased'">{{ getDateString(record?.datePurchased) }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Warranty Meter'">{{ record?.warrantyMeter }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Purchase Price'">{{ formatAsCurrency(record?.purchasePrice) }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Life Expectancy'">{{ record?.lifeExpectancy }}</amx-read-only-box>
+      <amx-read-only-box [label]="'Salvage Value'">{{ formatAsCurrency(record?.salvageValue) }}</amx-read-only-box> -->
+    </amx-grid>
+  </ng-container>
+</amx-layout-panel>
+

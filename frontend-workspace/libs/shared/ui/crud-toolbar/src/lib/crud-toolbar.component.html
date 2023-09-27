@@ -1,0 +1,28 @@
+<amx-flex [gap]="'var(--space-md)'" [padding]="'var(--space-md) 0'" [align]="'center'">
+  <amx-icon-button
+    *ngIf="allowAdd"
+    [height]="'18px'"
+    [icon]="icons.addIcon"
+    [awesome]="true"
+    [fgColor]="'var(--icon-color)'"
+    (clicked)="addHandler()">
+  </amx-icon-button>
+  <amx-icon-button
+    *ngIf="allowEdit"
+    [height]="'14px'"
+    [icon]="icons.editIcon"
+    [awesome]="true"
+    [shouldDisable]="disabled"
+    [fgColor]="!disabled ? 'var(--icon-color)' : 'var(--disabled-color)'"
+    (clicked)="editHandler()">
+  </amx-icon-button>
+  <amx-icon-button
+    *ngIf="allowDelete"
+    [height]="'18px'"
+    [icon]="icons.deleteIcon"
+    [awesome]="true"
+    [shouldDisable]="disabled"
+    [fgColor]="!disabled ? 'var(--msg-danger)' : 'var(--disabled-color)'"
+    (clicked)="deleteHandler()">
+  </amx-icon-button>
+</amx-flex>

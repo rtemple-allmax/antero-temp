@@ -1,0 +1,5 @@
+<amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-xl)'" [padding]="'var(--space-md)'">
+  <span>{{ record?.description }}</span>
+  <span>{{ formatAsCurrency(record?.cost) }}</span>
+</amx-grid>
+

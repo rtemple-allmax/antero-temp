@@ -1,0 +1,25 @@
+<div class="field-wrapper" [ngClass]="{ invalid: !valid, required: required }">
+  <ng-container *ngIf="hasLabel">
+    <label class="label">{{ label }}</label>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  </ng-container>
+  <div class="field relative" (click)="clickHandler()">
+    <dx-date-box
+      [tabIndex]="tabIndex"
+      [acceptCustomValue]="allowCustomValue"
+      [showClearButton]="false"
+      [openOnFieldClick]="true"
+      [placeholder]="uiPlaceholder"
+      [type]="type"
+      [useMaskBehavior]="true"
+      [height]="stylingMode === 'desktop' ? '26px' : 'auto'"
+      [(ngModel)]="value"
+      (onInput)="inputHandler()"
+      (onValueChanged)="valueChangeHandler()"
+      (onBlur)="blurHandler()">
+    </dx-date-box>
+  </div>
+  <div class="errors-wrapper" *ngIf="!valid">
+    <label class="error-text">{{ errorMessage }}</label>
+  </div>
+</div>

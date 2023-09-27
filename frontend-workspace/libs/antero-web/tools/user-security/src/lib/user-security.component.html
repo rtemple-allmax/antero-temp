@@ -1,0 +1,22 @@
+<amx-modal [heading]="'Security'" (closed)="closeHandler()" [maxWidth]="'65vw'">
+    <amx-tabs>
+      <amx-tab [label]="'Users'">
+        <amx-grid [columns]="'repeat(2, 1fr)'">
+          <amx-group-box [label]="'Users List'" [stretch]="true">
+            <amx-flex [gap]="'var(--space-md)'">
+              <amx-icon-button [icon]="icons.addIcon" [height]="'20px'"></amx-icon-button>
+              <amx-icon-button [icon]="icons.deleteIcon" [height]="'20px'"></amx-icon-button>
+            </amx-flex>
+          </amx-group-box>
+          <div>
+            <amx-group-box [label]="'User Detail'"></amx-group-box>
+            <amx-group-box [label]="'Privileges'"></amx-group-box>
+            <amx-group-box [label]="'Role Assignment'"></amx-group-box>
+          </div>
+        </amx-grid>
+      </amx-tab>
+      <amx-tab [label]="'Roles'">
+  
+      </amx-tab>
+    </amx-tabs>
+</amx-modal>

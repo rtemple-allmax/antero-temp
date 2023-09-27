@@ -1,0 +1,20 @@
+<div
+  class="popover-text"
+  [id]="id"
+  (mouseenter)="show()"
+  (mouseleave)="hide()">
+  <ng-content></ng-content>
+</div>
+ 
+<dx-popover
+  [target]="target"
+  [(visible)]="visibility">
+  <div *dxTemplate="let data = model of 'content'" [ngStyle]="{ 'z-index': 9999 }">
+  <ng-container [ngTemplateOutlet]="template || default" [ngTemplateOutletContext]="{ template: data }"></ng-container>
+  </div>
+</dx-popover>
+ 
+<ng-template #default let-template="template">
+  <span>Popover Template</span>
+</ng-template>
+ 

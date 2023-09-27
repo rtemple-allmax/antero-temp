@@ -1,0 +1,7 @@
+<div [ngStyle]="{ 'width': width }">
+  <h2 [ngStyle]="{ 'text-align': 'center' }">Enter Downtime</h2>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-date-box [label]="'Start Time'" [(ngModel)]="startDateBinding.value"></amx-date-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-date-box [label]="'End Time'" [(ngModel)]="endDateBinding.value"></amx-date-box>
+</div>

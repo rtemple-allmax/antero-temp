@@ -1,0 +1,26 @@
+.button-wrapper {
+  // position: relative;
+  width: fit-content;
+}
+
+.dropdown-wrapper {
+  // border: 1px solid #bbb;
+  background-color: var(--panel-bg-color);
+  box-shadow: var(--shadow);
+  // position: absolute;
+  // top: 100%;
+  width: fit-content;
+  // min-width: 250px;
+  display: none;
+  z-index: 8500;
+  padding: var(--space-md);
+  &.left {
+    left: 0;
+  }
+  &.right {
+    right: 0;
+  }
+  &.open {
+    display: block;
+  }
+}

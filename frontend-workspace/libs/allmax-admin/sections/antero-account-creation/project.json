@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/allmax-admin/sections/antero-account-creation/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/allmax-admin/sections/antero-account-creation"
+      ],
+      "options": {
+        "jestConfig": "libs/allmax-admin/sections/antero-account-creation/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/allmax-admin/sections/antero-account-creation/**/*.ts",
+          "libs/allmax-admin/sections/antero-account-creation/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

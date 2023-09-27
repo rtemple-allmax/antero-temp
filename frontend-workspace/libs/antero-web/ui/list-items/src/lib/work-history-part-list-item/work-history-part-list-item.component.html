@@ -1,0 +1,23 @@
+<div (click)="openWorkHistoryViewer(record?.workHistory)">
+  <amx-grid [columns]="'50ch repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+    <amx-flex [gap]="'var(--space-sm)'" [align]="'center'">
+      <div>
+        <b><amx-popover-text [template]="workOrderNumberTemplate">{{ workOrderNumberLabel }}</amx-popover-text></b>
+        <p>{{ getDateString(record?.workHistory?.dateCompleted) }}</p>
+      </div>
+    </amx-flex>
+    <amx-flex [gap]="'var(--space-md)'" [align]="'center'" [height]="'100%'">
+      <p>{{ record?.workHistory?.equipment?.name }}</p>
+    </amx-flex>
+    <amx-flex [gap]="'var(--space-md)'" [align]="'center'" [height]="'100%'">
+      <p>{{ record?.workHistory?.task }}</p>
+    </amx-flex>
+  </amx-grid>
+</div>
+
+<ng-template #workOrderNumberTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <p>Type: {{ record?.workHistory?.workType }}</p>
+    <p>Priority: {{ record?.workHistory?.workPriority }}</p>
+  </div>
+</ng-template>

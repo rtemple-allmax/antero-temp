@@ -1,0 +1,17 @@
+<amx-layout-panel>
+  <ng-container header>
+    <h2>{{ record?.name }}</h2>
+  </ng-container>
+  <ng-container content>
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-xl)'" [padding]="'var(--space-md)'">
+      <amx-formatted-text [text]="record?.instructionsString || ''"></amx-formatted-text>
+      <ant-checklist-viewer
+        [checklist]="[]"
+        [height]="'100%'"
+        [stretch]="true"
+        [editable]="true">
+      </ant-checklist-viewer>
+    </amx-grid>
+  </ng-container>
+</amx-layout-panel>
+ 

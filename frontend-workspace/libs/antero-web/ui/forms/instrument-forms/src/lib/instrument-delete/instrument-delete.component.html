@@ -1,0 +1,8 @@
+<amx-confirmation
+  [dangerous]="true"
+  (confirmed)="submit()"
+  (canceled)="closedHandler()"
+  (closed)="closedHandler()">
+  <span>Are you certain you want to delete the instrument <b>{{ source?.name }}</b>?</span>
+</amx-confirmation>
+

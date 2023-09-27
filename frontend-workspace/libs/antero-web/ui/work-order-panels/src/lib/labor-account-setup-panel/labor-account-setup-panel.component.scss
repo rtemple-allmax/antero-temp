@@ -1,0 +1,10 @@
+.item:hover {
+  background-color: var(--highlighted-color)
+}
+
+.cell-more {
+  opacity: 0;
+  &.hovered {
+    opacity: 1
+  }
+}

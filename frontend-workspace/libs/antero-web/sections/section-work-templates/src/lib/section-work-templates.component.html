@@ -1,0 +1,171 @@
+<ant-app-frame [sectionName]="'Work Setup - Work Orders'">
+  <amx-flex frameControls [justify]="'space-between'" [align]="'center'">
+    <amx-flex [align]="'center'"  [padding]="'var(--space-md) var(--space-md) var(--space-md) var(--space-lg)'">
+      <amx-icon-button
+        [icon]="icons.listIcon"
+        [awesome]="true"
+        [fgColor]="viewType === viewTypes.LIST ? 'var(--highlight-color)' : 'white'"
+        [height]="'20px'"
+        [shouldDisable]="viewType === viewTypes.LIST"
+        (clicked)="toggleView()">
+      </amx-icon-button>
+      <amx-icon-button
+        [icon]="icons.gridIcon"
+        [awesome]="true"
+        [fgColor]="viewType === viewTypes.TABLE ? 'var(--highlight-color)' : 'white'"
+        [height]="'20px'"
+        [shouldDisable]="viewType === viewTypes.TABLE"
+        (clicked)="toggleView()">
+      </amx-icon-button>
+    </amx-flex>
+  </amx-flex>
+  <amx-master-detail
+    frameContent
+    [data]="data?.data"
+    [columns]="data?.colDef?.columns || []"
+    [cellTemplate]="card"
+    [deviceType]="deviceType"
+    [allowAdd]="true"
+    [addLabel]="'Add Work Template'"
+    [selectionMode]="'single'"
+    [dropdownTemplate]="dropdownTemplate"
+    (selectionChanged)="selectionHandler($event)">
+    <amx-flex controls [padding]="'var(--space-md)'" [gap]="'var(--space-md)'" [align]="'center'">
+      <amx-combo-button [label]="'Add Work Template'" [icon]="icons.addIcon"></amx-combo-button>
+      <amx-icon-button
+          [icon]="icons.moreIcon"
+          [awesome]="true"
+          [fgColor]="'var(--icon-color)'"
+          [height]="'20px'">
+        </amx-icon-button>
+    </amx-flex>
+    <!-- <amx-flex controls [justify]="'space-between'" [align]="'center'">
+      <amx-flex [align]="'center'"  [padding]="'var(--space-md) var(--space-md) var(--space-md) var(--space-lg)'">
+        <amx-icon-button
+          [icon]="icons.addIcon"
+          [awesome]="true"
+          [fgColor]="'rgb(44, 120, 228)'"
+          [height]="'20px'">
+        </amx-icon-button>
+        <amx-icon-button
+          [icon]="icons.deleteIcon"
+          [awesome]="true"
+          [fgColor]="!selection ? '#bbb' : 'red'"
+          [shouldDisable]="!selection"
+          [height]="'20px'">
+        </amx-icon-button>
+        <amx-icon-button
+          [icon]="icons.refreshIcon"
+          [awesome]="true"
+          [fgColor]="'green'"
+          [height]="'20px'">
+        </amx-icon-button>
+        <amx-icon-button
+          [icon]="icons.gridIcon"
+          [awesome]="true"
+          [fgColor]="viewType === viewTypes.TABLE ? 'white' : 'rgb(44, 120, 228)'"
+          [height]="'20px'"
+          [bgColor]="viewType === viewTypes.TABLE ? '#bbb' : 'transparent'"
+          [shouldDisable]="viewType === viewTypes.TABLE"
+          (clicked)="toggleView()">
+        </amx-icon-button>
+        <amx-icon-button
+          [icon]="icons.listIcon"
+          [awesome]="true"
+          [fgColor]="viewType === viewTypes.LIST ? 'white' : 'rgb(44, 120, 228)'"
+          [height]="'20px'"
+          [bgColor]="viewType === viewTypes.LIST ? '#bbb' : 'transparent'"
+          [shouldDisable]="viewType === viewTypes.LIST"
+          (clicked)="toggleView()">
+        </amx-icon-button>
+        <amx-dropdown-button
+          [opacity]="viewType === viewTypes.TABLE ? 1 : 0"
+          [icon]="icons.otherIcon"
+          [fgColor]="'rgb(44, 120, 228)'"
+          [height]="'20px'">
+          <amx-flex [flow]="'column nowrap'">
+            <button class="dropdown-item">Use My View</button>
+            <button class="dropdown-item">Save My Layout</button>
+            <button class="dropdown-item">Clear All Filters</button>
+            <button class="dropdown-item">Show Column Chooser</button>
+          </amx-flex>
+        </amx-dropdown-button>
+        <amx-label-button [label]="'Task List'" (clicked)="openTaskList()"></amx-label-button>
+      </amx-flex>
+      <button *ngIf="viewType === viewTypes.TABLE" [ngStyle]="{ border: 'none', cursor: 'pointer' }" (click)="openDetail()">
+        <img src="assets/icons/iconBack.svg" [ngStyle]="{ width: '24px', transform: detailButtonTransform }"/>
+      </button>
+    </amx-flex> -->
+    <div details class="equipment-detail">
+      <ng-container [ngSwitch]="deviceType">
+        <ng-container *ngSwitchCase="deviceTypes.DESKTOP">
+          <ng-container *ngTemplateOutlet="desktopTemplate"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="deviceTypes.TABLET">
+          <ng-container *ngTemplateOutlet="tabletTemplate"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+          <ng-container *ngTemplateOutlet="mobileTemplate"></ng-container>
+        </ng-container>
+      </ng-container>      
+    </div>
+  </amx-master-detail>
+</ant-app-frame>
+
+<ng-template #card let-template="template">
+  <div>
+    <p><b>{{ template?.data?.equipment?.name }}</b></p> 
+    <p>{{ template?.data?.task?.name }}</p> 
+  </div>
+</ng-template>
+
+<ng-template #desktopTemplate>
+  <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'var(--space-lg)'">
+    <div>
+      <h2 class="truncate"><b>{{ selection?.equipment?.name }}</b></h2>
+      <p class="truncate">{{ selection?.task?.name }}</p>
+    </div>
+    <!-- <amx-toggle
+      [label]="'Generate Work Orders:'"
+      [state]="selection?.isEnabled || false"
+      [colored]="true"
+      [immediate]="true"
+      (changed)="toggleChange($event)">
+    </amx-toggle> -->
+  </amx-flex>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-tabs [height]="'calc(100vh - 165px)'">
+    <ng-container tabsContent>
+      <amx-tab [label]="'Details'" [icon]="icons.detailsIcon">
+        <ant-work-templates-details-panel *ngIf="currentPanelIndex === 0"></ant-work-templates-details-panel>
+      </amx-tab>
+      <amx-tab [label]="'Scheduling'" [icon]="icons.workHistoryIcon">
+        <ant-work-templates-scheduling-panel *ngIf="currentPanelIndex === 1"></ant-work-templates-scheduling-panel>
+      </amx-tab>
+      <amx-tab [label]="'Parts'" [icon]="icons.partsIcon">
+        <ant-work-templates-parts-panel *ngIf="currentPanelIndex === 2"></ant-work-templates-parts-panel>
+      </amx-tab>
+      <amx-tab [label]="'Labor'" [icon]="icons.laborIcon">
+        <ant-work-templates-labor-panel *ngIf="currentPanelIndex === 3"></ant-work-templates-labor-panel>
+      </amx-tab>
+      <amx-tab [label]="'Contractors'" [icon]="icons.contractorIcon">
+        <ant-work-templates-contractors-panel *ngIf="currentPanelIndex === 4"></ant-work-templates-contractors-panel>
+      </amx-tab>
+      <amx-tab [label]="'Tools'" [icon]="icons.toolsIcon">
+        <ant-work-templates-tools-panel *ngIf="currentPanelIndex === 5"></ant-work-templates-tools-panel>
+      </amx-tab>
+    </ng-container>
+  </amx-tabs>
+</ng-template>
+
+<ng-template #tabletTemplate>
+  tablet
+</ng-template>
+
+<ng-template #mobileTemplate>
+  mobile
+</ng-template>
+
+<ng-template #dropdownTemplate>
+  <div class="dropdown-item">Test</div>
+</ng-template>

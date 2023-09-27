@@ -1,0 +1,35 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--overlay);
+  z-index: 1000;
+  & .image {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    background-position-x: center;
+    position: relative;
+    &.primary {
+      margin: var(--space-lg) 0;
+      align-self: center;
+      position: relative;
+      height: calc(75vh);
+      background-position-y: center;
+      transform: translateY(0) scale(1);
+      transition: var(--transition);
+      z-index: 1001;
+      overflow: hidden;
+    }
+    &.thumb {
+      border: 1px solid transparent;
+      height: 100px;
+      background-position-y: center;
+      &.selected {
+        border-color: var(--selected-color); 
+      }
+    }
+  }
+}

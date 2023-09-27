@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <button
+    #button
+    class="shortcut-btn"
+    [ngClass]="{ selected: selected }"
+    [title]="label"
+    (contextmenu)="rightClickHandler($event)"
+    (clickOutside)="deselect()">
+    <ng-container *ngIf="!awesome else awesomeTemplate">
+      <img [src]="src"/>
+    </ng-container>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <label [ngClass]="{ truncate: awesome }">{{ label }}</label>
+  </button>
+  <div class="context-menu" [ngClass]="{ open: openContext }">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+
+<ng-template #awesomeTemplate>
+  <fa-icon [icon]="icon" [ngStyle]="{ 'font-size': height, color: fgColor }"></fa-icon>
+</ng-template>

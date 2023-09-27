@@ -1,0 +1,19 @@
+<amx-confirmation
+  [heading]="'Retire Equipment'"
+  (canceled)="cancelHandler()"
+  (closed)="cancelHandler()"
+  (confirmed)="confirmHandler()">
+  <label>
+    Are you certain you want to retire the equipment <b>{{ selection?.name}}?</b>
+  </label>
+  <br/><br/>
+  <label>
+    The retire function is intended for equipment that is no longer in use but for which the history needs to be maintained. 
+    Selected equipment will be removed from the active list and will no longer be selectable for things like work orders and procedures.
+  </label>
+  <br/><br/>
+  <label>
+    Open work orders, work templates, and OPC/DDE links using this equipment will be deleted, and the equipment will be removed
+    from active procedures and procedure setups.
+  </label>
+</amx-confirmation>

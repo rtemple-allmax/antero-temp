@@ -1,0 +1,13 @@
+<amx-layout-panel-collapsible [title]="title">
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'" [padding]="'var(--space-md)'">
+    <amx-read-only-box [label]="'Supplier'">{{ record?.supplier?.name }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Not to Exceed'">{{ record?.notToExceed }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Order Date'">{{ getDateString(record?.orderDate) }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Account Number'">{{ record?.accountNumber }}</amx-read-only-box>
+    <amx-read-only-box [label]="'PO#'">{{ record?.purchaseOrderNumber }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Shipping Method'">{{ record?.shippingMethod }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Requisition Number'">{{ record?.requistionNumber }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Date Needed By'">{{ getDateString(record?.dateNeededBy) }}</amx-read-only-box>
+    <amx-read-only-box [label]="'Notes'">{{ record?.notes }}</amx-read-only-box>
+  </amx-grid>
+</amx-layout-panel-collapsible>

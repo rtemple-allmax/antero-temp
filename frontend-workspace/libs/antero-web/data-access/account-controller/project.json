@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/data-access/account-controller/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/antero-web/data-access/account-controller"
+      ],
+      "options": {
+        "jestConfig": "libs/antero-web/data-access/account-controller/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/data-access/account-controller/**/*.ts",
+          "libs/antero-web/data-access/account-controller/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

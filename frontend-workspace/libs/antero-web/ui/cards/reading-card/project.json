@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/ui/cards/reading-card/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/ui/cards/reading-card"],
+      "options": {
+        "jestConfig": "libs/antero-web/ui/cards/reading-card/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/ui/cards/reading-card/**/*.ts",
+          "libs/antero-web/ui/cards/reading-card/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

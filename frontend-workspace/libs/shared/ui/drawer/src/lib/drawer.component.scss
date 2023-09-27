@@ -1,0 +1,18 @@
+.drawer {
+  position: fixed;
+  transition: all .3s ease-in-out;
+  & .close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: var(--space-md);
+    transition: none;
+    & button {
+      background: transparent;
+      border: none;
+      outline: 0;
+      transform: rotate(180deg);
+      transition: all .3s ease-in-out;
+    }
+  }
+}

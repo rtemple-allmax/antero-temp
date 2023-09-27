@@ -1,0 +1,20 @@
+<div class="sidebar" [ngClass]="{ 'collapsed': collapsed }">
+  <div class="top">
+    <div [ngStyle]="{ 'padding-left': '5px' }">
+      <amx-icon-button
+        [awesome]="true"
+        [icon]="!collapsed ? icons.collapseIcon : icons.expandIcon"
+        [height]="'20px'"
+        [fgColor]="'var(--icon-color)'"
+        (clicked)="toggle()">
+      </amx-icon-button>
+    </div>
+    <ng-container *ngFor="let item of items">
+      <ant-sidebar-button
+      [active]="setActive(item)"
+      [item]="item"
+      [collapsed]="collapsed">
+    </ant-sidebar-button>
+    </ng-container>
+  </div>
+</div>

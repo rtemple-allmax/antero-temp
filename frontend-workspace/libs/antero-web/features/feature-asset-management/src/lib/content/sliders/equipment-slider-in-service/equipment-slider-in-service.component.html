@@ -1,0 +1,12 @@
+<h2 [ngStyle]="{ 'text-align': 'center' }">{{ heading }}</h2>
+<amx-separator></amx-separator>
+<amx-date-box
+  [label]="'Date'"
+  [(ngModel)]="dateBinding.value">
+</amx-date-box>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-text-area [label]="'Comment'" [(ngModel)]="commentBinding.value"></amx-text-area>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-flex [justify]="'flex-end'">
+  <amx-combo-button [label]="'Save '" [icon]="icons.saveIcon" (clicked)="submit()"></amx-combo-button>
+</amx-flex>

@@ -1,0 +1,56 @@
+<ant-app-frame [sectionName]="'Work Requests'">
+  <amx-master-detail
+    frameContent
+    [data]="data?.data"
+    [cellTemplate]="card"
+    [deviceType]="deviceType"
+    [viewType]="viewType"
+    [columns]="data?.colDef?.columns || []"
+    (selectionChanged)="selectionHandler($event)">
+    <amx-flex controls [justify]="'space-between'" [align]="'center'">
+      <amx-flex [align]="'center'"  [padding]="'var(--space-md) var(--space-md) var(--space-md) var(--space-lg)'">
+        <amx-icon-button
+          [icon]="icons.gridIcon"
+          [awesome]="true"
+          [fgColor]="viewType === viewTypes.TABLE ? 'white' : 'var(--highlight-color)'"
+          [height]="'20px'"
+          [bgColor]="'transparent'"
+          [shouldDisable]="viewType === viewTypes.TABLE"
+          (clicked)="toggleView()">
+        </amx-icon-button>
+        <amx-icon-button
+          [icon]="icons.listIcon"
+          [awesome]="true"
+          [fgColor]="viewType === viewTypes.LIST ? 'white' : 'var(--highlight-color)'"
+          [height]="'20px'"
+          [bgColor]="'transparent'"
+          [shouldDisable]="viewType === viewTypes.LIST"
+          (clicked)="toggleView()">
+        </amx-icon-button>
+        <amx-dropdown-button
+          [opacity]="viewType === viewTypes.TABLE ? 1 : 0"
+          [icon]="icons.otherIcon"
+          [fgColor]="'var(--icon-color)'"
+          [height]="'20px'">
+          <amx-flex [flow]="'column nowrap'">
+            <button class="dropdown-item">Use My View</button>
+            <button class="dropdown-item">Save My Layout</button>
+            <button class="dropdown-item">Clear All Filters</button>
+            <button class="dropdown-item">Show Column Chooser</button>
+          </amx-flex>
+        </amx-dropdown-button>
+      </amx-flex>
+      <button *ngIf="viewType === viewTypes.TABLE" [ngStyle]="{ border: 'none', cursor: 'pointer' }" (click)="openDetail()">
+        <img src="assets/icons/iconBack.svg" [ngStyle]="{ width: '24px', transform: detailButtonTransform }"/>
+      </button>
+    </amx-flex>
+    <div details>details</div>
+  </amx-master-detail>
+</ant-app-frame>
+
+<ng-template #card let-template="template">
+  <div>
+    <p><b>{{ template?.data?.itemToRepair }}</b></p>
+    <p>{{ getDate(template?.data?.dateSubmitted) }}</p> 
+  </div>
+</ng-template>

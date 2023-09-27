@@ -1,0 +1,22 @@
+<amx-layout-panel-collapsible [title]="'Parts'" [allowAdding]="true">
+  <amx-data-table
+    class="subsection"
+    [allowGrouping]="false"
+    [allowFiltering]="false"
+    [allowExport]="false"
+    [data]="data?.data"
+    [selectFirstRowOnLoad]="false"
+    [columns]="data?.colDef?.columns || []"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [showRowLines]="true"
+    [showColumnLines]="false"
+    [selectionMode]="'none'"
+    [hoverStateEnabled]="false"
+    [cellTemplate]="viewType === viewTypes.LIST ? cellTemplate : null">
+  </amx-data-table>
+</amx-layout-panel-collapsible>
+
+<ng-template #cellTemplate let-template="template">
+  <ant-work-history-part-list-item [record]="template?.data"></ant-work-history-part-list-item>
+</ng-template>
+

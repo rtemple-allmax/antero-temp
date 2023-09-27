@@ -1,0 +1,46 @@
+<amx-modal [heading]="'Edit Multiple Work Orders'" (closed)="closedHandler()">
+  <p><b>{{ text }}</b></p>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+    <amx-searchable-dropdown
+      [label]="'Status'"
+      [items]="statuses"
+      [(ngModel)]="statusBinding.value">
+    </amx-searchable-dropdown>
+    <amx-searchable-dropdown
+      [label]="'Assignment'"
+      [(ngModel)]="assignmentBinding.value">
+    </amx-searchable-dropdown>
+    <amx-searchable-dropdown
+      [label]="'Type'"
+      [items]="types"
+      [(ngModel)]="typeBinding.value">
+    </amx-searchable-dropdown>
+    <amx-searchable-dropdown
+      [label]="'Priority'"
+      [items]="priorities"
+      [(ngModel)]="priorityBinding.value">
+    </amx-searchable-dropdown>
+    <amx-date-box
+      [label]="'Date Scheduled'"
+      [(ngModel)]="dateScheduledBinding.value">
+    </amx-date-box>
+    <amx-number-box
+      [label]="'Days To Complete'"
+      [(ngModel)]="daysToCompleteBinding.value">
+    </amx-number-box>
+    <amx-date-box
+      [label]="'Date Completed'"
+      [(ngModel)]="dateCompletedBinding.value">
+    </amx-date-box>
+    <amx-searchable-dropdown
+      [label]="'Completed By'" 
+      [items]="users"
+      [(ngModel)]="completedByBinding.value">
+    </amx-searchable-dropdown>
+  </amx-grid>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [icon]="icons.saveIcon" [label]="'Save'" [invert]="true"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

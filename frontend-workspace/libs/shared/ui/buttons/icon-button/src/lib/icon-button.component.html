@@ -1,0 +1,20 @@
+<button
+  (click)="click($event)"
+  (mouseenter)="mouseenteredHandler($event)"
+  (mouseleave)="mouseexitedHandler($event)"
+  [disabled]="disabled"
+  [type]="'button'"
+  [title]="tooltip"
+  [tabIndex]="tabIndex"
+  [ngStyle]="{ padding: padding }"
+  [ngClass]="{ showBG: showBG, danger: danger, showHoverEffect: showHoverEffect }">
+  <ng-container *ngIf="!awesome else awesomeTemplate">
+    <img [src]="iconSrc" [ngStyle]="{ height: height, transform: transform, transition: 'var(--transition)' }"/>
+  </ng-container>
+</button>
+
+<ng-template #awesomeTemplate>
+  <amx-flex [height]="'100%'" [align]="'center'" [justify]="'center'">
+    <fa-icon [icon]="icon" [ngStyle]="{ 'font-size': height, color: disabled ? 'var(--disabled-color)': fgColor , transform: transform, padding: padding }"></fa-icon>
+  </amx-flex>
+</ng-template>

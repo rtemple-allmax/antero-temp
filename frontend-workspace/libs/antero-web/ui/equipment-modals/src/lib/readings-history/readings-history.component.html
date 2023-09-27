@@ -1,0 +1,24 @@
+<amx-modal [heading]="'Readings History'" (closed)="closedHandler()">
+  <amx-data-table
+    #readingsTable
+    [backgroundColor]="'transparent'"
+    [height]="'50vh'"
+    [allowGrouping]="false"
+    [allowReordering]="true"
+    [allowFiltering]="false"
+    [allowFixing]="false"
+    [allowResizing]="true"
+    [allowSearch]="false"
+    [showColumnHeaders]="false"
+    [showRowLines]="true"
+    [cellTemplate]="dateTemplate"
+    [data]="readingsData?.data"
+    [columns]="readingsData?.colDef?.columns || []"
+    [noDataText]="'No readings have been taken for this instrument.'"
+    (selectionChanged)="selectionHandler($event)">
+  </amx-data-table>
+</amx-modal>
+
+<ng-template #dateTemplate let-template="template">
+  <ant-reading-list-item [record]="template?.data"></ant-reading-list-item>    
+</ng-template>

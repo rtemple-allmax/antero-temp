@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/group-box/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/shared/ui/group-box"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/ui/group-box/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/group-box/**/*.ts",
+          "libs/shared/ui/group-box/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

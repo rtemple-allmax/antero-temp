@@ -1,0 +1,31 @@
+button {
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  width: fit-content;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  &.showBG {
+    // background-color: white;
+  }
+  &:focus {
+    // background-color: #dfdfdf;
+  } 
+  &.showHoverEffect {
+    &:hover:not(:disabled) {
+      // background-color: #dfdfdf;
+    }
+    &.danger:hover:not(:disabled) {
+      // background-color: var(--msg-danger);
+    }
+  }
+  &:disabled {
+    position: relative;
+    cursor: default;
+  } 
+}

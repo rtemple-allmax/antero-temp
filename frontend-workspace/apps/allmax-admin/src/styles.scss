@@ -1,0 +1,83 @@
+@import './theme/reset.theme.scss';
+
+body {
+  background-color: #bbb;
+}
+
+.label-button {
+  background-color: transparent;
+  color: rgb(51, 51, 51);
+  border: 1px solid rgb(51, 51, 51);
+  transition: all .3s ease-in-out;
+  padding: var(--space-md) var(--space-lg);
+  &:hover {
+    background-color: rgb(51, 51, 51);
+    color: white;
+  }
+  &:disabled {
+    background-color: #eee;
+    color: #ddd;
+    border-color: #ddd;
+  }
+}
+
+.field-wrapper {
+  & .field {
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    transition: all .3s ease-in-out;
+    &.relative {
+      position: relative;
+      & .icon {
+        position: absolute;
+        right: var(--space-sm);
+        top: 50%;
+        pointer-events: none;
+        transform: translateY(-50%);
+      }
+    }
+
+  }
+  & .label {
+    color: #aaa;
+    &.white {
+      color: white;;
+    }
+  }
+  &.disabled {
+    & .label {
+      color: #ddd;
+    }
+  }
+  &.required {
+    & .label {
+      font-weight: bold;
+    }
+  }
+  &.invalid {
+    & .label {
+      color: red;
+    }
+    & .errors-wrapper {
+      & .error-text {
+        color: red;
+      }
+    }
+    & .field {
+      border-color: red;
+    }
+  }
+}
+
+.action-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  outline: none;
+  height: 21px;
+  border: none;
+  border-radius: 0 0 5px 5px;
+}

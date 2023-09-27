@@ -1,0 +1,17 @@
+<ant-app-frame [sectionName]="'Admin'">
+  <div frameContent class="admin-view">
+    <amx-tabs>
+      <ng-container tabsContent>
+        <amx-tab [label]="'Users'">
+          <ant-panel-admin-users></ant-panel-admin-users>
+        </amx-tab>
+        <amx-tab [label]="'Roles'">
+          <ant-panel-admin-roles></ant-panel-admin-roles>
+        </amx-tab>
+        <amx-tab [label]="'Options'">
+          <ant-panel-admin-options></ant-panel-admin-options>
+        </amx-tab>
+      </ng-container>
+    </amx-tabs>
+  </div>
+</ant-app-frame>

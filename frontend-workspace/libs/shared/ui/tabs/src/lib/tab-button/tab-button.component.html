@@ -1,0 +1,8 @@
+<button
+  #tabButton
+  (click)="clickHandler()"
+  [ngClass]="{ active: active, disabled: disabled }">
+  <fa-icon *ngIf="icon" [icon]="icon" [ngStyle]="{ color: disabled ? 'var(--disabled-color)' : fgColor }"></fa-icon>
+  <!-- <amx-spacer [space]="'var(--space-sm)'"></amx-spacer> -->
+  <label [ngStyle]="{ color: 'var(--fg-color)', cursor: 'pointer' }">{{ label }}</label>
+</button>

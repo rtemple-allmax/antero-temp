@@ -1,0 +1,67 @@
+.app-frame {
+  width: 100vw;
+  max-width: 2000px;
+  margin: 0 auto;
+  height: calc(var(--vh-1) * 100);
+  background-color: var(--base-bg-color);
+  overflow: hidden;
+  position: relative;
+  & .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--app-color);
+    color: white;
+    & .left, .right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    & .left {
+      justify-content: flex-start;
+    }
+    & .right {
+      justify-content: flex-end;
+    }
+  }
+  & .view {
+    display: flex;
+    height: calc(100vh - (43px));
+    & .sidebar {
+      flex: 1 1 auto;
+      height: 100%;
+    }
+    & .content {
+      flex: 1 1 100%;
+      overflow: hidden;
+      height: 100%;
+    }
+  }
+  & .slider {
+    position: absolute;
+    top: 43px;
+    bottom: 0;
+    left: 0;
+    width: calc(50ch + 1.5rem + 250px);
+    padding: var(--space-lg) var(--space-md);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: var(--shadow);
+    transition: all .3s ease-in-out;
+    transform: translateX(calc(-100% - 50px));
+    z-index: 1;
+    & .close-tab {
+      position: absolute;
+      left: 100%;
+      top: 8px;
+      width: 30px;
+      background-color: var(--app-color);
+      color: var(--fg-color);
+      border-radius: 0 5px 5px 0;
+      box-shadow: var(--shadow);
+    }
+    &.open {
+      transform: translateX(0); 
+    }
+  }
+}

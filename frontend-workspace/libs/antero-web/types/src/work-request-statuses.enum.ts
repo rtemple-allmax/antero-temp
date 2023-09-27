@@ -1,0 +1,7 @@
+export enum WorkRequestStatuses {
+  NONE,
+  NEW_REQUEST,
+  WORK_ORDER_CREATED,
+  WORK_COMPLETED,
+  NO_WORK_REQUIRED
+}

@@ -1,0 +1,284 @@
+<ant-app-frame [sectionName]="dataType">
+  <ng-container frameControls>
+    <amx-dropdown-button
+      [icon]="icons.downCaretIcon"
+      [height]="'20px'"
+      [items]="dataTypeItems"
+      [fgColor]="'white'">
+    </amx-dropdown-button>
+  </ng-container>
+  <amx-master-detail
+    frameContent
+    [data]="data?.data"
+    [columns]="data?.colDef?.columns || []"
+    [masterWidth]="deviceType === deviceTypes.MOBILE ? '100%' : '50ch'"
+    [cellTemplate]="viewType === viewTypes.LIST ? masterListItemTemplate : undefined"
+    [deviceType]="deviceType"
+    [rowContextMenuItems]="rowContextMenuItems"
+    [allowAdd]="true"
+    [selectionMode]="dataType === dataTypes.CURRENT ? 'multiple': 'single'"
+    [viewType]="viewType"
+    (tableReady)="tableReadyHandler($event)"
+    (selectionChanged)="selectionChangedHandler($event)"
+    (contextMenuPreparing)="contextMenuHandler($event)"
+    (layoutDirty)="layoutDirtyHandler(layoutTypes.WORK_MANAGEMENT_GRID)">
+    <amx-flex controls [justify]="'space-between'" [padding]="'var(--space-md) var(--space-lg) var(--space-md) var(--space-md)'" [gap]="'var(--space-md)'" [align]="'center'">
+      <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+        <amx-combo-button [label]="'Create Work Order'" [invert]="true" [icon]="icons.addIcon" (clicked)="openAdd()"></amx-combo-button>
+        <amx-search-box #searchBox (searchTermChanged)="searchHandler($event)" (downArrowClicked)="searchDownArrowHandler()"></amx-search-box>
+        <amx-dropdown-button
+          [icon]="icons.moreIcon"
+          [fgColor]="'var(--icon-color)'"
+          [height]="'20px'"
+          [items]="sectionContextMenuItems">
+        </amx-dropdown-button>
+      </amx-flex>
+      <amx-icon-button
+        *ngIf="viewType === viewTypes.TABLE"
+        [height]="'24px'"
+        [icon]="'iconBack'"
+        [rotation]="detailButtonRotation"
+        (clicked)="toggleDetail()">
+      </amx-icon-button>
+    </amx-flex>
+    <div details>
+      <ng-container [ngSwitch]="deviceType">
+        <ng-container *ngSwitchCase="deviceTypes.DESKTOP">
+          <ng-container *ngTemplateOutlet="desktopTemplate"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="deviceTypes.TABLET">
+          <ng-container *ngTemplateOutlet="tabletTemplate"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+          <ng-container *ngTemplateOutlet="mobileTemplate"></ng-container>
+        </ng-container>
+      </ng-container>      
+    </div>
+  </amx-master-detail>
+</ant-app-frame>
+
+<ng-template #desktopTemplate>
+  <ng-container *ngTemplateOutlet="nameplateTemplate"></ng-container>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <ng-container *ngTemplateOutlet="detailsTemplate"></ng-container>  
+</ng-template>
+<ng-template #tabletTemplate>
+
+</ng-template>
+<ng-template #mobileTemplate>
+
+</ng-template>
+
+<ng-template #masterListItemTemplate let-template="template">
+  <ng-container [ngSwitch]="dataType">
+    <ng-container *ngSwitchCase="dataTypes.CURRENT">
+      <ng-container *ngTemplateOutlet="workOrderListItemTemplate; context:{ template }"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.MY_WORK">
+      <ng-container *ngTemplateOutlet="workOrderListItemTemplate; context:{ template }"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.REVIEW">
+      <ng-container *ngTemplateOutlet="workOrderListItemTemplate; context:{ template }"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.SAVED">
+      <ng-container *ngTemplateOutlet="workTemplateListItemTemplate; context:{ template }"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.HISTORY">
+      <ng-container *ngTemplateOutlet="workHistoryListItemTemplate; context:{ template }"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.REQUEST">
+      <ng-container *ngTemplateOutlet="workRequestListItemTemplate; context:{ template }"></ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+<ng-template #nameplateTemplate>
+  <ng-container [ngSwitch]="dataType">
+    <ng-container *ngSwitchCase="dataTypes.CURRENT">
+      <ng-container *ngTemplateOutlet="workOrderNameplateTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.MY_WORK">
+      <ng-container *ngTemplateOutlet="workOrderNameplateTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.REVIEW">
+      <ng-container *ngTemplateOutlet="workOrderNameplateTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.SAVED">
+      <ng-container *ngTemplateOutlet="workTemplateNameplateTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.HISTORY">
+      <ng-container *ngTemplateOutlet="workHistoryNameplateTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.REQUEST">
+      <ng-container *ngTemplateOutlet="workRequestNameplateTemplate"></ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+<ng-template #detailsTemplate>
+  <ng-container [ngSwitch]="dataType">
+    <ng-container *ngSwitchCase="dataTypes.CURRENT">
+      <ng-container *ngTemplateOutlet="workOrderDetailsTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.MY_WORK">
+      <ng-container *ngTemplateOutlet="workOrderDetailsTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.REVIEW">
+      <ng-container *ngTemplateOutlet="workOrderDetailsTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.SAVED">
+      <ng-container *ngTemplateOutlet="workTemplateDetailsTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.HISTORY">
+      <ng-container *ngTemplateOutlet="workHistoryDetailsTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="dataTypes.REQUEST">
+      <ng-container *ngTemplateOutlet="workRequestDetailsTemplate"></ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #workOrderListItemTemplate let-template="template">
+  <div
+    (mouseenter)="mouseenterHandler(template?.data?.id)"
+    (mouseleave)="mouseleaveHandler(template?.data?.id)">
+    <amx-flex [justify]="'space-between'" [align]="'center'">
+      <div>
+        <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+          <p><b>WO# {{ template?.data?.workOrderNumber }}</b></p>
+          <div class="statusIcon" [ngStyle]="{ background: getWorkStatusBGColor(template?.data?.workStatus?.predefinedColor) }"></div>
+          <amx-popover-button
+            [template]="completionTemplate"
+            [icon]="icons.confirmIcon"
+            [height]="'14px'"
+            [padding]="'0'"
+            [fgColor]="template?.data?.isComplete ? 'var(--msg-success)' : 'var(--fg-color)'"
+            (clicked)="openAdd()">
+          </amx-popover-button>
+        </amx-flex>
+        <p [title]="'Equipment Name'">{{ template?.data?.equipment?.name }}</p>
+        <p [title]="'Task Name'">{{ template?.data?.task?.name }}</p>
+        <p [title]="'Date Scheduled'">{{ getDateString(template?.data?.dateScheduled) }}</p>
+      </div>
+      <amx-dropdown-button class="cell-more" [ngClass]="{ hovered: hoveredID === template?.data?.id}"
+        [icon]="icons.moreIcon"
+        [fgColor]="'var(--app-color-3)'"
+        [height]="'20px'">
+      </amx-dropdown-button>
+    </amx-flex>
+  </div>
+  <ng-template #completionTemplate>
+    <div [ngStyle]="{ padding: 'var(--space-md)' }">
+      <p><b>Due Date:</b> {{ getDateString(template?.data?.dueDate) || 'No Date Set' }}</p>
+      <p><b>Completed Date:</b> {{ getDateString(template?.data?.completedDate) || 'Needs Entered' }} </p>
+      <p><b>Completed Notes:</b> {{ 'Needs Entered' }} </p>
+      <!-- <p>{{ requiredInstrumentsLabel }}</p> -->
+      <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+        <amx-icon [icon]="icons.delinquentIcon" [color]="'var(--msg-danger)'" [height]="'14px'"></amx-icon>
+        <amx-icon [icon]="icons.needsAttentionIcon" [color]="'var(--msg-warning)'" [height]="'14px'"></amx-icon>
+      </amx-flex>
+    </div>
+  </ng-template>
+</ng-template>
+<ng-template #workTemplateListItemTemplate let-template="template">
+  Work Template List Item Template
+</ng-template>
+<ng-template #workHistoryListItemTemplate let-template="template">
+  <div
+    (mouseenter)="mouseenterHandler(template?.data?.id)"
+    (mouseleave)="mouseleaveHandler(template?.data?.id)">
+    <amx-flex [justify]="'space-between'" [align]="'center'">
+      <div>
+        <p><b>WO# {{ template?.data?.workOrderNumber }}</b></p>
+        <p [title]="'Equipment Name'">{{ template?.data?.equipment?.name }}</p>
+        <p [title]="'Task Name'">{{ template?.data?.task }}</p>
+        <p [title]="'Date Completed'">{{ getDateString(template?.data?.dateCompleted) }}</p>
+      </div>
+      <amx-dropdown-button class="cell-more" [ngClass]="{ hovered: hoveredID === template?.data?.id}"
+        [icon]="icons.moreIcon"
+        [fgColor]="'var(--app-color-3)'"
+        [height]="'20px'">
+      </amx-dropdown-button>
+    </amx-flex>
+  </div>
+</ng-template>
+<ng-template #workRequestListItemTemplate let-template="template">
+  Work Request List Item Template
+</ng-template>
+
+<ng-template #workOrderNameplateTemplate>
+  <amx-flex [align]="'center'" [gap]="'var(--space-lg)'" [padding]="'0 var(--space-md)'">
+    <h2>WO# {{ selectedWorkOrder?.workOrderNumber }}</h2>
+    <amx-popover-button
+      *ngIf="selectedWorkOrder?.isDue"
+      [icon]="icons.delinquentIcon"
+      [height]="'20px'"
+      [fgColor]="'var(--msg-danger)'"
+      [padding]="'0'"
+      [template]="pastDuePopoverTemplate">
+    </amx-popover-button>
+    <amx-popover-button
+      *ngIf="selectedWorkOrder?.needsAttention"
+      [icon]="icons.needsAttentionIcon"
+      [height]="'20px'"
+      [fgColor]="'var(--msg-warning)'"
+      [padding]="'0'"
+      [template]="needsAttentionPopoverTemplate">
+    </amx-popover-button>
+  </amx-flex>
+</ng-template>
+<ng-template #workTemplateNameplateTemplate>
+  Work Template Nameplate Template
+</ng-template>
+<ng-template #workHistoryNameplateTemplate>
+  <h2>WO# {{ selectedWorkHistory?.workOrderNumber }}</h2>
+</ng-template>
+<ng-template #workRequestNameplateTemplate>
+  Work Request Nameplate Template
+</ng-template>
+
+<ng-template #workOrderDetailsTemplate>
+  <amx-tabs>
+    <ng-container tabsContent>
+      <amx-tab [label]="'Details'" [icon]="icons.detailsIcon">
+        <ant-work-order-tab-details *ngIf="currentTabIndex === 0" [height]="tabHeight"></ant-work-order-tab-details>
+      </amx-tab>
+      <amx-tab [label]="'Map'" [icon]="icons.mapIcon">
+        <ant-work-order-tab-map *ngIf="currentTabIndex === 1" [height]="tabHeight"></ant-work-order-tab-map>
+      </amx-tab>
+      <amx-tab [label]="'Activity'" [icon]="icons.activityIcon">
+        <ant-work-order-tab-activity *ngIf="currentTabIndex === 2" [height]="tabHeight"></ant-work-order-tab-activity>
+      </amx-tab>
+    </ng-container>
+  </amx-tabs>
+</ng-template>
+<ng-template #workTemplateDetailsTemplate>
+  Work Template Details Template
+</ng-template>
+<ng-template #workHistoryDetailsTemplate>
+  <amx-tabs>
+    <ng-container tabsContent>
+      <amx-tab [label]="'Details'" [icon]="icons.detailsIcon">
+        <ant-work-order-tab-details *ngIf="currentTabIndex === 0" [height]="tabHeight"></ant-work-order-tab-details>
+      </amx-tab>
+      <amx-tab [label]="'Activity'" [icon]="icons.activityIcon">
+        <ant-work-order-tab-activity *ngIf="currentTabIndex === 1" [height]="tabHeight"></ant-work-order-tab-activity>
+      </amx-tab>
+    </ng-container>
+  </amx-tabs>
+</ng-template>
+<ng-template #workRequestDetailsTemplate>
+  Work Request Details Template
+</ng-template>
+
+<ng-template #pastDuePopoverTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <span>Past Due Since {{ getDateString(selectedWorkOrder?.dueDate) }}</span>
+  </div>
+</ng-template>
+<ng-template #needsAttentionPopoverTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <span>{{ selectedWorkOrder?.needsAttentionText }}</span>
+  </div>
+</ng-template>
+
+
+

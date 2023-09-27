@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/accordion/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/accordion"],
+      "options": {
+        "jestConfig": "libs/shared/ui/accordion/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/accordion/**/*.ts",
+          "libs/shared/ui/accordion/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

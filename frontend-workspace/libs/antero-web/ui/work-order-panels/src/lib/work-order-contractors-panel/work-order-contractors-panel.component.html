@@ -1,0 +1,28 @@
+<div [ngStyle]="{ 'padding': 'var(--space-md)', height: height }">
+  <amx-combo-button [label]="'Add Contractor'" [icon]="icons.addIcon" (clicked)="openAdd()"></amx-combo-button>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <ng-container *ngIf="contractors.length > 0 else noData">
+    <dx-scroll-view>
+      <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+        <ng-container *ngFor="let record of contractors">
+          <amx-card (clicked)="openEdit(record)">
+            <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+              <amx-read-only-box [label]="'Name'">{{ record?.supplier?.name }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Invoice Number'">{{ record?.invoice }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Part Cost'">{{ record?.partCost }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Labor Cost'">{{ record?.laborCost }}</amx-read-only-box>
+              <amx-read-only-box [label]="'Tax Cost'">{{ record?.taxCost}}</amx-read-only-box>
+              <amx-read-only-box [label]="'Misc Cost'">{{ record?.miscCost }}</amx-read-only-box>
+            </amx-grid>
+          </amx-card>
+        </ng-container>
+      </amx-grid>
+    </dx-scroll-view>
+  </ng-container>
+</div>
+
+<ng-template #noData>
+  <div class="no-data" [ngStyle]="{ height: '100px' }">
+    No Contractors are associated with this Work Order. 
+  </div>
+</ng-template>

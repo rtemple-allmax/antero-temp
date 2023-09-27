@@ -1,0 +1,26 @@
+<div (mouseenter)="mouseenterHandler()" (mouseleave)="mouseleaveHandler()">
+  <amx-flex>
+    <div [amxFlexChild]="'1'">
+      <ng-content select="[content]"></ng-content>
+    </div>
+    <div class="more" [ngClass]="{ hovered: hovered }" [ngStyle]="{ 'align-self': 'center' }">
+      <amx-crud-button
+        [allowEditing]="allowEditing"
+        [allowDeleting]="allowDeleting"
+        (editRequested)="editHandler()"
+        (deleteRequested)="deleteHandler()">
+      </amx-crud-button>
+    </div>
+  </amx-flex>
+  
+  <div class="editor" [ngClass]="{ editing: editing }">
+    <ng-container *ngIf="editing">
+      <ng-content select="[editor]"></ng-content>
+    </ng-container>
+  </div>
+  <div class="confirmation" [ngClass]="{ deleting: deleting }">
+    <ng-container *ngIf="deleting">
+      <ng-content select="[confirmation]"></ng-content>
+    </ng-container>
+  </div>
+</div>

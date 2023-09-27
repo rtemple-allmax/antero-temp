@@ -1,0 +1,18 @@
+<amx-data-table
+  [data]="data?.data"
+  [showColumnHeaders]="false"
+  [allowGrouping]="false"
+  [allowExport]="false"
+  [columns]="data?.colDef?.columns || []"
+  [showRowLines]="true"
+  [selectFirstRowOnLoad]="false"
+  [cellTemplate]="activityTemplate"
+  [selectionMode]="'none'">
+</amx-data-table> 
+  
+
+<ng-template #activityTemplate let-template="template">
+  <div >
+    <p>{{ getDateTimeString(template?.data?.dateTime) }} - {{ template?.data?.userName }} <b>{{ template?.data?.actionDescription }}</b> {{ template?.data?.primaryValue }}</p>
+  </div>
+</ng-template>

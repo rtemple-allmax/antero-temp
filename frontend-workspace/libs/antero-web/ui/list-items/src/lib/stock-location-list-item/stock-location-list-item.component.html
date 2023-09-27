@@ -1,0 +1,64 @@
+<div class="wrapper" (mouseenter)="mouseenterHandler()" (mouseleave)="mouseleaveHandler()" [ngStyle]="{ padding: 'var(--space-md)' }">
+  <amx-grid [columns]="'50ch 1fr 1fr 1fr auto'">
+    <div>
+      <p>{{ record?.warehouse?.name }}</p>
+      <p>{{ record?.area?.name }}</p>
+    </div>
+    <amx-flex [height]="'100%'" [align]="'center'">
+      <amx-popover-text [template]="qtyPopoverTemplate">Current Qty: {{ record?.currentQuantity }}</amx-popover-text>
+    </amx-flex>
+    <amx-flex [height]="'100%'" [align]="'center'">
+      <amx-popover-text [template]="orderedTemplate">On Order: {{ record?.totalOnOrder }}</amx-popover-text>
+    </amx-flex>
+    <amx-flex [height]="'100%'" [align]="'center'">
+      <amx-popover-text [template]="woAllocTemplate">WO Allocation: {{ record?.totalOnWorkOrder }}</amx-popover-text>
+    </amx-flex>
+    <div class="more" [ngClass]="{ hovered: hovered }" [ngStyle]="{ 'align-self': 'center' }">
+      <amx-dropdown-button
+        [icon]="icons.moreIcon"
+        [bgColor]="'transparent'"
+        [origin]="'right'"
+        [padding]="'var(--space-sm)'"
+        [height]="'20px'"
+        [items]="contextMenuItems">
+      </amx-dropdown-button>
+    </div>
+  </amx-grid>
+</div>
+
+<ng-template #qtyPopoverTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <p>Min Qty: {{ record?.minimumQuantity }}</p>
+    <p>Max Qty: {{ record?.maximumQuantity }}</p>
+  </div>
+</ng-template>
+
+<ng-template #woAllocTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <ng-container *ngIf="workOrderData.length > 0 else noWork">
+      <ng-container *ngFor="let data of workOrderData">
+        <p>WO#{{ data.workOrderNumber }} ({{ data.qty }})</p>
+      </ng-container>
+    </ng-container>
+    <ng-template #noWork>
+      <span>No Active Work</span>
+    </ng-template>
+  </div>
+</ng-template>
+
+<ng-template #orderedTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)'}">
+    <ng-container *ngIf="orderData.length > 0 else noOrders">
+      <ng-container *ngFor="let data of orderData">
+        <amx-flex>
+          <span *ngIf="data.poNumber">PO#{{ data.poNumber }}&nbsp;-&nbsp;</span>
+          <span>{{ data.qty }}</span>
+          <span *ngIf="data.supplier">&nbsp;from {{ data.supplier }}</span>
+        </amx-flex>
+      </ng-container>
+    </ng-container>
+    <ng-template #noOrders>
+      <span>No Open Orders</span>
+    </ng-template>
+  </div>
+</ng-template>

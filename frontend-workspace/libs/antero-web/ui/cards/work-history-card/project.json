@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/ui/cards/work-history-card/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/antero-web/ui/cards/work-history-card"],
+      "options": {
+        "jestConfig": "libs/antero-web/ui/cards/work-history-card/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/ui/cards/work-history-card/**/*.ts",
+          "libs/antero-web/ui/cards/work-history-card/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

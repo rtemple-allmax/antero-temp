@@ -1,0 +1,68 @@
+<amx-modal
+  [heading]="heading"
+  [maxWidth]="deviceType === deviceTypes.DESKTOP ? '35vw' : '95vw'"
+  [height]="deviceType === deviceTypes.DESKTOP ? 'auto' : '95vh'"
+  [bgColor]="'var(--panel-bg-color)'"
+  (closed)="closedHandler()">
+  <dx-scroll-view [height]="'83vh'">
+    <ant-checklist-viewer [checklist]="checklist"></ant-checklist-viewer>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-grid [columns]="deviceType === deviceTypes.DESKTOP ? 'repeat(2, 1fr)' : '1fr'" [gap]="'var(--space-md)'">
+      <amx-date-box [label]="'Date Completed'" [required]="true"></amx-date-box>
+      <amx-table-drop-down [label]="'Completed By'" [required]="true"></amx-table-drop-down>
+    </amx-grid>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-text-area [label]="'Completed Notes'" [required]="true"></amx-text-area>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-check-box [label]="'Needs Attention'"></amx-check-box>
+    <amx-text-area></amx-text-area>
+    <ng-container *ngIf="instruments.length > 0 && instruments.length === instrumentBindings.length">
+      <hr/>
+      <h3>Enter Instruments Readings</h3>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <ng-container *ngFor="let record of instruments">
+        <amx-number-box [label]="record.instrument?.name" [required]="record.isRequired"></amx-number-box>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="parts.length > 0 && parts.length === partBindings.length">
+      <hr/>
+      <h3>Enter Parts Usage</h3>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <ng-container *ngFor="let record of parts">
+        <amx-number-box [label]="record.partQuantity?.part?.name"></amx-number-box>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="labor.length > 0 && labor.length === laborBindings.length">
+      <hr/>
+      <h3>Enter Labor Hours</h3>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <ng-container *ngFor="let record of labor">
+        <amx-number-box [label]="record.laborClass?.name"></amx-number-box>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="tools.length > 0 && tools.length === toolBindings.length">
+      <hr/>
+      <h3>Enter Tool Usage</h3>
+      <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      <ng-container *ngFor="let record of tools">
+        <amx-number-box [label]="record.equipment?.name"></amx-number-box>
+        <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+      </ng-container>
+    </ng-container>
+  </dx-scroll-view>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-flex [justify]="deviceType === deviceTypes.DESKTOP ? 'flex-end' : 'space-around'" [align]="'center'" [gap]="'var(--space-md)'">
+    <amx-label-button [label]="'Update'"></amx-label-button>
+    <amx-label-button [label]="'Move To Review'"></amx-label-button>
+    <amx-label-button [label]="'Move To History'"></amx-label-button>
+  </amx-flex>
+</amx-modal>
+
+<ng-template #noChecklist>
+  <div class="no-data" [ngStyle]="{ 'height': '150px' }">
+    No Checklist has been added to this Work Order.
+  </div>
+</ng-template>

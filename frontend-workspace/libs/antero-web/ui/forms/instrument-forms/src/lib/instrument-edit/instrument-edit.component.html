@@ -1,0 +1,43 @@
+<amx-modal [heading]="heading" [maxWidth]="'800px'" (closed)="closedHandler()">
+  <div class="form-wrapper">
+    <amx-text-box
+      [label]="'Name'"
+      [required]="true"
+      [placeholder]="'(required)'"
+      [customValidators]="customValidators"
+      [(ngModel)]="nameBinding.value"
+      (validityStateChanged)="validityHandler($event, 'name')">
+    </amx-text-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-select-box
+      [label]="'Type'"
+      [required]="true"
+      [dataSource]="typeData"
+      [(ngModel)]="typeBinding.value"
+      (validityStateChanged)="validityHandler($event, 'type')">
+    </amx-select-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-text-box
+      [label]="'Units'"
+      [required]="true"
+      [placeholder]="'(required)'"
+      [(ngModel)]="unitsBinding.value"
+      (validityStateChanged)="validityHandler($event, 'units')">
+    </amx-text-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-number-box
+      [label]="'Roll-over Value'"
+      [(ngModel)]="rollOverBinding.value">
+    </amx-number-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-flex [justify]="'flex-end'">
+      <amx-combo-button
+        [label]="'Save'"
+        [icon]="icons.saveIcon"
+        [invert]="true"
+        [shouldDisable]="!formIsValid"
+        (clicked)="submit()">
+      </amx-combo-button>
+    </amx-flex>
+  </div>
+</amx-modal>

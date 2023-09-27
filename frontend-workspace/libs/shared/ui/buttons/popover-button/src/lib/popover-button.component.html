@@ -1,0 +1,37 @@
+<ng-container [ngSwitch]="type">
+ <ng-container *ngSwitchCase="types.ICON">
+  <amx-icon-button
+    [icon]="icon"
+    [awesome]="true"
+    [height]="'16px'"
+    [fgColor]="fgColor"
+    [padding]="padding"
+    [id]="id"
+    [showHoverEffect]="false"
+    (mouseentered)="show()"
+    (mouseexited)="hide()"
+    (clicked)="clickHandler()">
+  </amx-icon-button>
+ </ng-container>
+ <ng-container *ngSwitchCase="types.TEXT">
+  <amx-link-button
+    [label]="label"
+    [id]="id"
+    (mouseentered)="show()"
+    (mouseexited)="hide()"
+    (clicked)="clickHandler()">
+  </amx-link-button>
+ </ng-container> 
+</ng-container>
+
+<dx-popover
+  [target]="target"
+  [(visible)]="visibility">
+  <div *dxTemplate="let data = model of 'content'" [ngStyle]="{ 'z-index': 9999 }">
+  <ng-container [ngTemplateOutlet]="template || default" [ngTemplateOutletContext]="{ template: data }"></ng-container>
+  </div>
+</dx-popover>
+
+<ng-template #default let-template="template">
+  <span>Popover Template</span>
+</ng-template>

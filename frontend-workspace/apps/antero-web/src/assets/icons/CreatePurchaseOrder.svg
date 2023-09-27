@@ -1,0 +1,66 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<svg viewBox="0 -1.75 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Слой_1" transform="translate(0, -1.75)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <rect x="0" y="2" width="22" height="24" rx="0" ry="0" fill="#727272" class="Black" />
+    </g>
+  </g>
+  <g id="Слой_1" transform="translate(0, -1.75)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <polygon points="20,8 20,4 2,4 2,24 20,24 20,16 22,16 22,8 " fill="#FFFFFF" class="White" />
+    </g>
+  </g>
+  <g id="Слой_1" transform="translate(0, -1.75)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <path d="M32, 16L32, 30L12, 30L12, 16L32, 16z" fill="#1177D7" class="Blue" />
+    </g>
+  </g>
+  <g id="Слой_1" transform="translate(0, -1.75)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <rect x="14" y="18" width="6" height="4" rx="0" ry="0" fill="#FFFFFF" class="White" />
+    </g>
+  </g>
+  <g id="Слой_1" transform="translate(0, -1.75)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <path d="M12, 14L12, 10L32, 10L32, 14L12, 14z" fill="#727272" class="Black" />
+    </g>
+  </g>
+  <g id="Слой_1" transform="translate(0, -1.75)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <g class="st0">
+        <rect x="4" y="6" width="14" height="2" rx="0" ry="0" fill="#727272" class="Black" />
+      </g>
+    </g>
+  </g>
+  <g id="Слой_1" transform="translate(0, -1.75)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <g class="st0">
+        <rect x="4" y="10" width="6" height="2" rx="0" ry="0" fill="#727272" class="Black" />
+      </g>
+    </g>
+  </g>
+  <g id="Слой_1" transform="translate(0, -1.75)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <g class="st0">
+        <rect x="4" y="14" width="6" height="2" rx="0" ry="0" fill="#727272" class="Black" />
+      </g>
+    </g>
+  </g>
+  <g id="Слой_1" transform="translate(0, -1.75)" style="enable-background:new 0 0 32 32">
+    <g transform="matrix(0.875, 0, 0, 0.875, 0, 0)">
+      <g class="st0">
+        <rect x="4" y="18" width="6" height="2" rx="0" ry="0" fill="#727272" class="Black" />
+      </g>
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(16, 14.25)" style="enable-background:new 0 0 16 16">
+    <g id="AddCircled">
+      <circle cx="9" cy="9" r="7" fill="#039C23" class="Green" />
+    </g>
+  </g>
+  <g id="Layer_1" transform="translate(16, 14.25)" style="enable-background:new 0 0 16 16">
+    <g id="AddCircled">
+      <polygon points="14,8 10,8 10,4 8,4 8,8 4,8 4,10 8,10 8,14 10,14 10,10 14,10  " fill="#FFFFFF" class="White" />
+    </g>
+  </g>
+</svg>

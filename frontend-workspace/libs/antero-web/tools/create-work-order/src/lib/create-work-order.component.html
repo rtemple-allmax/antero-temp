@@ -1,0 +1,78 @@
+<!-- <amx-modal [heading]="'Create Work Order'" [maxWidth]="'60vw'" (closed)="closeHandler()">
+  
+</amx-modal> -->
+<!-- <amx-modal [heading]="'Create Work Order'" [maxWidth]="'60vw'" (closed)="closeHandler()">
+  <div [ngStyle]="{ 'padding': 'var(--space-md)' }">
+    <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+      <amx-table-drop-down
+        [label]="'Equipment'"
+        [tableData]="equipmentData"
+        [(ngModel)]="equipmentBinding.value">
+      </amx-table-drop-down>
+      <amx-table-drop-down
+        [label]="'Task'"
+        [tableData]="equipmentData"
+        [(ngModel)]="equipmentBinding.value">
+      </amx-table-drop-down>
+    </amx-grid>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-group-box [label]="'Additional Details'">
+      <dx-scroll-view [height]="'500px'">
+        <amx-accordion-container>
+          <amx-accordion-panel [label]="'Details'">
+            <ng-container *ngIf="accordionIndex === 0">
+              <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-md)'">
+                <amx-date-box [label]="'Date Scheduled'"></amx-date-box>
+                <amx-number-box [label]="'Days To Complete'"></amx-number-box>
+                <amx-searchable-dropdown [label]="'Status'"></amx-searchable-dropdown>
+                <amx-searchable-dropdown [label]="'Maintenance Group'"></amx-searchable-dropdown>
+                <amx-searchable-dropdown [label]="'Type'"></amx-searchable-dropdown>
+                <amx-searchable-dropdown [label]="'Assigned User'"></amx-searchable-dropdown>
+                <amx-searchable-dropdown [label]="'Priority'"></amx-searchable-dropdown>
+              </amx-grid>
+            </ng-container>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Instructions & Checklist'" [icon]="icons.mapIcon">
+            <ng-container *ngIf="accordionIndex === 1">
+              
+            </ng-container>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Labor (0)'" [icon]="icons.userIcon">
+            <ng-container *ngIf="accordionIndex === 2">
+              <amx-crud-toolbar [disabled]="shouldDisable"></amx-crud-toolbar>
+              <amx-data-table [name]="'laborTable'" [allowSearch]="false"></amx-data-table>
+            </ng-container>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Parts (0)'" [icon]="icons.partsIcon">
+            <ng-container *ngIf="accordionIndex === 3">
+              <amx-crud-toolbar [disabled]="shouldDisable"></amx-crud-toolbar>
+              <amx-data-table [name]="'partsTable'" [allowSearch]="false"></amx-data-table>
+            </ng-container>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Contractors (0)'" [icon]="icons.suppliersIcon">
+            <ng-container *ngIf="accordionIndex === 4">
+              <amx-crud-toolbar [disabled]="shouldDisable"></amx-crud-toolbar>
+              <amx-data-table [name]="'contactorsTable'" [allowSearch]="false"></amx-data-table>
+            </ng-container>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Tools (0)'" [icon]="icons.equipmentIcon">
+            <ng-container *ngIf="accordionIndex === 5">
+              <amx-crud-toolbar [disabled]="shouldDisable"></amx-crud-toolbar>
+              <amx-data-table [name]="'toolsTable'" [allowSearch]="false"></amx-data-table>
+            </ng-container>
+          </amx-accordion-panel>
+          <amx-accordion-panel [label]="'Misc (0)'" [icon]="icons.miscIcon">
+            <ng-container *ngIf="accordionIndex === 6">
+              <amx-crud-toolbar [disabled]="shouldDisable"></amx-crud-toolbar>
+              <amx-data-table [name]="'miscTable'" [allowSearch]="false"></amx-data-table>
+            </ng-container>
+          </amx-accordion-panel>
+        </amx-accordion-container>
+      </dx-scroll-view>
+    </amx-group-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-flex [justify]="'flex-end'">
+      <amx-combo-button [label]="'Create'" [invert]="true" [icon]="icons.saveIcon"></amx-combo-button>
+    </amx-flex>
+  </div>
+</amx-modal> -->

@@ -1,0 +1,12 @@
+<amx-modal [heading]="'Edit Reading'" [maxWidth]="'800px'" (closed)="closedHandler()">
+  <div class="form-wrapper">
+    <amx-date-box [label]="'Reading Date'" [(ngModel)]="dateBinding.value"></amx-date-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-number-box [label]="'Reading'" [(ngModel)]="valueBinding.value"></amx-number-box>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-flex [justify]="'flex-end'">
+      <amx-combo-button [label]="'Save'" [invert]="true" [icon]="icons.saveIcon" [shouldDisable]="!ready" (clicked)="submit()"></amx-combo-button>
+    </amx-flex>
+  </div>
+</amx-modal>
+

@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/types/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/antero-web/types"
+      ],
+      "options": {
+        "jestConfig": "libs/antero-web/types/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/types/**/*.ts",
+          "libs/antero-web/types/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

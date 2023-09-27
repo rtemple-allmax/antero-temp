@@ -1,0 +1,139 @@
+<ant-app-frame [sectionName]="'Equipment'" (sliderClosed)="sliderClosedHandler()">
+  <amx-master-detail
+    frameContent
+    [data]="data?.data"
+    [columns]="data?.colDef?.columns || []"
+    [masterWidth]="deviceType === deviceTypes.MOBILE ? '100%' : '50ch'"
+    [cellTemplate]="listItemTemplate"
+    [deviceType]="deviceType"
+    [rowContextMenuItems]="rowContextMenuItems"
+    [allowAdd]="true"
+    [selectionMode]="'single'"
+    [addLabel]="'Add Equipment'"
+    [viewType]="viewType"
+    (selectionChanged)="selectionChangedHandler($event)"
+    (layoutDirty)="layoutDirtyHandler(layoutTypes.EQUIPMENT_GRID)">
+    <ng-container controls *ngTemplateOutlet="controlsTemplate"></ng-container>
+    <ng-container details *ngTemplateOutlet="detailsTemplate"></ng-container>
+  </amx-master-detail>
+  <ng-container frameSlider *ngTemplateOutlet="slidersTemplate"></ng-container>
+</ant-app-frame>
+
+<ng-template #listItemTemplate let-template="template">
+  <ant-equipment-list-item [record]="template?.data"></ant-equipment-list-item>
+</ng-template>
+
+<ng-template #controlsTemplate>
+  <amx-flex  [justify]="'space-between'" [padding]="'var(--space-md) var(--space-lg) var(--space-md) var(--space-md)'" [gap]="'var(--space-md)'" [align]="'center'">
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+      <amx-combo-button [label]="'Add Equipment'" [invert]="true" [icon]="icons.addIcon" (clicked)="openSlider(sliders.ADD)"></amx-combo-button>
+      <amx-search-box #searchBox (searchTermChanged)="searchHandler($event)" (downArrowClicked)="searchDownArrowHandler()"></amx-search-box>
+      <amx-dropdown-button
+        [icon]="icons.moreIcon"
+        [fgColor]="'var(--icon-color)'"
+        [height]="'20px'"
+        [items]="sectionContextMenuItems">
+      </amx-dropdown-button>
+    </amx-flex>
+    <amx-icon-button
+      *ngIf="viewType === viewTypes.TABLE"
+      [height]="'24px'"
+      [icon]="'iconBack'"
+      [rotation]="detailButtonRotation"
+      (clicked)="toggleDetail()">
+    </amx-icon-button>
+  </amx-flex>
+</ng-template>
+
+<ng-template #detailsTemplate>
+  <amx-flex [align]="!!record?.description ? 'flex-start' : 'center'" [gap]="'var(--space-md)'" [padding]="'0 var(--space-md)'">
+    <amx-media-object
+      [heading]="record?.name"
+      [subheading]="record?.retired ? '(retired)' : null"
+      [text]="record?.description"
+      [src]="primaryImage?.imageUrl"
+      (avatarSelected)="primaryImageAdded($event)">
+    </amx-media-object>
+    <amx-icon-button
+      [icon]="icons.thickCircleIcon"
+      [awesome]="true"
+      [tooltip]="record?.inServiceStatus ? 'Equipment is in service. Click to change.' : 'Equipment is out of service. Click to change.'"
+      [height]="'22px'"
+      [fgColor]="record?.inServiceStatus ? 'var(--msg-success)' : 'var(--msg-danger)'"
+      (clicked)="openSlider(sliders.IN_SERVICE)">
+    </amx-icon-button>
+    <amx-icon-button
+      [icon]="icons.historyIcon"
+      [awesome]="true"
+      [height]="'20px'"
+      (clicked)="openSlider(sliders.IN_SERVICE_HISTORY)">
+    </amx-icon-button>
+    <ant-equipment-criticality-widget></ant-equipment-criticality-widget>
+  </amx-flex>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-tabs>
+    <ng-container tabsContent>
+      <amx-tab [label]="'Details'" [icon]="icons.detailsIcon">
+        <ant-equipment-tab-details *ngIf="currentTabIndex === 0" [height]="tabHeight"></ant-equipment-tab-details>
+      </amx-tab>
+      <amx-tab [label]="'Work'" [icon]="icons.activeWorkIcon">
+        <ant-equipment-tab-work *ngIf="currentTabIndex === 1" [height]="tabHeight"></ant-equipment-tab-work>
+      </amx-tab>
+      
+      <amx-tab [label]="'Map'" [icon]="icons.mapIcon">
+        <ant-equipment-tab-map *ngIf="currentTabIndex === 2" [height]="tabHeight"></ant-equipment-tab-map>
+      </amx-tab>
+      <amx-tab [label]="'Activity'" [icon]="icons.activityIcon">
+        <ant-equipment-tab-activity *ngIf="currentTabIndex === 3" [height]="tabHeight"></ant-equipment-tab-activity>
+      </amx-tab>
+    </ng-container>
+  </amx-tabs>
+</ng-template>
+
+<ng-template #slidersTemplate>
+  <ng-container [ngSwitch]="slider">
+    <ant-equipment-slider-add
+      *ngSwitchCase="sliders.ADD"
+      (recordAdded)="crudHandler($event)">
+    </ant-equipment-slider-add>
+    <ant-equipment-slider-copy
+      *ngSwitchCase="sliders.COPY"
+      (recordCopied)="crudHandler($event)">
+    </ant-equipment-slider-copy>
+    <ant-equipment-slider-edit
+      *ngSwitchCase="sliders.EDIT"
+      (recordEdited)="crudHandler($event)">
+    </ant-equipment-slider-edit>
+    <ant-equipment-slider-delete
+      *ngSwitchCase="sliders.DELETE"
+      (recordDeleted)="crudHandler(null)">
+    </ant-equipment-slider-delete>
+    <ant-equipment-slider-details-edit *ngSwitchCase="sliders.DETAILS_EDIT"></ant-equipment-slider-details-edit>
+    <ant-equipment-slider-purchasing-edit *ngSwitchCase="sliders.PURCHASING_EDIT"></ant-equipment-slider-purchasing-edit>
+    <ant-equipment-slider-document-delete *ngSwitchCase="sliders.DOCUMENT_DELETE"></ant-equipment-slider-document-delete>
+    <ant-equipment-slider-enter-readings *ngSwitchCase="sliders.ENTER_READINGS"></ant-equipment-slider-enter-readings>
+    <ant-equipment-slider-in-service *ngSwitchCase="sliders.IN_SERVICE"></ant-equipment-slider-in-service>
+    <ant-equipment-slider-in-service-history *ngSwitchCase="sliders.IN_SERVICE_HISTORY"></ant-equipment-slider-in-service-history>
+    <ant-equipment-slider-instrument-add *ngSwitchCase="sliders.INSTRUMENT_ADD"></ant-equipment-slider-instrument-add>
+    <ant-equipment-slider-instrument-delete *ngSwitchCase="sliders.INSTRUMENT_DELETE"></ant-equipment-slider-instrument-delete>
+    <ant-equipment-slider-instrument-edit *ngSwitchCase="sliders.INSTRUMENT_EDIT"></ant-equipment-slider-instrument-edit>
+    
+    <ant-equipment-slider-part-add *ngSwitchCase="sliders.PART_ADD"></ant-equipment-slider-part-add>
+    <ant-equipment-slider-part-delete *ngSwitchCase="sliders.PART_DELETE"></ant-equipment-slider-part-delete>
+    <ant-equipment-slider-part-edit *ngSwitchCase="sliders.PART_EDIT"></ant-equipment-slider-part-edit>
+
+    <ant-equipment-slider-reactivate *ngSwitchCase="sliders.REACTIVATE"></ant-equipment-slider-reactivate>
+    <ant-equipment-slider-customize-view *ngSwitchCase="sliders.CUSTOMIZE_VIEW"></ant-equipment-slider-customize-view>
+    <ant-equipment-slider-custom-fields-edit *ngSwitchCase="sliders.CUSTOM_FIELDS_EDIT"></ant-equipment-slider-custom-fields-edit>
+    <ant-equipment-slider-image-delete *ngSwitchCase="sliders.IMAGE_DELETE"></ant-equipment-slider-image-delete>
+    <ant-equipment-slider-lists *ngSwitchCase="sliders.LISTS"></ant-equipment-slider-lists>
+    <ant-equipment-slider-manage-criticality *ngSwitchCase="sliders.MANAGE_CRITICALITY"></ant-equipment-slider-manage-criticality>
+    <ant-equipment-slider-manage-custom-fields *ngSwitchCase="sliders.MANAGE_CUSTOM_FIELDS"></ant-equipment-slider-manage-custom-fields>
+    <ant-equipment-slider-my-data-edit *ngSwitchCase="sliders.MY_DATA_EDIT"></ant-equipment-slider-my-data-edit>
+    <ant-equipment-slider-reading-history *ngSwitchCase="sliders.READING_HISTORY"></ant-equipment-slider-reading-history>
+    <ant-equipment-slider-replace *ngSwitchCase="sliders.REPLACE"></ant-equipment-slider-replace>
+    <ant-equipment-slider-retire *ngSwitchCase="sliders.RETIRE"></ant-equipment-slider-retire>
+  </ng-container>
+</ng-template>
+
+

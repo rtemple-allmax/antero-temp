@@ -1,0 +1,14 @@
+<amx-layout-panel [allowAdding]="true">
+  <ng-container header>
+    <h2>Attachments</h2>
+  </ng-container>
+  <ng-container content>
+    <amx-file-explorer
+      [files]="docs"
+      [parentTypeName]="'Work Order'"
+      [allowAdd]="false"
+      (deleteRequested)="deleteRequestHandler($event)"
+      (downloadRequested)="downloadRequestHandler($event)">
+    </amx-file-explorer>
+  </ng-container>
+</amx-layout-panel>

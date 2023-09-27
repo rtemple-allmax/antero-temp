@@ -1,0 +1,70 @@
+<amx-modal [heading]="'Enter Readings'" (closed)="closedHandler()">
+  <amx-searchable-table-dropdown
+    *ngIf="initialValue"
+    [label]="'Equipment'"
+    [data]="eqData"
+    [template]="eqTemplate"
+    [initialValue]="initialValue"
+    [(ngModel)]="equipmentBinding.value">
+  </amx-searchable-table-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-date-box [label]="'Reading Date'" [placeholder]="'(required)'" [(ngModel)]="dateBinding.value"></amx-date-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <div [ngStyle]="{ border: 'var(--border)'}">
+    <amx-grid [columns]="'1fr 10ch 20ch'">
+      <amx-flex [height]="'100%'" [align]="'center'">
+        <div [ngStyle]="{ 'width': '100%', 'height': '100%', 'border-bottom': 'var(--border)', padding: 'var(--space-sm)' }">
+          <span [ngStyle]="{ 'color': 'var(--fg-color)' }">Instrument Name</span>
+        </div>
+      </amx-flex>
+      <amx-flex [height]="'100%'" [align]="'center'">
+        <div [ngStyle]="{ padding: 'var(--space-sm)', 'height': '100%', 'width': '100%', 'border-left': 'var(--border)', 'border-right': 'var(--border)', 'border-bottom': 'var(--border)' }">
+          <span [ngStyle]="{ 'color': 'var(--fg-color)' }">Type</span>
+        </div>
+      </amx-flex>
+      <amx-flex [height]="'100%'" [align]="'center'">
+        <div [ngStyle]="{ 'width': '100%', padding: 'var(--space-sm)', 'height': '100%', 'border-bottom': 'var(--border)' }">
+          <span [ngStyle]="{ 'color': 'var(--fg-color)' }">Reading</span>
+        </div>
+      </amx-flex>
+    </amx-grid>
+    <dx-scroll-view [height]="'300px'">
+      <amx-grid [columns]="'1fr 10ch 20ch'">
+        <ng-container *ngFor="let instrument of instruments; let i = index;">
+          <amx-flex [height]="'100%'" [align]="'center'" [padding]="'var(--space-sm)'">{{ instrument.name }}</amx-flex>
+          <amx-flex [height]="'100%'" [align]="'center'" [padding]="'var(--space-sm)'">{{ instrument.instrumentType === 0 ? 'Meter' : 'Guage' }}</amx-flex>
+          <div [ngStyle]="{ height: '100%' }">
+            <amx-number-box [(ngModel)]="instrumentBindings[i].value"></amx-number-box>
+          </div>
+        </ng-container>
+      </amx-grid>  
+    </dx-scroll-view>
+  </div>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button
+      [label]="'Save'"
+      [invert]="true"
+      [icon]="icons.saveIcon"
+      [shouldDisable]="!ready"
+      (clicked)="submit()">
+    </amx-combo-button>
+  </amx-flex>
+</amx-modal>
+
+<ng-template #noEquipment>
+  <div class="no-data">
+    <span>Please select an Equipment.</span>
+  </div>
+</ng-template>
+
+<ng-template #noInstruments>
+  <div class="no-data">No Instruments have been added to this Equipment.</div>
+</ng-template>
+
+<ng-template #eqTemplate let-template="template">
+  <div>
+    <p><b>{{ template?.data?.name }}</b></p>
+    <p>{{ template?.data?.description }}</p>
+  </div>
+</ng-template>

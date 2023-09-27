@@ -1,0 +1,22 @@
+.file-picker {
+  pointer-events: all;
+  & input[type=file] {
+    visibility: hidden;
+    position: absolute;
+  }
+  // &.disabled {
+  //   pointer-events: none;
+  //   position: relative;
+  //   cursor: initial;
+  //   opacity: 0;
+  //   &::after {
+  //     content: '';
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     right: 0;
+  //     bottom: 0;
+  //     background-color: var(--overlay);
+  //   }
+  // }
+}

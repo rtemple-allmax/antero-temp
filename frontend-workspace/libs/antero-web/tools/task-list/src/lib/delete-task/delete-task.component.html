@@ -1,0 +1,16 @@
+<!-- <amx-confirmation
+  [heading]="'Delete Confirmation'"
+  [headerBGColor]="'red'"
+  (canceled)="cancelHandler()"
+  (closed)="cancelHandler()"
+  (confirmed)="confirmHandler()">
+  <p>This will permanently delete the task <b>{{ record?.name }}</b> a</p>
+</amx-confirmation> -->
+
+<amx-delete-confirmation
+  [typeName]="'Task'"
+  [recordName]="task?.name"
+  [affectedTypes]="[ 'Work Templates', 'Work Orders' ]"
+  (canceled)="cancelHandler()"
+  (confirmed)="confirmHandler()">
+</amx-delete-confirmation>

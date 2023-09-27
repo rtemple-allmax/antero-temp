@@ -1,0 +1,22 @@
+<amx-modal [heading]="heading" (closed)="closedHandler()">
+  <div>
+    <amx-scroll-box [maxHeight]="'600px'">
+      <amx-grid [columns]="'repeat(1, 1fr)'" [gap]="'var(--space-lg)'">
+        <ng-container *ngFor="let record of records">
+          <amx-card
+            [record]="record"
+            [title]="record.warehouse?.name"
+            [titleExpr]="'Warehouse Name'"
+            [height]="'100%'">
+            <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            <ng-container *ngIf="record.area">
+              <p [title]="'Area Name'">{{ record.area.name }}</p>
+              <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+            </ng-container>
+            <p [title]="'Quantity and Unit'"><b>{{ record.currentQuantity }}</b> {{ getUnit(record) }}</p>
+          </amx-card>
+        </ng-container>
+      </amx-grid>
+    </amx-scroll-box>
+  </div>
+</amx-modal>

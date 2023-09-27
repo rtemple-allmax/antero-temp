@@ -1,0 +1,33 @@
+<ng-container [ngSwitch]="deviceType">
+  <ng-container *ngSwitchCase="deviceTypes.DESKTOP">
+    <ng-container *ngTemplateOutlet="desktop"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="deviceTypes.TABLET">
+    <ng-container *ngTemplateOutlet="tablet"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="deviceTypes.MOBILE">
+    <ng-container *ngTemplateOutlet="mobile"></ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-template #desktop>
+  <amx-layout-panel-collapsible
+  [title]="title"
+  (collapsedStateChanged)="collapsedStateChangedHandler($event)">
+  <amx-file-explorer
+    [files]="data"
+    (addRequested)="addRequestHandler($event)"
+    (deleteRequested)="deleteRequestHandler($event)"
+    (downloadRequested)="downloadRequestHandler($event)">
+  </amx-file-explorer>
+</amx-layout-panel-collapsible>
+  
+</ng-template>
+
+<ng-template #tablet>
+  tablet
+</ng-template>
+
+<ng-template #mobile>
+  mobile
+</ng-template>

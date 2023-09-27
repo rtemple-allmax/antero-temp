@@ -1,0 +1,15 @@
+<div (mouseenter)="mouseenterHandler()" (mouseleave)="mouseleaveHandler()">
+  <amx-flex [justify]="'space-between'" [align]="'center'" [gap]="'var(--space-md)'" [height]="'32px'">
+    <amx-flex [align]="'center'" [gap]="'var(--space-md)'" [amxFlexChild]="'1'">
+      <label *ngIf="label" [amxFlexChild]="'0 0 80px'"><b>{{ label }}</b></label>
+      <label [amxFlexChild]="'1'" [ngStyle]="{ 'whitespace': 'no-wrap'}">{{ record[displayExpr] }}</label>
+    </amx-flex>
+    <amx-crud-button
+      [opacity]="hovered ? 1 : 0"
+      [allowEditing]="true"
+      [allowDeleting]="true"
+      (editRequested)="editHandler()"
+      (deleteRequested)="deleteHandler()">
+    </amx-crud-button>
+  </amx-flex>
+</div>

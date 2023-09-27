@@ -1,0 +1,14 @@
+<amx-confirmation
+  [heading]="'Delete Confirmation'"
+  [dangerous]="true"
+  (canceled)="closedHandler()"
+  (closed)="closedHandler()"
+  (confirmed)="submit()">
+  <span>
+    Deleting the Part {{ source?.name }} will <u><i>permanently delete</i></u> the entry from the database along with all associated data.
+  </span>
+  <br/><br/>
+  <span>This is not recoverable ian any way except to restore a complete database backup.</span>
+  <br/><br/>
+  <span><b>This action cannot be undone, do you wish to contiue?</b></span>
+</amx-confirmation>

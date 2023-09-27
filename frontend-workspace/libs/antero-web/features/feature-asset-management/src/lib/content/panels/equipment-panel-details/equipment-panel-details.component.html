@@ -1,0 +1,21 @@
+<amx-layout-panel
+  [allowEditing]="true"
+  [disableControls]="shouldDisable"
+  (editRequested)="editHandler()"
+  (collapsedStateChanged)="collapsedStateChangeHandler($event)">
+  <ng-container header>
+    <h2>{{ title }}</h2>
+  </ng-container>
+  <ng-container content>
+    <amx-grid
+      *ngIf="record && fields"
+      [useLayout]="true"
+      [layout]="layouts.COLS_2"
+      [gap]="'var(--space-lg)'"
+      [padding]="'var(--space-md)'">
+      <ng-container *ngFor="let field of fields">
+        <amx-read-only-box [label]="field.label">{{ getFieldValue(record, field) }}</amx-read-only-box>
+      </ng-container>
+    </amx-grid>
+  </ng-container>
+</amx-layout-panel>

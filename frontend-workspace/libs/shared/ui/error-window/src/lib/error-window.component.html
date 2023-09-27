@@ -1,0 +1,8 @@
+<amx-modal
+  *ngIf="message?.length && message.length > 0"
+  [heading]="heading"
+  [zIndex]="'var(--layer-5)'">
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <span>{{ message }}</span>
+  </div>
+</amx-modal>

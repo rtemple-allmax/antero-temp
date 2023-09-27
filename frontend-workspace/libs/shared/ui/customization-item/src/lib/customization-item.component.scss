@@ -1,0 +1,15 @@
+.customizable-field {
+  border: 1px solid transparent;
+  padding: var(--space-sm);
+  & .drag-handle {
+    cursor: grab;
+    opacity: 0;
+  }
+  &:hover {
+    background-color: var(--panel-bg-color);
+    border: 1px solid var(--fg-color);
+    & .drag-handle {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.cell-more {
+  opacity: 0;
+  &.hovered {
+    opacity: 1
+  }
+}
+
+// .equipment-list-item {
+//   &:hover {
+//     background-color: var(--highlight-color);
+//   }
+// }

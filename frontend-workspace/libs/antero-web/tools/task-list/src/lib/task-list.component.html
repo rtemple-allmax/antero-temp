@@ -1,0 +1,48 @@
+<amx-modal [heading]="'Tasks'" [maxWidth]="'60vw'" (closed)="closedHandler()">
+  <amx-crud-toolbar
+    (add)="showAddInstructionsHandler()"
+    (edit)="openEditInstructions()"
+    (delete)="openDeleteTask()"
+    [disabled]="!selection">
+  </amx-crud-toolbar>
+  <amx-grid [height]="'70vh'" [columns]="'435px 1fr'" [gap]="'var(--space-md)'">
+    <amx-data-table
+      [height]="'100%'"
+      [data]="data"
+      [columns]="cols"
+      (selectionChanged)="selectionHandler($event)">
+    </amx-data-table>
+    <div>
+      <amx-grid [columns]="'1fr'" [rows]="'repeat(2, auto)'" [height]="'100%'">
+        <amx-group-box [label]="'Instructions'">
+          <dx-scroll-view [height]="'35vh'">
+            <amx-formatted-text [text]="selection?.instructions || ''"></amx-formatted-text>
+          </dx-scroll-view>
+        </amx-group-box>
+        <amx-group-box [label]="'Checklist'">
+          <dx-scroll-view [height]="'25vh'">
+            <ng-container *ngFor="let item of selection?.checklist">
+              <amx-read-only-check-box [label]="item.label"></amx-read-only-check-box>
+            </ng-container>
+          </dx-scroll-view>
+        </amx-group-box>
+      </amx-grid>
+    </div>
+  </amx-grid>
+</amx-modal>
+
+<ant-add-task
+  *ngIf="showAddInstructions"
+  [task]="selection"
+  [crud]="crud"
+  (add)="addHandler($event)"
+  (edit)="editHandler($event)"
+  (closed)="closeAddInstructionsHandler()">
+</ant-add-task>
+
+<ant-delete-task
+  *ngIf="showDeleteTask"
+  [task]="selection"
+  (cancel)="closeDeleteTask()"
+  (confirm)="deleteHandler()">
+</ant-delete-task>

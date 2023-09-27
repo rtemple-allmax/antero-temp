@@ -1,0 +1,14 @@
+<amx-modal
+  [heading]="heading"
+  (closed)="closedHandler()">
+  <dx-scroll-view [height]="'55vh'">
+    <h2><b>{{ data?.wo?.equipment?.name }}</b></h2>
+    <p>{{ data?.wo?.equipment?.description }}</p>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-image [src]="primaryImage?.imageUrl"></amx-image>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-group-box [label]="'Details'">
+      <ant-equipment-details-panel></ant-equipment-details-panel>
+    </amx-group-box>
+  </dx-scroll-view>
+</amx-modal>

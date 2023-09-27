@@ -1,0 +1,17 @@
+<amx-modal [heading]="'Add Labor'" (closed)="closedHandler()">
+  <amx-searchable-dropdown [label]="'Labor Class'"></amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown [label]="'Labor Account'"></amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown [label]="'User'"></amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-searchable-dropdown [label]="'Labor Type'"></amx-searchable-dropdown>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-number-box [label]="'Estimated Hours'"></amx-number-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-number-box [label]="'Actual Hours'"></amx-number-box>
+  <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+  <amx-flex [justify]="'flex-end'">
+    <amx-combo-button [label]="'Save'" [icon]="icons.saveIcon" [invert]="true"></amx-combo-button>
+  </amx-flex>
+</amx-modal>

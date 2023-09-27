@@ -1,0 +1,31 @@
+.combo-btn {
+  pointer-events: all;
+  padding: var(--space-md);
+  background: white;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  position: relative;
+  & img {
+    height: 16px;
+    margin-right: 4px;
+    pointer-events: inherit;
+  }
+  & label {
+    white-space: nowrap;
+    cursor: pointer;
+    pointer-events: inherit;
+  }
+  &:hover {
+    background-color: var(--highlight-color);
+    
+  }
+  &:disabled {
+    pointer-events: none;
+    background-color: var(--disabled-color);
+  }
+}

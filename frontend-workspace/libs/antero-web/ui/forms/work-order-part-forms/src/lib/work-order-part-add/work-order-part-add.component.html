@@ -1,0 +1,20 @@
+<amx-modal [heading]="'Add Part'" (closed)="closedHandler()">
+  <!-- <amx-searchable-dropdown
+    [label]="'Stock Location'"
+    [items]="data"
+    [displayExpr]="'part.name'"
+    [(ngModel)]="partBinding.value"
+    (opened)="getData()">
+  </amx-searchable-dropdown> -->
+  <amx-searchable-table-dropdown
+    [label]="'Stock Location'"
+    [data]="data"
+    [(ngModel)]="partBinding.value"
+    (opened)="getData()">
+  </amx-searchable-table-dropdown>
+  <amx-spacer [space]="'var(--space-lg)'"></amx-spacer>
+  <amx-grid [columns]="'repeat(2, 1fr)'" [gap]="'var(--space-lg)'">
+    <amx-number-box [label]="'Estimated Quantity'" [(ngModel)]="estimatedBinding.value"></amx-number-box>
+    <amx-number-box [label]="'Actual Quantity'" [(ngModel)]="actualBinding.value"></amx-number-box>
+  </amx-grid>
+</amx-modal>

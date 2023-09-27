@@ -1,0 +1,31 @@
+<amx-flex [align]="'center'">
+  
+  <amx-icon-button
+    [icon]="icons.listIcon"
+    [awesome]="true"
+    [fgColor]="viewType === viewTypes.LIST ? 'var(--selected-color)' : 'white'"
+    [height]="'20px'"
+    (clicked)="toggleView(viewTypes.LIST)">
+  </amx-icon-button>
+  <amx-icon-button
+    [icon]="icons.gridIcon"
+    [awesome]="true"
+    [fgColor]="viewType === viewTypes.TABLE ? 'var(--selected-color)' : 'white'"
+    [height]="'20px'"
+    (clicked)="toggleView(viewTypes.TABLE)">
+  </amx-icon-button>
+  <!-- <amx-icon-button
+    [icon]="icons.mapIcon"
+    [awesome]="true"
+    [fgColor]="viewType === viewTypes.MAP ? getThemeValue('--app-color-4') || 'white' : 'white'"
+    [height]="'20px'"
+    (clicked)="toggleView(viewTypes.MAP)">
+  </amx-icon-button>
+  <amx-icon-button
+    [icon]="icons.calendarIcon"
+    [awesome]="true"
+    [fgColor]="viewType === viewTypes.CALENDAR ? getThemeValue('--app-color-4') || 'white' : 'white'"
+    [height]="'20px'"
+    (clicked)="toggleView(viewTypes.CALENDAR)">
+  </amx-icon-button> -->
+</amx-flex>

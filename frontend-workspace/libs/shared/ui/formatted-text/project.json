@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/formatted-text/src",
+  "prefix": "amx",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/formatted-text"],
+      "options": {
+        "jestConfig": "libs/shared/ui/formatted-text/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/formatted-text/**/*.ts",
+          "libs/shared/ui/formatted-text/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

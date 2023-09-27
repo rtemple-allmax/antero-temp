@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/antero-web/data-access/application-controller/src",
+  "prefix": "ant",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/antero-web/data-access/application-controller"
+      ],
+      "options": {
+        "jestConfig": "libs/antero-web/data-access/application-controller/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/antero-web/data-access/application-controller/**/*.ts",
+          "libs/antero-web/data-access/application-controller/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

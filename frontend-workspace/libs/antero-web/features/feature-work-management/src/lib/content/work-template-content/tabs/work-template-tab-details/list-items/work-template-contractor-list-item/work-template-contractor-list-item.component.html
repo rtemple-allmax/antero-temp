@@ -1,0 +1,13 @@
+<amx-flex [justify]="'space-between'" [align]="'center'">
+  <span>{{ record?.supplier?.name }}</span>
+  <amx-popover-text [template]="costTemplate">{{ formatAsCurrency(record?.totalCost) }}</amx-popover-text>
+</amx-flex>
+
+<ng-template #costTemplate>
+  <div [ngStyle]="{ padding: 'var(--space-md)' }">
+    <p>Part Cost: {{ formatAsCurrency(record?.partCost) }}</p>
+    <p>Labor Cost: {{ formatAsCurrency(record?.laborCost) }}</p>
+    <p>Misc Cost: {{ formatAsCurrency(record?.miscCost) }}</p>
+    <p>Tax Cost: {{ formatAsCurrency(record?.taxCost) }}</p>
+  </div>
+</ng-template>

@@ -1,0 +1,32 @@
+<div #wrapper
+  class="avatar-wrapper"
+  [ngClass]="{ 'hovered' : hovered, 'has-img': !!src }"
+  (mouseenter)="mouseenterHandler()"
+  (mouseleave)="mouseleaveHandler()">
+  <ng-container *ngIf="src else noImage">
+    <img #avatar
+      class="avatar" (load)="imageLoadedHandler($event)"
+      [src]="src | safeUrl"/>
+  </ng-container>
+</div>
+
+<ng-template #noImage>
+  <div class="avatar"
+    [ngStyle]="{ display: 'flex', 'justify-content': 'center', 'align-items': 'center', 'background-color': 'transparent'}">
+    <amx-icon-button
+      [icon]="icons.noImageIcon"
+      [awesome]="true"
+      [height]="'30px'"
+      [fgColor]="'var(--icon-color)'"
+      [showHoverEffect]="false"
+      (clicked)="add()">
+    </amx-icon-button>
+    <input
+    #filePicker
+    type="file"
+    [accept]="accept"
+    [disabled]="disabled"
+    [multiple]="true"
+    (change)="fileSelectionHandler($event)"/>
+  </div>
+</ng-template>

@@ -1,0 +1,30 @@
+<amx-flex [align]="'center'" [gap]="'var(--space-md)'">
+  <amx-avatar [src]="src" (filesSelected)="filesSelectedHandler($event)"></amx-avatar>
+  <div>
+    <ng-container *ngIf="isLink else notLink">
+      <div [ngStyle]="{ cursor: 'pointer' }" (click)="clickHandler()">
+        <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+          <h2 [ngStyle]="{ 'color': 'var(--icon-color)' }">{{ heading }}</h2>
+          <label>{{ subheading }}</label>
+        </amx-flex>
+      </div>
+    </ng-container>
+    <p [ngStyle]="{ color: 'var(--fg-color)'}">{{ text }}</p>
+  </div>
+</amx-flex>
+
+
+<ng-template #notLink>
+  <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+    <ng-container *ngIf="!listItem else listItemTemplate">
+      <h2 [ngStyle]="{ color: 'var(--fg-color)'}">{{ heading }}</h2>
+      <h2 [ngStyle]="{ color: 'var(--fg-color)' }">{{ subheading }}</h2>
+    </ng-container>
+  </amx-flex>
+</ng-template>
+
+<ng-template #listItemTemplate>
+  <p [ngStyle]="{ color: 'var(--fg-color)'}">{{ heading }}</p>
+  <p [ngStyle]="{ color: 'var(--fg-color)' }">{{ subheading }}</p>
+</ng-template>
+

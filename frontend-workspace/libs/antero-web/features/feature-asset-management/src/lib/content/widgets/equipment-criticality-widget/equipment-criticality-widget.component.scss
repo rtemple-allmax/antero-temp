@@ -1,0 +1,93 @@
+.meter-container {
+  height: 71px;
+  overflow: hidden;
+  position: fixed;
+  top: 100px;
+  right: 100px;
+  cursor: pointer;
+  & * { cursor: pointer; }
+  & .text {
+    position: absolute;
+    bottom: 1px;
+    height: 20px;
+    width: 100%;
+    z-index: 6;
+    padding: 2px 1rem;
+    border-radius: 0 0 15px 15px;
+  }
+  & .meter {
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--app-color);
+    border-radius: 50%;
+    position: relative;
+    & .center-hide {
+      position: absolute;
+      width: calc(100% - 50px);
+      height: calc(100% - 50px);
+      top: 25px;
+      left: 25px;
+      border-radius: 50%;
+      background-color: white;
+      z-index: 1;
+    }
+    & .center {
+      width: 10px;
+      height: 10px;
+      background-color: var(--app-color);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+    }
+    & .bottom-hide {
+      width: 220px;
+      height: 100px;
+      background-color: white;
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      z-index: 3;
+      border-top: 1px solid var(--app-color);
+    }
+    & .arrow-container {
+      width: 100px;
+      height: 100px;
+      background-color: transparent;
+      position: absolute;
+      z-index: 4;
+      top: 50px;
+      left: 50px;
+      & .arrow-wrapper {
+        width: 90%;
+        height: 90%;
+        background: transparent;
+        position: relative;
+        transition: all .4s ease-in-out;
+        & .arrow {
+          width: 40px;
+          height: 4px;
+          background-color: var(--app-color);
+          position: absolute;
+          top: -5px;
+          left: -42px;
+          transform-origin: center right;
+          transform: rotate(calc(35deg * calc((var(--score) / 5))));
+          transition: all .4s ease-in-out;
+          border-radius: 0 -2px -2px 0;
+        }
+      }
+    }
+    & .scale {
+      width: 2px;
+      height: calc(100% - 10px);
+      background-color: #bbb;
+      position: absolute;
+      left: 50%;
+      top: 5px;
+      transform: translateX(-50%) rotate(calc(36deg * var(--i)));
+    }
+  }
+}

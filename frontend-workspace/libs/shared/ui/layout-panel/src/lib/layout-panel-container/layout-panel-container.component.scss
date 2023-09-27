@@ -1,0 +1,10 @@
+.layout-panel-container {
+  padding: var(--space-lg);
+  color: var(--fg-color);
+  display: grid;
+  grid-template-rows: auto;
+  gap: var(--space-lg);
+  &.masonry {
+    grid-template-areas: masonry;
+  }
+}

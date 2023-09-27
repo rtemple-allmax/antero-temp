@@ -1,0 +1,21 @@
+<amx-layout-panel-collapsible [title]="title" [allowAdding]="true" (addRequested)="addHandler()">
+  <amx-data-table
+    class="subsection"
+    [allowGrouping]="false"
+    [allowFiltering]="false"
+    [allowExport]="false"
+    [data]="contactsData?.data"
+    [selectFirstRowOnLoad]="false"
+    [columns]="contactsData?.colDef?.columns || []"
+    [showColumnHeaders]="viewType === viewTypes.TABLE"
+    [showRowLines]="true"
+    [showColumnLines]="false"
+    [selectionMode]="'none'"
+    [hoverStateEnabled]="false"
+    [cellTemplate]="viewType === viewTypes.LIST ? cellTemplate : null">
+  </amx-data-table>
+</amx-layout-panel-collapsible>
+
+<ng-template #cellTemplate let-template="template">
+  <ant-supplier-contact-list-item [record]="template?.data"></ant-supplier-contact-list-item>
+</ng-template>

@@ -1,0 +1,14 @@
+<h2 [ngStyle]="{ 'text-align': 'center' }">Delete Documents</h2>
+<amx-separator></amx-separator>
+<p>The following documents will be deleted from <b>{{ source?.name }}</b></p>
+<br/>
+<ng-container *ngFor="let doc of documents">
+  <p>{{ doc.document?.name }}</p>
+</ng-container>
+<br/>
+<p><b>Do you wish to continue?</b></p>
+<amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+<amx-flex [justify]="'flex-end'" [gap]="'var(--space-md)'">
+  <amx-combo-button [label]="'Confirm'" [fgColor]="'var(--msg-success)'" [icon]="icons.confirmIcon" (clicked)="confirmHandler()"></amx-combo-button>
+  <amx-combo-button [label]="'Cancel'" [fgColor]="'var(--msg-danger)'" [icon]="icons.cancelIcon" (clicked)="cancelHandler()"></amx-combo-button>
+</amx-flex>

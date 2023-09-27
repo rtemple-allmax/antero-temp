@@ -1,0 +1,6 @@
+<div *ngIf="showTutorial">
+  <amx-flex [gap]="'var(--space-md)'" [align]="'center'">
+    <small><ng-content></ng-content></small>
+    <amx-link-button [label]="'Dismiss'" (clicked)="dismissHandler()"></amx-link-button>
+  </amx-flex>
+</div>

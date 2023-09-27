@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/checklist-editor/src",
+  "prefix": "allmax-angular",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/checklist-editor"],
+      "options": {
+        "jestConfig": "libs/shared/ui/checklist-editor/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/checklist-editor/**/*.ts",
+          "libs/shared/ui/checklist-editor/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

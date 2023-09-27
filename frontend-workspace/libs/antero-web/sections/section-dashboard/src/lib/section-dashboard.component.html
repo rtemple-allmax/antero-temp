@@ -1,0 +1,18 @@
+<ant-app-frame [sectionName]="'Home'">
+  <div frameContent>
+    <div [ngStyle]="{ 'padding': 'var(--space-lg)' }" >
+      <amx-layout-panel-user></amx-layout-panel-user>
+    </div>
+    <amx-spacer [space]="'var(--space-md)'"></amx-spacer>
+    <amx-layout-panel-container [columns]="'repeat(2, 1fr)'" [masonry]="true">
+      <amx-layout-panel-work-orders></amx-layout-panel-work-orders>
+      <amx-layout-panel-instruments></amx-layout-panel-instruments>
+      <div class="layout-panel">
+        <h2>Log Parts Usage</h2>
+      </div>
+      <div class="layout-panel">
+        <h2>Receive Parts</h2>
+      </div>
+    </amx-layout-panel-container>
+  </div>
+</ant-app-frame>
